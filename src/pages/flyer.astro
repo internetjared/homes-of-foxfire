@@ -32,6 +32,7 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
       </header>
 
       <section class="callout">
+        <div class="kicker-q">Did you know?</div>
         <h1 class="headline">
           Two data centers.<br />
           266 acres.<br />
@@ -40,9 +41,8 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
         <div class="rule" aria-hidden="true"></div>
         <p class="lede">
           A 266-acre Planned Industrial District is proposed for the parcels
-          along Foxfire and adjacent lots in Commercial Point, Ohio. We are
-          residents tracking every filing and every hearing, in public, on
-          the record.
+          along Foxfire and adjacent lots in Commercial Point, Ohio. Most
+          homeowners were not told this at closing.
         </p>
       </section>
 
@@ -123,6 +123,15 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
     flex-direction: column;
     gap: 0.35in;
     justify-content: center;
+  }
+  .kicker-q {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: -0.25in;
+    font-weight: 500;
   }
   .headline {
     font-family: var(--headline);
