@@ -109,14 +109,15 @@ const flyer = {
 
   .flyer {
     width: 8.5in;
-    min-height: 11in;
-    padding: 0.75in;
+    height: 11in;
+    padding: 0.6in;
     background: var(--paper);
     color: var(--text);
     box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 12px 40px rgba(0,0,0,0.12);
     display: flex;
     flex-direction: column;
-    gap: 0.32in;
+    gap: 0.22in;
+    overflow: hidden;
   }
 
   /* Top stamp */
@@ -130,7 +131,7 @@ const flyer = {
   /* Title and lede */
   .flyer-title {
     font-family: var(--headline);
-    font-size: 56px;
+    font-size: 46px;
     line-height: 1.04;
     color: var(--ink);
     margin: 0;
@@ -152,10 +153,10 @@ const flyer = {
     border: 1px solid var(--alert);
     border-left-width: 3px;
     background: #FBEEEA;
-    padding: 22px 26px 24px;
+    padding: 16px 22px 18px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
   }
   .hearing-stamp {
     align-self: flex-start;
@@ -176,7 +177,7 @@ const flyer = {
   .hearing-when strong {
     display: block;
     font-family: var(--headline);
-    font-size: 28px;
+    font-size: 24px;
     line-height: 1.1;
     color: var(--alert);
     font-weight: 500;
@@ -185,10 +186,10 @@ const flyer = {
   .hearing-when .time {
     display: block;
     font-family: var(--headline);
-    font-size: 22px;
+    font-size: 20px;
     color: var(--alert);
     font-weight: 500;
-    margin-top: 4px;
+    margin-top: 2px;
   }
   .hearing-when .sub {
     display: block;
@@ -277,8 +278,8 @@ const flyer = {
     margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    padding-top: 24px;
+    gap: 12px;
+    padding-top: 16px;
     border-top: 1px solid var(--rule-soft);
   }
   .wordmark {
@@ -333,13 +334,14 @@ const flyer = {
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 
-  /* Narrow screens: let the sheet shrink rather than overflow */
-  @media (max-width: 9in) {
+  /* Narrow screens: let the sheet shrink rather than overflow.
+     Scoped to screen — print always renders the full letter sheet. */
+  @media screen and (max-width: 9in) {
     .stage { padding: 16px 8px; }
     .flyer {
       width: 100%;
       max-width: 8.5in;
-      min-height: auto;
+      height: auto;
       padding: 32px 28px 28px;
     }
     .flyer-title { font-size: 40px; }
