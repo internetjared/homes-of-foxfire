@@ -1,0 +1,38 @@
+/* Foxfire Coalition — design tokens.
+ *
+ * Eight color tokens, three type families, one spacing variable.
+ * Every token has a job. Names point to materials you would recognize
+ * from a rural-edge Ohio parcel: forest ink, iron oxide, cream, bone, moss,
+ * hearing red. Do not introduce primary/secondary/tertiary abstractions.
+ *
+ * See docs/BRAND.md for token roles and contrast pairs.
+ */
+
+:root {
+  /* Color */
+  --ink: #1F3A22;          /* Forest Ink — primary */
+  --ink-2: #142718;        /* deeper, for dark surfaces */
+  --accent: #7A3A2A;       /* Iron Oxide — single accent */
+  --accent-2: #5E2C1F;
+  --paper: #F4EFE3;        /* Cream — page background */
+  --paper-2: #FAF6EC;      /* lighter paper */
+  --bone: #EAE2D0;         /* Bone — surface neutral */
+  --bone-2: #D9D0BA;
+  --moss: #DEE3D6;         /* Moss — tinted-green surface */
+  --moss-2: #C9D2BE;
+  --alert: #9B2D1F;        /* Hearing Red — deadlines only */
+  --text: #1A2218;         /* Body Ink */
+  --text-soft: #4D5A50;    /* Soft Ink */
+  --text-mute: #7A8278;
+
+  --rule: #1F3A22;
+  --rule-soft: rgba(31, 58, 34, 0.18);
+
+  /* Type */
+  --headline: "IBM Plex Serif", "Source Serif 4", Georgia, serif;
+  --body: "Public Sans", "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  /* Layout */
+  --measure: 680px;
+}

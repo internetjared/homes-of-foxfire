@@ -1,0 +1,13 @@
+/* Foxfire Coalition — brand guide styles.
+ *
+ * Loaded by src/pages/brand.astro only. Do not import from anywhere else.
+ *
+ * This file holds styles for the long-scrolling brand reference document:
+ *   .spine, .cover*, .doc-section, .plate, .lockup-grid, .palette,
+ *   .swatch, .pairs, .type-scale, .spacing-row, .cols-2, .inventory,
+ *   .do-dont, .rationale, .signoff
+ *
+ * And for the guide-only display components in src/components/guide/.
+ *
+ * Populated during the build-out phase. See docs/ARCHITECTURE.md.
+ */

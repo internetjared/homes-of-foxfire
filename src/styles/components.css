@@ -1,0 +1,13 @@
+/* Foxfire Coalition — site and content component styles.
+ *
+ * Loaded by SiteLayout.astro. Used by every public-facing page.
+ *
+ * This file holds styles for components in:
+ *   src/components/site/      (SiteHeader, SiteHero, SiteFooter)
+ *   src/components/content/   (DocumentCard, TimelineRow, StatusBadge,
+ *                              QuoteBlock, Callout, RecordsCTA)
+ *
+ * Do NOT add brand-guide-only styles here — those go in guide.css.
+ *
+ * Populated during the build-out phase. See docs/ARCHITECTURE.md.
+ */
