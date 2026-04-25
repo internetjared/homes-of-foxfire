@@ -206,9 +206,10 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
     display: grid;
     grid-template-columns: 1.55in 1fr;
     gap: 0.34in;
-    align-items: start;
-    padding-top: 0.18in;
+    align-items: center;
+    padding-block: 0.18in;
     border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
   }
   .qr {
     width: 1.55in;
@@ -275,8 +276,6 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 12px;
-    padding-top: 12px;
-    border-top: 1px solid var(--rule-soft);
     font-family: var(--mono);
     font-size: 13px;
     color: var(--ink);
