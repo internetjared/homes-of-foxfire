@@ -21,7 +21,7 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
   },
 });
 ---
-<BaseLayout title="Giant data centers. Nearly 267 acres. Your new neighbor. — Homes of Foxfire Coalition">
+<BaseLayout title="Giant Data Centers. Nearly 267 acres. Your new neighbor. — Homes of Foxfire Coalition">
   <main class="stage" aria-label="Flyer preview">
     <article class="flyer" role="document">
 
@@ -39,16 +39,16 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
       <section class="callout">
         <div class="kicker-q">Did you know?</div>
         <h1 class="headline">
-          Giant data centers.<br />
+          Giant Data Centers.<br />
           Nearly 267 acres.<br />
           Your new neighbor.
         </h1>
         <div class="rule" aria-hidden="true"></div>
         <p class="lede">
-          This is not a rumor, and it is not over. Public records show a
-          nearly 267-acre site near Foxfire has already been rezoned for
-          data-center use. Residents can still demand answers, challenge the
-          process, and fight to protect our neighborhood.
+          <strong>This is not a rumor, and it is not over.</strong> Public
+          records show a nearly 267-acre site near Foxfire has already been
+          rezoned for data-center use. Residents can still demand answers,
+          challenge the process, and fight to protect our neighborhood.
         </p>
       </section>
 
@@ -100,13 +100,13 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
   .flyer {
     width: 8.5in;
     height: 11in;
-    padding: 0.6in 0.65in;
+    padding: 0.55in 0.65in;
     background: var(--paper);
     color: var(--text);
     box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 12px 40px rgba(0,0,0,0.12);
     display: grid;
     grid-template-rows: auto 1fr auto auto;
-    gap: 0.42in;
+    gap: 0.3in;
     overflow: hidden;
   }
 
@@ -164,7 +164,7 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
   .callout {
     display: flex;
     flex-direction: column;
-    gap: 0.35in;
+    gap: 0.26in;
     justify-content: center;
   }
   .kicker-q {
@@ -173,13 +173,13 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: -0.25in;
+    margin-bottom: -0.18in;
     font-weight: 500;
   }
   .headline {
     font-family: var(--headline);
-    font-size: 88px;
-    line-height: 1.0;
+    font-size: 72px;
+    line-height: 1.04;
     color: var(--ink);
     margin: 0;
     letter-spacing: -0.02em;
@@ -193,8 +193,8 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
   }
   .lede {
     font-family: var(--body);
-    font-size: 19px;
-    line-height: 1.5;
+    font-size: 18px;
+    line-height: 1.45;
     color: var(--text);
     margin: 0;
     max-width: 6.5in;
@@ -204,15 +204,15 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
   /* Learn more zone — QR left, instructions right */
   .learn {
     display: grid;
-    grid-template-columns: 1.7in 1fr;
-    gap: 0.4in;
+    grid-template-columns: 1.55in 1fr;
+    gap: 0.34in;
     align-items: start;
-    padding-top: 0.2in;
+    padding-top: 0.18in;
     border-top: 1px solid var(--rule-soft);
   }
   .qr {
-    width: 1.7in;
-    height: 1.7in;
+    width: 1.55in;
+    height: 1.55in;
     background: var(--paper);
     border: 1px solid var(--rule-soft);
     padding: 4px;
