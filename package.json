@@ -10,12 +10,13 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "pdf:flyer": "npm run build && node scripts/render-pdf.mjs /flyer public/exports/hearing-flyer.pdf"
+    "pdf:flyer": "npm run build && node scripts/render-pdf.mjs /flyer public/exports/canvass-flyer.pdf"
   },
   "dependencies": {
     "astro": "^5.0.0"
   },
   "devDependencies": {
-    "puppeteer": "^24.42.0"
+    "puppeteer": "^24.42.0",
+    "qrcode": "^1.5.4"
   }
 }

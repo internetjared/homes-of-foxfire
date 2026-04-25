@@ -1,94 +1,67 @@
 ---
+import QRCode from 'qrcode';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const flyer = {
-  documentId: 'FXF-FLYER-2026-001',
+  documentId: 'FXF-FLYER-2026-002',
   version: 'v1.0',
   lastUpdated: '04.25.2026',
-  hearing: {
-    weekday: 'Wed',
-    date: 'May 13, 2026',
-    time: '7:00 PM',
-    signIn: '6:45 PM',
-    body: 'Village of Commercial Point Council',
-    address: '5048 Cemetery Rd.',
-  },
+  url: 'foxfirecoalition.org',
+  fullUrl: 'https://foxfirecoalition.org',
 };
+
+/* Generate the QR as inline SVG at build time. Forest Ink on Cream so
+ * the printed mark stays in-system. Quiet zone is built into the SVG. */
+const qrSvg = await QRCode.toString(flyer.fullUrl, {
+  type: 'svg',
+  errorCorrectionLevel: 'M',
+  margin: 2,
+  color: {
+    dark: '#1F3A22',
+    light: '#F4EFE3',
+  },
+});
 ---
-<BaseLayout title="Public hearing on Ordinance 2025-23 · Homes of Foxfire Coalition">
+<BaseLayout title="Two data centers. 266 acres. Behind your house. — Homes of Foxfire Coalition">
   <main class="stage" aria-label="Flyer preview">
     <article class="flyer" role="document">
 
-      <header class="flyer-head">
-        <div class="kicker">
-          {flyer.documentId} · Coalition Against Data Centers · Public notice
-        </div>
-        <div class="cover-rule" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </div>
+      <header class="wordmark" aria-label="Homes of Foxfire Coalition Against Data Centers">
+        <div class="wm-primary">Homes of Foxfire</div>
+        <div class="wm-secondary">Coalition Against Data Centers</div>
       </header>
 
-      <h1 class="flyer-title">
-        Public hearing on<br />Ordinance 2025-23.
-      </h1>
-      <p class="flyer-lede">
-        Second reading. Resident comment period opens at 7:00 PM.
-      </p>
-
-      <aside class="hearing-card" role="note" aria-labelledby="hearing-card-label">
-        <div class="hearing-stamp" id="hearing-card-label">Hearing notice</div>
-        <div class="hearing-grid">
-          <div class="hearing-when">
-            <strong>{flyer.hearing.weekday} · {flyer.hearing.date}</strong>
-            <span class="time">{flyer.hearing.time}</span>
-            <span class="sub">Sign-in opens at {flyer.hearing.signIn}</span>
-          </div>
-          <div class="hearing-where">
-            <span class="label">Where</span>
-            <span class="body">{flyer.hearing.body}</span>
-            <span class="addr">{flyer.hearing.address}</span>
-          </div>
-        </div>
-      </aside>
-
-      <section class="block">
-        <div class="kicker">What is being proposed</div>
-        <p class="copy">
-          The K-Nova application rezones 266.971 acres along the Foxfire
-          neighborhood and adjacent parcels in Commercial Point, Ohio, from
-          Agricultural-Residential to Planned Industrial District. The
-          applicant intends to build a data center campus on the parcels.
-          Ordinance 2025-23 carries that rezone request.
+      <section class="callout">
+        <h1 class="headline">
+          Two data centers.<br />
+          266 acres.<br />
+          Behind your house.
+        </h1>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="lede">
+          A 266-acre Planned Industrial District is proposed for the parcels
+          along Foxfire and adjacent lots in Commercial Point, Ohio. We are
+          residents tracking every filing and every hearing, in public, on
+          the record.
         </p>
-        <div class="figs mono tab">
-          <span><b>266.971</b> acres</span>
-          <span><b>1,250,000</b> gallons projected daily water draw</span>
-          <span><b>ORD 2025-23</b></span>
+      </section>
+
+      <section class="learn">
+        <div class="qr" aria-hidden="true" set:html={qrSvg}></div>
+        <div class="learn-copy">
+          <h2 class="learn-title">Learn more.</h2>
+          <ul class="learn-list">
+            <li>What is being proposed.</li>
+            <li>When the next public hearing is.</li>
+            <li>How to file a public records request.</li>
+          </ul>
+          <div class="learn-url">{flyer.url}</div>
         </div>
       </section>
 
-      <section class="block">
-        <div class="kicker">What you can do</div>
-        <ul class="actions">
-          <li>Attend the second reading and resident comment period.</li>
-          <li>Read the ordinance and the planning commission packet.</li>
-          <li>File a public records request under Ohio Rev. Code §149.43.</li>
-          <li>Subscribe to coalition hearing alerts.</li>
-        </ul>
-      </section>
-
-      <footer class="flyer-foot">
-        <div class="wordmark">
-          <div class="wm-rule" aria-hidden="true"></div>
-          <div class="wm-primary">Homes of Foxfire</div>
-          <div class="wm-secondary">Coalition Against Data Centers</div>
-          <div class="wm-rule" aria-hidden="true"></div>
-        </div>
-        <div class="stamp-line">
-          <span>foxfirecoalition.org</span>
-          <span>{flyer.documentId} · {flyer.version}</span>
-          <span>Last updated · {flyer.lastUpdated}</span>
-        </div>
+      <footer class="stamp-line">
+        <span>{flyer.documentId} · {flyer.version}</span>
+        <span>Last updated · {flyer.lastUpdated}</span>
       </footer>
 
     </article>
@@ -96,8 +69,7 @@ const flyer = {
 </BaseLayout>
 
 <style>
-  /* Stage — only visible on screen. Centers the letter-size sheet on a
-     darker surface so the flyer reads as a printed page in preview. */
+  /* Stage — only visible on screen. */
   .stage {
     min-height: 100vh;
     padding: 32px 16px;
@@ -110,195 +82,28 @@ const flyer = {
   .flyer {
     width: 8.5in;
     height: 11in;
-    padding: 0.6in;
+    padding: 0.6in 0.65in;
     background: var(--paper);
     color: var(--text);
     box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 12px 40px rgba(0,0,0,0.12);
-    display: flex;
-    flex-direction: column;
-    gap: 0.22in;
+    display: grid;
+    grid-template-rows: auto 1fr auto auto;
+    gap: 0.42in;
     overflow: hidden;
   }
 
-  /* Top stamp */
-  .flyer-head { display: flex; flex-direction: column; gap: 12px; }
-
-  .cover-rule { display: flex; gap: 4px; }
-  .cover-rule span { height: 5px; flex: 1; background: var(--ink); }
-  .cover-rule span:nth-child(2) { background: var(--accent); flex: 0.4; }
-  .cover-rule span:nth-child(3) { background: var(--bone-2); flex: 0.2; }
-
-  /* Title and lede */
-  .flyer-title {
-    font-family: var(--headline);
-    font-size: 46px;
-    line-height: 1.04;
-    color: var(--ink);
-    margin: 0;
-    letter-spacing: -0.01em;
-    font-weight: 500;
-    text-wrap: balance;
-  }
-  .flyer-lede {
-    font-size: 18px;
-    line-height: 1.5;
-    color: var(--text-soft);
-    margin: 0;
-    max-width: none;
-  }
-
-  /* Hearing card — uses the brand's alert color, but only here.
-     This is the single sanctioned use of Hearing Red on the flyer. */
-  .hearing-card {
-    border: 1px solid var(--alert);
-    border-left-width: 3px;
-    background: #FBEEEA;
-    padding: 16px 22px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .hearing-stamp {
-    align-self: flex-start;
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--alert);
-    border: 1px solid var(--alert);
-    padding: 5px 10px;
-  }
-  .hearing-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    align-items: start;
-  }
-  .hearing-when strong {
-    display: block;
-    font-family: var(--headline);
-    font-size: 24px;
-    line-height: 1.1;
-    color: var(--alert);
-    font-weight: 500;
-    letter-spacing: -0.005em;
-  }
-  .hearing-when .time {
-    display: block;
-    font-family: var(--headline);
-    font-size: 20px;
-    color: var(--alert);
-    font-weight: 500;
-    margin-top: 2px;
-  }
-  .hearing-when .sub {
-    display: block;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-soft);
-    margin-top: 8px;
-  }
-  .hearing-where { display: flex; flex-direction: column; gap: 4px; }
-  .hearing-where .label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-mute);
-  }
-  .hearing-where .body {
-    font-family: var(--headline);
-    font-size: 17px;
-    color: var(--ink);
-    font-weight: 500;
-    margin-top: 2px;
-  }
-  .hearing-where .addr {
-    font-size: 14px;
-    color: var(--text);
-  }
-
-  /* Body blocks */
-  .block { display: flex; flex-direction: column; gap: 8px; }
-  .block .kicker { margin: 0 0 4px; color: var(--ink); }
-  .block .copy {
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--text);
-    margin: 0;
-    max-width: none;
-  }
-
-  /* Numerical figure row */
-  .figs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-    margin-top: 4px;
-    font-size: 12px;
-    color: var(--text-soft);
-    letter-spacing: 0.02em;
-  }
-  .figs b {
-    font-weight: 600;
-    color: var(--ink);
-    margin-right: 4px;
-  }
-
-  /* Action list — styled like the brand's "Do" column */
-  .actions {
-    list-style: none;
-    margin: 4px 0 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .actions li {
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--text);
-    padding-left: 22px;
-    position: relative;
-  }
-  .actions li::before {
-    content: "+";
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-family: var(--mono);
-    color: var(--ink);
-    font-weight: 600;
-  }
-
-  /* Footer wordmark — stamp variant, centered */
-  .flyer-foot {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding-top: 16px;
-    border-top: 1px solid var(--rule-soft);
-  }
+  /* Wordmark — top-left, stacked variant */
   .wordmark {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    align-items: stretch;
-    text-align: center;
-  }
-  .wm-rule {
-    height: 1px;
-    background: var(--ink);
-    opacity: 0.6;
+    gap: 6px;
+    align-items: flex-start;
   }
   .wm-primary {
     font-family: var(--headline);
-    font-size: 28px;
-    color: var(--ink);
+    font-size: 30px;
     line-height: 1;
+    color: var(--ink);
     font-weight: 500;
     letter-spacing: -0.005em;
   }
@@ -312,11 +117,114 @@ const flyer = {
     font-weight: 500;
   }
 
+  /* Headline + lede — the call to action zone */
+  .callout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35in;
+    justify-content: center;
+  }
+  .headline {
+    font-family: var(--headline);
+    font-size: 88px;
+    line-height: 1.0;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+  .rule {
+    height: 6px;
+    background: var(--accent);
+    width: 1.6in;
+  }
+  .lede {
+    font-family: var(--body);
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--text);
+    margin: 0;
+    max-width: 6.5in;
+    text-wrap: pretty;
+  }
+
+  /* Learn more zone — QR left, instructions right */
+  .learn {
+    display: grid;
+    grid-template-columns: 1.7in 1fr;
+    gap: 0.4in;
+    align-items: start;
+    padding-top: 0.2in;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .qr {
+    width: 1.7in;
+    height: 1.7in;
+    background: var(--paper);
+    border: 1px solid var(--rule-soft);
+    padding: 4px;
+  }
+  .qr :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .learn-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 4px;
+  }
+  .learn-title {
+    font-family: var(--headline);
+    font-size: 28px;
+    line-height: 1;
+    color: var(--ink);
+    margin: 0 0 4px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .learn-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .learn-list li {
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--text);
+    padding-left: 18px;
+    position: relative;
+  }
+  .learn-list li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: var(--mono);
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .learn-url {
+    margin-top: 6px;
+    font-family: var(--mono);
+    font-size: 15px;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  /* Footer stamp line */
   .stamp-line {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule-soft);
     font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 0.06em;
@@ -330,7 +238,6 @@ const flyer = {
   @media print {
     .stage { padding: 0; background: var(--paper); min-height: auto; }
     .flyer { box-shadow: none; width: 8.5in; height: 11in; }
-    /* Force exact backgrounds for the hearing card and rules */
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 
@@ -342,10 +249,11 @@ const flyer = {
       width: 100%;
       max-width: 8.5in;
       height: auto;
-      padding: 32px 28px 28px;
+      padding: 32px 28px;
+      gap: 28px;
     }
-    .flyer-title { font-size: 40px; }
-    .hearing-grid { grid-template-columns: 1fr; gap: 18px; }
-    .hearing-when strong { font-size: 24px; }
+    .headline { font-size: 56px; }
+    .learn { grid-template-columns: 1.5in 1fr; gap: 24px; }
+    .qr { width: 1.5in; height: 1.5in; }
   }
 </style>
