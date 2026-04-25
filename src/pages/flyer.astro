@@ -6,6 +6,7 @@ const flyer = {
   url: 'foxfirecoalition.org',
   fullUrl: 'https://www.foxfirecoalition.org',
   email: 'info@foxfirecoalition.org',
+  locale: 'Commercial Point, Ohio',
 };
 
 /* Generate the QR as inline SVG at build time. Forest Ink on Cream so
@@ -73,12 +74,10 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
         </span>
         <span class="contact">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M3 12h18" />
-            <path d="M12 3c2.8 3 4.2 6 4.2 9s-1.4 6-4.2 9" />
-            <path d="M12 3c-2.8 3-4.2 6-4.2 9s1.4 6 4.2 9" />
+            <path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z" />
+            <circle cx="12" cy="9" r="2.5" />
           </svg>
-          {flyer.url}
+          {flyer.locale}
         </span>
       </footer>
 
