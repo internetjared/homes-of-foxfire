@@ -3,11 +3,9 @@ import QRCode from 'qrcode';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const flyer = {
-  documentId: 'FXF-FLYER-2026-002',
-  version: 'v1.0',
-  lastUpdated: '04.25.2026',
   url: 'foxfirecoalition.org',
   fullUrl: 'https://foxfirecoalition.org',
+  email: 'info@foxfirecoalition.org',
 };
 
 /* Generate the QR as inline SVG at build time. Forest Ink on Cream so
@@ -26,9 +24,16 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
   <main class="stage" aria-label="Flyer preview">
     <article class="flyer" role="document">
 
-      <header class="wordmark" aria-label="Homes of Foxfire Coalition Against Data Centers">
-        <div class="wm-primary">Homes of Foxfire</div>
-        <div class="wm-secondary">Coalition Against Data Centers</div>
+      <header class="masthead">
+        <div class="wordmark" aria-label="Homes of Foxfire Coalition Against Data Centers">
+          <div class="wm-primary">Homes of Foxfire</div>
+          <div class="wm-secondary">Coalition Against Data Centers</div>
+        </div>
+        <aside class="tagline" aria-hidden="true">
+          <span>Public records.</span>
+          <span>Public hearings.</span>
+          <span>Public land.</span>
+        </aside>
       </header>
 
       <section class="callout">
@@ -60,8 +65,8 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
       </section>
 
       <footer class="stamp-line">
-        <span>{flyer.documentId} · {flyer.version}</span>
-        <span>Last updated · {flyer.lastUpdated}</span>
+        <span>{flyer.email}</span>
+        <span>{flyer.url}</span>
       </footer>
 
     </article>
@@ -92,12 +97,36 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
     overflow: hidden;
   }
 
+  /* Masthead — wordmark left, tagline right */
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
   /* Wordmark — top-left, stacked variant */
   .wordmark {
     display: flex;
     flex-direction: column;
     gap: 6px;
     align-items: flex-start;
+  }
+
+  /* Tagline — top-right counter-weight to the wordmark */
+  .tagline {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.6;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 500;
+    padding-top: 6px;
   }
   .wm-primary {
     font-family: var(--headline);
@@ -226,7 +255,7 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
     letter-spacing: 0.02em;
   }
 
-  /* Footer stamp line */
+  /* Footer stamp line — contact info, natural case */
   .stamp-line {
     display: flex;
     justify-content: space-between;
@@ -235,10 +264,9 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
     padding-top: 12px;
     border-top: 1px solid var(--rule-soft);
     font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-mute);
+    font-size: 13px;
+    color: var(--ink);
+    letter-spacing: 0.01em;
   }
 
   /* Print: drop the stage chrome, set page size, hide page background */
@@ -264,5 +292,6 @@ const qrSvg = await QRCode.toString(flyer.fullUrl, {
     .headline { font-size: 56px; }
     .learn { grid-template-columns: 1.5in 1fr; gap: 24px; }
     .qr { width: 1.5in; height: 1.5in; }
+    .masthead { flex-wrap: wrap; }
   }
 </style>
