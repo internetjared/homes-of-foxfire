@@ -2,6 +2,7 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
 import ResourceCard from '../components/content/ResourceCard.astro';
+import DisclaimerBlock from '../components/content/DisclaimerBlock.astro';
 import resources from '../data/resources.json';
 
 type Verification = 'confirmed' | 'needs-follow-up' | 'records-requested';
@@ -155,22 +156,5 @@ const concerns = [
     </div>
   </section>
 
-  <!-- Disclaimer (touches health, environmental, utility-impact matters) -->
-  <section class="page-section">
-    <div class="measure">
-      <div class="disclaimer">
-        <p>
-          The Homes of Foxfire Coalition is a volunteer neighborhood organization. Nothing on
-          this site is legal advice. Residents who believe they have a legal interest in any
-          matter described here should consult a licensed attorney.
-        </p>
-        <p>
-          Health, environmental, and utility figures cited here come from public sources. They
-          are illustrative of the kinds of impacts large data center facilities can produce and
-          are not a prediction about the specific facilities under discussion. Facility-specific
-          impacts depend on facility-specific design, which is not yet on the public record.
-        </p>
-      </div>
-    </div>
-  </section>
+  <DisclaimerBlock includeFigures={true} />
 </SiteLayout>

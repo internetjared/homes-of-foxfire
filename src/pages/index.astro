@@ -4,6 +4,7 @@ import DocumentCard from '../components/content/DocumentCard.astro';
 import ParcelMap from '../components/content/ParcelMap.astro';
 import NewsletterSignup from '../components/content/NewsletterSignup.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
+import DisclaimerBlock from '../components/content/DisclaimerBlock.astro';
 
 import documents from '../data/documents.json';
 import meetings from '../data/meetings.json';
@@ -194,16 +195,5 @@ const nextMeetingDate = nextMeeting
     </div>
   </section>
 
-  <!-- Disclaimer -->
-  <section class="page-section">
-    <div class="measure">
-      <div class="disclaimer">
-        <p>
-          The Homes of Foxfire Coalition is a volunteer neighborhood organization. Nothing on
-          this site is legal advice. Residents who believe they have a legal interest in any
-          matter described here should consult a licensed attorney.
-        </p>
-      </div>
-    </div>
-  </section>
+  <DisclaimerBlock />
 </SiteLayout>

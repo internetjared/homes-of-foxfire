@@ -2,6 +2,7 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
 import NewsletterSignup from '../components/content/NewsletterSignup.astro';
+import DisclaimerBlock from '../components/content/DisclaimerBlock.astro';
 import meetings from '../data/meetings.json';
 
 const lastUpdated = '04.25 / 2026';
@@ -208,16 +209,5 @@ const nextMeetingDate = nextMeeting
     </div>
   </section>
 
-  <!-- Disclaimer (procedural and legal matters) -->
-  <section class="page-section">
-    <div class="measure">
-      <div class="disclaimer">
-        <p>
-          The Homes of Foxfire Coalition is a volunteer neighborhood organization. Nothing on
-          this site is legal advice. Residents who believe they have a legal interest in any
-          matter described here should consult a licensed attorney.
-        </p>
-      </div>
-    </div>
-  </section>
+  <DisclaimerBlock />
 </SiteLayout>
