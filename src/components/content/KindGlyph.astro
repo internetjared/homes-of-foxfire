@@ -1,0 +1,34 @@
+---
+type Kind =
+  | 'ordinance'
+  | 'resolution'
+  | 'minutes'
+  | 'hearing'
+  | 'agenda'
+  | 'packet'
+  | 'agreement'
+  | 'study'
+  | 'correspondence'
+  | 'other';
+
+interface Props {
+  kind: Kind;
+}
+
+const { kind } = Astro.props;
+
+const glyphs: Record<Kind, string> = {
+  ordinance: 'O',
+  resolution: 'R',
+  minutes: 'M',
+  hearing: 'H',
+  agenda: 'A',
+  packet: 'P',
+  agreement: 'G',
+  study: 'S',
+  correspondence: 'C',
+  other: 'D',
+};
+---
+
+<span class="kind-glyph mono" aria-hidden="true">{glyphs[kind]}</span>

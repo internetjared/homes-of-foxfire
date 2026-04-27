@@ -1,0 +1,22 @@
+---
+interface Props {
+  label: string;
+  url?: string;
+  arrow?: boolean;
+  size?: 'sm' | 'md';
+}
+
+const { label, url, arrow = true, size = 'md' } = Astro.props;
+const classes = ['source-link', `source-link-${size}`].join(' ');
+---
+
+{url ? (
+  <a class={classes} href={url} rel="noopener" target="_blank">
+    <span class="source-link-label">{label}</span>{arrow && <span aria-hidden="true"> →</span>}
+  </a>
+) : (
+  <span class={`${classes} source-link-pending`}>
+    <span class="source-link-label">{label}</span>
+    <span class="mono source-link-pending-tag">(pending)</span>
+  </span>
+)}

@@ -1,0 +1,42 @@
+[
+  {
+    "term": "PID",
+    "definition": "Planned Industrial District. A zoning category that allows industrial uses, including data centers under Ord 2024-07."
+  },
+  {
+    "term": "LMD",
+    "definition": "Limited Manufacturing District. The zoning category Ord 2023-09 amended to allow data centers as a permitted use."
+  },
+  {
+    "term": "CRA",
+    "definition": "Community Reinvestment Area. An Ohio program that allows local governments to grant property tax abatements to encourage development."
+  },
+  {
+    "term": "TIF",
+    "definition": "Tax Increment Financing. An Ohio mechanism that diverts new property tax revenue from a development to pay for infrastructure tied to it."
+  },
+  {
+    "term": "MGD",
+    "definition": "Million gallons per day. A standard unit for municipal water and wastewater capacity."
+  },
+  {
+    "term": "MW",
+    "definition": "Megawatt. A unit of electrical power. A large data center can use tens to hundreds of megawatts continuously."
+  },
+  {
+    "term": "NDA",
+    "definition": "Non-disclosure agreement. The village signed one with Amazon Data Services in July 2023; the mayor stated the village sent non-renewal notice."
+  },
+  {
+    "term": "COW",
+    "definition": "Committee of the Whole. A council session where every council member acts as a committee member, used in Commercial Point for in-depth review of items before formal council votes."
+  },
+  {
+    "term": "Site plan",
+    "definition": "The detailed engineering and design drawing of a specific project, reviewed by the village separately from the underlying zoning."
+  },
+  {
+    "term": "Moratorium",
+    "definition": "A temporary pause on accepting or approving certain applications. The 18-month proposal is on data centers."
+  }
+]

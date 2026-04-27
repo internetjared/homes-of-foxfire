@@ -1,0 +1,46 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import SourceLink from './SourceLink.astro';
+
+type Status =
+  | 'proposed'
+  | 'filed'
+  | 'hearing-scheduled'
+  | 'adopted'
+  | 'denied'
+  | 'died'
+  | 'withdrawn'
+  | 'pending';
+
+interface Props {
+  date: string;
+  ordinance?: string;
+  title: string;
+  body?: string;
+  status: Status;
+  source?: { label: string; url?: string };
+}
+
+const { date, ordinance, title, body, status, source } = Astro.props;
+
+const d = new Date(`${date}T12:00:00`);
+const mm = String(d.getMonth() + 1).padStart(2, '0');
+const dd = String(d.getDate()).padStart(2, '0');
+const yyyy = d.getFullYear();
+const formatted = `${mm}.${dd} / ${yyyy}`;
+---
+
+<article class="timeline-row">
+  <div class="timeline-row-meta">
+    <time class="mono tab timeline-row-date" datetime={date}>{formatted}</time>
+    {ordinance && <span class="mono tab timeline-row-id">{ordinance}</span>}
+  </div>
+  <div class="timeline-row-body">
+    <h3 class="timeline-row-title">{title}</h3>
+    {body && <p class="timeline-row-text">{body}</p>}
+    <div class="timeline-row-foot">
+      <StatusBadge status={status} />
+      {source && <SourceLink label={source.label} url={source.url} size="sm" />}
+    </div>
+  </div>
+</article>

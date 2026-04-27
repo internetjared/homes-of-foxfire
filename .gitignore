@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.astro/
+
+.env
+.env.production
+.env.local
+
+.DS_Store
+*.log
+npm-debug.log*
+
+.vscode/
+.idea/
+
+# Local working artifacts (preview screenshots, MCP scratch, etc.)
+.playwright-mcp/
+.claude/
+/*.png
+/*.pdf

@@ -1,0 +1,145 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/site/SiteHeader.astro';
+import SiteFooter from '../components/site/SiteFooter.astro';
+import StickyStatusBar from '../components/site/StickyStatusBar.astro';
+import '../styles/components.css';
+
+interface Meeting {
+  body: string;
+  date: string;
+  kicker?: string;
+  note?: string;
+  source: { label: string; url: string };
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  lastUpdated?: string;
+  asOf?: string;
+  requestId?: string;
+  nextMeeting?: Meeting | null;
+  nextMeetingDate?: string | null;
+}
+
+const {
+  title,
+  description,
+  lastUpdated,
+  asOf,
+  requestId,
+  nextMeeting,
+  nextMeetingDate,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <a class="skip-link" href="#main">Skip to main content.</a>
+  <SiteHeader />
+  <StickyStatusBar
+    meeting={nextMeeting}
+    meetingDate={nextMeetingDate}
+    asOf={asOf}
+  />
+  <main id="main">
+    <slot />
+  </main>
+  <SiteFooter lastUpdated={lastUpdated} requestId={requestId} />
+</BaseLayout>
+
+<script>
+  // Reveal: stagger timeline rows into view (motion-safe; CSS hides the
+  // animation under prefers-reduced-motion via @media query in components.css).
+  (function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    const containers = document.querySelectorAll<HTMLElement>('[data-reveal="timeline"]');
+    containers.forEach((container) => {
+      const rows = Array.from(container.querySelectorAll<HTMLElement>('.timeline-row'));
+      if (!rows.length) return;
+
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const idx = rows.indexOf(entry.target as HTMLElement);
+              const el = entry.target as HTMLElement;
+              el.style.transitionDelay = `${Math.max(0, idx) * 80}ms`;
+              el.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+      );
+
+      rows.forEach((row) => obs.observe(row));
+    });
+  })();
+
+  // aria-current="location" on the OnThisPage index when the matching
+  // section enters the viewport. Works for any anchor list under .on-this-page-list.
+  (function () {
+    const lists = document.querySelectorAll<HTMLElement>('.on-this-page-list');
+    if (!lists.length) return;
+
+    const linkMap = new Map<string, HTMLAnchorElement>();
+    lists.forEach((list) => {
+      list.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) => {
+        const id = a.getAttribute('href')!.slice(1);
+        if (id) linkMap.set(id, a);
+      });
+    });
+
+    if (!linkMap.size) return;
+
+    const targets: HTMLElement[] = [];
+    linkMap.forEach((_link, id) => {
+      const el = document.getElementById(id);
+      if (el) targets.push(el);
+    });
+
+    if (!targets.length) return;
+
+    const visible = new Set<string>();
+
+    const setCurrent = () => {
+      // Pick the topmost visible target.
+      let topId: string | null = null;
+      let topY = Infinity;
+      visible.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const y = el.getBoundingClientRect().top;
+        if (y < topY) {
+          topY = y;
+          topId = id;
+        }
+      });
+
+      linkMap.forEach((link, id) => {
+        if (id === topId) {
+          link.setAttribute('aria-current', 'location');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    };
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = (entry.target as HTMLElement).id;
+          if (entry.isIntersecting) visible.add(id);
+          else visible.delete(id);
+        });
+        setCurrent();
+      },
+      { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
+    );
+
+    targets.forEach((t) => obs.observe(t));
+  })();
+</script>

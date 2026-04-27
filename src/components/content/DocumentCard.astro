@@ -1,0 +1,64 @@
+---
+import KindGlyph from './KindGlyph.astro';
+import SourceLink from './SourceLink.astro';
+
+type Kind =
+  | 'ordinance'
+  | 'resolution'
+  | 'minutes'
+  | 'hearing'
+  | 'agenda'
+  | 'packet'
+  | 'agreement'
+  | 'study'
+  | 'correspondence'
+  | 'other';
+
+interface Props {
+  kind: Kind;
+  number?: string;
+  title: string;
+  date: string;
+  body?: string;
+  source?: { label: string; url?: string };
+}
+
+const { kind, number, title, date, body, source } = Astro.props;
+
+const d = new Date(`${date}T12:00:00`);
+const mm = String(d.getMonth() + 1).padStart(2, '0');
+const dd = String(d.getDate()).padStart(2, '0');
+const yyyy = d.getFullYear();
+const formatted = `${mm}.${dd} / ${yyyy}`;
+
+const kindLabels: Record<Kind, string> = {
+  ordinance: 'Ordinance',
+  resolution: 'Resolution',
+  minutes: 'Minutes',
+  hearing: 'Hearing',
+  agenda: 'Agenda',
+  packet: 'Packet',
+  agreement: 'Agreement',
+  study: 'Study',
+  correspondence: 'Correspondence',
+  other: 'Document',
+};
+---
+
+<article class="doc-card">
+  <header class="doc-card-head">
+    <div class="doc-card-head-left">
+      <KindGlyph kind={kind} />
+      <p class="kicker doc-card-kind">{kindLabels[kind]}</p>
+    </div>
+    {number && <p class="mono tab doc-card-number">{number}</p>}
+  </header>
+  <h3 class="doc-card-title">{title}</h3>
+  <p class="mono tab doc-card-date">{formatted}</p>
+  {body && <p class="doc-card-body">{body}</p>}
+  {source && (
+    <div class="doc-card-action-wrap">
+      <SourceLink label={source.label} url={source.url} size="sm" />
+    </div>
+  )}
+</article>

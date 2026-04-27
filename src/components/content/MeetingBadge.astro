@@ -1,0 +1,27 @@
+---
+interface Props {
+  date: string;
+  formatted: string;
+  body: string;
+  url?: string;
+  variant?: 'inline' | 'sticky';
+}
+
+const { date, formatted, body, url, variant = 'inline' } = Astro.props;
+const classes = ['meeting-badge', `meeting-badge-${variant}`].join(' ');
+---
+
+{url ? (
+  <a class={classes} href={url} rel="noopener" target="_blank">
+    <span class="meeting-badge-dot" aria-hidden="true"></span>
+    <span class="meeting-badge-body">{body}</span>
+    <time class="mono tab" datetime={date}>{formatted}</time>
+    <span aria-hidden="true">→</span>
+  </a>
+) : (
+  <span class={classes}>
+    <span class="meeting-badge-dot" aria-hidden="true"></span>
+    <span class="meeting-badge-body">{body}</span>
+    <time class="mono tab" datetime={date}>{formatted}</time>
+  </span>
+)}

@@ -1,0 +1,30 @@
+---
+type Status =
+  | 'proposed'
+  | 'filed'
+  | 'hearing-scheduled'
+  | 'adopted'
+  | 'denied'
+  | 'died'
+  | 'withdrawn'
+  | 'pending';
+
+interface Props {
+  status: Status;
+}
+
+const { status } = Astro.props;
+
+const labels: Record<Status, string> = {
+  'proposed': 'Proposed',
+  'filed': 'Filed',
+  'hearing-scheduled': 'Hearing scheduled',
+  'adopted': 'Adopted',
+  'denied': 'Denied',
+  'died': 'Died',
+  'withdrawn': 'Withdrawn',
+  'pending': 'Pending',
+};
+---
+
+<span class:list={['status-badge', `status-${status}`]}>{labels[status]}</span>

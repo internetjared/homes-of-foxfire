@@ -1,0 +1,288 @@
+[
+  {
+    "id": "ord-2024-07",
+    "kind": "ordinance",
+    "number": "2024-07",
+    "title": "Rezoning approximately 266.971 acres to a Planned Industrial District",
+    "date": "2024-05-20",
+    "body": "Adopted May 20, 2024 by a 4-1 vote. Rezones the K-Nova / Jahn Farm parcel bounded by SR 104, Durrett Road, Borror Road, and SR 762 from Exceptional Use to Planned Industrial District. Permits data centers as the only use on the property and allows utilities to be aboveground where absolutely necessary.",
+    "tags": ["rezoning", "k-nova", "jahn-farm", "data-center", "PID"],
+    "source": {
+      "label": "Ordinance 2024-07 (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-07.pdf"
+    }
+  },
+  {
+    "id": "ord-2024-02-died",
+    "kind": "ordinance",
+    "number": "2024-02",
+    "title": "First 2024 K-Nova rezoning attempt, died for lack of motion",
+    "date": "2024-01-05",
+    "body": "K-Nova filed a rezoning application on January 5, 2024 for the same 266.971 acres. The ordinance is stamped \"Died Due to a Lack of a Motion.\"",
+    "tags": ["rezoning", "k-nova", "jahn-farm", "data-center", "died"],
+    "source": {
+      "label": "Ordinance 2024-02 (PDF, died for lack of motion)",
+      "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-02-Died-to-lack-of-motion.pdf"
+    }
+  },
+  {
+    "id": "ord-2023-09",
+    "kind": "ordinance",
+    "number": "2023-09",
+    "title": "Adding data centers as a permitted use in the Limited Manufacturing District",
+    "date": "2023-08-07",
+    "body": "Adopted August 7, 2023. Made data centers a permitted use in the Limited Manufacturing District by amending Chapter 1171.02(c).",
+    "tags": ["zoning", "data-center", "limited-manufacturing"],
+    "source": {
+      "label": "Ordinance 2023-09 (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2023/2023-09.pdf"
+    }
+  },
+  {
+    "id": "ord-2023-10",
+    "kind": "ordinance",
+    "number": "2023-10",
+    "title": "Sewer code amended for cooling water and industrial process water discharge",
+    "date": "2023-10-02",
+    "body": "Amended Section 1042.05 to allow the Village Administrator to consider requests and issue permits for discharge of cooling water and unpolluted industrial process waters into the sanitary sewer.",
+    "tags": ["sewer", "cooling-water", "data-center", "utilities"],
+    "source": {
+      "label": "Ordinance 2023-10 (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2023/2023-10.pdf"
+    }
+  },
+  {
+    "id": "ord-2023-11",
+    "kind": "ordinance",
+    "number": "2023-11",
+    "title": "Annexation of approximately 267.59 acres into Commercial Point",
+    "date": "2023-12-04",
+    "body": "Approved annexation of approximately 267.59 acres from Scioto Township into Commercial Point at the request of Eric Young as Trustee of the James R. Jahn Trust, Alice Jahn, and K-Nova LLC.",
+    "tags": ["annexation", "k-nova", "jahn-farm"],
+    "source": {
+      "label": "Ordinance 2023-11 (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2023/2023-11.pdf"
+    }
+  },
+  {
+    "id": "ord-2026-03",
+    "kind": "ordinance",
+    "number": "2026-03",
+    "title": "Prohibiting gas-fired electric generation facilities using turbines",
+    "date": "2026-02-23",
+    "body": "Adopted February 23, 2026. Prohibits gas-fired electric generation facilities using turbines in all zoning districts. No zoning certificate, conditional use permit, variance, or other approval may be issued for such facilities.",
+    "tags": ["energy", "gas-turbine", "prohibition"],
+    "source": {
+      "label": "Ordinance 2026-03 (PDF)",
+      "url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/03/2026-03.pdf"
+    }
+  },
+  {
+    "id": "res-35-2025",
+    "kind": "resolution",
+    "number": "35-2025",
+    "title": "Major site plan approval for Scannell Properties #627 LLC on behalf of K-Nova",
+    "date": "2026-02-02",
+    "body": "Council approved a major site plan application filed by Scannell Properties #627 LLC on behalf of K-Nova. Same meeting recorded village wastewater capacity at 1.4 MGD with flows of 400,000 to 500,000 GPD.",
+    "tags": ["site-plan", "k-nova", "scannell", "data-center"],
+    "source": {
+      "label": "February 2, 2026 council minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/02/2-2-2026-council02242026145228347_0001.pdf"
+    }
+  },
+  {
+    "id": "minutes-2026-02-23",
+    "kind": "minutes",
+    "number": "2026-02-23",
+    "title": "Council minutes, February 23, 2026",
+    "date": "2026-02-23",
+    "body": "Includes the proposed data center moratorium submitted by Council Member Miller, the adoption of Ordinance 2026-03 (gas turbine ban), Mayor Geiger's statement that the village sent non-renewal notice on the AWS NDA, and Eric Nungester's statement that the Durrett Road site allows data centers by right.",
+    "tags": ["minutes", "moratorium", "aws-nda", "by-right"],
+    "source": {
+      "label": "February 23, 2026 council minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/03/2-23-Council.pdf"
+    }
+  },
+  {
+    "id": "minutes-2026-02-02",
+    "kind": "minutes",
+    "number": "2026-02-02",
+    "title": "Council minutes, February 2, 2026",
+    "date": "2026-02-02",
+    "body": "Includes village utility capacity numbers, the Scannell / K-Nova major site plan approval, K-Nova's CRA discussion, and an executive session on economic development and utility extension.",
+    "tags": ["minutes", "site-plan", "utilities", "cra"],
+    "source": {
+      "label": "February 2, 2026 council minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/02/2-2-2026-council02242026145228347_0001.pdf"
+    }
+  },
+  {
+    "id": "hearing-2024-05-20",
+    "kind": "hearing",
+    "number": "2024-05-20",
+    "title": "Public hearing on the second K-Nova rezoning",
+    "date": "2024-05-20",
+    "body": "Public hearing held the same day as the adoption of Ordinance 2024-07. Tim Bivens opposed the data center site and raised concerns about power, water, police coverage, and the village's lack of a comprehensive plan.",
+    "tags": ["hearing", "k-nova", "rezoning", "ord-2024-07"],
+    "source": {
+      "label": "May 20, 2024 K-Nova public hearing minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPMeetings/Public/2024/5-20-KNova-PH.pdf"
+    }
+  },
+  {
+    "id": "hearing-2024-02-26",
+    "kind": "hearing",
+    "number": "2024-02-26",
+    "title": "Public hearing on the first 2024 K-Nova rezoning",
+    "date": "2024-02-26",
+    "body": "M/I Homes' Josh Barkan said M/I was interested in maintaining a residential environment for Foxfire and had discussed mounds, buffering, and landscaping along the southern border. Residents raised concerns about health, environmental effects, noise, light, air, lack of registered notice, whether the public would vote, and electrical substations.",
+    "tags": ["hearing", "k-nova", "rezoning", "mi-homes"],
+    "source": {
+      "label": "February 26, 2024 K-Nova rezoning hearing (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPMeetings/Public/2024/2-26-Knova-rezoning.pdf"
+    }
+  },
+  {
+    "id": "hearing-2021-05-17",
+    "kind": "hearing",
+    "number": "2021-05-17",
+    "title": "First K-Nova public hearing on the Jahn Farm parcel",
+    "date": "2021-05-17",
+    "body": "Bruce Moore, representing K-Nova, discussed warehouse growth and said the requested area was zoned residential with a strip of general commercial. Public objections covered traffic, property values, wildlife, and loss of rural view. Attorney William Archer presented more than 200 signatures in opposition.",
+    "tags": ["hearing", "k-nova", "warehouse", "history"],
+    "source": {
+      "label": "May 17, 2021 K-Nova public hearing minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPMeetings/Public/2021/k-nova.pdf"
+    }
+  },
+  {
+    "id": "res-17-2023",
+    "kind": "resolution",
+    "number": "17-2023",
+    "title": "Statement of services for the Jahn / K-Nova annexation",
+    "date": "2023-06-05",
+    "body": "Adopted June 5, 2023. Statement of services for the proposed 267.59-acre annexation. Commits the village to potable water, zoning, police, refuse, and street services. States the village did not then have sanitary sewer capacity available and only estimated, without guaranteeing, that capacity would be available within two years.",
+    "tags": ["annexation", "services", "k-nova", "jahn-farm", "sewer"],
+    "source": {
+      "label": "Resolution 17-2023 (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPDocuments/CPResolutions/2023/17-2023.pdf"
+    }
+  },
+  {
+    "id": "res-38-2023",
+    "kind": "resolution",
+    "number": "38-2023",
+    "title": "K-Nova right-of-way deed near SR 104 and Durrett Road",
+    "date": "2023-12-04",
+    "body": "Accepted a limited warranty deed for approximately 4.308 acres from K-Nova LLC for intended right-of-way use on State Route 104 and Durrett Road. The emergency clause stated the closing between K-Nova and its potential buyer needed to be accomplished as soon as possible. The identity of the potential buyer is not stated in the resolution.",
+    "tags": ["right-of-way", "k-nova", "potential-buyer", "emergency-clause"],
+    "source": {
+      "label": "Resolution 38-2023 (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPDocuments/CPResolutions/2023/38-2023.pdf"
+    }
+  },
+  {
+    "id": "cow-2023-10-16",
+    "kind": "minutes",
+    "number": "2023-10-16",
+    "title": "Committee of the Whole minutes, October 16, 2023",
+    "date": "2023-10-16",
+    "body": "Bruce Moore (attorney for K-Nova) discussed the Jahn property annexation and zoning. K-Nova wanted PID like its property to the north and had been receiving inquiries from data centers. Moore also said he might ask Council to waive the third reading.",
+    "tags": ["minutes", "cow", "k-nova", "data-center"],
+    "source": {
+      "label": "October 16, 2023 Committee of the Whole minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPMeetings/Council-of-the-whole/2023/10-16-2023.pdf"
+    }
+  },
+  {
+    "id": "minutes-2023-11-06",
+    "kind": "minutes",
+    "number": "2023-11-06",
+    "title": "Council minutes, November 6, 2023",
+    "date": "2023-11-06",
+    "body": "Dustyn Fox raised the five-million-gallon-per-day water and fifty-megawatt power questions, plus an NDA reference. Bruce Moore stated his intention to ask Council to waive the third reading on the Jahn property but understood they could not.",
+    "tags": ["minutes", "water", "power", "nda", "k-nova"],
+    "source": {
+      "label": "November 6, 2023 council minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPMeetings/Council/2023/11-6-2023.pdf"
+    }
+  },
+  {
+    "id": "cow-2024-03-18",
+    "kind": "minutes",
+    "number": "2024-03-18",
+    "title": "Committee of the Whole minutes, March 18, 2024",
+    "date": "2024-03-18",
+    "body": "Council raised concerns that K-Nova's attorney had been contacting council members individually. Mayor Goldhardt agreed the developer was skirting around the Sunshine Law. Solicitor Mattes warned that personal phone, text, and email communications used for village business can be public records. The same meeting included a discussion of the AWS-property TIF and stated K-Nova would still collect generated TIF money even if AWS activated the TIF.",
+    "tags": ["minutes", "cow", "sunshine-law", "k-nova", "aws", "tif"],
+    "source": {
+      "label": "March 18, 2024 Committee of the Whole minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPMeetings/Council-of-the-whole/2024/COW-3-18.pdf"
+    }
+  },
+  {
+    "id": "minutes-2024-04-01",
+    "kind": "minutes",
+    "number": "2024-04-01",
+    "title": "Council minutes, April 1, 2024",
+    "date": "2024-04-01",
+    "body": "Ordinance 2024-02, the first 2024 K-Nova rezoning attempt, died for lack of a motion on its third reading. Speakers included Ron Jahn, Eric Young (executor of the Jim Jahn estate), Josh Barkan (M/I Homes), and Bruce Moore (K-Nova). Moore said the property would be used for data centers only, no warehouses.",
+    "tags": ["minutes", "k-nova", "rezoning", "died"],
+    "source": {
+      "label": "April 1, 2024 council minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPMeetings/Council/2024/4-1-2024-Council-Meeting.pdf"
+    }
+  },
+  {
+    "id": "orc-731-17",
+    "kind": "study",
+    "number": "ORC 731.17",
+    "title": "Ohio Revised Code 731.17 (passage of ordinances and resolutions)",
+    "date": "2024-01-01",
+    "body": "Village ordinances must be read on three different days unless council dispenses with that rule by at least three-fourths of its members. The vote must be by yeas and nays and entered on the journal.",
+    "tags": ["statute", "orc", "readings", "procedure"],
+    "source": {
+      "label": "Ohio Revised Code 731.17",
+      "url": "https://codes.ohio.gov/ohio-revised-code/section-731.17"
+    }
+  },
+  {
+    "id": "orc-731-30",
+    "kind": "study",
+    "number": "ORC 731.30",
+    "title": "Ohio Revised Code 731.30 (emergency ordinances)",
+    "date": "2024-01-01",
+    "body": "Emergency ordinances go into immediate effect only if necessary for the immediate preservation of public peace, health, or safety, receive a two-thirds vote of all members elected, and state the reasons for the emergency in one section of the ordinance.",
+    "tags": ["statute", "orc", "emergency", "procedure"],
+    "source": {
+      "label": "Ohio Revised Code 731.30",
+      "url": "https://codes.ohio.gov/ohio-revised-code/section-731.30"
+    }
+  },
+  {
+    "id": "orc-713-12",
+    "kind": "study",
+    "number": "ORC 713.12",
+    "title": "Ohio Revised Code 713.12 (zoning notice)",
+    "date": "2024-01-01",
+    "body": "Zoning ordinances or amendments require a public hearing, newspaper notice at least 30 days before the hearing, and in certain small-area rezonings mailed notice to nearby owners at least 20 days before the hearing.",
+    "tags": ["statute", "orc", "zoning", "notice"],
+    "source": {
+      "label": "Ohio Revised Code 713.12",
+      "url": "https://codes.ohio.gov/ohio-revised-code/section-713.12"
+    }
+  },
+  {
+    "id": "orc-121-22",
+    "kind": "study",
+    "number": "ORC 121.22",
+    "title": "Ohio Revised Code 121.22 (Open Meetings Act)",
+    "date": "2024-01-01",
+    "body": "Official action and deliberations must occur in open meetings unless a statutory exception applies. Minutes must be prepared and open to public inspection. Special meetings require notice of time, place, and purpose.",
+    "tags": ["statute", "orc", "sunshine-law", "open-meetings"],
+    "source": {
+      "label": "Ohio Revised Code 121.22",
+      "url": "https://codes.ohio.gov/ohio-revised-code/section-121.22"
+    }
+  }
+]

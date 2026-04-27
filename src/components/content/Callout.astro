@@ -1,0 +1,17 @@
+---
+interface Props {
+  kicker?: string;
+  title?: string;
+  tone?: 'moss' | 'bone' | 'paper-2';
+}
+
+const { kicker, title, tone = 'moss' } = Astro.props;
+---
+
+<aside class:list={['callout', `callout-${tone}`]}>
+  {kicker && <p class="kicker callout-kicker">{kicker}</p>}
+  {title && <h2 class="callout-title">{title}</h2>}
+  <div class="callout-body">
+    <slot />
+  </div>
+</aside>

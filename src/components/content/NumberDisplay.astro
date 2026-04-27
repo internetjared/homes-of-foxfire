@@ -1,0 +1,27 @@
+---
+interface NumberItem {
+  value: string;
+  unit: string;
+  source: { label: string; url: string };
+}
+
+interface Props {
+  items: NumberItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="number-display" role="list">
+  {items.map((item) => (
+    <article class="num-cell" role="listitem">
+      <p class="num mono tab">{item.value}</p>
+      <p class="num-unit">{item.unit}</p>
+      <p class="num-source">
+        <a href={item.source.url} rel="noopener" target="_blank">
+          {item.source.label} <span aria-hidden="true">→</span>
+        </a>
+      </p>
+    </article>
+  ))}
+</div>

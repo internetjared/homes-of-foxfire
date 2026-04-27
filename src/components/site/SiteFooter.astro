@@ -1,0 +1,41 @@
+---
+import Wordmark from '../brand/Wordmark.astro';
+
+interface Props {
+  lastUpdated?: string;
+  requestId?: string;
+}
+
+const { lastUpdated, requestId } = Astro.props;
+---
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-col site-footer-attribution">
+      <Wordmark variant="inline" href="/" />
+      <p class="site-footer-place">
+        A volunteer neighborhood coalition.<br />Commercial Point, Pickaway County, Ohio.
+      </p>
+    </div>
+
+    <nav class="site-footer-col site-footer-nav" aria-label="Sections of this brief">
+      <p class="kicker site-footer-col-label">Sections</p>
+      <ul>
+        <li><a href="#record">The record</a></li>
+        <li><a href="#documents">Key documents</a></li>
+        <li><a href="#act">Take action</a></li>
+        <li><a href="#about">Who we are</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-footer-col site-footer-meta">
+      <p class="kicker site-footer-col-label">Provenance</p>
+      <ul>
+        {lastUpdated && <li class="mono tab">Last updated {lastUpdated}</li>}
+        {requestId && <li class="mono tab">Request {requestId}</li>}
+        <li class="mono tab">Static site, no tracking.</li>
+        <li class="mono tab">Built from public records. Sources cited inline.</li>
+      </ul>
+    </div>
+  </div>
+</footer>

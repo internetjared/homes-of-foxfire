@@ -1,0 +1,25 @@
+---
+interface Props {
+  known: string[];
+  unknown: string[];
+}
+
+const { known, unknown } = Astro.props;
+---
+
+<div class="ku-grid">
+  <section class="ku-col ku-known">
+    <p class="ku-tag mono">Confirmed</p>
+    <h3>What we know.</h3>
+    <ul>
+      {known.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+  <section class="ku-col ku-unknown">
+    <p class="ku-tag mono ku-tag-open">Open</p>
+    <h3>What we are still researching.</h3>
+    <ul>
+      {unknown.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+</div>

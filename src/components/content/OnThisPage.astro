@@ -1,0 +1,30 @@
+---
+interface Item {
+  roman: string;
+  href: string;
+  label: string;
+  desc: string;
+}
+
+interface Props {
+  items: Item[];
+  kicker?: string;
+}
+
+const { items, kicker = 'On this page' } = Astro.props;
+---
+
+<nav class="on-this-page" aria-label="Contents of this brief">
+  <p class="kicker on-this-page-kicker">{kicker}</p>
+  <ol class="on-this-page-list">
+    {items.map((item) => (
+      <li>
+        <a href={item.href}>
+          <span class="otp-num mono" aria-hidden="true">{item.roman}.</span>
+          <span class="otp-label">{item.label}</span>
+          <span class="otp-desc">{item.desc}</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</nav>

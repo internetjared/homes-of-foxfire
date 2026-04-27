@@ -1,0 +1,162 @@
+---
+/* ParcelMap
+ *
+ * Schematic, not GIS-precise. Shows the four roads bounding the K-Nova /
+ * Jahn Farm parcel and the Foxfire neighborhood to the south. The diagram
+ * is intentionally simple, set in the brand palette, and labeled in the
+ * brand's three faces (serif for placenames, mono for road designations
+ * and numbers, sans for body lines). A small Ohio context inset orients
+ * out-of-area readers.
+ */
+---
+
+<figure class="map-figure">
+  <svg
+    class="map-svg"
+    viewBox="0 0 640 520"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-labelledby="map-title map-desc"
+    preserveAspectRatio="xMidYMid meet"
+  >
+    <title id="map-title">Map of the K-Nova / Jahn Farm parcel</title>
+    <desc id="map-desc">
+      Schematic showing approximately 266.971 acres rezoned to a Planned Industrial
+      District, bounded by Durrett Road on the north, State Route 104 on the east,
+      State Route 762 on the south, and Borror Road on the west. The Foxfire
+      neighborhood is south of State Route 762. Inset shows the location in Ohio.
+    </desc>
+
+    <!-- Background -->
+    <rect x="0" y="0" width="640" height="520" style="fill: var(--paper-2);" />
+
+    <!-- Parcel -->
+    <rect
+      x="120" y="100" width="400" height="280"
+      style="fill: var(--bone); stroke: var(--ink); stroke-width: 1.5;"
+    />
+
+    <!-- Road lines -->
+    <line x1="80" y1="100" x2="560" y2="100" style="stroke: var(--ink); stroke-width: 2;" />
+    <line x1="80" y1="380" x2="560" y2="380" style="stroke: var(--ink); stroke-width: 2;" />
+    <line x1="120" y1="60" x2="120" y2="420" style="stroke: var(--ink); stroke-width: 2;" />
+    <line x1="520" y1="60" x2="520" y2="420" style="stroke: var(--ink); stroke-width: 2;" />
+
+    <!-- Road labels -->
+    <text x="320" y="86"
+      text-anchor="middle"
+      style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; fill: var(--ink);">
+      DURRETT ROAD
+    </text>
+    <text x="320" y="406"
+      text-anchor="middle"
+      style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; fill: var(--ink);">
+      STATE ROUTE 762
+    </text>
+    <text
+      transform="rotate(-90 100 240)"
+      x="100" y="240"
+      text-anchor="middle"
+      style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; fill: var(--ink);">
+      BORROR ROAD
+    </text>
+    <text
+      transform="rotate(90 540 240)"
+      x="540" y="240"
+      text-anchor="middle"
+      style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; fill: var(--ink);">
+      STATE ROUTE 104
+    </text>
+
+    <!-- Parcel label group -->
+    <text x="320" y="218"
+      text-anchor="middle"
+      style="font-family: var(--headline); font-size: 22px; fill: var(--ink); font-weight: 500;">
+      K-Nova / Jahn Farm
+    </text>
+    <text x="320" y="252"
+      text-anchor="middle"
+      style="font-family: var(--mono); font-size: 26px; fill: var(--ink); font-feature-settings: 'tnum'; letter-spacing: -0.005em;">
+      266.971 ac
+    </text>
+    <text x="320" y="280"
+      text-anchor="middle"
+      style="font-family: var(--body); font-size: 13px; fill: var(--text-soft);">
+      Planned Industrial District (Ord 2024-07)
+    </text>
+
+    <!-- Foxfire band -->
+    <rect
+      x="180" y="425" width="280" height="55"
+      style="fill: var(--moss); stroke: var(--moss-2); stroke-width: 1; stroke-dasharray: 4 3;"
+    />
+    <text x="320" y="460"
+      text-anchor="middle"
+      style="font-family: var(--headline); font-size: 16px; fill: var(--ink); font-weight: 500;">
+      Foxfire neighborhood
+    </text>
+
+    <!-- Ohio context inset (top-left) -->
+    <g transform="translate(28 32)">
+      <rect x="-4" y="-12" width="100" height="80"
+        style="fill: var(--paper); stroke: var(--rule-soft); stroke-width: 1;" />
+      <text x="46" y="0"
+        text-anchor="middle"
+        style="font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; fill: var(--text-mute);">
+        OHIO
+      </text>
+      <!-- Stylized Ohio outline (schematic, not GIS) -->
+      <path
+        d="M 4 14 L 22 11 L 36 6 L 50 4 L 60 6 L 74 9 L 86 12 L 88 24 L 84 32 L 86 40 L 82 48 L 72 54 L 60 58 L 46 60 L 30 56 L 18 50 L 8 42 L 2 32 L 4 22 Z"
+        style="fill: var(--bone); stroke: var(--ink); stroke-width: 1; stroke-linejoin: round;"
+      />
+      <!-- Pickaway County dot -->
+      <circle cx="46" cy="40" r="3" style="fill: var(--ink);" />
+      <line x1="46" y1="40" x2="46" y2="56" style="stroke: var(--ink); stroke-width: 0.6;" />
+      <text x="46" y="68"
+        text-anchor="middle"
+        style="font-family: var(--mono); font-size: 8px; letter-spacing: 0.06em; fill: var(--ink);">
+        PICKAWAY CO.
+      </text>
+    </g>
+
+    <!-- Compass -->
+    <g transform="translate(595 50)">
+      <circle r="20" style="fill: none; stroke: var(--rule-soft); stroke-width: 1;" />
+      <path d="M 0 -12 L 5 4 L 0 0 L -5 4 Z" style="fill: var(--ink);" />
+      <text y="-26" text-anchor="middle"
+        style="font-family: var(--mono); font-size: 10px; fill: var(--text-mute); letter-spacing: 0.06em;">
+        N
+      </text>
+    </g>
+
+    <!-- Scale bar (≈ 0.5 mile reference) -->
+    <g transform="translate(40 490)">
+      <line x1="0" y1="0" x2="80" y2="0" style="stroke: var(--ink); stroke-width: 1.5;" />
+      <line x1="0" y1="-3" x2="0" y2="3" style="stroke: var(--ink); stroke-width: 1.5;" />
+      <line x1="80" y1="-3" x2="80" y2="3" style="stroke: var(--ink); stroke-width: 1.5;" />
+      <text x="40" y="-8" text-anchor="middle"
+        style="font-family: var(--mono); font-size: 10px; fill: var(--text-soft); letter-spacing: 0.04em;">
+        APPROX 0.5 MI
+      </text>
+    </g>
+  </svg>
+
+  <div class="map-legend">
+    <h3>What you are looking at.</h3>
+    <dl>
+      <dt class="mono">Parcel</dt>
+      <dd>Approximately 266.971 acres rezoned to Planned Industrial District for data centers.</dd>
+      <dt class="mono">Borders</dt>
+      <dd>SR 104 east, Durrett Road north, Borror Road west, SR 762 south.</dd>
+      <dt class="mono">Foxfire</dt>
+      <dd>Residential neighborhood directly south of the parcel, separated by SR 762.</dd>
+      <dt class="mono">Scale</dt>
+      <dd>The parcel is roughly half a mile across, the size of about 200 football fields.</dd>
+    </dl>
+    <p class="map-caption">
+      Schematic only. Boundaries follow the legal description in Ordinance 2024-07. For an
+      official parcel map, see the Pickaway County Auditor.
+    </p>
+  </div>
+</figure>

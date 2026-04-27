@@ -1,0 +1,35 @@
+---
+interface Meeting {
+  body: string;
+  date: string;
+  kicker?: string;
+  note?: string;
+  source: { label: string; url: string };
+}
+
+interface Props {
+  meeting?: Meeting | null;
+  meetingDate?: string | null;
+  asOf?: string;
+}
+
+const { meeting, meetingDate, asOf } = Astro.props;
+---
+
+<aside class="sticky-status" role="status" aria-label="Procedural status">
+  <div class="sticky-status-inner">
+    <p class="sticky-status-label mono">Status</p>
+    {asOf && (
+      <p class="sticky-status-asof mono tab">As of {asOf}</p>
+    )}
+    {meeting && meetingDate && (
+      <a class="sticky-status-meeting" href="#act">
+        <span class="sticky-status-dot" aria-hidden="true"></span>
+        <span class="sticky-status-meeting-label">Next council meeting</span>
+        <span class="mono tab sticky-status-meeting-date">{meetingDate}</span>
+        <span class="sticky-status-cta">Submit a public comment</span>
+        <span class="sticky-status-arrow" aria-hidden="true">→</span>
+      </a>
+    )}
+  </div>
+</aside>

@@ -1,0 +1,52 @@
+---
+interface Doc {
+  id: string;
+  kind: string;
+  number?: string;
+  title: string;
+  date: string;
+  source?: { label: string; url?: string };
+}
+
+interface Props {
+  documents: Doc[];
+}
+
+const { documents } = Astro.props;
+
+function formatDate(date: string): string {
+  const d = new Date(`${date}T12:00:00`);
+  return `${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')} / ${d.getFullYear()}`;
+}
+---
+
+<div class="ord-table-wrap">
+  <table class="ord-table">
+    <thead>
+      <tr>
+        <th scope="col" class="ord-col-num">No.</th>
+        <th scope="col" class="ord-col-kind">Kind</th>
+        <th scope="col" class="ord-col-date">Date</th>
+        <th scope="col" class="ord-col-title">Title</th>
+        <th scope="col" class="ord-col-source">Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      {documents.map((doc) => (
+        <tr>
+          <td class="mono tab ord-num">{doc.number ?? ''}</td>
+          <td class="ord-kind"><span class="mono">{doc.kind}</span></td>
+          <td class="mono tab ord-date">{formatDate(doc.date)}</td>
+          <td class="ord-title">{doc.title}</td>
+          <td class="ord-src">
+            {doc.source && doc.source.url ? (
+              <a href={doc.source.url} rel="noopener" target="_blank">PDF <span aria-hidden="true">→</span></a>
+            ) : (
+              <span class="ord-pending mono">pending</span>
+            )}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

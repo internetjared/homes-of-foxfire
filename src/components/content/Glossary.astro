@@ -1,0 +1,33 @@
+---
+interface Term {
+  term: string;
+  definition: string;
+}
+
+interface Props {
+  terms: Term[];
+  title?: string;
+  caption?: string;
+}
+
+const {
+  terms,
+  title = 'Glossary',
+  caption = 'A short reference for the abbreviations on this page.',
+} = Astro.props;
+---
+
+<aside class="glossary" aria-label={title}>
+  <header class="glossary-head">
+    <h3>{title}</h3>
+    <p>{caption}</p>
+  </header>
+  <dl class="glossary-grid">
+    {terms.map((t) => (
+      <Fragment>
+        <dt>{t.term}</dt>
+        <dd>{t.definition}</dd>
+      </Fragment>
+    ))}
+  </dl>
+</aside>

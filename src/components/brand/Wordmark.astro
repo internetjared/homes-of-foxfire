@@ -1,0 +1,44 @@
+---
+/* Wordmark — the brand is set in type alone.
+ *
+ * Variants per docs/BRAND.md:
+ *   stacked  — masthead, letterhead, cover. Place over purpose, two lines.
+ *   inline   — site nav and footer attribution. Single line with hairline rule.
+ *   stamp    — cover pages and signoff blocks. Centered, hairline rules above and below.
+ *   short    — "Foxfire Coalition" where full name will not fit.
+ */
+
+interface Props {
+  variant?: 'stacked' | 'inline' | 'stamp' | 'short';
+  href?: string;
+}
+
+const { variant = 'stacked', href = '/' } = Astro.props;
+---
+
+<a class:list={['wordmark', `wordmark-${variant}`]} href={href} aria-label="Homes of Foxfire Coalition Against Data Centers, home">
+  {variant === 'stacked' && (
+    <Fragment>
+      <span class="wordmark-place">Homes of Foxfire</span>
+      <span class="wordmark-purpose">Coalition Against Data Centers</span>
+    </Fragment>
+  )}
+  {variant === 'inline' && (
+    <Fragment>
+      <span class="wordmark-place-inline">Homes of Foxfire</span>
+      <span class="wordmark-rule" aria-hidden="true"></span>
+      <span class="wordmark-purpose-inline">Coalition Against Data Centers</span>
+    </Fragment>
+  )}
+  {variant === 'stamp' && (
+    <Fragment>
+      <span class="wordmark-stamp-rule" aria-hidden="true"></span>
+      <span class="wordmark-place">Homes of Foxfire</span>
+      <span class="wordmark-purpose">Coalition Against Data Centers</span>
+      <span class="wordmark-stamp-rule" aria-hidden="true"></span>
+    </Fragment>
+  )}
+  {variant === 'short' && (
+    <span class="wordmark-short-name">Foxfire Coalition</span>
+  )}
+</a>

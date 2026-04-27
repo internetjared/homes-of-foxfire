@@ -1,0 +1,716 @@
+/* Flyer-specific styles. Letter-size artboards (816 × 1056 = 8.5 × 11 in @ 96dpi).
+ * All flyers share these tokens; layouts are differentiated in their JSX.
+ *
+ * Single-color mode: when body has .flyer-single-color, every flyer flattens
+ * to Forest Ink on Cream — no Iron Oxide, no Hearing Red. So a resident with
+ * a black-and-white printer can still produce a usable hand-out.
+ */
+
+.flyer {
+  width: 816px;
+  height: 1056px;
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--body);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.flyer * { box-sizing: border-box; }
+
+/* Mono micro-label used as the procedural masthead on all three flyers */
+.flyer-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* The thin single-color rule used everywhere */
+.flyer-rule {
+  height: 1px;
+  background: var(--ink);
+  border: 0;
+  margin: 0;
+}
+.flyer-rule.thick { height: 3px; }
+.flyer-rule.iron  { background: var(--accent); }
+
+/* Wordmark stack used on every flyer footer area */
+.flyer-mark .name {
+  font-family: var(--headline);
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+.flyer-mark .sub {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 6px;
+}
+
+/* QR slot — square. The actual <table> from qrcode-generator is dropped in. */
+.qr {
+  width: 96px;
+  height: 96px;
+  background: var(--paper);
+  padding: 6px;
+  border: 1px solid var(--ink);
+}
+.qr table { border-collapse: collapse; width: 100%; height: 100%; }
+.qr td { padding: 0; }
+.qr-large { width: 140px; height: 140px; padding: 8px; }
+.qr-caption {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* ─── Single-color mode ─────────────────────────────────────────
+ * Flattens iron oxide and hearing red to forest ink so the flyer
+ * prints cleanly on a black-and-white home printer (still on cream
+ * paper — or on white if that's what's loaded). */
+.flyer-single-color .flyer {
+  --accent: var(--ink);
+  --accent-2: var(--ink-2);
+  --alert: var(--ink);
+}
+.flyer-single-color .flyer .iron-text { color: var(--ink) !important; }
+.flyer-single-color .flyer .iron-bg { background: var(--ink) !important; }
+
+/* ─── 01 · The Notice ─────────────────────────────────────────── */
+.flyer-notice { padding: 48px 64px 40px; }
+.flyer-notice .header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding-bottom: 12px; border-bottom: 3px solid var(--ink);
+}
+.flyer-notice .stamp-no {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-align: right;
+  line-height: 1.5;
+}
+.flyer-notice h1 {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 30px 0 12px;
+  max-width: 14ch;
+  text-wrap: balance;
+}
+.flyer-notice .deck {
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+  max-width: 52ch;
+  margin: 0 0 24px;
+}
+.flyer-notice .facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.flyer-notice .fact {
+  padding: 14px 18px 18px;
+  border-right: 1px solid var(--ink);
+}
+.flyer-notice .fact:last-child { border-right: 0; }
+.flyer-notice .fact .num {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+}
+.flyer-notice .fact .big {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--ink);
+  margin: 10px 0 6px;
+  font-feature-settings: "tnum";
+}
+.flyer-notice .fact .lbl {
+  font-family: var(--body);
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.4;
+}
+.flyer-notice h2 {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--ink);
+  margin: 24px 0 10px;
+}
+.flyer-notice ol.actions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: act;
+}
+.flyer-notice ol.actions li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.flyer-notice ol.actions li:first-child { border-top: 0; }
+.flyer-notice ol.actions li .num-marker {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+.flyer-notice ol.actions h3 {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.flyer-notice ol.actions p {
+  font-size: 13px;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.45;
+}
+.flyer-notice .footer {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--ink);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: end;
+}
+
+/* ─── 02 · The Hearing Date ───────────────────────────────────── */
+.flyer-hearing {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.flyer-hearing .top {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 56px 64px 48px;
+  flex: 0 0 auto;
+}
+.flyer-hearing .eyebrow-light {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0.7;
+  margin-bottom: 18px;
+}
+.flyer-hearing .day {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--paper);
+  margin-bottom: 6px;
+}
+.flyer-hearing .date-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  gap: 32px;
+  border-top: 1px solid rgba(244, 239, 227, 0.4);
+  padding-top: 26px;
+}
+.flyer-hearing .month {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--paper);
+  letter-spacing: -0.01em;
+}
+.flyer-hearing .num {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 280px;
+  line-height: 0.82;
+  color: var(--paper);
+  letter-spacing: -0.04em;
+  font-feature-settings: "tnum";
+  text-align: right;
+}
+.flyer-hearing .when-where {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  margin-top: 24px;
+  border-top: 1px solid rgba(244, 239, 227, 0.4);
+  padding-top: 18px;
+  font-size: 14px;
+  color: var(--paper);
+}
+.flyer-hearing .when-where .lbl {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.flyer-hearing .bottom {
+  flex: 1 1 auto;
+  padding: 44px 64px 56px;
+  display: flex;
+  flex-direction: column;
+}
+.flyer-hearing h1 {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 18px;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+.flyer-hearing .math {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 56ch;
+  margin: 0;
+}
+.flyer-hearing .math strong {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 14px;
+  background: var(--bone);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-feature-settings: "tnum";
+}
+.flyer-hearing .cta {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--ink);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 24px;
+}
+.flyer-hearing .cta .verb {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.flyer-hearing .cta .url {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+/* ─── 03 · The Document Card ──────────────────────────────────── */
+.flyer-doc { padding: 48px 64px 40px; }
+.flyer-doc .topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ink);
+}
+.flyer-doc .doc-no {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-align: right;
+  line-height: 1.6;
+}
+.flyer-doc .card {
+  background: var(--bone);
+  border: 1px solid var(--ink);
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 0;
+}
+.flyer-doc .card .left { padding: 28px 28px 28px 28px; border-right: 1px solid var(--ink); }
+.flyer-doc .card .right { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.flyer-doc .card .tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 4px 8px;
+  margin-bottom: 16px;
+}
+.flyer-doc .card h1 {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 12px;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.flyer-doc .card .summary {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0 0 16px;
+}
+.flyer-doc .card .meta-row {
+  display: flex;
+  gap: 24px;
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+}
+.flyer-doc .card .meta-row .v { color: var(--ink); display: block; margin-top: 3px; font-size: 12px; letter-spacing: 0.02em; }
+
+/* The little parcel diagram, drawn in CSS — abstract enough not to imply
+ * a specific surveyor's plan we don't actually have. */
+.flyer-doc .parcel {
+  width: 100%;
+  aspect-ratio: 1.05 / 1;
+  background:
+    repeating-linear-gradient(45deg,
+      rgba(31, 58, 34, 0.06) 0 6px,
+      transparent 6px 12px);
+  border: 1px solid var(--ink);
+  position: relative;
+}
+.flyer-doc .parcel::before {
+  content: "";
+  position: absolute; inset: 18% 30% 30% 12%;
+  border: 1.5px solid var(--accent);
+  background: var(--paper);
+}
+.flyer-doc .parcel::after {
+  content: "";
+  position: absolute; inset: 64% 14% 14% 58%;
+  border: 1px dashed var(--ink);
+}
+.flyer-doc .parcel-cap {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.flyer-doc h2 {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--ink);
+  margin: 24px 0 10px;
+}
+.flyer-doc ul.bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  border-top: 1px solid var(--ink);
+}
+.flyer-doc ul.bullets li {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 18px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.flyer-doc ul.bullets li .k {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.flyer-doc ul.bullets li .v {
+  color: var(--text);
+}
+.flyer-doc ul.bullets li .v strong {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--ink);
+  font-feature-settings: "tnum";
+}
+.flyer-doc .cta-block {
+  border: 1px solid var(--ink);
+  padding: 18px 22px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+  margin-top: 12px;
+  background: var(--paper);
+}
+.flyer-doc .cta-block .verb {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.flyer-doc .cta-block .sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-soft);
+}
+.flyer-doc .footer {
+  margin-top: auto;
+  padding-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 24px;
+}
+
+/* The body of the host page is the canvas; remove default page chrome. */
+.canvas-host { background: #f0eee9; margin: 0; padding: 0; }
+
+
+/* ─── Flyer 04 — "Did you know?" editorial ─────────────────────────
+ * Reference: a poster-style flyer with a faint warehouse-grid
+ * background, big serif headline, lede, and a Learn More block
+ * with QR + bulleted list. Lots of breathing room. */
+.flyer-4 {
+  padding: 56px 64px 48px;
+  background: var(--paper);
+}
+
+.flyer4-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.flyer-4 > *:not(.flyer4-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header — wordmark left, motto right */
+.f4-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 24px;
+  margin-bottom: 84px;
+}
+.f4-wordmark .name {
+  font-family: var(--headline);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+.f4-wordmark .sub {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 6px;
+}
+.f4-motto {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-align: right;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+.f4-motto .emph {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Body */
+.f4-body {
+  flex: 1;
+}
+.f4-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.f4-headline {
+  font-family: var(--headline);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 1.04;
+  color: var(--ink);
+  letter-spacing: -0.018em;
+  margin: 0;
+  text-wrap: pretty;
+}
+.f4-accent-rule {
+  width: 96px;
+  height: 4px;
+  background: var(--accent);
+  border: 0;
+  margin: 32px 0 24px;
+}
+.f4-lede {
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 540px;
+  margin: 0;
+}
+.f4-lede strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Learn-more block — QR left, content right */
+.f4-learn {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule-soft);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.f4-learn .qr {
+  width: 132px;
+  height: 132px;
+  border: 1px solid var(--ink);
+  padding: 8px;
+}
+.f4-learn-title {
+  font-family: var(--headline);
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--ink);
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+}
+.f4-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.f4-bullets li {
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.4;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+.f4-bullets .plus {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+}
+.f4-url {
+  font-family: var(--headline);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--accent);
+  letter-spacing: -0.005em;
+  margin-top: 4px;
+}
+
+/* Footer */
+.f4-footer {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule-soft);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  font-family: var(--body);
+  font-size: 12px;
+  color: var(--text-soft);
+}
+.f4-foot-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.f4-foot-item:last-child {
+  justify-content: flex-end;
+}
+.f4-foot-item .ic {
+  font-family: var(--mono);
+  color: var(--ink);
+  opacity: 0.7;
+  font-size: 11px;
+}
+
+/* Single-color print mode: drop iron oxide back to navy. */
+.flyer-single-color .flyer-4 .f4-eyebrow,
+.flyer-single-color .flyer-4 .f4-accent-rule,
+.flyer-single-color .flyer-4 .f4-bullets .plus,
+.flyer-single-color .flyer-4 .f4-url {
+  color: var(--ink);
+  background: var(--ink);
+}
+.flyer-single-color .flyer-4 .f4-bullets .plus,
+.flyer-single-color .flyer-4 .f4-url,
+.flyer-single-color .flyer-4 .f4-eyebrow {
+  background: transparent;
+}

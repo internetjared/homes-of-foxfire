@@ -1,0 +1,30 @@
+---
+import SourceLink from './SourceLink.astro';
+
+interface Item {
+  question: string;
+  answer: string;
+  source?: { label: string; url?: string };
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="faq-list">
+  {items.map((item, idx) => (
+    <li class="faq-item">
+      <p class="faq-num mono tab" aria-hidden="true">{String(idx + 1).padStart(2, '0')}.</p>
+      <h3 class="faq-q">{item.question}</h3>
+      <p class="faq-a">{item.answer}</p>
+      {item.source && (
+        <div class="faq-source">
+          <SourceLink label={item.source.label} url={item.source.url} size="sm" />
+        </div>
+      )}
+    </li>
+  ))}
+</ul>

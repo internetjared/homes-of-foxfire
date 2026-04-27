@@ -1,0 +1,37 @@
+---
+/* NewsletterSignup
+ *
+ * Phase 1 stub: posts to a Buttondown endpoint when wired. Until then, the
+ * form submits to a `mailto:` fallback so neighbors can still reach the
+ * coalition and be added by hand. Replace `action` and `data-buttondown`
+ * with the live endpoint when the Buttondown account is active.
+ */
+
+interface Props {
+  /** Optional override for action URL once Buttondown is wired. */
+  action?: string;
+}
+
+const { action = 'mailto:foxfirehomescoalition@gmail.com?subject=Subscribe%20to%20updates' } =
+  Astro.props;
+---
+
+<form class="newsletter-form" method="post" action={action} data-buttondown="false">
+  <label for="newsletter-email" class="visually-hidden">Email address</label>
+  <input
+    type="email"
+    id="newsletter-email"
+    name="email"
+    placeholder="you@email.com"
+    required
+    autocomplete="email"
+  />
+  <button type="submit" class="btn-primary newsletter-submit">Sign up.</button>
+</form>
+<p class="newsletter-fineprint">
+  Short note before every meeting on the data center issue, plus a recap after. No spam, no other
+  lists. Unsubscribe in one click.
+</p>
+<p class="newsletter-fineprint newsletter-fineprint-aux">
+  Submissions open your email client until our list service is wired.
+</p>
