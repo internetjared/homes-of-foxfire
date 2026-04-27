@@ -1,0 +1,143 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SectionHeading from '../components/content/SectionHeading.astro';
+import NewsletterSignup from '../components/content/NewsletterSignup.astro';
+import meetings from '../data/meetings.json';
+
+const lastUpdated = '04.25 / 2026';
+
+// Next meeting display.
+const nextMeeting = meetings[0];
+const nextMeetingDate = nextMeeting
+  ? (() => {
+      const d = new Date(`${nextMeeting.date}T12:00:00`);
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      return `${mm}.${dd} / ${d.getFullYear()}`;
+    })()
+  : null;
+---
+
+<SiteLayout
+  title="Take action | Help protect Foxfire"
+  description="Sign up for updates, attend meetings, contact officials, volunteer, and help organize residents around the Foxfire-adjacent data-center issue."
+  lastUpdated={lastUpdated}
+>
+  <!-- Hero strip (hero register) -->
+  <section class="page-section page-section-tier hero">
+    <div class="measure-wide">
+      <p class="kicker">Take action</p>
+      <h1 class="hero-display">This is not over. Help protect Foxfire.</h1>
+      <p class="lede">
+        Five concrete things a resident can do this week. Sign up for updates, attend the next
+        meeting, email the council, volunteer for records review, or share with a neighbor.
+      </p>
+    </div>
+  </section>
+
+  <!-- Action 1: Sign up for updates. -->
+  <section id="sign-up" class="page-section page-section-tight updates-section">
+    <div class="measure">
+      <p class="kicker">Action 01.</p>
+      <h2 class="updates-title">Sign up for updates.</h2>
+      <p class="updates-lede">
+        A short note before every meeting on the data center issue, plus a recap after, plus
+        an alert when a deadline is real. No spam, no other lists.
+      </p>
+      <NewsletterSignup />
+    </div>
+  </section>
+
+  <!-- Action 2: Attend the next meeting. -->
+  <section id="attend" class="page-section">
+    <div class="measure">
+      <SectionHeading kicker="Action 02." title="Attend the next meeting." />
+      {nextMeeting && nextMeetingDate && (
+        <div class="meeting-detail">
+          <p class="meeting-detail-date mono tab">{nextMeetingDate}</p>
+          <p class="meeting-detail-body">{nextMeeting.note}</p>
+          <p class="action-foot">
+            <a href={nextMeeting.source.url} rel="noopener" target="_blank">
+              {nextMeeting.source.label} <span aria-hidden="true">→</span>
+            </a>
+          </p>
+        </div>
+      )}
+      <p>
+        Council and Committee of the Whole meetings are open to the public, are often
+        livestreamed, and accept public comment. Showing up is the single most useful thing a
+        neighbor can do.
+      </p>
+    </div>
+  </section>
+
+  <!-- Action 3: Email the council. -->
+  <section id="email" class="page-section">
+    <div class="measure">
+      <SectionHeading kicker="Action 03." title="Email the council." />
+      <p>
+        A polite, specific email becomes part of the public record and is read into the
+        meeting. The full email template lands here in the next commit. Until then, write to
+        <a href="mailto:n.geiger@commercialpointohio.gov">n.geiger@commercialpointohio.gov</a>
+        (Mayor Geiger) or any council member.
+      </p>
+    </div>
+  </section>
+
+  <!-- Action 4: Help review documents. -->
+  <section id="volunteer" class="page-section">
+    <div class="measure">
+      <SectionHeading kicker="Action 04." title="Help review documents." />
+      <p>
+        The coalition is requesting public records and reviewing them line by line. If you can
+        read carefully and take notes, you can help. Choose the records research checkbox in
+        the signup form above and we will be in touch when the next batch returns.
+      </p>
+      <p class="action-foot">
+        <a href="#sign-up">Volunteer for records review <span aria-hidden="true">→</span></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Action 5: Share with neighbors. -->
+  <section id="share" class="page-section">
+    <div class="measure">
+      <SectionHeading kicker="Action 05." title="Share with neighbors." />
+      <p>
+        Forward this site to a neighbor. Print a flyer for a yard sign or coffee shop. Bring
+        the link to your homeowners association. The page that does the most work here is
+        <a href="/timeline">the timeline</a>, because it lets a neighbor see the entire public
+        record in five minutes.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mission + transparency statements -->
+  <section class="page-section">
+    <div class="measure">
+      <SectionHeading kicker="Mission" title="Why this site exists." />
+      <p>
+        Homes of Foxfire Coalition Against Data Centers is a resident-led effort to educate
+        neighbors, gather public records, ask clear questions, and protect the future of our
+        community.
+      </p>
+      <p>
+        This is not over. We are organizing now to demand answers, review the process, and
+        help protect Foxfire.
+      </p>
+    </div>
+  </section>
+
+  <!-- Disclaimer (procedural and legal matters) -->
+  <section class="page-section">
+    <div class="measure">
+      <div class="disclaimer">
+        <p>
+          The Homes of Foxfire Coalition is a volunteer neighborhood organization. Nothing on
+          this site is legal advice. Residents who believe they have a legal interest in any
+          matter described here should consult a licensed attorney.
+        </p>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

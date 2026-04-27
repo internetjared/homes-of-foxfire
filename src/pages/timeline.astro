@@ -1,0 +1,71 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SectionHeading from '../components/content/SectionHeading.astro';
+import TimelineRow from '../components/content/TimelineRow.astro';
+import timeline from '../data/timeline.json';
+
+type Status =
+  | 'proposed'
+  | 'filed'
+  | 'hearing-scheduled'
+  | 'adopted'
+  | 'denied'
+  | 'died'
+  | 'withdrawn'
+  | 'pending';
+
+const lastUpdated = '04.25 / 2026';
+
+// Render newest first. timeline.json reads chronologically (oldest first
+// per docs/CONTENT.md), so reverse a copy for display.
+const entries = [...timeline].reverse();
+---
+
+<SiteLayout
+  title="Timeline: how we got here."
+  description="A source-linked timeline of the K-Nova / Jahn Farm data-center zoning and site-plan record near Foxfire in Commercial Point, Ohio."
+  lastUpdated={lastUpdated}
+>
+  <section class="page-section page-section-tier">
+    <div class="measure">
+      <SectionHeading kicker="Timeline" title="How we got here." />
+      <p class="lede">
+        This timeline summarizes public records related to the K-Nova / Jahn Farm data-center
+        issue near Foxfire. Each entry links to source material where available.
+      </p>
+    </div>
+  </section>
+
+  <!-- TimelineFilter component lands in a subsequent commit. For now the
+       full ordered list renders below in chronological order, newest first. -->
+
+  <section id="entries" class="page-section">
+    <div class="measure-wide">
+      <div class="timeline" data-reveal="timeline">
+        {entries.map((entry) => (
+          <TimelineRow
+            date={entry.date}
+            ordinance={entry.ordinance}
+            title={entry.title}
+            body={entry.body}
+            status={entry.status as Status}
+            source={entry.source}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Disclaimer (procedural matters) -->
+  <section class="page-section">
+    <div class="measure">
+      <div class="disclaimer">
+        <p>
+          The Homes of Foxfire Coalition is a volunteer neighborhood organization. Nothing on
+          this site is legal advice. Residents who believe they have a legal interest in any
+          matter described here should consult a licensed attorney.
+        </p>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

@@ -3,35 +3,36 @@ import BaseLayout from './BaseLayout.astro';
 import SiteHeader from '../components/site/SiteHeader.astro';
 import SiteFooter from '../components/site/SiteFooter.astro';
 import StickyStatusBar from '../components/site/StickyStatusBar.astro';
+import meetings from '../data/meetings.json';
 import '../styles/components.css';
-
-interface Meeting {
-  body: string;
-  date: string;
-  kicker?: string;
-  note?: string;
-  source: { label: string; url: string };
-}
 
 interface Props {
   title: string;
   description?: string;
   lastUpdated?: string;
-  asOf?: string;
   requestId?: string;
-  nextMeeting?: Meeting | null;
-  nextMeetingDate?: string | null;
 }
 
 const {
   title,
   description,
   lastUpdated,
-  asOf,
   requestId,
-  nextMeeting,
-  nextMeetingDate,
 } = Astro.props;
+
+// Procedural status surfaces. Read at the layout level so every public
+// route shows the same as-of stamp and next-meeting indicator without
+// per-page boilerplate.
+const asOf = lastUpdated;
+const nextMeeting = meetings[0] ?? null;
+const nextMeetingDate = nextMeeting
+  ? (() => {
+      const d = new Date(`${nextMeeting.date}T12:00:00`);
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      return `${mm}.${dd} / ${d.getFullYear()}`;
+    })()
+  : null;
 ---
 
 <BaseLayout title={title} description={description}>

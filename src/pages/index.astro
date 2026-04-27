@@ -12,14 +12,14 @@ type Kind = 'ordinance' | 'resolution' | 'minutes' | 'hearing' | 'agenda' | 'pac
 
 const lastUpdated = '04.25 / 2026';
 
-// Featured documents for the homepage docs grid.
+// Featured documents for the homepage docs preview. The full library
+// lives at /documents.
 const featuredIds = ['ord-2024-07', 'ord-2026-03', 'res-35-2025', 'minutes-2026-02-23'];
 const featured = featuredIds
   .map((id) => documents.find((d) => d.id === id))
   .filter((d): d is (typeof documents)[number] => Boolean(d));
 
-// Format the next meeting (first in meetings.json) for the sticky status bar
-// and the hero secondary CTA. Date format matches the brand: MM.DD / YYYY.
+// Next meeting date, formatted MM.DD / YYYY for the hero secondary CTA.
 const nextMeeting = meetings[0];
 const nextMeetingDate = nextMeeting
   ? (() => {
@@ -35,9 +35,6 @@ const nextMeetingDate = nextMeeting
   title="Homes of Foxfire Coalition Against Data Centers"
   description="A volunteer neighborhood coalition in Commercial Point, Pickaway County, Ohio. Public-record evidence on the K-Nova Planned Industrial District rezoning and related data center proposals."
   lastUpdated={lastUpdated}
-  asOf={lastUpdated}
-  nextMeeting={nextMeeting}
-  nextMeetingDate={nextMeetingDate}
 >
   <!-- Hero -->
   <section class="page-section page-section-tier hero">
@@ -54,7 +51,7 @@ const nextMeetingDate = nextMeeting
       <div class="hero-cta">
         <a class="btn-primary" href="#updates">Sign up for updates.</a>
         {nextMeetingDate && (
-          <a class="btn-tertiary" href="#act">Next meeting <span class="mono tab">{nextMeetingDate}</span> <span aria-hidden="true">→</span></a>
+          <a class="btn-tertiary" href="/take-action">Next meeting <span class="mono tab">{nextMeetingDate}</span> <span aria-hidden="true">→</span></a>
         )}
       </div>
     </div>
@@ -79,23 +76,6 @@ const nextMeetingDate = nextMeeting
     <div class="measure-wide">
       <SectionHeading kicker="Where this is" title="The land in question, in one drawing." />
       <ParcelMap />
-    </div>
-  </section>
-
-  <!-- ============================================================
-       What happened — Ord 2024-07 emergency rezoning explainer.
-       Section pending content from the coalition. This is the
-       narrative connective tissue between the map and the structured
-       record table below: tells the story of how 266.971 ac were
-       rezoned under emergency, who voted, what the procedure was,
-       and what the public record does and does not say about it.
-       Replace the placeholder section below with the final copy
-       when content lands.
-       ============================================================ -->
-  <section id="what-happened" class="page-section page-section-tier" hidden>
-    <div class="measure">
-      <SectionHeading kicker="What happened" title="The story of Ordinance 2024-07." />
-      <p>(Section pending — content coming from the coalition.)</p>
     </div>
   </section>
 
@@ -131,10 +111,13 @@ const nextMeetingDate = nextMeeting
           </div>
         </dl>
       </div>
+      <p class="section-foot">
+        <a href="/timeline">View the full timeline <span aria-hidden="true">→</span></a>
+      </p>
     </div>
   </section>
 
-  <!-- Key documents -->
+  <!-- Key documents preview -->
   <section id="documents" class="page-section">
     <div class="measure-wide">
       <SectionHeading kicker="Key documents" title="Read the ordinances." />
@@ -150,10 +133,13 @@ const nextMeetingDate = nextMeeting
           />
         ))}
       </div>
+      <p class="section-foot">
+        <a href="/documents">View the full document library <span aria-hidden="true">→</span></a>
+      </p>
     </div>
   </section>
 
-  <!-- Take action -->
+  <!-- Take action (compressed for home; full version on /take-action) -->
   <section id="act" class="page-section">
     <div class="measure-wide">
       <div class="action-block">
@@ -181,15 +167,16 @@ const nextMeetingDate = nextMeeting
             <h3>Email the council.</h3>
             <p>
               A polite, specific email becomes part of the public record and is read into the
-              meeting. We will publish a short template once counsel has reviewed it.
+              meeting. The full template lives on the take action page.
             </p>
             <p class="action-foot">
-              Until then, write to
-              <a href="mailto:n.geiger@commercialpointohio.gov">n.geiger@commercialpointohio.gov</a>
-              (Mayor Geiger) or any council member.
+              <a href="/take-action">See the email template <span aria-hidden="true">→</span></a>
             </p>
           </article>
         </div>
+        <p class="section-foot">
+          <a href="/take-action">View all five actions <span aria-hidden="true">→</span></a>
+        </p>
       </div>
     </div>
   </section>

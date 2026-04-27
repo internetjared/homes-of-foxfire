@@ -1,14 +1,38 @@
 ---
 import Wordmark from '../brand/Wordmark.astro';
+
+// Site nav: identical on every public page. Order is fixed by
+// docs/V1_PLAN.md section 3. Sentence case labels.
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/timeline', label: 'Timeline' },
+  { href: '/learn', label: 'Learn' },
+  { href: '/documents', label: 'Documents' },
+  { href: '/take-action', label: 'Take action' },
+  { href: '/updates', label: 'Updates' },
+];
+
+// Highlight the current route. Pathname comparison tolerates a
+// trailing slash and is exact-match for non-root routes.
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <header class="site-header">
   <div class="site-header-inner">
     <Wordmark variant="stacked" href="/" />
-    <nav class="site-header-nav" aria-label="On this page">
-      <a href="#record">The record</a>
-      <a href="#documents">Documents</a>
-      <a href="#act">Act</a>
+    <nav class="site-header-nav" aria-label="Primary">
+      {nav.map((item) => {
+        const itemPath = item.href.replace(/\/$/, '') || '/';
+        const isCurrent = itemPath === path;
+        return (
+          <a
+            href={item.href}
+            aria-current={isCurrent ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        );
+      })}
     </nav>
   </div>
 </header>
