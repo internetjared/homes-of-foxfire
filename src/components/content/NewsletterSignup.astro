@@ -1,33 +1,151 @@
 ---
 /* NewsletterSignup
  *
- * Phase 1 stub: posts to a Buttondown endpoint when wired. Until then, the
- * form submits to a `mailto:` fallback so neighbors can still reach the
- * coalition and be added by hand. Replace `action` and `data-buttondown`
- * with the live endpoint when the Buttondown account is active.
+ * V1 form per docs/V1_PLAN.md section 9. Required: first name, last name,
+ * email. Optional: phone, street, opt-in checkboxes, help-with skills.
+ * Submit posts to the coalition Gmail mailto fallback so neighbors can
+ * still reach us by hand until the Buttondown / volunteer-sheet wiring
+ * lands in Phase 2. No third-party form provider keys are committed.
  */
 
 interface Props {
-  /** Optional override for action URL once Buttondown is wired. */
+  /** Optional override once a real form endpoint is wired. */
   action?: string;
 }
 
-const { action = 'mailto:foxfirehomescoalition@gmail.com?subject=Subscribe%20to%20updates' } =
-  Astro.props;
+const {
+  action = 'mailto:foxfirehomescoalition@gmail.com?subject=Subscribe%20to%20updates',
+} = Astro.props;
+
+// Opt-in checkboxes. Each renders with name="optin[]" so a server
+// endpoint can read them as a list. Default-checked: meeting reminders.
+const optins = [
+  { id: 'optin-meeting',  value: 'meeting-reminders', label: 'Meeting reminders.', checked: true  },
+  { id: 'optin-records',  value: 'records-updates',   label: 'Records updates.',   checked: false },
+  { id: 'optin-volunteer',value: 'volunteer-interest',label: 'Volunteer interest.',checked: false },
+];
+
+// Help-with skill checkboxes per V1_PLAN section 9. Each renders with
+// name="skill[]" so the server endpoint can read them as a list.
+const skills = [
+  { id: 'skill-records',  value: 'records-research',  label: 'Records research.'    },
+  { id: 'skill-meetings', value: 'meeting-attendance',label: 'Meeting attendance.'  },
+  { id: 'skill-flyers',   value: 'flyers-outreach',   label: 'Flyers and outreach.' },
+  { id: 'skill-website',  value: 'website-content',   label: 'Website / content.'   },
+  { id: 'skill-legal',    value: 'legal-research',    label: 'Legal research.'      },
+  { id: 'skill-general',  value: 'general-only',      label: 'General updates only.'},
+];
 ---
 
-<form class="newsletter-form" method="post" action={action} data-buttondown="false">
-  <label for="newsletter-email" class="visually-hidden">Email address</label>
-  <input
-    type="email"
-    id="newsletter-email"
-    name="email"
-    placeholder="you@email.com"
-    required
-    autocomplete="email"
-  />
-  <button type="submit" class="btn-primary newsletter-submit">Sign up.</button>
+<form
+  class="newsletter-form newsletter-form-v1"
+  method="post"
+  action={action}
+  enctype="text/plain"
+  data-buttondown="false"
+>
+  <!-- Required: name + email -->
+  <div class="newsletter-grid newsletter-grid-name">
+    <div class="newsletter-field">
+      <label for="signup-first-name">First name.</label>
+      <input
+        type="text"
+        id="signup-first-name"
+        name="first_name"
+        required
+        autocomplete="given-name"
+      />
+    </div>
+    <div class="newsletter-field">
+      <label for="signup-last-name">Last name.</label>
+      <input
+        type="text"
+        id="signup-last-name"
+        name="last_name"
+        required
+        autocomplete="family-name"
+      />
+    </div>
+  </div>
+
+  <div class="newsletter-field">
+    <label for="signup-email">Email.</label>
+    <input
+      type="email"
+      id="signup-email"
+      name="email"
+      placeholder="you@email.com"
+      required
+      autocomplete="email"
+    />
+  </div>
+
+  <!-- Optional: phone + street -->
+  <div class="newsletter-grid newsletter-grid-contact">
+    <div class="newsletter-field">
+      <label for="signup-phone">Phone <span class="newsletter-optional">(optional).</span></label>
+      <input
+        type="tel"
+        id="signup-phone"
+        name="phone"
+        autocomplete="tel"
+      />
+    </div>
+    <div class="newsletter-field">
+      <label for="signup-street">Street <span class="newsletter-optional">(optional).</span></label>
+      <input
+        type="text"
+        id="signup-street"
+        name="street"
+        autocomplete="street-address"
+      />
+    </div>
+  </div>
+
+  <!-- Opt-in checkboxes: what they want to hear about. -->
+  <fieldset class="newsletter-fieldset">
+    <legend class="newsletter-legend">What to send.</legend>
+    <ul class="newsletter-checks" role="list">
+      {optins.map((o) => (
+        <li>
+          <label class="newsletter-check">
+            <input
+              type="checkbox"
+              id={o.id}
+              name="optin[]"
+              value={o.value}
+              checked={o.checked}
+            />
+            <span>{o.label}</span>
+          </label>
+        </li>
+      ))}
+    </ul>
+  </fieldset>
+
+  <!-- Help-with skills (multi-select). -->
+  <fieldset class="newsletter-fieldset">
+    <legend class="newsletter-legend">Help with <span class="newsletter-optional">(optional).</span></legend>
+    <ul class="newsletter-checks" role="list">
+      {skills.map((s) => (
+        <li>
+          <label class="newsletter-check">
+            <input
+              type="checkbox"
+              id={s.id}
+              name="skill[]"
+              value={s.value}
+            />
+            <span>{s.label}</span>
+          </label>
+        </li>
+      ))}
+    </ul>
+  </fieldset>
+
+  <button type="submit" class="btn-primary newsletter-submit">Join the Foxfire updates list.</button>
 </form>
+
 <p class="newsletter-fineprint">
   Short note before every meeting on the data center issue, plus a recap after. No spam, no other
   lists. Unsubscribe in one click.

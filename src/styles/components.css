@@ -1726,6 +1726,121 @@
   font-style: italic;
 }
 
+/* ---------- Newsletter V1 form ---------- */
+
+.newsletter-form-v1 {
+  display: block;
+  margin-top: var(--space-md);
+  max-width: 36rem;
+}
+
+.newsletter-form-v1 .newsletter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+@media (max-width: 600px) {
+  .newsletter-form-v1 .newsletter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.newsletter-field {
+  display: block;
+  margin-bottom: var(--space-md);
+}
+
+.newsletter-field label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.newsletter-optional {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  color: var(--text-mute);
+  font-weight: 400;
+}
+
+.newsletter-form-v1 input[type='text'],
+.newsletter-form-v1 input[type='email'],
+.newsletter-form-v1 input[type='tel'] {
+  width: 100%;
+  flex: 0 1 auto;
+  padding: 10px 12px;
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
+.newsletter-form-v1 input:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.newsletter-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 var(--space-md);
+}
+
+.newsletter-legend {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  font-weight: 500;
+  margin-bottom: var(--space-sm);
+  padding: 0;
+}
+
+.newsletter-checks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px var(--space-md);
+}
+
+@media (max-width: 600px) {
+  .newsletter-checks {
+    grid-template-columns: 1fr;
+  }
+}
+
+.newsletter-check {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.newsletter-check input[type='checkbox'] {
+  margin: 0;
+  flex: 0 0 auto;
+  accent-color: var(--ink);
+}
+
+.newsletter-form-v1 .newsletter-submit {
+  margin-top: var(--space-md);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
