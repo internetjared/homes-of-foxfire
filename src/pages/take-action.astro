@@ -71,18 +71,98 @@ const nextMeetingDate = nextMeeting
     </div>
   </section>
 
-  <!-- Action 3: Email the council. -->
+  <!-- Action 3: Email the council. Template ships inline with copy-to-clipboard. -->
   <section id="email" class="page-section">
     <div class="measure">
       <SectionHeading kicker="Action 03." title="Email the council." />
       <p>
         A polite, specific email becomes part of the public record and is read into the
-        meeting. The full email template lands here in the next commit. Until then, write to
-        <a href="mailto:n.geiger@commercialpointohio.gov">n.geiger@commercialpointohio.gov</a>
-        (Mayor Geiger) or any council member.
+        meeting. The template below is short on purpose. Edit it in your own voice before
+        sending.
       </p>
+
+      <div class="email-template" data-email-template>
+        <div class="email-template-row">
+          <div class="email-template-row-head">
+            <p class="kicker email-template-label">Subject.</p>
+            <button type="button" class="btn-tertiary email-template-copy" data-copy-target="email-template-subject">
+              Copy subject.
+            </button>
+          </div>
+          <pre class="email-template-text" id="email-template-subject">Please provide full transparency on the Foxfire-adjacent data-center project</pre>
+        </div>
+
+        <div class="email-template-row">
+          <div class="email-template-row-head">
+            <p class="kicker email-template-label">Body.</p>
+            <button type="button" class="btn-tertiary email-template-copy" data-copy-target="email-template-body">
+              Copy body.
+            </button>
+          </div>
+          <pre class="email-template-text" id="email-template-body">I am a resident concerned about the Foxfire-adjacent data-center project. Please provide full transparency, complete records, independent review, and clear public answers about zoning, utilities, water, noise, traffic, environmental impacts, and next approvals.</pre>
+        </div>
+
+        <div class="email-template-recipients">
+          <p class="kicker email-template-label">Send to.</p>
+          <ul>
+            <li>
+              <a href="mailto:n.geiger@commercialpointohio.gov">n.geiger@commercialpointohio.gov</a>
+              <span class="email-template-recipient-name">(Mayor Geiger)</span>
+            </li>
+            <li>
+              <span class="email-template-recipient-name">Other council members:</span>
+              <span class="mono email-template-pending">records requested</span>
+            </li>
+          </ul>
+          <p class="email-template-fineprint">
+            Council member emails will be added here once they are confirmed in the public
+            record. The coalition is requesting the village contact list.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
+
+  <script>
+    // Copy-to-clipboard for the email template. Vanilla JS, no framework.
+    // Falls back gracefully when navigator.clipboard is unavailable: the
+    // user can still select and copy the text manually.
+    (function () {
+      const buttons = document.querySelectorAll<HTMLButtonElement>('[data-copy-target]');
+      if (!buttons.length) return;
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const targetId = btn.dataset.copyTarget;
+          if (!targetId) return;
+          const target = document.getElementById(targetId);
+          if (!target) return;
+
+          const text = (target.textContent ?? '').trim();
+          const original = btn.textContent ?? '';
+
+          try {
+            await navigator.clipboard.writeText(text);
+            btn.textContent = 'Copied.';
+          } catch (_err) {
+            // Older browsers: select the text so the user can copy by hand.
+            const range = document.createRange();
+            range.selectNodeContents(target);
+            const sel = window.getSelection();
+            if (sel) {
+              sel.removeAllRanges();
+              sel.addRange(range);
+            }
+            btn.textContent = 'Selected. Press cmd-C.';
+          }
+
+          window.setTimeout(() => {
+            btn.textContent = original;
+          }, 1800);
+        });
+      });
+    })();
+  </script>
 
   <!-- Action 4: Help review documents. -->
   <section id="volunteer" class="page-section">
