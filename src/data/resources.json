@@ -1,0 +1,35 @@
+[
+  {
+    "id": "wri-7-ways-data-centers",
+    "title": "7 Ways Data Centers Affect U.S. Communities",
+    "source_organization": "World Resources Institute",
+    "category": "Start Here",
+    "url": "https://www.wri.org/insights/us-data-center-growth-impacts",
+    "summary": "A plain-English overview of how data centers can affect energy demand, water use, air quality, land use, equity, and local governance.",
+    "credibility_type": "Policy research",
+    "key_takeaway": "Communities need transparency, enforceable standards, and site-specific impact review.",
+    "verification": "records-requested"
+  },
+  {
+    "id": "jlarc-data-centers-virginia",
+    "title": "Data Centers in Virginia",
+    "source_organization": "Virginia Joint Legislative Audit and Review Commission",
+    "category": "Energy",
+    "url": "https://jlarc.virginia.gov/landing-2024-data-centers.asp",
+    "summary": "A 2024 legislative study of Virginia's data center industry covering electricity demand, water use, infrastructure costs, and tax incentives.",
+    "credibility_type": "Government report",
+    "key_takeaway": "Unconstrained data center growth produces large grid, water, and ratepayer impacts that local jurisdictions are often not staffed to review.",
+    "verification": "records-requested"
+  },
+  {
+    "id": "lbnl-us-data-center-energy",
+    "title": "U.S. Data Center Energy Usage Report",
+    "source_organization": "Lawrence Berkeley National Laboratory",
+    "category": "Energy",
+    "url": "https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report.pdf",
+    "summary": "A federally funded national accounting of how much electricity U.S. data centers use today and how much they are projected to use through 2028.",
+    "credibility_type": "Government report",
+    "key_takeaway": "Data center electricity demand is rising faster than at any point in the last two decades, driven by AI workloads.",
+    "verification": "records-requested"
+  }
+]

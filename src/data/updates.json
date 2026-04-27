@@ -1,0 +1,51 @@
+[
+  {
+    "id": "2026-04-27-prr-01-sent",
+    "date": "2026-04-27",
+    "title": "First public records request sent.",
+    "category": "Records Request",
+    "summary": "The coalition sent its first public records request focused on Ordinance 2024-07, the May 20, 2024 Special Council Meeting record, and the Jahn Property Industrial Major Site Plan.",
+    "what_happened": "FXF-PR-2026-001 was delivered to the Village Fiscal Officer, with copies to the Zoning Administrator and the Mayor.",
+    "why_it_matters": "The records this request returns will determine whether procedural and zoning questions can be reviewed before any further approvals.",
+    "what_to_do": "Sign up for updates and indicate records research in the volunteer field if you can help review documents when they return.",
+    "related_links": [
+      {
+        "label": "Ordinance 2024-07 (PDF)",
+        "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-07.pdf"
+      }
+    ],
+    "verification": "records-requested"
+  },
+  {
+    "id": "2026-04-27-may-04-meeting-reminder",
+    "date": "2026-04-27",
+    "title": "Council meets on May 4. Public comment is open.",
+    "category": "Meeting Reminder",
+    "summary": "The next regular council meeting is May 4, 2026. Public comment is accepted at the start of the meeting.",
+    "what_happened": "Council regular meeting at the Village Hall in Commercial Point. Agenda packet expected on the village calendar a few days before.",
+    "why_it_matters": "Two data-center items are likely to be discussed: the proposed eighteen-month moratorium and the K-Nova site plan record. Council attendance is the single highest-leverage civic action.",
+    "what_to_do": "Plan to attend in person or watch the livestream. If you cannot attend, email the council before the meeting.",
+    "related_links": [
+      {
+        "label": "Commercial Point 2026 meeting calendar",
+        "url": "https://www.commercialpointohio.gov/council-meeting-dates/"
+      }
+    ],
+    "verification": "records-requested"
+  },
+  {
+    "id": "2026-04-25-site-launch",
+    "date": "2026-04-25",
+    "title": "Site launches at foxfirecoalition.org.",
+    "category": "Site Update",
+    "summary": "The Homes of Foxfire Coalition Against Data Centers website is live with a public-record timeline, a documents library, education resources, and a take-action page.",
+    "what_happened": "The first version of the site is published. Content is organized into six pages: Home, Timeline, Learn, Documents, Take Action, and Updates.",
+    "why_it_matters": "Until now, residents had no single place to find the public record on the K-Nova / Jahn Farm data-center issue. The site is intended as that place.",
+    "what_to_do": "Read the timeline. Sign up for updates. Share the link with a neighbor.",
+    "related_links": [
+      { "label": "Timeline", "url": "/timeline" },
+      { "label": "Take action", "url": "/take-action" }
+    ],
+    "verification": "records-requested"
+  }
+]

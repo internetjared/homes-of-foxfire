@@ -1,9 +1,11 @@
 [
   {
     "date": "2021-05-17",
+    "category": "Public Meeting",
     "title": "First K-Nova rezoning hearing on the parcel north of Foxfire",
     "body": "The Village of Commercial Point held a public hearing on a K-Nova rezoning request to enable industrial use on the Jahn Farm parcel. Residents raised traffic, property value, wildlife, and rural-character concerns. An attorney delivered more than 200 signatures in opposition.",
     "status": "filed",
+    "verification": "confirmed",
     "source": {
       "label": "May 17, 2021 K-Nova public hearing minutes (PDF)",
       "url": "https://www.commercialpointohio.gov/CPMeetings/Public/2021/k-nova.pdf"
@@ -12,9 +14,11 @@
   {
     "date": "2023-06-05",
     "ordinance": "RES 17-2023",
+    "category": "Annexation",
     "title": "Village adopts statement of services for the Jahn / K-Nova annexation",
     "body": "Resolution 17-2023 adopted a statement of services for the proposed 267.59-acre annexation from Scioto Township at the request of Eric Young as Trustee of the James R. Jahn Trust, Alice Jahn, and K-Nova LLC. The village committed to potable water, zoning, police, refuse, and street services. The resolution stated the village did not then have sanitary sewer capacity available and only estimated, without guaranteeing, that capacity would be available within two years.",
     "status": "adopted",
+    "verification": "confirmed",
     "source": {
       "label": "Resolution 17-2023 (PDF)",
       "url": "https://www.commercialpointohio.gov/CPDocuments/CPResolutions/2023/17-2023.pdf"
@@ -23,9 +27,11 @@
   {
     "date": "2023-08-07",
     "ordinance": "ORD 2023-09",
+    "category": "Zoning",
     "title": "Data centers added as a permitted use in the Limited Manufacturing District",
     "body": "Council amended the zoning code to authorize data centers as a permissible use under the Limited Manufacturing District classification, citing Chapter 1171.02(c). The ordinance was declared an emergency.",
     "status": "adopted",
+    "verification": "confirmed",
     "source": {
       "label": "Ordinance 2023-09 (PDF)",
       "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2023/2023-09.pdf"
@@ -34,9 +40,11 @@
   {
     "date": "2023-10-02",
     "ordinance": "ORD 2023-10",
+    "category": "Utility / Infrastructure",
     "title": "Sewer code amended for cooling water and industrial process water",
     "body": "Ordinance 2023-10 amended Section 1042.05 to allow the Village Administrator to consider requests and issue permits for discharge of cooling water and unpolluted industrial process waters into the sanitary sewer.",
     "status": "adopted",
+    "verification": "confirmed",
     "source": {
       "label": "Ordinance 2023-10 (PDF)",
       "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2023/2023-10.pdf"
@@ -44,9 +52,11 @@
   },
   {
     "date": "2023-10-16",
+    "category": "Public Meeting",
     "title": "K-Nova attorney describes Jahn property as a data center site to Council",
     "body": "At the Committee of the Whole, Bruce Moore (attorney for K-Nova) said the Jahn property would be rezoned PID like the property to the north and that K-Nova had been receiving inquiries from data centers. Moore also said he might ask Council to waive the third reading of the annexation request and wanted the property rezoned by the end of the year.",
     "status": "filed",
+    "verification": "confirmed",
     "source": {
       "label": "October 16, 2023 Committee of the Whole minutes (PDF)",
       "url": "https://www.commercialpointohio.gov/CPMeetings/Council-of-the-whole/2023/10-16-2023.pdf"
@@ -54,9 +64,11 @@
   },
   {
     "date": "2023-11-06",
+    "category": "Public Meeting",
     "title": "Water, power, and NDA questions raised at council",
     "body": "At the November 6, 2023 council meeting, Dustyn Fox asked whether the Commercial Point aquifer could supply an additional five million gallons of water per day and what South Central would need to do to supply an additional fifty megawatts of power. He also referenced a person whose company represents a large tech company in Ohio but declined to speak because of an NDA. Bruce Moore stated his intention to ask Council to waive the third reading on the Jahn property but understood they could not.",
     "status": "filed",
+    "verification": "confirmed",
     "source": {
       "label": "November 6, 2023 council minutes (PDF)",
       "url": "https://www.commercialpointohio.gov/CPMeetings/Council/2023/11-6-2023.pdf"
@@ -65,9 +77,11 @@
   {
     "date": "2023-12-04",
     "ordinance": "ORD 2023-11",
+    "category": "Annexation",
     "title": "Village annexes 267.59 acres from Scioto Township",
     "body": "Council approved annexation of approximately 267.59 acres into Commercial Point at the request of Eric Young as Trustee of the James R. Jahn Trust, Alice Jahn, and K-Nova LLC. Craig J. Moncrief was named as petitioner agent.",
     "status": "adopted",
+    "verification": "confirmed",
     "source": {
       "label": "Ordinance 2023-11 (PDF)",
       "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2023/2023-11.pdf"
@@ -76,9 +90,11 @@
   {
     "date": "2023-12-04",
     "ordinance": "RES 38-2023",
+    "category": "Resolution",
     "title": "Council accepts K-Nova right-of-way deed near SR 104 and Durrett",
     "body": "Resolution 38-2023 accepted a limited warranty deed for approximately 4.308 acres from K-Nova LLC for intended right-of-way use on State Route 104 and Durrett Road. The emergency clause stated the real estate closing between K-Nova and its potential buyer needed to be accomplished as soon as possible. The identity of the potential buyer is a coalition records-request target.",
     "status": "adopted",
+    "verification": "confirmed",
     "source": {
       "label": "Resolution 38-2023 (PDF)",
       "url": "https://www.commercialpointohio.gov/CPDocuments/CPResolutions/2023/38-2023.pdf"
@@ -87,9 +103,11 @@
   {
     "date": "2024-01-05",
     "ordinance": "ORD 2024-02",
+    "category": "Zoning",
     "title": "K-Nova files first 2024 rezoning application for the Jahn parcel",
     "body": "K-Nova filed a rezoning application to rezone 266.971 acres from Exceptional Use to Planned Industrial District. This application became Ordinance 2024-02, which later died for lack of a motion at the April 1, 2024 council meeting.",
     "status": "filed",
+    "verification": "confirmed",
     "source": {
       "label": "Ordinance 2024-02 (PDF, died for lack of motion)",
       "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-02-Died-to-lack-of-motion.pdf"
@@ -97,9 +115,11 @@
   },
   {
     "date": "2024-02-26",
+    "category": "Public Meeting",
     "title": "Public hearing on the first K-Nova rezoning attempt",
     "body": "M/I Homes' Josh Barkan said M/I wanted to maintain a residential environment for Foxfire homes and had been talking with K-Nova about mounds, buffering, and landscaping along the southern border. Residents raised concerns about health, environment, noise, light, air, public-vote questions, police coverage, and electrical substations.",
     "status": "filed",
+    "verification": "confirmed",
     "source": {
       "label": "February 26, 2024 K-Nova rezoning public hearing minutes (PDF)",
       "url": "https://www.commercialpointohio.gov/CPMeetings/Public/2024/2-26-Knova-rezoning.pdf"
@@ -107,9 +127,11 @@
   },
   {
     "date": "2024-03-18",
+    "category": "Public Meeting",
     "title": "Sunshine Law concern raised about K-Nova attorney contacting council members",
     "body": "At the Committee of the Whole, Jay Weaver said Bruce Moore (attorney for K-Nova) had been contacting council members individually. Mayor Goldhardt said if K-Nova needs to talk to Council, they should come to a public meeting and address Council as a whole, and agreed the developer was skirting around the Sunshine Law. Solicitor Mattes warned that emails and personal phone or text communications used for village business can be public records. The same meeting included a discussion of the AWS-property TIF, with the village stating that K-Nova would still collect generated TIF money even if AWS, as a new parcel owner, activated the TIF.",
     "status": "filed",
+    "verification": "confirmed",
     "source": {
       "label": "March 18, 2024 Committee of the Whole minutes (PDF)",
       "url": "https://www.commercialpointohio.gov/CPMeetings/Council-of-the-whole/2024/COW-3-18.pdf"
@@ -117,9 +139,11 @@
   },
   {
     "date": "2024-04-01",
+    "category": "Zoning",
     "title": "Ordinance 2024-02 dies for lack of motion at council",
     "body": "On its third reading, Ordinance 2024-02 received no motion to adopt and a separate motion to amend exhibits died for lack of a second, so the rezoning request was denied due to lack of a motion. Public speakers included Ron Jahn (representing his mother), Eric Young (executor of the Jim Jahn estate), Josh Barkan (M/I Homes), and Bruce Moore (K-Nova). Bruce Moore said the property would be used for data centers only, no warehouses.",
     "status": "died",
+    "verification": "confirmed",
     "source": {
       "label": "April 1, 2024 council minutes (PDF)",
       "url": "https://www.commercialpointohio.gov/CPMeetings/Council/2024/4-1-2024-Council-Meeting.pdf"
@@ -128,9 +152,11 @@
   {
     "date": "2024-04-16",
     "ordinance": "ORD 2024-07",
+    "category": "Zoning",
     "title": "K-Nova files a second 2024 rezoning application for the same 266.971 acres",
     "body": "K-Nova filed a new rezoning application for the same 266.971 acres from Exceptional Use to Planned Industrial District. The application became Ordinance 2024-07, adopted on May 20, 2024.",
     "status": "filed",
+    "verification": "confirmed",
     "source": {
       "label": "Ordinance 2024-07 (PDF)",
       "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-07.pdf"
@@ -139,9 +165,11 @@
   {
     "date": "2024-05-20",
     "ordinance": "ORD 2024-07",
+    "category": "Zoning",
     "title": "Council rezones 266.971 acres to Planned Industrial District for data centers",
     "body": "Council voted 4-1 to rezone the K-Nova / Jahn Farm parcel from Exceptional Use to Planned Industrial District. Geiger, Nungester, Weaver, and Ratliff yes. Crego no. The ordinance records both a vote on suspension of readings and a separate vote on passage. The standards permit data centers as the only use on the property and allow utilities to be aboveground where absolutely necessary. The same date's public hearing minutes list four members present (Geiger, Weaver, Nungester, Crego), an attendance discrepancy that the special-meeting record will need to resolve.",
     "status": "adopted",
+    "verification": "confirmed",
     "source": {
       "label": "Ordinance 2024-07 (PDF)",
       "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-07.pdf"
@@ -150,9 +178,11 @@
   {
     "date": "2026-02-02",
     "ordinance": "RES 35-2025",
+    "category": "Site Plan",
     "title": "Council approves a major site plan for Scannell Properties on behalf of K-Nova",
     "body": "Council approved a major site plan application filed by Scannell Properties #627 LLC on behalf of K-Nova. The same meeting confirmed village wastewater plant capacity at 1.4 million gallons per day with current flows around 400,000 to 500,000 gallons per day.",
     "status": "adopted",
+    "verification": "confirmed",
     "source": {
       "label": "February 2, 2026 council minutes (PDF)",
       "url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/02/2-2-2026-council02242026145228347_0001.pdf"
@@ -161,9 +191,11 @@
   {
     "date": "2026-02-23",
     "ordinance": "ORD 2026-03",
+    "category": "Ordinance",
     "title": "Council prohibits gas-fired turbine generation in all zoning districts",
     "body": "Council adopted Ordinance 2026-03, prohibiting gas-fired electric generation facilities using turbines in all zoning districts. No zoning certificate, conditional use permit, variance, or other approval may be issued for such facilities.",
     "status": "adopted",
+    "verification": "confirmed",
     "source": {
       "label": "Ordinance 2026-03 (PDF)",
       "url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/03/2026-03.pdf"
@@ -171,9 +203,11 @@
   },
   {
     "date": "2026-02-23",
+    "category": "Open Question",
     "title": "Council Member Miller submits a proposed data center moratorium",
     "body": "Council Member Ezekiel Miller submitted a proposed resolution for a moratorium to prevent construction of data centers within the village. The resolution had been sent to Mayor Geiger and Solicitor Mattes, was approved as to form, and had minor language and emergency-language changes added. As of the last public review, the moratorium has not been confirmed adopted.",
     "status": "proposed",
+    "verification": "confirmed",
     "source": {
       "label": "February 23, 2026 council minutes (PDF)",
       "url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/03/2-23-Council.pdf"
@@ -181,9 +215,11 @@
   },
   {
     "date": "2026-04-20",
+    "category": "Public Meeting",
     "title": "Committee of the Whole takes up moratorium and transparency items",
     "body": "The April 20, 2026 Committee of the Whole agenda listed the proposed 18-month data center moratorium, two transparency measures including a development registry and mandatory early public disclosure for major proposals, and a K-Nova major site plan discussion. Coalition records requests for the full packet are in flight.",
     "status": "pending",
+    "verification": "confirmed",
     "source": {
       "label": "Commercial Point 2026 meeting calendar",
       "url": "https://www.commercialpointohio.gov/council-meeting-dates/"
