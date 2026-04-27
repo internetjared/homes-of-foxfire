@@ -1,0 +1,97 @@
+---
+type Verification = 'confirmed' | 'needs-follow-up' | 'records-requested';
+
+interface RelatedLink {
+  label: string;
+  url: string;
+}
+
+interface Props {
+  date: string;
+  title: string;
+  category: string;
+  summary: string;
+  what_happened?: string;
+  why_it_matters?: string;
+  what_to_do?: string;
+  related_links?: RelatedLink[];
+  verification?: Verification;
+}
+
+const {
+  date,
+  title,
+  category,
+  summary,
+  what_happened,
+  why_it_matters,
+  what_to_do,
+  related_links,
+  verification,
+} = Astro.props;
+
+const d = new Date(`${date}T12:00:00`);
+const mm = String(d.getMonth() + 1).padStart(2, '0');
+const dd = String(d.getDate()).padStart(2, '0');
+const yyyy = d.getFullYear();
+const formatted = `${mm}.${dd} / ${yyyy}`;
+
+// Helper to determine if a related link is internal vs external (for
+// rel/target choice). Internal links start with /.
+const isExternal = (url: string) => !url.startsWith('/');
+---
+
+<article class="update-post">
+  <header class="update-post-head">
+    <time class="mono tab update-post-date" datetime={date}>{formatted}</time>
+    <p class="kicker update-post-category">{category}</p>
+    {verification === 'records-requested' && (
+      <p class="mono update-post-verification">Pending review</p>
+    )}
+  </header>
+  <h2 class="update-post-title">{title}</h2>
+  <p class="update-post-summary">{summary}</p>
+
+  {what_happened && (
+    <div class="update-post-section">
+      <h3>What happened.</h3>
+      <p>{what_happened}</p>
+    </div>
+  )}
+
+  {why_it_matters && (
+    <div class="update-post-section">
+      <h3>Why it matters.</h3>
+      <p>{why_it_matters}</p>
+    </div>
+  )}
+
+  {what_to_do && (
+    <div class="update-post-section">
+      <h3>What to do.</h3>
+      <p>{what_to_do}</p>
+    </div>
+  )}
+
+  {related_links && related_links.length > 0 && (
+    <div class="update-post-section update-post-related">
+      <p class="kicker">Related</p>
+      <ul>
+        {related_links.map((link) => {
+          const ext = isExternal(link.url);
+          return (
+            <li>
+              <a
+                href={link.url}
+                rel={ext ? 'noopener' : undefined}
+                target={ext ? '_blank' : undefined}
+              >
+                {link.label} <span aria-hidden="true">→</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  )}
+</article>

@@ -1,8 +1,31 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
+import ResourceCard from '../components/content/ResourceCard.astro';
+import resources from '../data/resources.json';
+
+type Verification = 'confirmed' | 'needs-follow-up' | 'records-requested';
 
 const lastUpdated = '04.25 / 2026';
+
+// Group resources by category. Order categories per docs/CONTENT.md.
+const categoryOrder = [
+  'Start Here',
+  'Energy',
+  'Water',
+  'Air Quality',
+  'Noise',
+  'Stormwater',
+  'Health',
+  'Tax & Incentives',
+  'Local Coverage',
+];
+const grouped = categoryOrder
+  .map((cat) => ({
+    category: cat,
+    items: resources.filter((r) => r.category === cat),
+  }))
+  .filter((g) => g.items.length > 0);
 
 // "Why are residents concerned?" topic blocks. Body register, two to three
 // short sentences each. The learn page intentionally separates a confirmed
@@ -100,17 +123,35 @@ const concerns = [
     </div>
   </section>
 
-  <!-- Featured resources grid renders from src/data/resources.json once
-       the data file ships and ResourceCard.astro is added. Both arrive
-       in the next two commits. -->
+  <!-- Featured resources, grouped by category. Resources marked
+       verification: records-requested render with a "Pending review"
+       indicator until coalition review confirms. -->
   <section class="page-section">
     <div class="measure-wide">
       <SectionHeading kicker="Resources" title="Featured resources." />
       <p class="lede">
-        Coming with the next data load: World Resources Institute, Virginia JLARC, Lawrence
-        Berkeley National Laboratory, and other independent reports and government materials,
-        grouped by topic.
+        Independent reports and government materials, grouped by topic. Use these to learn the
+        vocabulary before reading the public record on the K-Nova site.
       </p>
+      {grouped.map((group) => (
+        <div class="resource-group">
+          <h3 class="resource-group-title">{group.category}</h3>
+          <div class="resource-grid">
+            {group.items.map((r) => (
+              <ResourceCard
+                title={r.title}
+                source_organization={r.source_organization}
+                category={r.category}
+                url={r.url}
+                summary={r.summary}
+                credibility_type={r.credibility_type}
+                key_takeaway={r.key_takeaway}
+                verification={r.verification as Verification}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 

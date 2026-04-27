@@ -1,0 +1,51 @@
+---
+import SourceLink from './SourceLink.astro';
+
+type Verification = 'confirmed' | 'needs-follow-up' | 'records-requested';
+
+interface Props {
+  title: string;
+  source_organization: string;
+  category: string;
+  url: string;
+  summary: string;
+  credibility_type?: string;
+  key_takeaway?: string;
+  verification?: Verification;
+}
+
+const {
+  title,
+  source_organization,
+  category,
+  url,
+  summary,
+  credibility_type,
+  key_takeaway,
+  verification,
+} = Astro.props;
+---
+
+<article class="resource-card">
+  <header class="resource-card-head">
+    <p class="kicker resource-card-category">{category}</p>
+    {credibility_type && (
+      <p class="mono resource-card-credibility">{credibility_type}</p>
+    )}
+  </header>
+  <h3 class="resource-card-title">{title}</h3>
+  <p class="mono resource-card-org">{source_organization}</p>
+  <p class="resource-card-summary">{summary}</p>
+  {key_takeaway && (
+    <div class="resource-card-takeaway">
+      <p class="kicker resource-card-takeaway-label">Key takeaway</p>
+      <p>{key_takeaway}</p>
+    </div>
+  )}
+  <div class="resource-card-foot">
+    <SourceLink label={`Open at ${source_organization}`} url={url} size="sm" />
+    {verification === 'records-requested' && (
+      <p class="mono resource-card-verification">Pending review</p>
+    )}
+  </div>
+</article>

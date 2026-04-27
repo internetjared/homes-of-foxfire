@@ -2,6 +2,7 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
 import TimelineRow from '../components/content/TimelineRow.astro';
+import TimelineFilter from '../components/content/TimelineFilter.astro';
 import timeline from '../data/timeline.json';
 
 type Status =
@@ -36,21 +37,27 @@ const entries = [...timeline].reverse();
     </div>
   </section>
 
-  <!-- TimelineFilter component lands in a subsequent commit. For now the
-       full ordered list renders below in chronological order, newest first. -->
+  <!-- Filter strip. Client-side filtering by category. -->
+  <section class="page-section page-section-tight">
+    <div class="measure-wide">
+      <TimelineFilter />
+    </div>
+  </section>
 
   <section id="entries" class="page-section">
     <div class="measure-wide">
-      <div class="timeline" data-reveal="timeline">
+      <div class="timeline" data-timeline-list data-reveal="timeline">
         {entries.map((entry) => (
-          <TimelineRow
-            date={entry.date}
-            ordinance={entry.ordinance}
-            title={entry.title}
-            body={entry.body}
-            status={entry.status as Status}
-            source={entry.source}
-          />
+          <div class="timeline-row-wrap" data-category={entry.category}>
+            <TimelineRow
+              date={entry.date}
+              ordinance={entry.ordinance}
+              title={entry.title}
+              body={entry.body}
+              status={entry.status as Status}
+              source={entry.source}
+            />
+          </div>
         ))}
       </div>
     </div>

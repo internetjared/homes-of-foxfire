@@ -1,0 +1,75 @@
+---
+// Tag set per docs/V1_PLAN.md section 5. The "All" pill is the reset.
+// Each pill carries a data-filter attribute that matches the
+// data-category attribute on the wrappers in /timeline.
+//
+// Filtering is client-side and progressive: with JavaScript disabled,
+// the page still shows every row; the filter strip simply does
+// nothing.
+
+const tags = [
+  { label: 'All', value: 'all' },
+  { label: 'Zoning', value: 'Zoning' },
+  { label: 'Annexation', value: 'Annexation' },
+  { label: 'Public meeting', value: 'Public Meeting' },
+  { label: 'Ordinance', value: 'Ordinance' },
+  { label: 'Resolution', value: 'Resolution' },
+  { label: 'Site plan', value: 'Site Plan' },
+  { label: 'Utility / infrastructure', value: 'Utility / Infrastructure' },
+  { label: 'Open question', value: 'Open Question' },
+  { label: 'Records requested', value: 'Records Requested' },
+];
+---
+
+<nav class="timeline-filter" aria-label="Filter timeline by category">
+  <p class="kicker timeline-filter-label">Filter</p>
+  <ul class="timeline-filter-list" role="list">
+    {tags.map((tag, i) => (
+      <li>
+        <button
+          type="button"
+          class="timeline-filter-pill"
+          data-filter={tag.value}
+          aria-pressed={i === 0 ? 'true' : 'false'}
+        >
+          {tag.label}
+        </button>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  // Wire each pill to filter the wrappers in [data-timeline-list].
+  // Wrappers carry data-category. The "all" filter shows every row.
+  (function () {
+    const pills = document.querySelectorAll<HTMLButtonElement>(
+      '.timeline-filter .timeline-filter-pill'
+    );
+    if (!pills.length) return;
+
+    const list = document.querySelector<HTMLElement>('[data-timeline-list]');
+    if (!list) return;
+
+    const rows = list.querySelectorAll<HTMLElement>('[data-category]');
+    if (!rows.length) return;
+
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const filter = pill.dataset.filter ?? 'all';
+        pills.forEach((p) =>
+          p.setAttribute('aria-pressed', p === pill ? 'true' : 'false')
+        );
+        rows.forEach((row) => {
+          if (filter === 'all') {
+            row.removeAttribute('hidden');
+          } else if (row.dataset.category === filter) {
+            row.removeAttribute('hidden');
+          } else {
+            row.setAttribute('hidden', '');
+          }
+        });
+      });
+    });
+  })();
+</script>

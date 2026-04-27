@@ -1,13 +1,15 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
+import UpdatePost from '../components/content/UpdatePost.astro';
+import updates from '../data/updates.json';
+
+type Verification = 'confirmed' | 'needs-follow-up' | 'records-requested';
 
 const lastUpdated = '04.25 / 2026';
 
-// UpdatePost rendering from src/data/updates.json arrives in the next two
-// commits (data file, then UpdatePost component). The page intro and
-// records-request status block ship now so the route exists in nav and
-// SEO indexes correctly from day one.
+// updates.json lists newest-first per docs/CONTENT.md, so render in
+// the same order it ships.
 ---
 
 <SiteLayout
@@ -29,15 +31,23 @@ const lastUpdated = '04.25 / 2026';
     </div>
   </section>
 
-  <!-- UpdatePost list renders from src/data/updates.json once the data
-       file and component land in the next commits. -->
   <section id="posts" class="page-section">
     <div class="measure">
-      <p class="lede">
-        First posts coming with the next data load. The first post will mark
-        <span class="mono tab">FXF-PR-2026-001</span>, the coalition's first public records
-        request to the Village Fiscal Officer.
-      </p>
+      <div class="update-list">
+        {updates.map((post) => (
+          <UpdatePost
+            date={post.date}
+            title={post.title}
+            category={post.category}
+            summary={post.summary}
+            what_happened={post.what_happened}
+            why_it_matters={post.why_it_matters}
+            what_to_do={post.what_to_do}
+            related_links={post.related_links}
+            verification={post.verification as Verification}
+          />
+        ))}
+      </div>
     </div>
   </section>
 
