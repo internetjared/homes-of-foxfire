@@ -12,6 +12,30 @@
     }
   },
   {
+    "date": "2021-11-15",
+    "category": "Public Meeting",
+    "title": "Follow-up K-Nova public hearing on revised plans and landscaping",
+    "body": "At a follow-up K-Nova public hearing, K-Nova representatives said they had submitted substitute plans, zoning text, and landscaping commitments. Residents discussed mounds, fencing, traffic lights, truck traffic on Durrett Road, warehouse lighting, diesel smell, and continued opposition to additional warehouses on the parcel.",
+    "status": "filed",
+    "verification": "confirmed",
+    "source": {
+      "label": "November 15, 2021 K-Nova public hearing minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPMeetings/Public/2021/11-15-2021.pdf"
+    }
+  },
+  {
+    "date": "2023-05-30",
+    "category": "Annexation",
+    "title": "Pickaway County records the Jahn / K-Nova annexation petition",
+    "body": "Pickaway County Commissioner minutes record the filing of an annexation petition for approximately 267.59 acres from Scioto Township into Commercial Point. The petitioners are listed as Eric Young as Trustee of the James R. Jahn Trust, Alice N. Jahn, and K-Nova LLC. The agent of record is Craig Moncrief of Plank Law Firm.",
+    "status": "filed",
+    "verification": "confirmed",
+    "source": {
+      "label": "Pickaway County May 30, 2023 minutes (PDF)",
+      "url": "https://www.pickaway.org/docs/minutes/May%2030%2C%202023%20Minutes%20-%20Website.pdf"
+    }
+  },
+  {
     "date": "2023-06-05",
     "ordinance": "RES 17-2023",
     "category": "Annexation",
@@ -22,6 +46,18 @@
     "source": {
       "label": "Resolution 17-2023 (PDF)",
       "url": "https://www.commercialpointohio.gov/CPDocuments/CPResolutions/2023/17-2023.pdf"
+    }
+  },
+  {
+    "date": "2023-06-27",
+    "category": "Annexation",
+    "title": "Pickaway County approves the Jahn / K-Nova annexation petition",
+    "body": "Pickaway County Commissioners approved the annexation petition for approximately 267.59 acres into Commercial Point. The county minutes reference parcel L2700010053101 and state that all property owners in the territory signed the petition.",
+    "status": "adopted",
+    "verification": "confirmed",
+    "source": {
+      "label": "Pickaway County June 27, 2023 minutes (PDF)",
+      "url": "https://pickaway.org/docs/minutes/June%2027%2C%202023%20Minutes%20-%20Website.pdf"
     }
   },
   {
@@ -111,6 +147,18 @@
     "source": {
       "label": "Ordinance 2024-02 (PDF, died for lack of motion)",
       "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-02-Died-to-lack-of-motion.pdf"
+    }
+  },
+  {
+    "date": "2024-02-20",
+    "category": "Annexation",
+    "title": "Pickaway County records the Commercial Point annexation filing",
+    "body": "Pickaway County Commissioner minutes record that Commercial Point approved Ordinance 2023-11 on December 4, 2023 and filed the annexation petition with the Pickaway County Recorder on January 9, 2024.",
+    "status": "filed",
+    "verification": "confirmed",
+    "source": {
+      "label": "Pickaway County February 20, 2024 minutes (PDF)",
+      "url": "https://pickaway.org/docs/minutes/February%2020%2C%202024%20Minutes%20-%20Website.pdf"
     }
   },
   {
@@ -217,9 +265,9 @@
     "date": "2026-04-20",
     "category": "Public Meeting",
     "title": "Committee of the Whole takes up moratorium and transparency items",
-    "body": "The April 20, 2026 Committee of the Whole agenda listed the proposed 18-month data center moratorium, two transparency measures including a development registry and mandatory early public disclosure for major proposals, and a K-Nova major site plan discussion. Coalition records requests for the full packet are in flight.",
+    "body": "April 20, 2026 was listed as a Committee of the Whole meeting date on the Commercial Point 2026 meeting calendar. The full agenda, packet, minutes, and recording are subjects of pending coalition records requests.",
     "status": "pending",
-    "verification": "confirmed",
+    "verification": "records-requested",
     "source": {
       "label": "Commercial Point 2026 meeting calendar",
       "url": "https://www.commercialpointohio.gov/council-meeting-dates/"

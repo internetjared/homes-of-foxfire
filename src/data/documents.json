@@ -463,5 +463,88 @@
       "label": "Ohio Revised Code 121.22",
       "url": "https://codes.ohio.gov/ohio-revised-code/section-121.22"
     }
+  },
+  {
+    "id": "hearing-2021-11-15",
+    "kind": "hearing",
+    "number": "2021-11-15",
+    "title": "Follow-up K-Nova public hearing on revised plans and landscaping",
+    "date": "2021-11-15",
+    "category": "Official Village Records",
+    "body": "K-Nova representatives discussed substitute plans, zoning text, and landscaping commitments. Residents discussed mounds, fencing, traffic lights, truck traffic, warehouse lighting, diesel smell, and continued opposition to warehouses.",
+    "tags": [
+      "hearing",
+      "k-nova",
+      "warehouse",
+      "history"
+    ],
+    "status": "filed",
+    "verification": "confirmed",
+    "source": {
+      "label": "November 15, 2021 K-Nova public hearing minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPMeetings/Public/2021/11-15-2021.pdf"
+    }
+  },
+  {
+    "id": "pickaway-2023-05-30",
+    "kind": "minutes",
+    "number": "2023-05-30",
+    "title": "Pickaway County minutes recording the Jahn / K-Nova annexation petition",
+    "date": "2023-05-30",
+    "category": "K-Nova / Jahn Farm Documents",
+    "body": "Records the filing of an annexation petition for approximately 267.59 acres from Scioto Township into Commercial Point by Eric Young as Trustee of the James R. Jahn Trust, Alice N. Jahn, and K-Nova LLC. Agent: Craig Moncrief of Plank Law Firm.",
+    "tags": [
+      "annexation",
+      "pickaway-county",
+      "k-nova",
+      "jahn-farm"
+    ],
+    "status": "filed",
+    "verification": "confirmed",
+    "source": {
+      "label": "Pickaway County May 30, 2023 minutes (PDF)",
+      "url": "https://www.pickaway.org/docs/minutes/May%2030%2C%202023%20Minutes%20-%20Website.pdf"
+    }
+  },
+  {
+    "id": "pickaway-2023-06-27",
+    "kind": "minutes",
+    "number": "2023-06-27",
+    "title": "Pickaway County approves the Jahn / K-Nova annexation petition",
+    "date": "2023-06-27",
+    "category": "K-Nova / Jahn Farm Documents",
+    "body": "County minutes record approval of the annexation petition for approximately 267.59 acres into Commercial Point. References parcel L2700010053101 and notes that all property owners in the territory signed the petition.",
+    "tags": [
+      "annexation",
+      "pickaway-county",
+      "k-nova",
+      "jahn-farm"
+    ],
+    "status": "adopted",
+    "verification": "confirmed",
+    "source": {
+      "label": "Pickaway County June 27, 2023 minutes (PDF)",
+      "url": "https://pickaway.org/docs/minutes/June%2027%2C%202023%20Minutes%20-%20Website.pdf"
+    }
+  },
+  {
+    "id": "pickaway-2024-02-20",
+    "kind": "minutes",
+    "number": "2024-02-20",
+    "title": "Pickaway County minutes recording the Commercial Point annexation filing",
+    "date": "2024-02-20",
+    "category": "K-Nova / Jahn Farm Documents",
+    "body": "Records that Commercial Point approved Ordinance 2023-11 on December 4, 2023 and filed the annexation petition with the Pickaway County Recorder on January 9, 2024.",
+    "tags": [
+      "annexation",
+      "pickaway-county",
+      "recorder"
+    ],
+    "status": "filed",
+    "verification": "confirmed",
+    "source": {
+      "label": "Pickaway County February 20, 2024 minutes (PDF)",
+      "url": "https://pickaway.org/docs/minutes/February%2020%2C%202024%20Minutes%20-%20Website.pdf"
+    }
   }
 ]
