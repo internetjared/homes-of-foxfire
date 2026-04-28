@@ -1,0 +1,109 @@
+[
+  {
+    "id": "mayor-geiger",
+    "name": "Nancy Geiger",
+    "role": "Mayor",
+    "email": "n.geiger@commercialpointohio.gov",
+    "term_start": "2026-01-01",
+    "term_end": null,
+    "notes": "Term-end date is a subject of the coalition's pending records request to the Village.",
+    "verification": "confirmed",
+    "source": {
+      "label": "Project facts in CLAUDE.md (verified against village minutes from February 23, 2026)",
+      "url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/03/2-23-Council.pdf"
+    }
+  },
+  {
+    "id": "council-fox",
+    "name": "Dustyn Fox",
+    "role": "Council Member",
+    "email": "d.fox@commercialpointohio.gov",
+    "term_start": "2026-01-01",
+    "term_end": "2029-12-31",
+    "verification": "confirmed",
+    "source": {
+      "label": "Village of Commercial Point elected officials page",
+      "url": "https://www.commercialpointohio.gov/council/"
+    }
+  },
+  {
+    "id": "council-anderson",
+    "name": "Patricia Anderson",
+    "role": "Council Member",
+    "email": "p.anderson@commercialpointohio.gov",
+    "term_start": "2026-01-01",
+    "term_end": "2029-12-31",
+    "verification": "confirmed",
+    "source": {
+      "label": "Village of Commercial Point elected officials page",
+      "url": "https://www.commercialpointohio.gov/council/"
+    }
+  },
+  {
+    "id": "council-miller",
+    "name": "Ezekiel Miller",
+    "role": "Council Member",
+    "email": "e.miller@commercialpointohio.gov",
+    "term_start": "2026-01-01",
+    "term_end": "2029-12-31",
+    "notes": "Proposed the data-center moratorium on February 23, 2026.",
+    "verification": "confirmed",
+    "source": {
+      "label": "Village of Commercial Point elected officials page",
+      "url": "https://www.commercialpointohio.gov/council/"
+    }
+  },
+  {
+    "id": "council-denton",
+    "name": "Courtney Denton",
+    "role": "Council Member",
+    "email": "c.denton@commercialpointohio.gov",
+    "term_start": "2026-01-01",
+    "term_end": "2029-12-31",
+    "verification": "confirmed",
+    "source": {
+      "label": "Village of Commercial Point elected officials page",
+      "url": "https://www.commercialpointohio.gov/council/"
+    }
+  },
+  {
+    "id": "council-weaver",
+    "name": "Jay Weaver",
+    "role": "Council Member",
+    "email": "j.weaver@commercialpointohio.gov",
+    "term_start": "2024-01-01",
+    "term_end": "2027-12-31",
+    "verification": "confirmed",
+    "source": {
+      "label": "Village of Commercial Point elected officials page",
+      "url": "https://www.commercialpointohio.gov/council/"
+    }
+  },
+  {
+    "id": "council-nungester",
+    "name": "Eric Nungester",
+    "role": "Council Member",
+    "email": "e.nungester@commercialpointohio.gov",
+    "term_start": "2024-01-01",
+    "term_end": "2027-12-31",
+    "verification": "confirmed",
+    "source": {
+      "label": "Village of Commercial Point elected officials page",
+      "url": "https://www.commercialpointohio.gov/council/"
+    }
+  },
+  {
+    "id": "fiscal-officer",
+    "name": "W. Hastings",
+    "role": "Fiscal Officer",
+    "email": "w.hastings@commercialpointohio.gov",
+    "term_start": null,
+    "term_end": null,
+    "notes": "First name and full title are subjects of the coalition's pending records request.",
+    "verification": "needs-follow-up",
+    "source": {
+      "label": "Village of Commercial Point contact page",
+      "url": "https://www.commercialpointohio.gov/contact-us/"
+    }
+  }
+]

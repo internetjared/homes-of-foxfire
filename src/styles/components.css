@@ -1805,6 +1805,144 @@
   letter-spacing: 0.01em;
 }
 
+/* ---------- Officials roster (used on /take-action under Action 03) ---------- */
+
+.officials-roster {
+  margin-top: var(--space-2xl);
+  border-top: 1px solid var(--rule-soft);
+  padding-top: var(--space-xl);
+}
+
+.official-card {
+  background: var(--bone);
+  padding: var(--space-md) var(--space-lg);
+  border-top: 2px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.official-card-mayor {
+  border-top-color: var(--ink);
+  margin-bottom: var(--space-md);
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-top-width: 2px;
+}
+
+.official-role {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+.official-name {
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 500;
+  margin: 0;
+}
+
+.official-email {
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-soft);
+  align-self: flex-start;
+  padding-bottom: 1px;
+  word-break: break-all;
+}
+
+.official-email:hover,
+.official-email:focus-visible {
+  border-bottom-color: var(--ink);
+}
+
+.official-term {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-soft);
+  margin: 4px 0 0;
+}
+
+.official-notes {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 4px 0 0;
+}
+
+.officials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+@media (max-width: 600px) {
+  .officials-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.officials-staff {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--rule-soft);
+}
+
+.officials-staff .kicker {
+  margin: 0 0 var(--space-xs);
+  color: var(--text-soft);
+}
+
+.officials-staff ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.officials-staff li {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.official-staff-role {
+  color: var(--text-soft);
+  margin-right: 4px;
+}
+
+.official-staff-name {
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.official-staff-note {
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.officials-foot {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--rule-soft);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+
+.officials-foot a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-soft);
+  padding-bottom: 1px;
+}
+
+.officials-foot a:hover,
+.officials-foot a:focus-visible {
+  border-bottom-color: var(--ink);
+}
+
 /* ---------- Newsletter V1 form ---------- */
 
 .newsletter-form-v1 {

@@ -4,6 +4,21 @@ import SectionHeading from '../components/content/SectionHeading.astro';
 import NewsletterSignup from '../components/content/NewsletterSignup.astro';
 import DisclaimerBlock from '../components/content/DisclaimerBlock.astro';
 import meetings from '../data/meetings.json';
+import officials from '../data/officials.json';
+
+// Split the roster into Mayor first, council members in the order the
+// village publishes them, and any village staff (fiscal officer, etc.)
+// at the end as a small auxiliary list.
+const mayor = officials.find((o) => o.role === 'Mayor');
+const council = officials.filter((o) => o.role === 'Council Member');
+const staff = officials.filter(
+  (o) => o.role !== 'Mayor' && o.role !== 'Council Member'
+);
+
+// Format a four-digit year from a YYYY-MM-DD string. Used for the
+// term display on each official card.
+const yearOf = (d: string | null) =>
+  d ? new Date(`${d}T12:00:00`).getFullYear() : null;
 
 const lastUpdated = '04.25 / 2026';
 
@@ -105,21 +120,69 @@ const nextMeetingDate = nextMeeting
 
         <div class="email-template-recipients">
           <p class="kicker email-template-label">Send to.</p>
-          <ul>
-            <li>
-              <a href="mailto:n.geiger@commercialpointohio.gov">n.geiger@commercialpointohio.gov</a>
-              <span class="email-template-recipient-name">(Mayor Geiger)</span>
-            </li>
-            <li>
-              <span class="email-template-recipient-name">Other council members:</span>
-              <span class="mono email-template-pending">records requested</span>
-            </li>
-          </ul>
           <p class="email-template-fineprint">
-            Council member emails will be added here once they are confirmed in the public
-            record. The coalition is requesting the village contact list.
+            Roster verified against the Village of Commercial Point's elected officials page.
+            Send to one official, several, or all of them. CC the others when you do, so the
+            email becomes part of the public record across the council.
           </p>
         </div>
+      </div>
+
+      <!-- Council and Mayor roster. Sourced from the Village of Commercial
+           Point's published elected officials page. Mayor Geiger's email
+           is verified against village minutes. Each card shows term-end
+           year in mono so residents can see who is up for re-election. -->
+      <div class="officials-roster">
+        {mayor && (
+          <article class="official-card official-card-mayor">
+            <p class="kicker official-role">{mayor.role}</p>
+            <h3 class="official-name">{mayor.name}</h3>
+            <a class="official-email mono" href={`mailto:${mayor.email}`}>{mayor.email}</a>
+            {mayor.notes && <p class="official-notes">{mayor.notes}</p>}
+          </article>
+        )}
+        <div class="officials-grid">
+          {council.map((o) => {
+            const startYear = yearOf(o.term_start);
+            const endYear = yearOf(o.term_end);
+            return (
+              <article class="official-card">
+                <p class="kicker official-role">{o.role}</p>
+                <h3 class="official-name">{o.name}</h3>
+                <a class="official-email mono" href={`mailto:${o.email}`}>{o.email}</a>
+                {startYear && endYear && (
+                  <p class="official-term mono tab">Term {startYear} to {endYear}</p>
+                )}
+                {o.notes && <p class="official-notes">{o.notes}</p>}
+              </article>
+            );
+          })}
+        </div>
+
+        {staff.length > 0 && (
+          <div class="officials-staff">
+            <p class="kicker">Village staff</p>
+            <ul>
+              {staff.map((o) => (
+                <li>
+                  <span class="official-staff-role">{o.role}:</span>
+                  <span class="official-staff-name">{o.name}.</span>
+                  <a class="mono" href={`mailto:${o.email}`}>{o.email}</a>
+                  {o.notes && <span class="official-staff-note"> {o.notes}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <p class="officials-foot">
+          Roster sourced from the
+          <a href="https://www.commercialpointohio.gov/council/" rel="noopener" target="_blank">
+            Village of Commercial Point elected officials page <span aria-hidden="true">→</span>
+          </a>
+          . Village hall: <span class="mono tab">10 West Scioto St., Commercial Point, Ohio 43116</span>.
+          Phone: <span class="mono tab">614-877-9248</span>.
+        </p>
       </div>
     </div>
   </section>
