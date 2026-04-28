@@ -18,6 +18,7 @@ npm-debug.log*
 .claude/
 /*.png
 /*.pdf
+/*.csv
 
 # One-shot coalition utility scripts. Not site code.
 _local-utilities/
