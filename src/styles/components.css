@@ -1238,6 +1238,14 @@
   border-color: var(--ink);
 }
 
+/* Heart icon turns red on hover inside any button. */
+.btn-primary:hover [data-icon="heart"],
+.btn-primary:focus-visible [data-icon="heart"],
+.btn-secondary:hover [data-icon="heart"],
+.btn-secondary:focus-visible [data-icon="heart"] {
+  color: var(--accent);
+}
+
 .btn-tertiary {
   padding: 12px 18px;
   background: transparent;
