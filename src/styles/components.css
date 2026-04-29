@@ -1079,6 +1079,13 @@
   }
 }
 
+/* Take-action page: swap in the neighborhood sketch */
+.hero-take-action::before {
+  background-image: url('/take_action_hero.png');
+  background-position: center 40%;
+  opacity: 0.18;
+}
+
 .hero .kicker {
   margin-bottom: var(--space-md);
 }
