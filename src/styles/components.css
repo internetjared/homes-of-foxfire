@@ -342,6 +342,11 @@
   color: var(--paper);
   border-color: var(--ink);
 }
+.site-header-nav a.site-header-cta-outlined:hover [data-icon="heart"],
+.site-header-nav a.site-header-cta-outlined:focus-visible [data-icon="heart"] {
+  color: var(--accent);
+  fill: var(--accent);
+}
 /* Override the default underline-on-hover for buttons; the fill change carries the state. */
 .site-header-nav a.site-header-cta:hover,
 .site-header-nav a.site-header-cta:focus-visible,
@@ -712,6 +717,10 @@
 }
 .site-header-cta-bar a.site-header-cta-outlined:hover {
   background: var(--bone-2, #d8d8d8);
+}
+.site-header-cta-bar a.site-header-cta-outlined:hover [data-icon="heart"] {
+  color: var(--accent);
+  fill: var(--accent);
 }
 .site-header-hamburger {
   display: none;
