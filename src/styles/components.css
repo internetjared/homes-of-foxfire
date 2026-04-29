@@ -249,7 +249,7 @@
   line-height: 0;
 }
 .site-header-logo img {
-  height: 48px;
+  height: 72px;
   width: auto;
   display: block;
 }
@@ -260,7 +260,7 @@
   line-height: 0;
 }
 .site-footer-logo img {
-  height: 36px;
+  height: 52px;
   width: auto;
   display: block;
 }
@@ -774,7 +774,7 @@
 
 @media (max-width: 680px) {
   .site-header-logo img {
-    height: 36px;
+    height: 52px;
   }
   .site-header {
     padding-top: var(--space-md);
@@ -3161,7 +3161,7 @@ abbr[title]:hover {
   }
   /* Scale the footer logo down on mobile */
   .site-footer-logo img {
-    height: 28px;
+    height: 40px;
   }
   /* Nav: single row, tighter gap, allow wrapping only if truly needed */
   .site-footer-nav {
