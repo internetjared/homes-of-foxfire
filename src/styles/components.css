@@ -649,18 +649,13 @@
 /* Mobile CTA bar (below header, light grey) */
 .site-header-cta-bar {
   display: none;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-sm);
-  padding: 10px var(--space-lg);
   background: var(--bone);
-  border-bottom: 1px solid var(--rule-soft);
 }
 /* CTA button styles in the mobile bar */
 .site-header-cta-bar a.site-header-cta {
-  padding: 8px 16px;
-  border: 1px solid var(--ink);
-  border-radius: 2px;
+  padding: 12px 0;
+  border: none;
+  border-radius: 0;
   font-family: var(--mono);
   font-size: 10px;
   font-weight: 600;
@@ -674,12 +669,17 @@
 .site-header-cta-bar a.site-header-cta-solid {
   background: #793a29;
   color: var(--paper);
-  border-color: #793a29;
+}
+.site-header-cta-bar a.site-header-cta-solid:hover {
+  background: #5e2c1f;
 }
 .site-header-cta-bar a.site-header-cta-outlined {
-  background: transparent;
+  background: var(--bone);
   color: var(--ink);
-  border-color: var(--ink);
+  border-left: 1px solid var(--rule-soft);
+}
+.site-header-cta-bar a.site-header-cta-outlined:hover {
+  background: var(--bone-2, #d8d8d8);
 }
 .site-header-hamburger {
   display: none;
@@ -743,6 +743,7 @@
 @media (max-width: 680px) {
   .site-header {
     padding-block: var(--space-md);
+    border-bottom: none;
   }
   .site-header-nav-desktop {
     display: none;
