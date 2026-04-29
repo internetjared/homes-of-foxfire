@@ -1131,6 +1131,11 @@
   display: block;
 }
 
+.hero-line-accent {
+  color: var(--accent);
+  filter: brightness(1.7);
+}
+
 .hero .lede {
   margin-bottom: var(--space-xl);
 }
