@@ -2,6 +2,7 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
 import NewsletterSignup from '../components/content/NewsletterSignup.astro';
+import Icon from '../components/content/Icon.astro';
 import meetings from '../data/meetings.json';
 import officials from '../data/officials.json';
 
@@ -47,6 +48,14 @@ const nextMeetingDate = nextMeeting
         Five concrete things a resident can do this week. Sign up for updates, attend the next
         meeting, email the council, volunteer for records review, or share with a neighbor.
       </p>
+      <div class="hero-cta">
+        <a class="btn-navy" href="https://www.change.org/p/prevent-the-construction-of-data-centers-in-commercial-point-and-scioto-township" target="_blank" rel="noopener">
+          Sign the petition <Icon name="pen" size={14} />
+        </a>
+        <a class="btn-navy-outline" href="#email">
+          Email city council <Icon name="megaphone" size={14} />
+        </a>
+      </div>
     </div>
   </section>
 
