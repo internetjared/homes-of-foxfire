@@ -363,16 +363,23 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       if (!iframe.src || iframe.src === window.location.href) {
         iframe.src = iframe.dataset.src ?? '';
       }
-      lightbox.hidden = false;
+      lightbox.removeAttribute('hidden');
+      // rAF ensures the browser paints opacity:0 before adding is-open,
+      // so the transition actually fires
+      requestAnimationFrame(() => lightbox.classList.add('is-open'));
       document.body.style.overflow = 'hidden';
       lastFocus = document.activeElement as HTMLElement;
       lightbox.querySelector<HTMLElement>('.plan-lightbox-close')?.focus();
     };
 
     const close = () => {
-      lightbox.hidden = true;
+      lightbox.classList.remove('is-open');
       document.body.style.overflow = '';
       lastFocus?.focus();
+      // Wait for the fade-out before hiding from the accessibility tree
+      lightbox.addEventListener('transitionend', () => {
+        if (!lightbox.classList.contains('is-open')) lightbox.setAttribute('hidden', '');
+      }, { once: true });
     };
 
     // Trigger button

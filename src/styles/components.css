@@ -4095,10 +4095,14 @@ abbr[title]:hover {
   align-items: center;
   justify-content: center;
   padding: var(--space-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
 }
 
-.plan-lightbox[hidden] {
-  display: none;
+.plan-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .plan-lightbox-backdrop {
