@@ -1,283 +1,400 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import SectionHeading from '../components/content/SectionHeading.astro';
-import NewsletterSignup from '../components/content/NewsletterSignup.astro';
 import Icon from '../components/content/Icon.astro';
 import meetings from '../data/meetings.json';
 import officials from '../data/officials.json';
 
-// Split the roster into Mayor first, council members in the order the
-// village publishes them, and any village staff (fiscal officer, etc.)
-// at the end as a small auxiliary list.
 const mayor = officials.find((o) => o.role === 'Mayor');
 const council = officials.filter((o) => o.role === 'Council Member');
-const staff = officials.filter(
-  (o) => o.role !== 'Mayor' && o.role !== 'Council Member'
-);
 
-// Format a four-digit year from a YYYY-MM-DD string. Used for the
-// term display on each official card.
-const yearOf = (d: string | null) =>
-  d ? new Date(`${d}T12:00:00`).getFullYear() : null;
+const lastUpdated = '04.29 / 2026';
 
-const lastUpdated = '04.25 / 2026';
+const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-centers-in-commercial-point-and-scioto-township';
 
-// Next meeting display.
 const nextMeeting = meetings[0];
-const nextMeetingDate = nextMeeting
-  ? (() => {
-      const d = new Date(`${nextMeeting.date}T12:00:00`);
-      const mm = String(d.getMonth() + 1).padStart(2, '0');
-      const dd = String(d.getDate()).padStart(2, '0');
-      return `${mm}.${dd} / ${d.getFullYear()}`;
-    })()
-  : null;
+const nextMeetingDateObj = nextMeeting ? new Date(`${nextMeeting.date}T12:00:00`) : null;
+const nextMeetingWeekday = nextMeetingDateObj?.toLocaleDateString('en-US', { weekday: 'long' });
+const nextMeetingMonth = nextMeetingDateObj?.toLocaleDateString('en-US', { month: 'long' });
+const nextMeetingDay = nextMeetingDateObj?.getDate();
+const nextMeetingYear = nextMeetingDateObj?.getFullYear();
+
+const emailTemplates = [
+  {
+    id: 'transparency',
+    label: 'Request transparency',
+    subject: 'Please provide full transparency on the Foxfire-adjacent data-center project',
+    body: `I am a resident of Commercial Point concerned about the K-Nova / Jahn Farm data-center rezoning near Foxfire. I am asking the council to provide full transparency: complete public records, independent review, and clear public answers about zoning, utilities, water supply, noise, traffic, environmental impacts, and all pending approvals.`,
+  },
+  {
+    id: 'moratorium',
+    label: 'Support the moratorium',
+    subject: 'Please vote yes on the 18-month data center moratorium',
+    body: `I am a resident of Commercial Point asking the council to pass the 18-month data center moratorium. Before any new data center construction proceeds, residents deserve clear answers about water capacity, power infrastructure, noise limits, tax incentives, and the village's obligations under the Amazon NDA. The moratorium gives us time to get those answers. Please vote yes.`,
+  },
+  {
+    id: 'nda',
+    label: 'Ask about the Amazon NDA',
+    subject: 'Request for public disclosure of the Amazon Data Services NDA',
+    body: `I am a resident of Commercial Point requesting full public disclosure of the NDA between the Village of Commercial Point and Amazon Data Services, signed in July 2023. This agreement involves public land, public utilities, and decisions that affect every resident near Foxfire. The NDA should be made available for public review before it expires in July 2026. Please provide this document and a full explanation of the village's obligations under it.`,
+  },
+];
+
+const mediaOutlets = [
+  { name: 'Columbus Dispatch', url: 'https://www.dispatch.com/tips/', handle: 'dispatch.com/tips' },
+  { name: '10TV WBNS Columbus', url: 'https://www.10tv.com/tips', handle: '10tv.com/tips' },
+  { name: 'NBC4 Columbus', url: 'https://www.nbc4i.com/contact/', handle: 'nbc4i.com/contact' },
+  { name: 'ABC6 / FOX28', url: 'https://abc6onyourside.com/contact', handle: 'abc6onyourside.com/contact' },
+  { name: 'Columbus Business First', url: 'https://www.bizjournals.com/columbus/', handle: 'bizjournals.com/columbus' },
+];
 ---
 
 <SiteLayout
   title="Take action | Help protect Foxfire"
-  description="Sign up for updates, attend meetings, contact officials, volunteer, and help organize residents around the Foxfire-adjacent data-center issue."
+  description="Five concrete steps every Foxfire resident can take: sign up for updates, email the council, attend the next meeting, contact the media, and share with neighbors."
   lastUpdated={lastUpdated}
 >
-  <!-- Hero strip (hero register) -->
+  <!-- Hero -->
   <section class="page-section page-section-tier hero hero-take-action">
     <div class="measure-wide">
       <p class="kicker">Take action</p>
       <h1 class="hero-display">This is not over. Help protect Foxfire.</h1>
       <p class="lede">
-        Five concrete things a resident can do this week. Sign up for updates, attend the next
-        meeting, email the council, volunteer for records review, or share with a neighbor.
+        Five concrete steps every resident can take right now. You do not need to be an
+        expert. You just need to show up.
       </p>
       <div class="hero-cta">
-        <a class="btn-navy" href="https://www.change.org/p/prevent-the-construction-of-data-centers-in-commercial-point-and-scioto-township" target="_blank" rel="noopener">
+        <a class="btn-navy" href={petitionUrl} target="_blank" rel="noopener">
           Sign the petition <Icon name="pen" size={14} />
         </a>
         <a class="btn-navy-outline" href="#email">
-          Email city council <Icon name="megaphone" size={14} />
+          Email the council <Icon name="megaphone" size={14} />
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Action 1: Sign up for updates. -->
-  <section id="sign-up" class="page-section page-section-tight updates-section">
-    <div class="measure">
-      <p class="kicker">Action 01.</p>
-      <h2 class="updates-title">Sign up for updates.</h2>
-      <p class="updates-lede">
-        A short note before every meeting on the data center issue, plus a recap after, plus
-        an alert when a deadline is real. No spam, no other lists.
-      </p>
-      <NewsletterSignup />
-    </div>
-  </section>
+  <!-- Steps wrapper -->
+  <div class="action-steps-wrap">
 
-  <!-- Action 2: Attend the next meeting. -->
-  <section id="attend" class="page-section">
-    <div class="measure">
-      <SectionHeading kicker="Action 02." title="Attend the next meeting." />
-      {nextMeeting && nextMeetingDate && (
-        <div class="meeting-detail">
-          <p class="meeting-detail-date mono tab">{nextMeetingDate}</p>
-          <p class="meeting-detail-body">{nextMeeting.note}</p>
-          <p class="action-foot">
-            <a href={nextMeeting.source.url} rel="noopener" target="_blank">
-              {nextMeeting.source.label} <span aria-hidden="true">→</span>
+    <!-- Step 1: Sign up -->
+    <section id="sign-up" class="action-step">
+      <div class="action-step-num">
+        <span class="action-step-label">Action</span>
+        <span class="action-step-number">01</span>
+      </div>
+      <div class="action-step-content">
+        <h2 class="action-step-title">Sign up for updates.</h2>
+        <p class="action-step-lede">
+          Short notes before meetings, key documents when they land, and alerts when
+          deadlines matter. No spam. Unsubscribe anytime.
+        </p>
+
+        <!-- Hidden iframe absorbs Google's redirect so the visitor stays on the page -->
+        <iframe name="ta-signup-sink" style="display:none;" aria-hidden="true"></iframe>
+
+        <form
+          class="action-signup-form action-signup-form-light"
+          method="post"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSc-wEeEq8BJeHjESK-u7f76FomLjlnTdKrdZ85lC9VOzm8DRA/formResponse"
+          target="ta-signup-sink"
+          id="ta-signup-form"
+        >
+          <div class="action-signup-grid">
+            <div class="action-signup-field">
+              <label for="ta-first-name">First name.</label>
+              <input type="text" id="ta-first-name" name="entry.562094467" required autocomplete="given-name" />
+            </div>
+            <div class="action-signup-field">
+              <label for="ta-last-name">Last name.</label>
+              <input type="text" id="ta-last-name" name="entry.241538344" required autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="action-signup-field">
+            <label for="ta-email">Email.</label>
+            <input type="email" id="ta-email" name="entry.2041379243" required autocomplete="email" />
+          </div>
+          <div class="action-signup-field">
+            <label for="ta-address">Address <span class="action-signup-optional">(optional).</span></label>
+            <input type="text" id="ta-address" name="entry.1816766210" autocomplete="street-address" />
+          </div>
+          <button type="submit" class="btn-primary action-signup-submit">
+            <span>Sign me up</span>
+            <Icon name="mail" size={18} />
+          </button>
+          <div class="action-signup-success action-signup-success-light" id="ta-signup-success" aria-live="polite" style="display:none;">
+            <Icon name="thumbs-up" size={20} />
+            <p>Thank you for joining the fight. Watch for short notes on meetings, key documents, and how to make your voice heard.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Step 2: Email the council -->
+    <section id="email" class="action-step">
+      <div class="action-step-num">
+        <span class="action-step-label">Action</span>
+        <span class="action-step-number">02</span>
+      </div>
+      <div class="action-step-content">
+        <h2 class="action-step-title">Email the council.</h2>
+        <p class="action-step-lede">
+          A polite, specific email becomes part of the public record and is read into the
+          meeting. Choose a template, edit it in your own voice, then send.
+        </p>
+
+        <!-- Tabbed email templates -->
+        <div class="email-tabs-wrap" data-email-tabs>
+          <div class="email-tab-bar" role="tablist" aria-label="Email templates">
+            {emailTemplates.map((t, i) => (
+              <button
+                class={`email-tab${i === 0 ? ' is-active' : ''}`}
+                role="tab"
+                aria-selected={i === 0 ? 'true' : 'false'}
+                aria-controls={`email-panel-${t.id}`}
+                data-tab={t.id}
+                type="button"
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+
+          {emailTemplates.map((t, i) => (
+            <div
+              class={`email-panel${i === 0 ? ' is-active' : ''}`}
+              id={`email-panel-${t.id}`}
+              role="tabpanel"
+              data-panel={t.id}
+            >
+              <div class="email-template" data-email-template>
+                <div class="email-template-row">
+                  <div class="email-template-row-head">
+                    <p class="kicker email-template-label">Subject.</p>
+                    <button type="button" class="btn-tertiary email-template-copy" data-copy-text={t.subject}>
+                      Copy subject.
+                    </button>
+                  </div>
+                  <pre class="email-template-text">{t.subject}</pre>
+                </div>
+                <div class="email-template-row">
+                  <div class="email-template-row-head">
+                    <p class="kicker email-template-label">Body.</p>
+                    <button type="button" class="btn-tertiary email-template-copy" data-copy-text={t.body}>
+                      Copy body.
+                    </button>
+                  </div>
+                  <pre class="email-template-text">{t.body}</pre>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Council roster: minimal cards -->
+        <div class="officials-list">
+          <p class="kicker" style="margin-bottom: var(--space-sm);">Send to.</p>
+          {mayor && (
+            <div class="official-row official-row-mayor">
+              <div class="official-row-info">
+                <span class="official-row-name">{mayor.name}</span>
+                <span class="official-row-role">Mayor</span>
+              </div>
+              <a class="official-row-email" href={`mailto:${mayor.email}`}>
+                {mayor.email} <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          )}
+          {council.map((o) => (
+            <div class="official-row">
+              <div class="official-row-info">
+                <span class="official-row-name">{o.name}</span>
+                <span class="official-row-role">Council Member</span>
+              </div>
+              <a class="official-row-email" href={`mailto:${o.email}`}>
+                {o.email} <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          ))}
+          <p class="officials-foot" style="margin-top: var(--space-md);">
+            Roster sourced from the
+            <a href="https://www.commercialpointohio.gov/council/" rel="noopener" target="_blank">
+              Village of Commercial Point elected officials page →
             </a>
           </p>
         </div>
-      )}
-      <p>
-        Council and Committee of the Whole meetings are open to the public, are often
-        livestreamed, and accept public comment. Showing up is the single most useful thing a
-        neighbor can do.
-      </p>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- Action 3: Email the council. Template ships inline with copy-to-clipboard. -->
-  <section id="email" class="page-section">
-    <div class="measure">
-      <SectionHeading kicker="Action 03." title="Email the council." />
-      <p>
-        A polite, specific email becomes part of the public record and is read into the
-        meeting. The template below is short on purpose. Edit it in your own voice before
-        sending.
-      </p>
-
-      <div class="email-template" data-email-template>
-        <div class="email-template-row">
-          <div class="email-template-row-head">
-            <p class="kicker email-template-label">Subject.</p>
-            <button type="button" class="btn-tertiary email-template-copy" data-copy-target="email-template-subject">
-              Copy subject.
-            </button>
+    <!-- Step 3: Attend the next meeting -->
+    <section id="attend" class="action-step">
+      <div class="action-step-num">
+        <span class="action-step-label">Action</span>
+        <span class="action-step-number">03</span>
+      </div>
+      <div class="action-step-content">
+        <h2 class="action-step-title">Attend the next meeting.</h2>
+        <p class="action-step-lede">
+          Council meetings are open to the public and accept public comment. Showing up in
+          person is the single most visible thing a neighbor can do.
+        </p>
+        {nextMeeting && (
+          <div class="attend-detail">
+            <div class="attend-date-block">
+              <span class="attend-weekday">{nextMeetingWeekday},</span>
+              <span class="attend-date">{nextMeetingMonth} {nextMeetingDay}, {nextMeetingYear}</span>
+            </div>
+            <ul class="attend-list">
+              <li>
+                <span class="attend-icon"><Icon name="map-pin" size={15} ariaLabel="Location" /></span>
+                Village offices, 67 W. Scioto St., Commercial Point.
+              </li>
+              <li>
+                <span class="attend-icon"><Icon name="clock" size={15} ariaLabel="Time" /></span>
+                7:00 PM. Doors open earlier.
+              </li>
+              <li>
+                <span class="attend-icon"><Icon name="microphone" size={15} ariaLabel="Speaking" /></span>
+                Sign in to speak. Five minutes per resident.
+              </li>
+            </ul>
+            <p class="action-foot">
+              <a href={nextMeeting.source.url} rel="noopener" target="_blank">
+                Village meeting calendar →
+              </a>
+            </p>
           </div>
-          <pre class="email-template-text" id="email-template-subject">Please provide full transparency on the Foxfire-adjacent data-center project</pre>
-        </div>
+        )}
+      </div>
+    </section>
 
-        <div class="email-template-row">
-          <div class="email-template-row-head">
-            <p class="kicker email-template-label">Body.</p>
-            <button type="button" class="btn-tertiary email-template-copy" data-copy-target="email-template-body">
-              Copy body.
-            </button>
-          </div>
-          <pre class="email-template-text" id="email-template-body">I am a resident concerned about the Foxfire-adjacent data-center project. Please provide full transparency, complete records, independent review, and clear public answers about zoning, utilities, water, noise, traffic, environmental impacts, and next approvals.</pre>
-        </div>
-
-        <div class="email-template-recipients">
-          <p class="kicker email-template-label">Send to.</p>
-          <p class="email-template-fineprint">
-            Roster verified against the Village of Commercial Point's elected officials page.
-            Send to one official, several, or all of them. CC the others when you do, so the
-            email becomes part of the public record across the council.
-          </p>
+    <!-- Step 4: Contact the media -->
+    <section id="media" class="action-step">
+      <div class="action-step-num">
+        <span class="action-step-label">Action</span>
+        <span class="action-step-number">04</span>
+      </div>
+      <div class="action-step-content">
+        <h2 class="action-step-title">Contact the media.</h2>
+        <p class="action-step-lede">
+          Local newsrooms are covering this story. A tip from a resident carries more weight
+          than a press release. If you have a personal account, a neighbor who should be
+          interviewed, or a document the public should see, reach out directly.
+        </p>
+        <div class="media-list">
+          {mediaOutlets.map((outlet) => (
+            <div class="media-row">
+              <span class="media-name">{outlet.name}</span>
+              <a class="media-link mono" href={outlet.url} target="_blank" rel="noopener">
+                {outlet.handle} →
+              </a>
+            </div>
+          ))}
         </div>
       </div>
+    </section>
 
-      <!-- Council and Mayor roster. Sourced from the Village of Commercial
-           Point's published elected officials page. Mayor Geiger's email
-           is verified against village minutes. Each card shows term-end
-           year in mono so residents can see who is up for re-election. -->
-      <div class="officials-roster">
-        {mayor && (
-          <article class="official-card official-card-mayor">
-            <p class="kicker official-role">{mayor.role}</p>
-            <h3 class="official-name">{mayor.name}</h3>
-            <a class="official-email mono" href={`mailto:${mayor.email}`}>{mayor.email}</a>
-            {mayor.notes && <p class="official-notes">{mayor.notes}</p>}
-          </article>
-        )}
-        <div class="officials-grid">
-          {council.map((o) => {
-            const startYear = yearOf(o.term_start);
-            const endYear = yearOf(o.term_end);
-            return (
-              <article class="official-card">
-                <p class="kicker official-role">{o.role}</p>
-                <h3 class="official-name">{o.name}</h3>
-                <a class="official-email mono" href={`mailto:${o.email}`}>{o.email}</a>
-                {startYear && endYear && (
-                  <p class="official-term mono tab">Term {startYear} to {endYear}</p>
-                )}
-                {o.notes && <p class="official-notes">{o.notes}</p>}
-              </article>
-            );
-          })}
-        </div>
-
-        {staff.length > 0 && (
-          <div class="officials-staff">
-            <p class="kicker">Village staff</p>
-            <ul>
-              {staff.map((o) => (
-                <li>
-                  <span class="official-staff-role">{o.role}:</span>
-                  <span class="official-staff-name">{o.name}.</span>
-                  <a class="mono" href={`mailto:${o.email}`}>{o.email}</a>
-                  {o.notes && <span class="official-staff-note"> {o.notes}</span>}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <p class="officials-foot">
-          Roster sourced from the
-          <a href="https://www.commercialpointohio.gov/council/" rel="noopener" target="_blank">
-            Village of Commercial Point elected officials page <span aria-hidden="true">→</span>
+    <!-- Step 5: Share with neighbors -->
+    <section id="share" class="action-step">
+      <div class="action-step-num">
+        <span class="action-step-label">Action</span>
+        <span class="action-step-number">05</span>
+      </div>
+      <div class="action-step-content">
+        <h2 class="action-step-title">Share with neighbors.</h2>
+        <p class="action-step-lede">
+          Most residents near Foxfire still do not know what has been approved. A text
+          message or a conversation changes that.
+        </p>
+        <ul class="share-list">
+          <li>Forward this site to a neighbor: <span class="mono">foxfirecoalition.org</span></li>
+          <li>Bring the link to your homeowners association meeting.</li>
+          <li>Post it to your neighborhood Facebook group or Nextdoor.</li>
+          <li>Text the petition link to five people who live nearby.</li>
+        </ul>
+        <p class="action-foot" style="margin-top: var(--space-lg);">
+          <a href={petitionUrl} target="_blank" rel="noopener">
+            Sign and share the petition →
           </a>
-          . Village hall: <span class="mono tab">10 West Scioto St., Commercial Point, Ohio 43116</span>.
-          Phone: <span class="mono tab">614-877-9248</span>.
         </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <script>
-    // Copy-to-clipboard for the email template. Vanilla JS, no framework.
-    // Falls back gracefully when navigator.clipboard is unavailable: the
-    // user can still select and copy the text manually.
-    (function () {
-      const buttons = document.querySelectorAll<HTMLButtonElement>('[data-copy-target]');
-      if (!buttons.length) return;
+  </div><!-- /action-steps-wrap -->
 
-      buttons.forEach((btn) => {
-        btn.addEventListener('click', async () => {
-          const targetId = btn.dataset.copyTarget;
-          if (!targetId) return;
-          const target = document.getElementById(targetId);
-          if (!target) return;
-
-          const text = (target.textContent ?? '').trim();
-          const original = btn.textContent ?? '';
-
-          try {
-            await navigator.clipboard.writeText(text);
-            btn.textContent = 'Copied.';
-          } catch (_err) {
-            // Older browsers: select the text so the user can copy by hand.
-            const range = document.createRange();
-            range.selectNodeContents(target);
-            const sel = window.getSelection();
-            if (sel) {
-              sel.removeAllRanges();
-              sel.addRange(range);
-            }
-            btn.textContent = 'Selected. Press cmd-C.';
-          }
-
-          window.setTimeout(() => {
-            btn.textContent = original;
-          }, 1800);
-        });
-      });
-    })();
-  </script>
-
-  <!-- Action 4: Help review documents. -->
-  <section id="volunteer" class="page-section">
-    <div class="measure">
-      <SectionHeading kicker="Action 04." title="Help review documents." />
-      <p>
-        The coalition is requesting public records and reviewing them line by line. If you can
-        read carefully and take notes, you can help. Choose the records research checkbox in
-        the signup form above and we will be in touch when the next batch returns.
+  <!-- Mission pre-footer -->
+  <section class="pre-footer pre-footer-mission">
+    <div class="pre-footer-inner">
+      <p class="pre-footer-kicker">Why we are here</p>
+      <h2 class="pre-footer-title">
+        Resident-led.<br />Evidence-based.<br />Not going away.
+      </h2>
+      <p class="pre-footer-body">
+        Homes of Foxfire Coalition Against Data Centers is a volunteer neighborhood effort
+        to educate residents, gather public records, ask clear questions of elected
+        officials, and protect the future of this community. Every action on this page
+        is part of that effort.
       </p>
-      <p class="action-foot">
-        <a href="#sign-up">Volunteer for records review <span aria-hidden="true">→</span></a>
-      </p>
-    </div>
-  </section>
-
-  <!-- Action 5: Share with neighbors. -->
-  <section id="share" class="page-section">
-    <div class="measure">
-      <SectionHeading kicker="Action 05." title="Share with neighbors." />
-      <p>
-        Forward this site to a neighbor. Print a flyer for a yard sign or coffee shop. Bring
-        the link to your homeowners association. The page that does the most work here is
-        <a href="/timeline">the timeline</a>, because it lets a neighbor see the entire public
-        record in five minutes.
-      </p>
-    </div>
-  </section>
-
-  <!-- Mission + transparency statements -->
-  <section class="page-section">
-    <div class="measure">
-      <SectionHeading kicker="Mission" title="Why this site exists." />
-      <p>
-        Homes of Foxfire Coalition Against Data Centers is a resident-led effort to educate
-        neighbors, gather public records, ask clear questions, and protect the future of our
-        community.
-      </p>
-      <p>
-        This is not over. We are organizing now to demand answers, review the process, and
-        help protect Foxfire.
+      <p class="pre-footer-ctas">
+        <a class="btn-primary" href={petitionUrl} target="_blank" rel="noopener">
+          Sign the petition <Icon name="pen" size={14} />
+        </a>
       </p>
     </div>
   </section>
 
 </SiteLayout>
+
+<script>
+  // Tab switcher for email templates
+  (function () {
+    const wrap = document.querySelector('[data-email-tabs]');
+    if (!wrap) return;
+
+    const tabs = wrap.querySelectorAll<HTMLButtonElement>('.email-tab');
+    const panels = wrap.querySelectorAll<HTMLElement>('.email-panel');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const id = tab.dataset.tab;
+        tabs.forEach((t) => {
+          t.classList.toggle('is-active', t === tab);
+          t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+        });
+        panels.forEach((p) => {
+          p.classList.toggle('is-active', p.dataset.panel === id);
+        });
+      });
+    });
+  })();
+
+  // Copy-to-clipboard for email template buttons
+  (function () {
+    document.querySelectorAll<HTMLButtonElement>('[data-copy-text]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const text = btn.dataset.copyText ?? '';
+        const original = btn.textContent ?? '';
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.textContent = 'Copied.';
+        } catch {
+          btn.textContent = 'Select and copy above.';
+        }
+        setTimeout(() => { btn.textContent = original; }, 1800);
+      });
+    });
+  })();
+
+  // Signup form success message
+  (function () {
+    const form = document.getElementById('ta-signup-form');
+    const success = document.getElementById('ta-signup-success');
+    if (form && success) {
+      form.addEventListener('submit', () => {
+        setTimeout(() => {
+          (form as HTMLFormElement).reset();
+          (success as HTMLElement).style.display = 'flex';
+        }, 500);
+      });
+    }
+  })();
+</script>

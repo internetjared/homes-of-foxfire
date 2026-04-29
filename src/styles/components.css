@@ -3347,6 +3347,474 @@ abbr[title]:hover {
   }
 }
 
+/* ============================================================
+   TAKE ACTION PAGE — step-by-step numbered layout
+   ============================================================ */
+
+/* Outer wrapper: max-width + some vertical rhythm */
+.action-steps-wrap {
+  max-width: var(--frame);
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
+  padding-block: var(--space-3xl);
+  display: grid;
+  gap: 0;
+}
+
+/* Each step: a two-column grid — number column | content column */
+.action-step {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--space-2xl);
+  padding-block: var(--space-3xl);
+  border-top: 1px solid var(--rule-soft);
+  align-items: start;
+}
+
+.action-step:last-child {
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+/* Left column: "Action" label + big step number */
+.action-step-num {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  position: sticky;
+  top: calc(var(--sticky-bar-h) + var(--space-lg));
+}
+
+.action-step-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  display: block;
+}
+
+.action-step-number {
+  font-family: var(--serif);
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 0.9;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  display: block;
+}
+
+/* Right column: main content */
+.action-step-content {
+  min-width: 0;
+}
+
+.action-step-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-md);
+  text-wrap: balance;
+}
+
+.action-step-lede {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text);
+  max-width: 62ch;
+  margin: 0 0 var(--space-xl);
+}
+
+/* Small inline link at end of each step */
+.action-foot {
+  margin-top: var(--space-lg);
+  font-size: 14px;
+}
+
+.action-foot a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-soft);
+  text-decoration: none;
+  padding-bottom: 1px;
+}
+
+.action-foot a:hover,
+.action-foot a:focus-visible {
+  border-bottom-color: var(--ink);
+}
+
+/* Mobile: stack the columns */
+@media (max-width: 720px) {
+  .action-steps-wrap {
+    padding-block: var(--space-2xl);
+    padding-inline: var(--space-md);
+  }
+
+  .action-step {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    padding-block: var(--space-2xl);
+  }
+
+  .action-step-num {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-sm);
+    position: static;
+  }
+
+  .action-step-number {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+
+  .action-step-label {
+    font-size: 9px;
+  }
+}
+
+/* ============================================================
+   EMAIL TABS — tabbed template switcher
+   ============================================================ */
+
+.email-tabs-wrap {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.email-tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  border-bottom: 1px solid var(--rule-soft);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.email-tab {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--rule-soft);
+  background: transparent;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.email-tab:hover,
+.email-tab:focus-visible {
+  background: var(--bone);
+  color: var(--ink);
+  border-color: var(--ink);
+  outline: none;
+}
+
+.email-tab.is-active {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* Panel: hidden by default, shown when .is-active */
+.email-panel {
+  display: none;
+}
+
+.email-panel.is-active {
+  display: block;
+}
+
+/* ============================================================
+   OFFICIALS LIST — minimal row-style council contact list
+   ============================================================ */
+
+.officials-list {
+  margin-top: var(--space-2xl);
+  border-top: 1px solid var(--rule-soft);
+  padding-top: var(--space-lg);
+}
+
+.official-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--rule-soft);
+  flex-wrap: wrap;
+}
+
+.official-row-mayor {
+  padding-top: var(--space-md);
+}
+
+.official-row-mayor .official-row-role {
+  color: var(--accent);
+}
+
+.official-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.official-row-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.official-row-role {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.official-row-email {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-soft);
+  padding-bottom: 1px;
+  word-break: break-all;
+  transition: border-color 0.12s ease;
+  flex-shrink: 0;
+}
+
+.official-row-email:hover,
+.official-row-email:focus-visible {
+  border-bottom-color: var(--ink);
+}
+
+.officials-foot {
+  font-size: 13px;
+  color: var(--text-soft);
+  margin: 0;
+}
+
+.officials-foot a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-soft);
+  text-decoration: none;
+  padding-bottom: 1px;
+}
+
+.officials-foot a:hover,
+.officials-foot a:focus-visible {
+  border-bottom-color: var(--ink);
+}
+
+@media (max-width: 600px) {
+  .official-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .official-row-email {
+    font-size: 12px;
+  }
+}
+
+/* ============================================================
+   ATTEND BLOCK — next meeting detail card
+   ============================================================ */
+
+.attend-detail {
+  margin-top: var(--space-xl);
+  padding: var(--space-xl) var(--space-2xl);
+  border: 1px solid var(--rule-soft);
+  border-left: 3px solid var(--ink);
+  background: var(--bone);
+  max-width: 56ch;
+}
+
+.attend-date-block {
+  margin-bottom: var(--space-lg);
+}
+
+.attend-weekday {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 2px;
+}
+
+.attend-date {
+  display: block;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.attend-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-lg);
+  display: grid;
+  gap: var(--space-md);
+}
+
+.attend-list li {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.attend-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding-top: 2px;
+  color: var(--text-soft);
+}
+
+@media (max-width: 720px) {
+  .attend-detail {
+    padding: var(--space-lg) var(--space-lg);
+    max-width: none;
+  }
+}
+
+/* ============================================================
+   MEDIA LIST — news outlet contact rows
+   ============================================================ */
+
+.media-list {
+  margin-top: var(--space-xl);
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.media-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--rule-soft);
+  flex-wrap: wrap;
+}
+
+.media-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.media-link {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-soft);
+  padding-bottom: 1px;
+  transition: border-color 0.12s ease;
+  word-break: break-all;
+}
+
+.media-link:hover,
+.media-link:focus-visible {
+  border-bottom-color: var(--ink);
+}
+
+@media (max-width: 600px) {
+  .media-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+}
+
+/* ============================================================
+   SHARE LIST — sharing step bullets
+   ============================================================ */
+
+.share-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-lg);
+  display: grid;
+  gap: var(--space-md);
+}
+
+.share-list li {
+  padding-left: var(--space-xl);
+  position: relative;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.share-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============================================================
+   LIGHT FORM VARIANT — signup form on white background sections
+   ============================================================ */
+
+.action-signup-form-light .action-signup-field label {
+  color: var(--ink);
+}
+
+.action-signup-form-light .action-signup-field input {
+  background: var(--paper);
+  border-color: var(--rule-soft);
+  color: var(--ink);
+}
+
+.action-signup-form-light .action-signup-field input:focus {
+  border-color: var(--ink);
+  outline: none;
+}
+
+.action-signup-success-light {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border-left: 3px solid var(--accent);
+  background: var(--bone);
+  margin-top: var(--space-lg);
+}
+
+.action-signup-success-light p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.action-signup-success-light svg {
+  flex-shrink: 0;
+  color: var(--accent);
+  margin-top: 2px;
+}
+
 /* ---------- Print ---------- */
 
 @media print {
