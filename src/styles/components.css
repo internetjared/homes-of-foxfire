@@ -713,10 +713,13 @@
 
 /* Mobile nav drawer */
 .site-header-nav-mobile {
-  display: flex;
+  display: none;
   flex-direction: column;
   border-top: 1px solid var(--rule-soft);
   padding: var(--space-sm) var(--space-lg);
+}
+.site-header-nav-mobile.is-open {
+  display: flex;
 }
 .site-header-nav-mobile a {
   font-family: var(--mono);
@@ -764,8 +767,9 @@
   .site-header-mobile-row {
     display: none;
   }
-  .site-header-nav-mobile {
-    display: none !important;
+  .site-header-nav-mobile,
+  .site-header-nav-mobile.is-open {
+    display: none;
   }
 }
 
