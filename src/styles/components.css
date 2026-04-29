@@ -2439,6 +2439,15 @@
   gap: 8px;
 }
 
+.action-signup-success {
+  margin-top: var(--space-md);
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  opacity: 0.9;
+}
+
 .action-panel-secondary {
   display: flex;
   flex-wrap: wrap;

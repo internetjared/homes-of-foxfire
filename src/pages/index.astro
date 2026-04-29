@@ -62,11 +62,15 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
           other lists. Unsubscribe anytime.
         </p>
 
+        <!-- Hidden iframe absorbs Google's redirect so the visitor stays on the page -->
+        <iframe name="signup-sink" style="display:none;" aria-hidden="true"></iframe>
+
         <form
           class="action-signup-form"
           method="post"
-          action="mailto:foxfirehomescoalition@gmail.com?subject=Subscribe%20to%20updates"
-          enctype="text/plain"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSc-wEeEq8BJeHjESK-u7f76FomLjlnTdKrdZ85lC9VOzm8DRA/formResponse"
+          target="signup-sink"
+          id="signup-form"
         >
           <div class="action-signup-grid">
             <div class="action-signup-field">
@@ -74,7 +78,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
               <input
                 type="text"
                 id="signup-first-name"
-                name="first_name"
+                name="entry.562094467"
                 required
                 autocomplete="given-name"
               />
@@ -84,7 +88,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
               <input
                 type="text"
                 id="signup-last-name"
-                name="last_name"
+                name="entry.241538344"
                 required
                 autocomplete="family-name"
               />
@@ -95,7 +99,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
             <input
               type="email"
               id="signup-email"
-              name="email"
+              name="entry.2041379243"
               required
               autocomplete="email"
             />
@@ -105,7 +109,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
             <input
               type="text"
               id="signup-address"
-              name="address"
+              name="entry.1816766210"
               autocomplete="street-address"
             />
           </div>
@@ -113,7 +117,25 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
             <span>Sign me up</span>
             <Icon name="mail" size={18} />
           </button>
+
+          <!-- Success message shown after submit -->
+          <p class="action-signup-success" id="signup-success" aria-live="polite" style="display:none;">
+            You're signed up. We'll be in touch.
+          </p>
         </form>
+
+        <script>
+          const form = document.getElementById('signup-form');
+          const success = document.getElementById('signup-success');
+          if (form && success) {
+            form.addEventListener('submit', () => {
+              setTimeout(() => {
+                form.reset();
+                success.style.display = 'block';
+              }, 500);
+            });
+          }
+        </script>
 
       </div>
 
