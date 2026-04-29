@@ -651,6 +651,7 @@
   display: none;
   background: var(--bone);
   margin-top: var(--space-lg);
+  margin-inline: calc(-1 * var(--space-lg));
 }
 /* CTA button styles in the mobile bar */
 .site-header-cta-bar a.site-header-cta {
@@ -745,7 +746,8 @@
 
 @media (max-width: 680px) {
   .site-header {
-    padding-block: var(--space-md);
+    padding-top: var(--space-md);
+    padding-bottom: 0;
     border-bottom: none;
   }
   .site-header-nav-desktop {
