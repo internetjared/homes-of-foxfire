@@ -10,7 +10,7 @@ interface Props {
 const { title, description = 'Homes of Foxfire Coalition' } = Astro.props;
 
 const siteUrl = 'https://foxfirecoalition.org';
-const ogImage = `${siteUrl}/1c5afbb224f8de316a605d2ad10e7550-cc_ft_768.webp`;
+const ogImage = `${siteUrl}/FCADC_Social.png`;
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 ---
 <!doctype html>
@@ -28,8 +28,8 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="768" />
-    <meta property="og:image:alt" content="Foxfire & The Players Club entrance, Commercial Point, Ohio" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:alt" content="Foxfire Coalition Against Data Centers logo" />
     <meta property="og:site_name" content="Foxfire Coalition Against Data Centers" />
 
     <!-- Twitter / X card -->
@@ -37,6 +37,7 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Foxfire Coalition Against Data Centers logo" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
