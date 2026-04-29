@@ -119,9 +119,10 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
           </button>
 
           <!-- Success message shown after submit -->
-          <p class="action-signup-success" id="signup-success" aria-live="polite" style="display:none;">
-            You're signed up. We'll be in touch.
-          </p>
+          <div class="action-signup-success" id="signup-success" aria-live="polite" style="display:none;">
+            <Icon name="thumbs-up" size={20} />
+            <p>You're with us. Watch for short notes on meetings, key documents, and how to make your voice heard. Nothing else, ever.</p>
+          </div>
         </form>
 
         <script>

@@ -2440,12 +2440,30 @@
 }
 
 .action-signup-success {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
   margin-top: var(--space-md);
-  font-family: var(--mono);
-  font-size: 0.875rem;
-  letter-spacing: 0.04em;
+  padding: var(--space-md);
+  background: rgba(255,255,255,0.08);
+  border-left: 2px solid var(--accent);
+  border-radius: 2px;
+}
+
+.action-signup-success .icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--accent);
+  fill: var(--accent);
+}
+
+.action-signup-success p {
+  margin: 0;
+  font-family: var(--body);
+  font-size: 0.9375rem;
+  line-height: 1.55;
   color: var(--paper);
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .action-panel-secondary {
