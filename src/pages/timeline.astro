@@ -1,66 +1,22 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import SectionHeading from '../components/content/SectionHeading.astro';
-import TimelineRow from '../components/content/TimelineRow.astro';
-import TimelineFilter from '../components/content/TimelineFilter.astro';
-import timeline from '../data/timeline.json';
 
-type Status =
-  | 'proposed'
-  | 'filed'
-  | 'hearing-scheduled'
-  | 'adopted'
-  | 'denied'
-  | 'died'
-  | 'withdrawn'
-  | 'pending';
-
-const lastUpdated = '04.25 / 2026';
-
-// Render newest first. timeline.json reads chronologically (oldest first
-// per docs/CONTENT.md), so reverse a copy for display.
-const entries = [...timeline].reverse();
+const lastUpdated = '04.29 / 2026';
 ---
 
 <SiteLayout
-  title="Timeline: K-Nova / Jahn Farm data center issue near Foxfire"
+  title="Timeline | Foxfire Coalition"
   description="A source-linked public-record timeline of the K-Nova / Jahn Farm data-center zoning and site-plan issue near Foxfire in Commercial Point, Ohio."
   lastUpdated={lastUpdated}
 >
   <section class="page-section page-section-tier">
     <div class="measure">
-      <SectionHeading kicker="Timeline" title="How we got here." />
+      <p class="kicker">Timeline</p>
+      <h1 style="font-family: var(--headline); font-size: clamp(2rem, 3.8vw, 3rem); line-height: 1.15; margin: 0 0 var(--space-md);">Coming soon.</h1>
       <p class="lede">
-        This timeline summarizes public records related to the K-Nova / Jahn Farm data-center
-        issue near Foxfire. Each entry links to source material where available.
+        A full source-linked timeline of the K-Nova / Jahn Farm data-center
+        rezoning is being prepared. Check back soon.
       </p>
     </div>
   </section>
-
-  <!-- Filter strip. Client-side filtering by category. -->
-  <section class="page-section page-section-tight">
-    <div class="measure-wide">
-      <TimelineFilter />
-    </div>
-  </section>
-
-  <section id="entries" class="page-section">
-    <div class="measure-wide">
-      <div class="timeline" data-timeline-list data-reveal="timeline">
-        {entries.map((entry) => (
-          <div class="timeline-row-wrap" data-category={entry.category}>
-            <TimelineRow
-              date={entry.date}
-              ordinance={entry.ordinance}
-              title={entry.title}
-              body={entry.body}
-              status={entry.status as Status}
-              source={entry.source}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
 </SiteLayout>

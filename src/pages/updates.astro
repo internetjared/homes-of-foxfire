@@ -1,71 +1,22 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import SectionHeading from '../components/content/SectionHeading.astro';
-import UpdatePost from '../components/content/UpdatePost.astro';
-import updates from '../data/updates.json';
 
-type Verification = 'confirmed' | 'needs-follow-up' | 'records-requested';
-
-const lastUpdated = '04.25 / 2026';
-
-// updates.json lists newest-first per docs/CONTENT.md, so render in
-// the same order it ships.
+const lastUpdated = '04.29 / 2026';
 ---
 
 <SiteLayout
   title="Updates | Foxfire Coalition"
-  description="Records-request status, meeting reminders and recaps, newly found documents, and volunteer needs from the Foxfire Coalition."
+  description="News and changes from the Foxfire Coalition: records-request status, meeting reminders, newly found documents, and volunteer needs."
   lastUpdated={lastUpdated}
 >
   <section class="page-section page-section-tier">
     <div class="measure">
-      <SectionHeading kicker="Updates" title="What is new from the coalition." />
+      <p class="kicker">Updates</p>
+      <h1 style="font-family: var(--headline); font-size: clamp(2rem, 3.8vw, 3rem); line-height: 1.15; margin: 0 0 var(--space-md);">Coming soon.</h1>
       <p class="lede">
-        News and changes from the coalition: records-request status, meeting reminders and
-        recaps, newly found documents, timeline updates, and volunteer needs.
-      </p>
-      <p>
-        We believe residents deserve complete, accessible, and timely information about major
-        development decisions affecting their homes, health, water, roads, and quality of life.
+        Coalition updates will be posted here: meeting recaps, records-request
+        status, newly found documents, and volunteer needs. Check back soon.
       </p>
     </div>
   </section>
-
-  <section id="posts" class="page-section">
-    <div class="measure">
-      <div class="update-list">
-        {updates.map((post) => (
-          <UpdatePost
-            date={post.date}
-            title={post.title}
-            category={post.category}
-            summary={post.summary}
-            what_happened={post.what_happened}
-            why_it_matters={post.why_it_matters}
-            what_to_do={post.what_to_do}
-            related_links={post.related_links}
-            verification={post.verification as Verification}
-          />
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Records-request status (static block; live tracker is Phase 2) -->
-  <section id="prr-status" class="page-section">
-    <div class="measure">
-      <SectionHeading kicker="Records requests" title="Status of pending requests." />
-      <dl class="status-table">
-        <div class="status-row">
-          <dt><span class="mono tab">FXF-PR-2026-001</span></dt>
-          <dd>
-            First request: Ordinance 2024-07, the Special Council Meeting record, the
-            Jahn Property Industrial Major Site Plan, and related materials.
-            <span class="status-tag status-pending">Pending</span>
-          </dd>
-        </div>
-      </dl>
-    </div>
-  </section>
-
 </SiteLayout>
