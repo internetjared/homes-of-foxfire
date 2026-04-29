@@ -1,4 +1,14 @@
 User-agent: *
 Allow: /
 
+# Explicitly allow social media scrapers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
 Sitemap: https://foxfirecoalition.org/sitemap-index.xml
