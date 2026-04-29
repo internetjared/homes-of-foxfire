@@ -656,6 +656,29 @@
   display: flex;
   gap: 6px;
 }
+/* CTA button styles when outside .site-header-nav (mobile) */
+.site-header-mobile-ctas a.site-header-cta {
+  padding: 8px 12px;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.site-header-mobile-ctas a.site-header-cta-solid {
+  background: #793a29;
+  color: var(--paper);
+  border-color: #793a29;
+}
+.site-header-mobile-ctas a.site-header-cta-outlined {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
 .site-header-hamburger {
   display: flex;
   flex-direction: column;
@@ -713,6 +736,9 @@
 }
 
 @media (max-width: 680px) {
+  .site-header {
+    padding-block: var(--space-md);
+  }
   .site-header-nav-desktop {
     display: none;
   }
@@ -721,6 +747,17 @@
   }
   .site-header-inner {
     align-items: center;
+    gap: var(--space-sm);
+  }
+  .wordmark-place {
+    font-size: 16px;
+  }
+  .wordmark-stacked .wordmark-purpose {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+  .wordmark-stacked {
+    gap: 4px;
   }
 }
 @media (min-width: 681px) {
