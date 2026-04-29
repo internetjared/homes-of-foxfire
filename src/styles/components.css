@@ -861,9 +861,11 @@
 
 @media (max-width: 600px) {
   .sticky-status-inner {
-    padding-block: 6px;
+    padding-block: 10px;
     font-size: 10px;
-    gap: var(--space-sm);
+    gap: 0;
+    flex-direction: column;
+    align-items: flex-start;
   }
   .sticky-status-label,
   .sticky-status-asof {
@@ -872,13 +874,30 @@
   .sticky-status-meeting {
     margin-left: 0;
     width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .sticky-status-dot {
+    display: none;
   }
   .sticky-status-meeting-label {
-    display: none;
+    display: block;
+    opacity: 0.7;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+  }
+  .sticky-status-meeting-date {
+    font-size: 13px;
+    letter-spacing: 0.06em;
   }
   .sticky-status-cta {
     padding-left: 0;
     border-left: 0;
+    opacity: 0.8;
+  }
+  .sticky-status-arrow {
+    display: none;
   }
 }
 
