@@ -815,6 +815,7 @@
   padding-inline: var(--space-lg);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-md);
   font-family: var(--mono);
   font-size: 11px;
@@ -838,7 +839,6 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  margin-left: auto;
   text-decoration: none;
   color: var(--paper);
   text-transform: uppercase;
@@ -901,23 +901,18 @@
   }
   .sticky-status-meeting {
     margin-left: 0;
-    width: 100%;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: var(--space-sm);
   }
   .sticky-status-meeting-label {
     display: block;
     opacity: 0.75;
   }
-  .sticky-status-cta {
-    display: none;
-  }
+  .sticky-status-cta,
   .sticky-status-cta-mobile {
-    display: inline;
-    padding-left: var(--space-sm);
-    border-left: 1px solid var(--bone-2);
+    display: none;
   }
 }
 
