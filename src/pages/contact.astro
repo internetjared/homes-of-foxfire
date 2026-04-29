@@ -1,0 +1,30 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const lastUpdated = '04.29 / 2026';
+---
+
+<SiteLayout
+  title="Contact | Homes of Foxfire Coalition"
+  description="Contact the Homes of Foxfire Coalition Against Data Centers. Questions, media inquiries, and coalition correspondence welcome."
+  lastUpdated={lastUpdated}
+>
+  <section class="page-section page-section-tier contact-section">
+    <div class="measure-wide">
+      <p class="kicker">Contact</p>
+      <h1 class="contact-title">Get in touch.</h1>
+      <p class="contact-lede">
+        Questions, media inquiries, public records tips, or coalition correspondence.
+        We read everything sent to this address.
+      </p>
+      <p class="contact-email">
+        <a href="mailto:info@foxfirecoalition.org" class="contact-email-link">
+          info@foxfirecoalition.org
+        </a>
+      </p>
+      <p class="contact-note">
+        This is a volunteer organization. We will respond as promptly as we can.
+      </p>
+    </div>
+  </section>
+</SiteLayout>
