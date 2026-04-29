@@ -4241,14 +4241,14 @@ abbr[title]:hover {
 
 @media (max-width: 720px) {
   .plan-lightbox {
-    padding: var(--space-sm);
-    align-items: flex-end;
+    padding: var(--space-md);
+    align-items: center;
   }
 
   .plan-lightbox-frame {
-    width: 100%;
-    height: 88vh;
-    border-radius: 3px 3px 0 0;
+    width: 95vw;
+    height: 75vh;
+    border-radius: 3px;
   }
 }
 
