@@ -1080,10 +1080,15 @@
 }
 
 /* Take-action page: swap in the neighborhood sketch */
+.hero-take-action {
+  min-height: 60vh;
+}
+
 .hero-take-action::before {
   background-image: url('/take_action_hero.png');
-  background-position: center 40%;
-  opacity: 0.18;
+  background-position: center center;
+  background-size: cover;
+  opacity: 0.22;
 }
 
 .hero .kicker {
