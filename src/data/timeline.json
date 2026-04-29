@@ -198,6 +198,18 @@
     }
   },
   {
+    "date": "2024-04-15",
+    "category": "Public Meeting",
+    "title": "Special Council waives one-year resubmission rule for K-Nova",
+    "body": "Two weeks after Ordinance 2024-02 died for lack of motion, the Mayor told a Special Council meeting that the zoning code blocked resubmission for one year. Council voted to waive that period if K-Nova refiled within 48 hours. Counsel for K-Nova separately asked Council to shorten the 30-day public hearing notice so the new hearing could occur on May 6, 2024. Council declined the notice-shortening request.",
+    "status": "adopted",
+    "verification": "needs-follow-up",
+    "source": {
+      "label": "April 15, 2024 Special Council minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPMeetings/Special/2024/4-15-24-Special-Meeting-Min.pdf"
+    }
+  },
+  {
     "date": "2024-04-16",
     "ordinance": "ORD 2024-07",
     "category": "Zoning",
@@ -208,6 +220,19 @@
     "source": {
       "label": "Ordinance 2024-07 (PDF)",
       "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-07.pdf"
+    }
+  },
+  {
+    "date": "2024-05-06",
+    "ordinance": "ORD 2024-05",
+    "category": "Ordinance",
+    "title": "Council amends Chapter 1143.04(e), shortens resubmission rule",
+    "body": "Council adopted Ordinance 2024-05 amending Chapter 1143.04(e) of the Planning and Zoning Code. The amendment changed the decision window from 45 days to 120 days and shortened the resubmission bar from one year to six months. The Mayor explained that waiving readings required 75 percent, which he described as five of six. Laura Wolfe's resignation was effective the same day.",
+    "status": "adopted",
+    "verification": "confirmed",
+    "source": {
+      "label": "Ordinance 2024-05 (PDF)",
+      "url": "https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-05.pdf"
     }
   },
   {
@@ -262,12 +287,37 @@
     }
   },
   {
-    "date": "2026-04-20",
+    "date": "2026-02-23",
     "category": "Public Meeting",
-    "title": "Committee of the Whole takes up moratorium and transparency items",
-    "body": "April 20, 2026 was listed as a Committee of the Whole meeting date on the Commercial Point 2026 meeting calendar. The full agenda, packet, minutes, and recording are subjects of pending coalition records requests.",
-    "status": "pending",
-    "verification": "records-requested",
+    "title": "Council Member Nungester says the Durrett Road site allows data centers by right",
+    "body": "At the same February 23, 2026 council meeting, Council Member Eric Nungester stated that based on prior zoning decisions, the Durrett Road site allows data center development by right and that Council would have limited ability to control the outcome if the applicant meets existing code requirements. The statement is one of the open questions the coalition has tied to the procedural-defect analysis.",
+    "status": "filed",
+    "verification": "confirmed",
+    "source": {
+      "label": "February 23, 2026 council minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/03/2-23-Council.pdf"
+    }
+  },
+  {
+    "date": "2026-02-23",
+    "category": "Public Meeting",
+    "title": "AWS NDA timeline raised, Mayor Geiger sends non-renewal notice",
+    "body": "Resident Corey Wasmus stated publicly that the village entered a three-year non-disclosure agreement with Amazon Data Services in July 2023, which would automatically renew in July 2026 unless written notice was provided at least 90 days before renewal. Mayor Nancy Geiger later said she worked with the Village Solicitor to send notice that she would not sign a renewal.",
+    "status": "filed",
+    "verification": "confirmed",
+    "source": {
+      "label": "February 23, 2026 council minutes (PDF)",
+      "url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/03/2-23-Council.pdf"
+    }
+  },
+  {
+    "date": "2026-04-20",
+    "ordinance": "ORD 2026-09",
+    "category": "Public Meeting",
+    "title": "Special meeting agenda lists 18-month data center moratorium and AI Medical Imaging campus",
+    "body": "The April 20, 2026 special meeting agenda listed an AI Medical Imaging Processing Campus discussion, a proposed comprehensive plan contract, a proposed planning commission ordinance, and Ordinance 2026-09, described as an 18-month moratorium on data center development. The same evening's Committee of the Whole agenda listed two proposed transparency measures (a development registry and mandatory early public disclosure for major proposals) and a K-Nova major site plan discussion. Full agenda, packet, minutes, and recording are subjects of pending coalition records requests.",
+    "status": "proposed",
+    "verification": "needs-follow-up",
     "source": {
       "label": "Commercial Point 2026 meeting calendar",
       "url": "https://www.commercialpointohio.gov/council-meeting-dates/"
