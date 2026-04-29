@@ -49,29 +49,29 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       })}
     </nav>
 
-    <!-- Mobile: CTA buttons + hamburger -->
-    <div class="site-header-mobile-row">
-      <div class="site-header-mobile-ctas">
-        {ctaItems.map((item) => {
-          const ctaClass = item.cta === 'solid'
-            ? 'site-header-cta site-header-cta-solid'
-            : 'site-header-cta site-header-cta-outlined';
-          return item.external
-            ? <a href={item.href} target="_blank" rel="noopener" class={ctaClass}>{item.label}</a>
-            : <a href={item.href} class={ctaClass}>{item.label}</a>;
-        })}
-      </div>
-      <button
-        class="site-header-hamburger"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="mobile-nav"
-      >
-        <span class="site-header-hamburger-bar"></span>
-        <span class="site-header-hamburger-bar"></span>
-        <span class="site-header-hamburger-bar"></span>
-      </button>
-    </div>
+    <!-- Mobile: hamburger only (same row as wordmark) -->
+    <button
+      class="site-header-hamburger"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span class="site-header-hamburger-bar"></span>
+      <span class="site-header-hamburger-bar"></span>
+      <span class="site-header-hamburger-bar"></span>
+    </button>
+  </div>
+
+  <!-- Mobile: CTA bar below header -->
+  <div class="site-header-cta-bar">
+    {ctaItems.map((item) => {
+      const ctaClass = item.cta === 'solid'
+        ? 'site-header-cta site-header-cta-solid'
+        : 'site-header-cta site-header-cta-outlined';
+      return item.external
+        ? <a href={item.href} target="_blank" rel="noopener" class={ctaClass}>{item.label}</a>
+        : <a href={item.href} class={ctaClass}>{item.label}</a>;
+    })}
   </div>
 
   <!-- Mobile nav drawer -->
