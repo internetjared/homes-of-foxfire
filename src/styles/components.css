@@ -939,6 +939,9 @@
   justify-content: center;
   padding-block: var(--space-4xl);
 }
+.hero-tall .measure-wide {
+  width: 100%;
+}
 
 .hero-scroll {
   position: absolute;
@@ -1005,8 +1008,8 @@
     padding-block: var(--space-2xl);
   }
   .hero-display {
-    font-size: clamp(1.75rem, 7vw, 2.5rem);
-    letter-spacing: -0.015em;
+    font-size: clamp(1.1rem, 4.8vw, 1.35rem);
+    letter-spacing: -0.01em;
     margin-bottom: var(--space-md);
   }
   .hero-line {
