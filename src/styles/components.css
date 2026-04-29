@@ -867,13 +867,20 @@
   color: var(--bone);
 }
 
+/* Mobile-only CTA text swap */
+.sticky-status-cta-mobile {
+  display: none;
+}
+
 @media (max-width: 600px) {
+  .sticky-status {
+    min-height: 0;
+  }
   .sticky-status-inner {
-    padding-block: 10px;
+    padding-block: 7px;
     font-size: 10px;
-    gap: 0;
-    flex-direction: column;
-    align-items: flex-start;
+    gap: var(--space-sm);
+    flex-wrap: nowrap;
   }
   .sticky-status-label,
   .sticky-status-asof {
@@ -882,30 +889,22 @@
   .sticky-status-meeting {
     margin-left: 0;
     width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-  .sticky-status-dot {
-    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
   }
   .sticky-status-meeting-label {
     display: block;
-    opacity: 0.7;
-    font-size: 9px;
-    letter-spacing: 0.14em;
-  }
-  .sticky-status-meeting-date {
-    font-size: 13px;
-    letter-spacing: 0.06em;
+    opacity: 0.75;
   }
   .sticky-status-cta {
-    padding-left: 0;
-    border-left: 0;
-    opacity: 0.8;
-  }
-  .sticky-status-arrow {
     display: none;
+  }
+  .sticky-status-cta-mobile {
+    display: inline;
+    padding-left: var(--space-sm);
+    border-left: 1px solid var(--bone-2);
   }
 }
 

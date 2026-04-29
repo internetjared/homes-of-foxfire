@@ -37,12 +37,12 @@ const nextMeetingDate = nextMeeting
 
 <BaseLayout title={title} description={description}>
   <a class="skip-link" href="#main">Skip to main content.</a>
-  <SiteHeader />
   <StickyStatusBar
     meeting={nextMeeting}
     meetingDate={nextMeetingDate}
     asOf={asOf}
   />
+  <SiteHeader />
   <main id="main">
     <slot />
   </main>
