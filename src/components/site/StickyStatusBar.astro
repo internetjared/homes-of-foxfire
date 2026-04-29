@@ -23,7 +23,7 @@ const { meeting, meetingDate, asOf } = Astro.props;
       <p class="sticky-status-asof mono tab">As of {asOf}</p>
     )}
     {meeting && meetingDate && (
-      <a class="sticky-status-meeting" href="/take-action#email">
+      <a class="sticky-status-meeting" href="/take-action">
         <span class="sticky-status-dot" aria-hidden="true"></span>
         <span class="sticky-status-meeting-label">Next council meeting</span>
         <span class="mono tab sticky-status-meeting-date">{meetingDate}</span>

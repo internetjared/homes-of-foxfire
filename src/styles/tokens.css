@@ -30,10 +30,10 @@
   --ink-2: #0F1A30;        /* deeper navy, for dark surfaces */
   --accent: #7A3A2A;       /* Iron Oxide — single accent, reserved for "open / uncertain" markers */
   --accent-2: #5E2C1F;
-  --paper: #F4EFE3;        /* Cream — page background */
-  --paper-2: #FAF6EC;      /* lighter paper */
-  --bone: #EAE2D0;         /* Bone — surface neutral */
-  --bone-2: #D9D0BA;
+  --paper: #F4F5F7;        /* light cool grey — page background */
+  --paper-2: #FFFFFF;      /* pure white surface */
+  --bone: #E6E8EB;         /* light grey — card and document-block surfaces */
+  --bone-2: #D1D5DB;
   --moss: #DCE0E8;         /* Mist — tinted-blue surface (token name kept for back-compat) */
   --moss-2: #C2C9D6;
   --alert: #9B2D1F;        /* Hearing Red — deadlines only, at most ONCE per page */

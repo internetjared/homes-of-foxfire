@@ -10,17 +10,16 @@ The site has two registers. The body register is factual, procedural, calm, and 
 
 ## V1 site shape
 
-The V1 site is a multi-page Astro static build with six public routes, plus an internal brand reference.
+The V1 site is a multi-page Astro static build with four public routes, one external nav link, and an internal brand reference.
 
 - `/` Home
 - `/timeline` Source-linked timeline
-- `/learn` Data center education hub
-- `/documents` Public documents library
 - `/take-action` Sign up, attend, email, volunteer, share
 - `/updates` Coalition updates and records-request status
 - `/brand` Internal brand reference (not in main nav)
+- External: Donate (GoFundMe, opens in new tab)
 
-The V1 build brief is `docs/V1_PLAN.md`. Treat it as canonical for page content, hero copy, launch checklist, and build phases.
+The V1 build brief is `docs/V1_PLAN.md`. The current site is a simplified version of the original V1 plan.
 
 ## Stack
 
@@ -104,8 +103,7 @@ If a claim cannot be sourced or marked as records-requested, it does not ship. T
 ## What this site is not
 
 - Not a discussion forum, comment system, or chat app. Do not add user-generated content surfaces.
-- Not a fundraising or donation page. Entity structure has not been decided.
-- Not a petition. The coalition is not the sponsor of any petition unless a separate decision is made and recorded.
+- Petition and donation links go to external platforms (Change.org, GoFundMe). The site does not process payments or petition signatures directly.
 - Not legal advice. The site is a public-record archive plus civic explanation. Every page that touches legal or procedural matters must include the disclaimer specified in `docs/SOURCES.md`.
 - Not a place to accuse named individuals or companies of wrongdoing. Statements about M/I Homes, K-Nova, Hart, Scannell, Amazon Data Services, or any individual must be evidence-anchored and counsel-reviewed before publication.
 

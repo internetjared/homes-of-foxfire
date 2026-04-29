@@ -1,15 +1,15 @@
 ---
 import Wordmark from '../brand/Wordmark.astro';
 
-// Site nav: identical on every public page. Order is fixed by
-// docs/V1_PLAN.md section 3. Sentence case labels.
-const nav = [
+// Site nav. Plain text links, then two CTA buttons at the end.
+// "Donate" is an external link to GoFundMe (opens in new tab).
+type NavItem = { href: string; label: string; external?: boolean; cta?: 'solid' | 'outlined' };
+const nav: NavItem[] = [
   { href: '/', label: 'Home' },
   { href: '/timeline', label: 'Timeline' },
-  { href: '/learn', label: 'Learn' },
-  { href: '/documents', label: 'Documents' },
-  { href: '/take-action', label: 'Take action' },
   { href: '/updates', label: 'Updates' },
+  { href: '/take-action', label: 'Take action', cta: 'solid' },
+  { href: 'https://www.gofundme.com/f/support-community-action-against-data-center', label: 'Donate', external: true, cta: 'outlined' },
 ];
 
 // Highlight the current route. Pathname comparison tolerates a
@@ -22,12 +22,26 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     <Wordmark variant="stacked" href="/" />
     <nav class="site-header-nav" aria-label="Primary">
       {nav.map((item) => {
+        const ctaClass = item.cta === 'solid'
+          ? 'site-header-cta site-header-cta-solid'
+          : item.cta === 'outlined'
+            ? 'site-header-cta site-header-cta-outlined'
+            : undefined;
+
+        if (item.external) {
+          return (
+            <a href={item.href} target="_blank" rel="noopener" class={ctaClass}>
+              {item.label}
+            </a>
+          );
+        }
         const itemPath = item.href.replace(/\/$/, '') || '/';
         const isCurrent = itemPath === path;
         return (
           <a
             href={item.href}
             aria-current={isCurrent ? 'page' : undefined}
+            class={ctaClass}
           >
             {item.label}
           </a>

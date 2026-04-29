@@ -3,7 +3,6 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
 import TimelineRow from '../components/content/TimelineRow.astro';
 import TimelineFilter from '../components/content/TimelineFilter.astro';
-import DisclaimerBlock from '../components/content/DisclaimerBlock.astro';
 import timeline from '../data/timeline.json';
 
 type Status =
@@ -64,5 +63,4 @@ const entries = [...timeline].reverse();
     </div>
   </section>
 
-  <DisclaimerBlock />
 </SiteLayout>

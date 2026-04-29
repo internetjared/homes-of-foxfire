@@ -1,199 +1,278 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import DocumentCard from '../components/content/DocumentCard.astro';
-import ParcelMap from '../components/content/ParcelMap.astro';
-import NewsletterSignup from '../components/content/NewsletterSignup.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
-import DisclaimerBlock from '../components/content/DisclaimerBlock.astro';
-
-import documents from '../data/documents.json';
+import Icon from '../components/content/Icon.astro';
 import meetings from '../data/meetings.json';
 
-type Kind = 'ordinance' | 'resolution' | 'minutes' | 'hearing' | 'agenda' | 'packet' | 'agreement' | 'study' | 'correspondence' | 'other';
+const lastUpdated = '04.29 / 2026';
 
-const lastUpdated = '04.25 / 2026';
+const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-centers-in-commercial-point-and-scioto-township';
+const donateUrl = 'https://www.gofundme.com/f/support-community-action-against-data-center';
 
-// Featured documents for the homepage docs preview. The full library
-// lives at /documents.
-const featuredIds = ['ord-2024-07', 'ord-2026-03', 'res-35-2025', 'minutes-2026-02-23'];
-const featured = featuredIds
-  .map((id) => documents.find((d) => d.id === id))
-  .filter((d): d is (typeof documents)[number] => Boolean(d));
-
-// Next meeting date, formatted MM.DD / YYYY for the hero secondary CTA.
+// Next meeting for the side-by-side box. Pre-format calendar pieces.
 const nextMeeting = meetings[0];
-const nextMeetingDate = nextMeeting
-  ? (() => {
-      const d = new Date(`${nextMeeting.date}T12:00:00`);
-      const mm = String(d.getMonth() + 1).padStart(2, '0');
-      const dd = String(d.getDate()).padStart(2, '0');
-      return `${mm}.${dd} / ${d.getFullYear()}`;
-    })()
+const nextMeetingDateObj = nextMeeting
+  ? new Date(`${nextMeeting.date}T12:00:00`)
   : null;
+const nextMeetingMonth = nextMeetingDateObj
+  ? nextMeetingDateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()
+  : null;
+const nextMeetingDay = nextMeetingDateObj ? nextMeetingDateObj.getDate() : null;
+const nextMeetingWeekday = nextMeetingDateObj
+  ? nextMeetingDateObj.toLocaleDateString('en-US', { weekday: 'long' })
+  : null;
+const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : null;
 ---
 
 <SiteLayout
   title="Homes of Foxfire Coalition Against Data Centers | Commercial Point, Ohio"
-  description="A resident-led information hub about the K-Nova / Jahn Farm data-center issue near Foxfire in Commercial Point, Ohio. Learn the facts, review public records, and sign up for updates."
+  description="A resident-led coalition opposing data center development next to the Foxfire neighborhood in Commercial Point, Ohio. Sign up, sign the petition, and support the cause."
   lastUpdated={lastUpdated}
 >
   <!-- Hero -->
-  <section class="page-section page-section-tier hero">
+  <section class="page-section page-section-tier hero hero-tall">
     <div class="measure-wide">
-      <p class="kicker">Commercial Point <span aria-hidden="true">·</span> Pickaway County, Ohio</p>
-      <h1 class="hero-display">A 266-acre data center campus is planned next to our neighborhood. Here is what we know.</h1>
+      <p class="kicker">Commercial Point <span aria-hidden="true">&middot;</span> Pickaway County, Ohio</p>
+      <h1 class="hero-display">Giant data centers. Nearly 267 acres. Your new neighbor.</h1>
       <p class="lede">
-        A factual brief on the K-Nova rezoning, the 266.971 acres next to Foxfire, and what is on
-        and off the public record as of <span class="mono tab">{lastUpdated}</span>. We are a
-        volunteer coalition of Foxfire residents. The site is built from public records. Every fact
-        below links to its source.
+        Public records show a nearly 267-acre site next to Foxfire has been rezoned for data center
+        use. A site plan has been approved. An NDA with Amazon Data Services expires in July 2026.
+        This site helps residents understand what happened and organize together.
       </p>
-
       <div class="hero-cta">
-        <a class="btn-primary" href="#updates">Sign up for updates.</a>
-        {nextMeetingDate && (
-          <a class="btn-tertiary" href="/take-action">Next meeting <span class="mono tab">{nextMeetingDate}</span> <span aria-hidden="true">→</span></a>
-        )}
+        <a class="btn-primary" href="#act">Take action <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
+
+    <a class="hero-scroll" href="#act" aria-label="Scroll to take action">
+      <span class="hero-scroll-label">Scroll</span>
+      <span class="hero-scroll-line" aria-hidden="true"></span>
+    </a>
   </section>
 
-  <!-- Updates: dedicated newsletter section, kept high so neighbors can commit
-       to receiving meeting alerts before they have read the full brief. -->
-  <section id="updates" class="page-section page-section-tight updates-section">
-    <div class="measure">
-      <p class="kicker">Updates</p>
-      <h2 class="updates-title">Get a short note before every council meeting.</h2>
-      <p class="updates-lede">
-        One email per public meeting on the data center issue, plus a recap after, plus an alert
-        when a deadline is real. No spam, no other lists.
-      </p>
-      <NewsletterSignup />
-    </div>
-  </section>
+  <!-- Action panel: full-bleed navy. Email signup left, next-meeting box right. -->
+  <section id="act" class="page-section action-panel-navy">
+    <div class="action-panel-grid">
+      <!-- Left: signup -->
+      <div class="action-panel-col action-panel-signup">
+        <p class="kicker action-panel-kicker">Take action</p>
+        <h2 class="action-panel-title">Get updates from the coalition.</h2>
+        <p class="action-panel-lede">
+          Short notes about meetings, events, and progress on the data center issue. No spam, no
+          other lists. Unsubscribe anytime.
+        </p>
 
-  <!-- Map -->
-  <section id="map" class="page-section">
-    <div class="measure-wide">
-      <SectionHeading kicker="Where this is" title="The land in question, in one drawing." />
-      <ParcelMap />
-    </div>
-  </section>
+        <form
+          class="action-signup-form"
+          method="post"
+          action="mailto:foxfirehomescoalition@gmail.com?subject=Subscribe%20to%20updates"
+          enctype="text/plain"
+        >
+          <div class="action-signup-grid">
+            <div class="action-signup-field">
+              <label for="signup-first-name">First name.</label>
+              <input
+                type="text"
+                id="signup-first-name"
+                name="first_name"
+                required
+                autocomplete="given-name"
+              />
+            </div>
+            <div class="action-signup-field">
+              <label for="signup-last-name">Last name.</label>
+              <input
+                type="text"
+                id="signup-last-name"
+                name="last_name"
+                required
+                autocomplete="family-name"
+              />
+            </div>
+          </div>
+          <div class="action-signup-field">
+            <label for="signup-email">Email.</label>
+            <input
+              type="email"
+              id="signup-email"
+              name="email"
+              required
+              autocomplete="email"
+            />
+          </div>
+          <div class="action-signup-field">
+            <label for="signup-address">Address <span class="action-signup-optional">(optional).</span></label>
+            <input
+              type="text"
+              id="signup-address"
+              name="address"
+              autocomplete="street-address"
+            />
+          </div>
+          <button type="submit" class="btn-primary action-signup-submit">
+            <Icon name="mail" size={18} />
+            <span>Sign me up</span>
+          </button>
+        </form>
 
-  <!-- The record -->
-  <section id="record" class="page-section page-section-tier">
-    <div class="measure">
-      <SectionHeading
-        kicker="The record"
-        title="What is on the public record as of today."
-      />
-      <div class="status-table-wrap">
-        <p class="kicker status-table-kicker">Status as of {lastUpdated}</p>
-        <dl class="status-table">
-          <div class="status-row">
-            <dt><span class="mono tab"><abbr title="Ordinance">Ord</abbr> 2024-07</span></dt>
-            <dd>Rezoning of 266.971 ac to Planned Industrial District. <span class="status-tag status-adopted">Adopted</span> 05.20 / 2024.</dd>
-          </div>
-          <div class="status-row">
-            <dt><span class="mono tab">Ord 2026-03</span></dt>
-            <dd>Prohibits gas-fired turbine generation in all zoning districts. <span class="status-tag status-adopted">Adopted</span> 02.23 / 2026.</dd>
-          </div>
-          <div class="status-row">
-            <dt><span class="mono tab"><abbr title="Resolution">Res</abbr> 35-2025</span></dt>
-            <dd>Site plan for K-Nova approved (Scannell Properties). <span class="status-tag status-adopted">Adopted</span> 02.02 / 2026.</dd>
-          </div>
-          <div class="status-row">
-            <dt><span class="mono tab">Moratorium</span></dt>
-            <dd>Pause on construction of data centers, submitted by Council Member Miller. <span class="status-tag status-proposed">Proposed</span> 02.23 / 2026. Duration is a subject of the coalition's pending records request.</dd>
-          </div>
-          <div class="status-row">
-            <dt><span class="mono tab">AWS <abbr title="Non-disclosure agreement">NDA</abbr></span></dt>
-            <dd>Non-disclosure agreement with Amazon Data Services. Mayor stated village sent non-renewal notice. Expires <span class="mono tab">07 / 2026</span>.</dd>
-          </div>
-        </dl>
       </div>
-      <p class="section-foot">
-        <a href="/timeline">View the full timeline <span aria-hidden="true">→</span></a>
-      </p>
-    </div>
-  </section>
 
-  <!-- Key documents preview -->
-  <section id="documents" class="page-section">
-    <div class="measure-wide">
-      <SectionHeading kicker="Key documents" title="Read the ordinances." />
-      <div class="doc-grid">
-        {featured.map((doc) => (
-          <DocumentCard
-            kind={doc.kind as Kind}
-            number={doc.number}
-            title={doc.title}
-            date={doc.date}
-            body={doc.body}
-            source={doc.source}
-          />
-        ))}
-      </div>
-      <p class="section-foot">
-        <a href="/documents">View the full document library <span aria-hidden="true">→</span></a>
-      </p>
-    </div>
-  </section>
+      <!-- Right: next meeting -->
+      <aside class="action-panel-col action-panel-meeting" aria-label="Next council meeting">
+        <p class="kicker action-panel-kicker">Next council meeting</p>
 
-  <!-- Take action (compressed for home; full version on /take-action) -->
-  <section id="act" class="page-section">
-    <div class="measure-wide">
-      <div class="action-block">
-        <SectionHeading kicker="Take action" title="Three things you can do this week." />
-        <div class="action-grid">
-          <article class="action-card">
-            <p class="action-num">01.</p>
-            <h3>Attend the next meeting.</h3>
-            {nextMeetingDate && (
-              <p class="action-meeting-date mono tab">{nextMeetingDate}</p>
-            )}
-            <p>
-              Council and Committee of the Whole meetings are open to the public, are often
-              livestreamed, and accept public comment. Showing up is the single most useful
-              thing a neighbor can do.
-            </p>
-            <p class="action-foot">
-              <a href="https://www.commercialpointohio.gov/council-meeting-dates/" rel="noopener" target="_blank">
-                Commercial Point 2026 meeting calendar <span aria-hidden="true">→</span>
-              </a>
-            </p>
-          </article>
-          <article class="action-card">
-            <p class="action-num">02.</p>
-            <h3>Email the council.</h3>
-            <p>
-              A polite, specific email becomes part of the public record and is read into the
-              meeting. The full template lives on the take action page.
-            </p>
-            <p class="action-foot">
-              <a href="/take-action">See the email template <span aria-hidden="true">→</span></a>
-            </p>
-          </article>
+        <div class="action-meeting-cal-row">
+          <div class="cal-block" aria-hidden="true">
+            <div class="cal-month">{nextMeetingMonth}</div>
+            <div class="cal-day">{nextMeetingDay}</div>
+          </div>
+          <div class="action-meeting-cal-meta">
+            <p class="action-meeting-weekday">{nextMeetingWeekday}</p>
+            <p class="action-meeting-year mono tab">{nextMeetingYear}</p>
+          </div>
         </div>
+        <div class="action-meeting-flag">
+          <span class="action-meeting-flag-tag">
+            <Icon name="gavel" size={12} />
+            On the agenda
+          </span>
+          <span class="action-meeting-flag-text">Third reading of the 18-month data center moratorium.</span>
+        </div>
+        <p class="action-meeting-body">
+          A moratorium ordinance must be read at three separate Council meetings before it can be
+          adopted. This is the third and final reading. If passed, it pauses any new data center
+          construction in the village for 18 months while questions about water, power, noise, and
+          tax incentives are answered.
+        </p>
+        <ul class="action-meeting-list">
+          <li>
+            <span class="action-meeting-icon"><Icon name="map-pin" size={16} ariaLabel="Where" /></span>
+            Village offices, 67 W. Scioto St., Commercial Point.
+          </li>
+          <li>
+            <span class="action-meeting-icon"><Icon name="clock" size={16} ariaLabel="Time" /></span>
+            7:00 PM. Doors open earlier.
+          </li>
+          <li>
+            <span class="action-meeting-icon"><Icon name="microphone" size={16} ariaLabel="Public comment" /></span>
+            Sign in to speak. Two minutes per resident.
+          </li>
+        </ul>
+        <p class="action-meeting-foot">
+          <a class="action-panel-link" href={nextMeeting.source.url} target="_blank" rel="noopener">
+            Village meeting calendar <span aria-hidden="true">&rarr;</span>
+          </a>
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Petition + Donate: full-bleed two-up cards -->
+  <section class="action-cta-section action-cta-bleed">
+    <div class="action-cta-grid">
+      <article class="action-cta-card action-cta-petition">
+        <div class="action-cta-inner">
+          <p class="kicker action-cta-kicker">Petition</p>
+          <h2 class="action-cta-title">
+            <span class="action-cta-title-icon" aria-hidden="true"><Icon name="pen" size={28} /></span>
+            Sign the petition.
+          </h2>
+          <p class="action-cta-body">
+            Add your name to the coalition petition to prevent the construction of data centers
+            in Commercial Point and Scioto Township. Every signature is part of the public record
+            we bring to council.
+          </p>
+          <p class="action-cta-foot">
+            <a class="btn-primary action-cta-btn" href={petitionUrl} target="_blank" rel="noopener">
+              Sign the petition <span aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
+      </article>
+      <article class="action-cta-card action-cta-donate">
+        <div class="action-cta-inner">
+          <p class="kicker action-cta-kicker">Donate</p>
+          <h2 class="action-cta-title">
+            <span class="action-cta-title-icon" aria-hidden="true"><Icon name="heart" size={28} /></span>
+            Make a donation.
+          </h2>
+          <p class="action-cta-body">
+            Support the coalition through GoFundMe. Donations help fund legal research, public
+            records requests, expert reviews, printing, and outreach to neighbors who have not
+            heard yet. <strong>Every dollar is tracked and publicly recorded.</strong>
+          </p>
+          <p class="action-cta-foot">
+            <a class="btn-secondary action-cta-btn" href={donateUrl} target="_blank" rel="noopener">
+              Make a donation <span aria-hidden="true">&rarr;</span>
+            </a>
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- What happened -->
+  <section id="story" class="page-section story-section">
+    <div class="story-layout">
+
+      <!-- Left: text + status table + CTA -->
+      <div class="story-content">
+        <SectionHeading
+          kicker="What happened"
+          title="A massive data-center project is being planned near Foxfire. Residents deserve answers."
+        />
+        <p>
+          In May 2024, the Village of Commercial Point approved Ordinance 2024-07, rezoning nearly
+          267 acres of the K-Nova / Jahn Farm property near Foxfire to Planned Industrial District
+          with development standards permitting only data centers.
+        </p>
+        <p>
+          Since then, additional records and meeting minutes have raised important questions about
+          the project timeline, emergency passage of the ordinance, public notice, utility impacts,
+          and the role of K-Nova, Amazon Web Services, and our own Council.
+        </p>
+        <p>
+          This site exists to help residents understand the public record, follow what happens
+          next, and take action together.
+        </p>
+
         <p class="section-foot">
-          <a href="/take-action">View all five actions <span aria-hidden="true">→</span></a>
+          <a href="/timeline">Read the full timeline <span aria-hidden="true">&rarr;</span></a>
         </p>
       </div>
+
+      <!-- Right: entrance sign photo, offset -->
+      <div class="story-image-col" aria-hidden="true">
+        <figure class="story-image-frame">
+          <img
+            src="/1c5afbb224f8de316a605d2ad10e7550-cc_ft_768.webp"
+            alt="Foxfire & The Players Club entrance sign, Commercial Point, Ohio"
+            width="600"
+            height="750"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </div>
+
     </div>
   </section>
 
-  <!-- Who we are -->
-  <section id="about" class="page-section">
-    <div class="measure">
-      <SectionHeading kicker="Who we are" title="A neighborhood reading the ordinance, line by line." />
-      <p>
-        The Homes of Foxfire Coalition is a volunteer group of residents organized around the
-        K-Nova Planned Industrial District rezoning and related data center proposals. We are
-        not anti-growth. We are pro-transparency, pro-planning, and pro-evidence. Our
-        credibility comes from documents, not from anger. The site is on the record.
+  <!-- Pre-footer: Foxfire neighborhood aerial -->
+  <section class="pre-footer" aria-label="Foxfire neighborhood">
+    <div class="pre-footer-inner">
+      <p class="pre-footer-kicker">The neighborhood</p>
+      <h2 class="pre-footer-title">
+        Our neighborhood.<br />Our families.<br />Our future here.
+      </h2>
+      <p class="pre-footer-body">
+        Foxfire is where hundreds of families have made homes and raised kids. The coalition is
+        organizing to keep it that way. We are putting the public record in one place so the
+        people who live here have a real say in what comes next.
+      </p>
+      <p class="pre-footer-ctas">
+        <a class="btn-primary" href="/take-action">Help protect Foxfire</a>
       </p>
     </div>
   </section>
-
-  <DisclaimerBlock />
 </SiteLayout>

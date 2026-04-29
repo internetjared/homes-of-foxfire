@@ -46,7 +46,7 @@ const nextMeetingDate = nextMeeting
   <main id="main">
     <slot />
   </main>
-  <SiteFooter lastUpdated={lastUpdated} requestId={requestId} />
+  <SiteFooter />
 </BaseLayout>
 
 <script>
@@ -142,5 +142,38 @@ const nextMeetingDate = nextMeeting
     );
 
     targets.forEach((t) => obs.observe(t));
+  })();
+
+  // Hero parallax: translate the .hero::before background-image vertically
+  // on scroll via a CSS variable. Disabled under prefers-reduced-motion.
+  (function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+
+    const hero = document.querySelector<HTMLElement>('.hero');
+    if (!hero) return;
+
+    let ticking = false;
+    const SPEED = 0.35;   // 0 = static, 1 = scrolls 1:1 with page
+    const MAX_PX = 120;   // clamp so the masked image never reveals its bottom edge
+
+    const update = () => {
+      const rect = hero.getBoundingClientRect();
+      // Distance the hero's top has moved past the top of the viewport.
+      const scrolled = -rect.top;
+      const offset = Math.max(-MAX_PX, Math.min(MAX_PX, scrolled * SPEED));
+      hero.style.setProperty('--hero-parallax', `${offset}px`);
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
   })();
 </script>

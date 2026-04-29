@@ -1,43 +1,26 @@
 ---
 import Wordmark from '../brand/Wordmark.astro';
-
-interface Props {
-  lastUpdated?: string;
-  requestId?: string;
-}
-
-const { lastUpdated, requestId } = Astro.props;
 ---
 
 <footer class="site-footer">
   <div class="site-footer-inner">
-    <div class="site-footer-col site-footer-attribution">
-      <Wordmark variant="inline" href="/" />
-      <p class="site-footer-place">
-        A volunteer neighborhood coalition.<br />Commercial Point, Pickaway County, Ohio.
-      </p>
-    </div>
+    <Wordmark variant="inline" href="/" />
 
-    <nav class="site-footer-col site-footer-nav" aria-label="Site sections">
-      <p class="kicker site-footer-col-label">Pages</p>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/timeline">Timeline</a></li>
-        <li><a href="/learn">Learn</a></li>
-        <li><a href="/documents">Documents</a></li>
-        <li><a href="/take-action">Take action</a></li>
-        <li><a href="/updates">Updates</a></li>
-      </ul>
+    <nav class="site-footer-nav" aria-label="Site sections">
+      <a href="/">Home</a>
+      <a href="/timeline">Timeline</a>
+      <a href="/take-action">Take action</a>
+      <a href="https://www.gofundme.com/f/support-community-action-against-data-center" target="_blank" rel="noopener">Donate</a>
+      <a href="/updates">Updates</a>
     </nav>
+  </div>
 
-    <div class="site-footer-col site-footer-meta">
-      <p class="kicker site-footer-col-label">Provenance</p>
-      <ul>
-        {lastUpdated && <li class="mono tab">Last updated {lastUpdated}</li>}
-        {requestId && <li class="mono tab">Request {requestId}</li>}
-        <li class="mono tab">Static site, no tracking.</li>
-        <li class="mono tab">Built from public records. Sources cited inline.</li>
-      </ul>
-    </div>
+  <div class="site-footer-disclaimer">
+    <p>
+      The Homes of Foxfire Coalition is a volunteer neighborhood organization. Nothing on this
+      site is legal advice. Residents who believe they have a legal interest in any matter
+      described here should consult a licensed attorney.
+    </p>
+    <p class="site-footer-place">Commercial Point, Pickaway County, Ohio.</p>
   </div>
 </footer>
