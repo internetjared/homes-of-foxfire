@@ -12,15 +12,19 @@ const nav: NavItem[] = [
   { href: 'https://www.gofundme.com/f/support-community-action-against-data-center', label: 'Donate', external: true, cta: 'outlined' },
 ];
 
-// Highlight the current route. Pathname comparison tolerates a
-// trailing slash and is exact-match for non-root routes.
+const ctaItems = nav.filter(i => i.cta);
+const linkItems = nav.filter(i => !i.cta);
+
+// Highlight the current route.
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <header class="site-header">
   <div class="site-header-inner">
     <Wordmark variant="stacked" href="/" />
-    <nav class="site-header-nav" aria-label="Primary">
+
+    <!-- Desktop nav -->
+    <nav class="site-header-nav site-header-nav-desktop" aria-label="Primary">
       {nav.map((item) => {
         const ctaClass = item.cta === 'solid'
           ? 'site-header-cta site-header-cta-solid'
@@ -38,15 +42,62 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         const itemPath = item.href.replace(/\/$/, '') || '/';
         const isCurrent = itemPath === path;
         return (
-          <a
-            href={item.href}
-            aria-current={isCurrent ? 'page' : undefined}
-            class={ctaClass}
-          >
+          <a href={item.href} aria-current={isCurrent ? 'page' : undefined} class={ctaClass}>
             {item.label}
           </a>
         );
       })}
     </nav>
+
+    <!-- Mobile: CTA buttons + hamburger -->
+    <div class="site-header-mobile-row">
+      <div class="site-header-mobile-ctas">
+        {ctaItems.map((item) => {
+          const ctaClass = item.cta === 'solid'
+            ? 'site-header-cta site-header-cta-solid'
+            : 'site-header-cta site-header-cta-outlined';
+          return item.external
+            ? <a href={item.href} target="_blank" rel="noopener" class={ctaClass}>{item.label}</a>
+            : <a href={item.href} class={ctaClass}>{item.label}</a>;
+        })}
+      </div>
+      <button
+        class="site-header-hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <span class="site-header-hamburger-bar"></span>
+        <span class="site-header-hamburger-bar"></span>
+        <span class="site-header-hamburger-bar"></span>
+      </button>
+    </div>
   </div>
+
+  <!-- Mobile nav drawer -->
+  <nav id="mobile-nav" class="site-header-nav-mobile" aria-label="Primary" hidden>
+    {linkItems.map((item) => {
+      const itemPath = item.href.replace(/\/$/, '') || '/';
+      const isCurrent = itemPath === path;
+      return (
+        <a href={item.href} aria-current={isCurrent ? 'page' : undefined}>
+          {item.label}
+        </a>
+      );
+    })}
+  </nav>
 </header>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.site-header-hamburger');
+  const nav = document.getElementById('mobile-nav');
+  if (btn && nav) {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      btn.setAttribute('aria-label', open ? 'Open navigation menu' : 'Close navigation menu');
+      nav.hidden = open;
+      btn.classList.toggle('is-open', !open);
+    });
+  }
+</script>

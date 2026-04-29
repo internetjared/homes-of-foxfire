@@ -646,9 +646,89 @@
   border-bottom-color: var(--ink);
 }
 
-@media (max-width: 600px) {
+/* Mobile header: hamburger + CTA row */
+.site-header-mobile-row {
+  display: none;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.site-header-mobile-ctas {
+  display: flex;
+  gap: 6px;
+}
+.site-header-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.site-header-hamburger-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 1px;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+  transform-origin: center;
+}
+.site-header-hamburger.is-open .site-header-hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.site-header-hamburger.is-open .site-header-hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+.site-header-hamburger.is-open .site-header-hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile nav drawer */
+.site-header-nav-mobile {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--rule-soft);
+  padding: var(--space-sm) var(--space-lg);
+}
+.site-header-nav-mobile a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  text-decoration: none;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.site-header-nav-mobile a:last-child {
+  border-bottom: none;
+}
+.site-header-nav-mobile a[aria-current='page'] {
+  color: var(--ink);
+}
+
+@media (max-width: 680px) {
+  .site-header-nav-desktop {
+    display: none;
+  }
+  .site-header-mobile-row {
+    display: flex;
+  }
   .site-header-inner {
-    align-items: flex-start;
+    align-items: center;
+  }
+}
+@media (min-width: 681px) {
+  .site-header-mobile-row {
+    display: none;
+  }
+  .site-header-nav-mobile {
+    display: none !important;
   }
 }
 
@@ -740,15 +820,22 @@
 
 @media (max-width: 600px) {
   .sticky-status-inner {
-    padding-block: 8px;
+    padding-block: 6px;
     font-size: 10px;
+    gap: var(--space-sm);
+  }
+  .sticky-status-label,
+  .sticky-status-asof {
+    display: none;
   }
   .sticky-status-meeting {
     margin-left: 0;
     width: 100%;
   }
+  .sticky-status-meeting-label {
+    display: none;
+  }
   .sticky-status-cta {
-    /* On small screens, drop the rule and the CTA reads as a continuation */
     padding-left: 0;
     border-left: 0;
   }
@@ -830,6 +917,9 @@
   }
 }
 @media (max-width: 720px) {
+  .hero-scroll {
+    display: none;
+  }
   .hero-tall {
     min-height: 75vh;
   }
