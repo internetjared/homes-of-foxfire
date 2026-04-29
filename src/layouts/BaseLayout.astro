@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import '../styles/tokens.css';
 import '../styles/base.css';
 
@@ -12,6 +13,38 @@ const { title, description = 'Homes of Foxfire Coalition' } = Astro.props;
 const siteUrl = 'https://foxfirecoalition.org';
 const ogImage = `${siteUrl}/FCADC_Social.png`;
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+
+// Organization JSON-LD — site-wide, appears on every page
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Homes of Foxfire Coalition Against Data Centers',
+  alternateName: 'Foxfire Coalition',
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.png`,
+  description:
+    'A resident-led coalition in Commercial Point, Pickaway County, Ohio, organizing against a 267-acre data center development next to the Foxfire neighborhood.',
+  areaServed: {
+    '@type': 'Place',
+    name: 'Commercial Point, Pickaway County, Ohio',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'info@foxfirecoalition.org',
+    contactType: 'community organizing',
+  },
+};
+
+// WebPage JSON-LD — scoped to this specific page
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: canonicalUrl,
+  isPartOf: { '@id': siteUrl },
+  inLanguage: 'en-US',
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -40,12 +73,17 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content="Foxfire Coalition Against Data Centers logo" />
 
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
     />
+    <ViewTransitions />
   </head>
   <body>
     <slot />

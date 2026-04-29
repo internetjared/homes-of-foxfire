@@ -50,30 +50,68 @@ const nextMeetingDate = nextMeeting
 </BaseLayout>
 
 <script>
-  // Compact header: fires once on first scroll past 60px, never reverts.
-  // Respects prefers-reduced-motion (skips transition via immediate class).
-  (function () {
+  // ---------------------------------------------------------------------------
+  // Sticky layout vars — keep --sticky-bar-h and --header-h accurate at all
+  // times so the header sits flush under the status bar and the Take Action
+  // step numbers stick just below the header.
+  //
+  // ResizeObserver fires whenever either element changes size (wrap reflow on
+  // mobile, compact transition on scroll, font-load reflow, etc.).
+  // ---------------------------------------------------------------------------
+  let _stickyRO: ResizeObserver | null = null;
+
+  function initStickyVars() {
+    _stickyRO?.disconnect();
+
+    const bar    = document.querySelector<HTMLElement>('.sticky-status');
+    const header = document.querySelector<HTMLElement>('.site-header');
+    const root   = document.documentElement;
+
+    const update = () => {
+      if (bar)    root.style.setProperty('--sticky-bar-h', bar.offsetHeight  + 'px');
+      if (header) root.style.setProperty('--header-h',     header.offsetHeight + 'px');
+    };
+
+    _stickyRO = new ResizeObserver(update);
+    if (bar)    _stickyRO.observe(bar);
+    if (header) _stickyRO.observe(header);
+    update(); // set immediately so first paint is correct
+  }
+
+  // ---------------------------------------------------------------------------
+  // Compact header: two-way scroll shrink that persists across View Transitions.
+  // ---------------------------------------------------------------------------
+  let _headerScrollCleanup: (() => void) | null = null;
+
+  function initCompactHeader() {
+    _headerScrollCleanup?.();
+    _headerScrollCleanup = null;
+
     const header = document.querySelector<HTMLElement>('.site-header');
     if (!header) return;
 
     const THRESHOLD = 60;
-
-    const compact = () => {
-      header.classList.add('is-compact');
-      window.removeEventListener('scroll', onScroll, { passive: true } as EventListenerOptions);
-    };
-
     const onScroll = () => {
-      if (window.scrollY > THRESHOLD) compact();
+      header.classList.toggle('is-compact', window.scrollY > THRESHOLD);
     };
 
-    // If already scrolled on load (e.g. back-nav), apply immediately
-    if (window.scrollY > THRESHOLD) {
-      header.classList.add('is-compact');
-    } else {
-      window.addEventListener('scroll', onScroll, { passive: true });
-    }
-  })();
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    _headerScrollCleanup = () => window.removeEventListener('scroll', onScroll);
+  }
+
+  // Both inits run on first load and after every View Transition
+  document.addEventListener('astro:page-load', () => {
+    initStickyVars();
+    initCompactHeader();
+  });
+
+  // Apply compact state immediately after DOM swap so the header is the right
+  // size before the fade-in animation plays
+  document.addEventListener('astro:after-swap', () => {
+    const header = document.querySelector<HTMLElement>('.site-header');
+    if (header) header.classList.toggle('is-compact', window.scrollY > 60);
+  });
 
   // Reveal: stagger timeline rows into view (motion-safe; CSS hides the
   // animation under prefers-reduced-motion via @media query in components.css).

@@ -9,7 +9,7 @@
  * Palette (Brand & UI System v1.0, 04.25.2026):
  *   Civic Navy   #1A2742  Primary. Headlines, wordmark, document rules.
  *                          Deep cool blue. Reads as council document.
- *   Iron Oxide   #b24338  The single accent. Hearing dates, upcoming-event
+ *   Iron Oxide   #ca3e1f  The single accent. Hearing dates, upcoming-event
  *                          dots, the rule below the wordmark. Barn-board red.
  *   Cream        #F4EFE3  Page background. Warm-undertone paper.
  *   Bone         #EAE2D0  Surface for cards and document blocks. Manila tone.
@@ -28,15 +28,15 @@
   /* Color */
   --ink: #1A2742;          /* Civic Navy — primary ink */
   --ink-2: #0F1A30;        /* deeper navy, for dark surfaces */
-  --accent: #b24338;       /* Iron Oxide — single accent, reserved for "open / uncertain" markers */
-  --accent-2: #8e3329;
+  --accent: #ca3e1f;       /* Iron Oxide — single accent, reserved for "open / uncertain" markers */
+  --accent-2: #a33219;
   --paper: #F4F5F7;        /* light cool grey — page background */
   --paper-2: #FFFFFF;      /* pure white surface */
   --bone: #E6E8EB;         /* light grey — card and document-block surfaces */
   --bone-2: #D1D5DB;
   --moss: #DCE0E8;         /* Mist — tinted-blue surface (token name kept for back-compat) */
   --moss-2: #C2C9D6;
-  --alert: #b24338;        /* Hearing Red — deadlines only, at most ONCE per page */
+  --alert: #ca3e1f;        /* Hearing Red — deadlines only, at most ONCE per page */
   --text: #161E2E;         /* Body Ink — cool near-black */
   --text-soft: #4A536A;    /* Soft Ink — cool gray */
   --text-mute: #7A8294;    /* Use only on type >= 18px or non-essential supplementary */
