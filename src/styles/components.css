@@ -291,6 +291,9 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   margin-left: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .site-header-nav a.site-header-cta + a.site-header-cta {
   margin-left: calc(-1 * var(--space-md));
@@ -668,7 +671,10 @@
   flex: 1 1 0;
   min-width: 0;
   text-align: center;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 .site-header-cta-bar a.site-header-cta-solid {
   background: #793a29;
@@ -1003,6 +1009,9 @@
     letter-spacing: -0.015em;
     margin-bottom: var(--space-md);
   }
+  .hero-line {
+    display: block;
+  }
   .hero .lede {
     font-size: 0.9375rem;
     margin-bottom: var(--space-md);
@@ -1055,6 +1064,10 @@
   text-wrap: balance;
   max-width: 22ch;
   font-weight: 500;
+}
+
+.hero-line {
+  display: inline;
 }
 
 .hero .lede {
@@ -3115,10 +3128,34 @@ abbr[title]:hover {
 }
 
 @media (max-width: 720px) {
+  .site-footer {
+    padding-block: var(--space-md);
+  }
   .site-footer-inner {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--space-sm);
+  }
+  /* Scale the inline wordmark down so it fits on one line */
+  .site-footer-inner .wordmark-inline .wordmark-place-inline {
+    font-size: 13px;
+  }
+  .site-footer-inner .wordmark-inline .wordmark-purpose-inline {
+    font-size: 9px;
+  }
+  /* Nav: single row, tighter gap, allow wrapping only if truly needed */
+  .site-footer-nav {
     gap: var(--space-md);
+    font-size: 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .site-footer-disclaimer {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  .site-footer-place {
+    text-align: left;
   }
 }
 

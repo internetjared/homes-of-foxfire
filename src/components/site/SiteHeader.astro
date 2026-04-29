@@ -1,5 +1,6 @@
 ---
 import Wordmark from '../brand/Wordmark.astro';
+import Icon from '../content/Icon.astro';
 
 // Site nav. Plain text links, then two CTA buttons at the end.
 // "Donate" is an external link to GoFundMe (opens in new tab).
@@ -35,6 +36,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         if (item.external) {
           return (
             <a href={item.href} target="_blank" rel="noopener" class={ctaClass}>
+              {item.label === 'Donate' && <Icon name="heart" size={13} />}
               {item.label}
             </a>
           );
@@ -43,6 +45,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         const isCurrent = itemPath === path;
         return (
           <a href={item.href} aria-current={isCurrent ? 'page' : undefined} class={ctaClass}>
+            {item.label === 'Take action' && <Icon name="megaphone" size={13} />}
             {item.label}
           </a>
         );
@@ -69,8 +72,16 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         ? 'site-header-cta site-header-cta-solid'
         : 'site-header-cta site-header-cta-outlined';
       return item.external
-        ? <a href={item.href} target="_blank" rel="noopener" class={ctaClass}>{item.label}</a>
-        : <a href={item.href} class={ctaClass}>{item.label}</a>;
+        ? (
+          <a href={item.href} target="_blank" rel="noopener" class={ctaClass}>
+            <Icon name="heart" size={13} />{item.label}
+          </a>
+        )
+        : (
+          <a href={item.href} class={ctaClass}>
+            <Icon name="megaphone" size={13} />{item.label}
+          </a>
+        );
     })}
   </div>
 
