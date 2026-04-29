@@ -36,8 +36,8 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         if (item.external) {
           return (
             <a href={item.href} target="_blank" rel="noopener" class={ctaClass}>
-              {item.label === 'Donate' && <Icon name="heart" size={13} />}
               {item.label}
+              {item.label === 'Donate' && <Icon name="heart" size={13} />}
             </a>
           );
         }
@@ -45,8 +45,8 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         const isCurrent = itemPath === path;
         return (
           <a href={item.href} aria-current={isCurrent ? 'page' : undefined} class={ctaClass}>
-            {item.label === 'Take action' && <Icon name="megaphone" size={13} />}
             {item.label}
+            {item.label === 'Take action' && <Icon name="megaphone" size={13} />}
           </a>
         );
       })}
@@ -74,12 +74,12 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       return item.external
         ? (
           <a href={item.href} target="_blank" rel="noopener" class={ctaClass}>
-            <Icon name="heart" size={13} />{item.label}
+            {item.label}<Icon name="heart" size={13} />
           </a>
         )
         : (
           <a href={item.href} class={ctaClass}>
-            <Icon name="megaphone" size={13} />{item.label}
+            {item.label}<Icon name="megaphone" size={13} />
           </a>
         );
     })}
