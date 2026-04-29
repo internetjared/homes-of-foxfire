@@ -3379,7 +3379,7 @@ abbr[title]:hover {
 .action-step-num {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 2px;
   position: sticky;
   top: calc(var(--sticky-bar-h) + var(--space-lg));
@@ -3392,6 +3392,7 @@ abbr[title]:hover {
   text-transform: uppercase;
   color: var(--text-mute);
   display: block;
+  text-align: center;
 }
 
 .action-step-number {
@@ -3596,6 +3597,11 @@ abbr[title]:hover {
   border-bottom-color: var(--ink);
 }
 
+/* Remove bottom border on the last row so it doesn't double with the footer note */
+.officials-list .official-row:last-of-type {
+  border-bottom: none;
+}
+
 .officials-foot {
   font-size: 13px;
   color: var(--text-soft);
@@ -3627,7 +3633,7 @@ abbr[title]:hover {
 }
 
 /* ============================================================
-   ATTEND BLOCK — next meeting detail card
+   ATTEND BLOCK — next meeting detail card (light-bg variant)
    ============================================================ */
 
 .attend-detail {
@@ -3639,35 +3645,102 @@ abbr[title]:hover {
   max-width: 56ch;
 }
 
-.attend-date-block {
+/* Calendar widget row */
+.attend-cal-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
   margin-bottom: var(--space-lg);
 }
 
-.attend-weekday {
-  display: block;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-  margin-bottom: 2px;
+/* Reuse .cal-block but override colors for light background */
+.attend-cal-block {
+  /* inherits .cal-block sizing; override text colors */
 }
 
-.attend-date {
-  display: block;
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+.attend-cal-block .cal-month {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.attend-cal-block .cal-day {
   color: var(--ink);
 }
 
+.attend-cal-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.attend-cal-weekday {
+  font-family: var(--headline);
+  font-size: 1.25rem;
+  color: var(--ink);
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.attend-cal-year {
+  color: var(--text-soft);
+  font-size: 0.875rem;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+/* On-the-agenda flag */
+.attend-flag {
+  margin-bottom: var(--space-md);
+  padding: 10px 12px;
+  background: rgba(122, 58, 42, 0.08);
+  border-left: 3px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.attend-flag-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.attend-flag-tag .icon {
+  color: var(--accent);
+}
+
+.attend-flag-text {
+  font-family: var(--headline);
+  font-size: 0.9rem;
+  line-height: 1.35;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* Body paragraph */
+.attend-body {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  margin: 0 0 var(--space-lg);
+}
+
+/* Icon bullet list */
 .attend-list {
   list-style: none;
   padding: 0;
   margin: 0 0 var(--space-lg);
   display: grid;
   gap: var(--space-md);
+  border-top: 1px solid var(--rule-soft);
+  padding-top: var(--space-md);
 }
 
 .attend-list li {

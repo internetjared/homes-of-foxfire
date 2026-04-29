@@ -15,6 +15,7 @@ const nextMeeting = meetings[0];
 const nextMeetingDateObj = nextMeeting ? new Date(`${nextMeeting.date}T12:00:00`) : null;
 const nextMeetingWeekday = nextMeetingDateObj?.toLocaleDateString('en-US', { weekday: 'long' });
 const nextMeetingMonth = nextMeetingDateObj?.toLocaleDateString('en-US', { month: 'long' });
+const nextMeetingMonthShort = nextMeetingDateObj?.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
 const nextMeetingDay = nextMeetingDateObj?.getDate();
 const nextMeetingYear = nextMeetingDateObj?.getFullYear();
 
@@ -22,20 +23,111 @@ const emailTemplates = [
   {
     id: 'transparency',
     label: 'Request transparency',
-    subject: 'Please provide full transparency on the Foxfire-adjacent data-center project',
-    body: `I am a resident of Commercial Point concerned about the K-Nova / Jahn Farm data-center rezoning near Foxfire. I am asking the council to provide full transparency: complete public records, independent review, and clear public answers about zoning, utilities, water supply, noise, traffic, environmental impacts, and all pending approvals.`,
+    subject: 'Request for full public transparency on the K-Nova data center rezoning',
+    body: `I am a resident of Commercial Point writing to request full public transparency on the K-Nova / Jahn Farm data center rezoning and all related decisions.
+
+In May 2024, the village adopted Ordinance 2024-07, rezoning approximately 266.971 acres adjacent to the Foxfire neighborhood from Exceptional Use to Planned Industrial District for data center use only. That decision was made with limited public explanation of the long-term impacts to our water supply, utility infrastructure, noise environment, tax base, and quality of life.
+
+I am asking the council to address the following directly and publicly:
+
+1. What independent analysis of water capacity, sewer capacity, and power infrastructure was conducted before the rezoning was approved?
+2. What are the projected tax impacts and any tax incentive agreements associated with this development?
+3. What utility or infrastructure commitments has the village made to any developer or tenant, and under what terms?
+4. What public notice was provided to Foxfire residents before the May 20, 2024 special meeting at which Ordinance 2024-07 was adopted?
+5. What is the status of the Scannell Properties site plan that was approved, and what obligations does that approval create for the village?
+
+Residents near Foxfire deserve clear, written answers to these questions before any construction proceeds. I ask that this information be published publicly and discussed openly at a council meeting with full resident comment.`,
   },
   {
     id: 'moratorium',
     label: 'Support the moratorium',
     subject: 'Please vote yes on the 18-month data center moratorium',
-    body: `I am a resident of Commercial Point asking the council to pass the 18-month data center moratorium. Before any new data center construction proceeds, residents deserve clear answers about water capacity, power infrastructure, noise limits, tax incentives, and the village's obligations under the Amazon NDA. The moratorium gives us time to get those answers. Please vote yes.`,
+    body: `I am a resident of Commercial Point writing in strong support of the proposed 18-month data center moratorium, introduced by Council Member Ezekiel Miller on February 23, 2026.
+
+The moratorium is not an attempt to block development permanently. It is a reasonable request for time to get answers that should have been provided before Ordinance 2024-07 was adopted in May 2024. Here is what residents still do not know:
+
+- Whether the village's water and sewer systems can support the scale of this development without degrading service for existing residents.
+- What noise standards, if any, will apply to data center operations adjacent to a residential neighborhood.
+- Whether power infrastructure requirements will result in aboveground utility lines near Foxfire homes.
+- What tax incentives, if any, have been negotiated, and whether the village will receive adequate revenue to offset increased service demands.
+- What the village's obligations are under the NDA with Amazon Data Services, which expires July 2026.
+
+Data centers in a village of Commercial Point's size represent a significant and largely irreversible land-use decision. The village has an obligation to understand the long-term consequences before construction begins.
+
+I ask the council to vote yes on the moratorium and use that time to answer these questions publicly.`,
   },
   {
     id: 'nda',
-    label: 'Ask about the Amazon NDA',
-    subject: 'Request for public disclosure of the Amazon Data Services NDA',
-    body: `I am a resident of Commercial Point requesting full public disclosure of the NDA between the Village of Commercial Point and Amazon Data Services, signed in July 2023. This agreement involves public land, public utilities, and decisions that affect every resident near Foxfire. The NDA should be made available for public review before it expires in July 2026. Please provide this document and a full explanation of the village's obligations under it.`,
+    label: 'Amazon NDA concerns',
+    subject: 'Request for public transparency on the Amazon Data Services NDA',
+    body: `I am a resident of Commercial Point writing to express concern about the non-disclosure agreement between the Village of Commercial Point and Amazon Data Services, reportedly signed in July 2023.
+
+Public statements at the February 23, 2026 council meeting indicate that this NDA exists, that it was signed by the previous mayor, and that the village has sent non-renewal notice. The NDA is reported to expire in July 2026.
+
+My concerns are as follows:
+
+1. The NDA governs discussions between the village and a private company about the potential development of approximately 267 acres of land adjacent to a residential neighborhood. Residents have a right to understand what was discussed and what commitments, if any, were made on their behalf.
+
+2. Multiple land use and utility decisions may have been shaped by information or agreements contained in or related to that NDA. If residents were not informed because of confidentiality obligations, that creates a transparency problem regardless of whether those decisions were ultimately correct.
+
+3. The NDA expires in July 2026. Before it expires, I ask the council to publish the full text of the agreement and provide a clear public accounting of any village commitments or representations made under it.
+
+The credibility of local government depends on open and accountable decision-making. I ask that this NDA be released in full and discussed openly at a public meeting before it expires.`,
+  },
+  {
+    id: 'health',
+    label: 'Health and well-being',
+    subject: 'Concerns about health and quality-of-life impacts on Foxfire residents',
+    body: `I am a resident of Commercial Point writing to raise concerns about the health and quality-of-life impacts of a large-scale data center complex adjacent to the Foxfire neighborhood.
+
+Data centers of the scale proposed for the K-Nova / Jahn Farm property, approximately 267 acres, generate significant and continuous noise from cooling systems and HVAC equipment, consume enormous quantities of water, require major electrical infrastructure, and produce electromagnetic output. These operations run 24 hours a day, 365 days a year.
+
+What concerns me is that there are limited peer-reviewed, long-term studies on the effects of large-scale data center operations on adjacent residential communities. We do not have clear answers about how continuous low-frequency noise affects sleep and health over years and decades. We do not have a full assessment of water draw impacts on well water quality or local aquifer health. We do not have a completed analysis of the visual, noise, and air quality environment that Foxfire families will live in once construction and operation begin.
+
+Before the village allows construction to proceed, I am asking the council to commission or require an independent environmental and health impact assessment that specifically addresses the impact on existing residential properties near Foxfire.
+
+Families in this neighborhood bought homes here because of the quality of the environment. That environment is a public trust, and the council has an obligation to protect it.`,
+  },
+  {
+    id: 'capacity',
+    label: 'Village capacity concerns',
+    subject: 'Questions about Commercial Point\'s capacity to support this scale of development',
+    body: `I am a resident of Commercial Point writing to raise questions about whether our village has the institutional and infrastructure capacity to responsibly manage a development of this scale.
+
+Ordinance 2024-07 rezoned approximately 266.971 acres for data center use. This is an extraordinarily large industrial footprint for a small village. Commercial Point has a limited administrative staff, a small water and sewer system, and emergency services that serve a modest population. I am asking the council to publicly address the following:
+
+1. Water and sewer: What is the current daily capacity of the village's water and sewer systems? What is the projected daily water demand of the proposed data center development? Has an independent engineering assessment confirmed the systems can support both existing residents and this development without service degradation?
+
+2. Emergency services: Has the fire department and emergency services been consulted about response requirements for a large industrial facility of this type? What infrastructure investments, if any, are required?
+
+3. Administrative capacity: Does the village have the staff and expertise to oversee the permitting, inspection, and ongoing compliance requirements for a major industrial technology facility?
+
+4. Financial obligations: What are the long-term financial obligations the village may be taking on in exchange for hosting this development? Are there infrastructure improvement commitments, utility extension requirements, or service level guarantees?
+
+I am not opposed to thoughtful growth in Commercial Point. I am asking the council to demonstrate that this decision was made with a full and honest accounting of what our village can and cannot support.`,
+  },
+  {
+    id: 'emergency',
+    label: 'Emergency ordinance questions',
+    subject: 'Questions about the emergency passage of Ordinance 2024-07 and the refiling process',
+    body: `I am a resident of Commercial Point writing to ask for a full public explanation of how Ordinance 2024-07 was passed and the circumstances surrounding it.
+
+The public record shows the following sequence of events:
+
+In January 2024, K-Nova filed a rezoning application for approximately 266.971 acres adjacent to Foxfire. That application became Ordinance 2024-02. On April 1, 2024, Ordinance 2024-02 came to a third reading and received no motion to adopt, effectively failing.
+
+On April 16, 2024, K-Nova filed a new rezoning application for the same 266.971 acres. This application became Ordinance 2024-07.
+
+On May 6, 2024, the council adopted Ordinance 2024-05, which amended Chapter 1143.04(e) of the Planning and Zoning Code, the local rule governing the refiling of zoning applications. On May 20, 2024, Ordinance 2024-07 was adopted 4-1 at a special meeting. The ordinance records a vote on suspension of readings as well as a vote on passage, which means it was treated as emergency legislation. The ordinance's stated justification involved commercial development and job creation.
+
+I have the following questions and ask that they be answered publicly:
+
+1. What constituted the emergency in May 2024 that justified suspending the standard reading process for a major land use decision?
+2. What were the specific "extenuating circumstances" that allowed K-Nova to refile a rezoning application so quickly after Ordinance 2024-02 failed to receive a motion?
+3. How was Ordinance 2024-05, which changed the refiling rules, related to the pending K-Nova application?
+4. What public notice was provided to Foxfire residents before the May 20, 2024 special meeting?
+
+These are procedural questions about how a decision affecting hundreds of families was made. Residents deserve a clear and complete public answer.`,
   },
 ];
 
@@ -45,6 +137,7 @@ const mediaOutlets = [
   { name: 'NBC4 Columbus', url: 'https://www.nbc4i.com/contact/', handle: 'nbc4i.com/contact' },
   { name: 'ABC6 / FOX28', url: 'https://abc6onyourside.com/contact', handle: 'abc6onyourside.com/contact' },
   { name: 'Columbus Business First', url: 'https://www.bizjournals.com/columbus/', handle: 'bizjournals.com/columbus' },
+  { name: 'Circleville Herald', url: 'https://www.circlevilleherald.com/submit_news/', handle: 'circlevilleherald.com/submit_news' },
 ];
 ---
 
@@ -239,10 +332,29 @@ const mediaOutlets = [
         </p>
         {nextMeeting && (
           <div class="attend-detail">
-            <div class="attend-date-block">
-              <span class="attend-weekday">{nextMeetingWeekday},</span>
-              <span class="attend-date">{nextMeetingMonth} {nextMeetingDay}, {nextMeetingYear}</span>
+            <div class="attend-cal-row">
+              <div class="cal-block attend-cal-block" aria-hidden="true">
+                <div class="cal-month">{nextMeetingMonthShort}</div>
+                <div class="cal-day">{nextMeetingDay}</div>
+              </div>
+              <div class="attend-cal-meta">
+                <p class="attend-cal-weekday">{nextMeetingWeekday}</p>
+                <p class="attend-cal-year mono">{nextMeetingYear}</p>
+              </div>
             </div>
+            <div class="attend-flag">
+              <span class="attend-flag-tag">
+                <Icon name="gavel" size={12} />
+                On the agenda
+              </span>
+              <span class="attend-flag-text">Third reading of the 18-month data center moratorium.</span>
+            </div>
+            <p class="attend-body">
+              A moratorium ordinance must pass three separate readings before it can be adopted.
+              This is the third and final reading. If passed, it pauses new data center
+              construction for 18 months while questions about water, power, noise, and
+              tax incentives are answered.
+            </p>
             <ul class="attend-list">
               <li>
                 <span class="attend-icon"><Icon name="map-pin" size={15} ariaLabel="Location" /></span>
@@ -307,9 +419,9 @@ const mediaOutlets = [
         </p>
         <ul class="share-list">
           <li>Forward this site to a neighbor: <span class="mono">foxfirecoalition.org</span></li>
-          <li>Bring the link to your homeowners association meeting.</li>
           <li>Post it to your neighborhood Facebook group or Nextdoor.</li>
           <li>Text the petition link to five people who live nearby.</li>
+          <li>Text the donation link to neighbors who want to support the coalition financially.</li>
         </ul>
         <p class="action-foot" style="margin-top: var(--space-lg);">
           <a href={petitionUrl} target="_blank" rel="noopener">
