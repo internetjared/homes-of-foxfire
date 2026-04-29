@@ -53,6 +53,19 @@ h4 {
 }
 
 p { margin: 0 0 12px; max-width: var(--measure); text-wrap: pretty; }
+
+/* Inline prose links — Iron Oxide red, underline on hover */
+p a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.12s ease;
+}
+p a:hover,
+p a:focus-visible {
+  text-decoration-color: var(--accent);
+}
 p.lede {
   font-size: var(--type-lede, 18px);
   color: var(--text-soft);
