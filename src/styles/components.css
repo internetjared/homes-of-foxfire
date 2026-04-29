@@ -1244,6 +1244,7 @@
 .btn-secondary:hover [data-icon="heart"],
 .btn-secondary:focus-visible [data-icon="heart"] {
   color: var(--accent);
+  fill: var(--accent);
 }
 
 .btn-tertiary {
