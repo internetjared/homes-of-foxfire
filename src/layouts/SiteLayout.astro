@@ -50,6 +50,31 @@ const nextMeetingDate = nextMeeting
 </BaseLayout>
 
 <script>
+  // Compact header: fires once on first scroll past 60px, never reverts.
+  // Respects prefers-reduced-motion (skips transition via immediate class).
+  (function () {
+    const header = document.querySelector<HTMLElement>('.site-header');
+    if (!header) return;
+
+    const THRESHOLD = 60;
+
+    const compact = () => {
+      header.classList.add('is-compact');
+      window.removeEventListener('scroll', onScroll, { passive: true } as EventListenerOptions);
+    };
+
+    const onScroll = () => {
+      if (window.scrollY > THRESHOLD) compact();
+    };
+
+    // If already scrolled on load (e.g. back-nav), apply immediately
+    if (window.scrollY > THRESHOLD) {
+      header.classList.add('is-compact');
+    } else {
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  })();
+
   // Reveal: stagger timeline rows into view (motion-safe; CSS hides the
   // animation under prefers-reduced-motion via @media query in components.css).
   (function () {

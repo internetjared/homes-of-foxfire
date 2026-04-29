@@ -241,6 +241,15 @@
   padding-block: var(--space-md);
   padding-inline: var(--space-lg);
   background: var(--paper);
+  position: sticky;
+  top: var(--sticky-bar-h);
+  z-index: 40;
+  transition: padding-block 0.35s ease;
+}
+
+/* Compact state — triggered once by JS on first scroll, never reverts */
+.site-header.is-compact {
+  padding-block: 10px;
 }
 
 .site-header-logo {
@@ -252,6 +261,11 @@
   height: 82px;
   width: auto;
   display: block;
+  transition: height 0.35s ease;
+}
+
+.site-header.is-compact .site-header-logo img {
+  height: 48px;
 }
 
 .site-footer-logo {
@@ -917,13 +931,13 @@
   inset: -3px;
   border-radius: 50%;
   background: var(--alert);
-  animation: dot-ping 2.2s ease-out infinite;
+  animation: dot-ping 4s ease-out infinite;
 }
 
 @keyframes dot-ping {
-  0%   { transform: scale(1);   opacity: 0.55; }
-  70%  { transform: scale(2.4); opacity: 0; }
-  100% { transform: scale(2.4); opacity: 0; }
+  0%   { transform: scale(1);   opacity: 0.35; }
+  60%  { transform: scale(2);   opacity: 0; }
+  100% { transform: scale(2);   opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
