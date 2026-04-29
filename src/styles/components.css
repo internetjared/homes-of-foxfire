@@ -995,7 +995,25 @@
     display: none;
   }
   .hero-tall {
-    min-height: 75vh;
+    min-height: 50vh;
+    padding-block: var(--space-2xl);
+  }
+  .hero-display {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+    letter-spacing: -0.015em;
+    margin-bottom: var(--space-md);
+  }
+  .hero .lede {
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-md);
+  }
+  .hero .kicker {
+    font-size: 0.6875rem;
+    margin-bottom: var(--space-sm);
+  }
+  .hero-cta {
+    margin-top: var(--space-md);
+    gap: var(--space-md);
   }
 }
 
