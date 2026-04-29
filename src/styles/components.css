@@ -831,6 +831,10 @@
     padding-bottom: 0;
     border-bottom: none;
   }
+  /* is-compact sets padding-block: 10px which would restore padding-bottom — keep it at 0 on mobile */
+  .site-header.is-compact {
+    padding-bottom: 0;
+  }
   .site-header-nav-desktop {
     display: none;
   }
@@ -3946,6 +3950,12 @@ abbr[title]:hover {
 /* ============================================================
    LIGHT FORM VARIANT — signup form on white background sections
    ============================================================ */
+
+.action-signup-form-light {
+  background: var(--bone);
+  padding: var(--space-xl);
+  border-radius: 3px;
+}
 
 .action-signup-form-light .action-signup-field label {
   color: var(--ink);
