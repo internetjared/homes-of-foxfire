@@ -153,21 +153,22 @@ const nextMeetingDate = nextMeeting
     const hero = document.querySelector<HTMLElement>('.hero');
     const preFooter = document.querySelector<HTMLElement>('.pre-footer');
 
-    const SPEED = 0.35;
+    const HERO_SPEED = 0.35;
+    const PREFOOTER_SPEED = 0.12;
     const MAX_PX = 120;
 
-    const parallaxEl = (el: HTMLElement, varName: string) => {
+    const parallaxEl = (el: HTMLElement, varName: string, speed: number) => {
       const rect = el.getBoundingClientRect();
       const center = rect.top + rect.height / 2 - window.innerHeight / 2;
-      const offset = Math.max(-MAX_PX, Math.min(MAX_PX, center * SPEED));
+      const offset = Math.max(-MAX_PX, Math.min(MAX_PX, center * speed));
       el.style.setProperty(varName, `${offset}px`);
     };
 
     let ticking = false;
 
     const update = () => {
-      if (hero) parallaxEl(hero, '--hero-parallax');
-      if (preFooter) parallaxEl(preFooter, '--prefooter-parallax');
+      if (hero) parallaxEl(hero, '--hero-parallax', HERO_SPEED);
+      if (preFooter) parallaxEl(preFooter, '--prefooter-parallax', PREFOOTER_SPEED);
       ticking = false;
     };
 

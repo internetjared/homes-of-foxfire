@@ -2142,11 +2142,11 @@
 .pre-footer::before {
   content: "";
   position: absolute;
-  inset: -15% 0;
-  height: 130%;
+  inset: -20% 0;
+  height: 140%;
   background-image: url('/neighborhood-bg.webp');
-  background-size: cover;
-  background-position: center 50%;
+  background-size: 120%;
+  background-position: center 40%;
   background-repeat: no-repeat;
   opacity: 0.55;
   z-index: -2;
