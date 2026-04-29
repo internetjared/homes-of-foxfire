@@ -3087,7 +3087,7 @@ abbr[title]:hover {
 /* ---------- SiteFooter ---------- */
 
 .site-footer {
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--rule-soft);
   padding-block: var(--space-lg);
   padding-inline: var(--space-lg);
   margin-top: 0;
