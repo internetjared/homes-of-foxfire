@@ -259,9 +259,18 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
           next, and take action together.
         </p>
 
-        <p class="section-foot">
+        <div class="section-foot story-foot">
           <a href="/timeline">Read the full timeline <span aria-hidden="true">&rarr;</span></a>
-        </p>
+          <button
+            class="btn-plan"
+            type="button"
+            data-open-lightbox="plan"
+            aria-haspopup="dialog"
+          >
+            <Icon name="file-text" size={14} />
+            View the proposed plan
+          </button>
+        </div>
       </div>
 
       <!-- Right: entrance sign photo, offset -->
@@ -298,4 +307,87 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       </p>
     </div>
   </section>
+
+  <!-- Plan lightbox — Jahn Property Industrial Site Plan, C001, 2026-03-31
+       Drop the file into /public/ and update data-src below if the extension differs. -->
+  <div
+    class="plan-lightbox"
+    id="plan-lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="plan-lightbox-title"
+    hidden
+  >
+    <div class="plan-lightbox-backdrop" data-close-lightbox></div>
+    <div class="plan-lightbox-frame">
+      <div class="plan-lightbox-header">
+        <p class="plan-lightbox-title" id="plan-lightbox-title">
+          Jahn Property Industrial Site Plan — C001 / 2026-03-31
+        </p>
+        <button class="plan-lightbox-close" type="button" data-close-lightbox aria-label="Close site plan">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="plan-lightbox-body">
+        <!-- iframe src is set by JS on open so the PDF doesn't load until needed -->
+        <iframe
+          class="plan-lightbox-iframe"
+          id="plan-lightbox-iframe"
+          data-src="/Reference_Jahn_Property_Industrial_SitePlan_C001_2026-03-31.pdf"
+          title="Jahn Property Industrial Site Plan — Proposed data center development, Commercial Point, Ohio"
+          src=""
+        ></iframe>
+      </div>
+      <div class="plan-lightbox-footer">
+        <p class="plan-lightbox-caption">
+          Jahn Property Industrial Site Plan, C001. Dated 2026-03-31. Public record, Commercial Point, Ohio.
+        </p>
+      </div>
+    </div>
+  </div>
 </SiteLayout>
+
+<script>
+  // Plan lightbox — open/close, lazy iframe load, focus trap, Escape key.
+  (function () {
+    const lightbox  = document.getElementById('plan-lightbox') as HTMLElement | null;
+    const iframe    = document.getElementById('plan-lightbox-iframe') as HTMLIFrameElement | null;
+    if (!lightbox || !iframe) return;
+
+    let lastFocus: HTMLElement | null = null;
+
+    const open = () => {
+      // Lazy-load the PDF only on first open
+      if (!iframe.src || iframe.src === window.location.href) {
+        iframe.src = iframe.dataset.src ?? '';
+      }
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+      lastFocus = document.activeElement as HTMLElement;
+      lightbox.querySelector<HTMLElement>('.plan-lightbox-close')?.focus();
+    };
+
+    const close = () => {
+      lightbox.hidden = true;
+      document.body.style.overflow = '';
+      lastFocus?.focus();
+    };
+
+    // Trigger button
+    document.querySelectorAll<HTMLElement>('[data-open-lightbox="plan"]').forEach((btn) => {
+      btn.addEventListener('click', open);
+    });
+
+    // Close via backdrop or × button
+    lightbox.querySelectorAll<HTMLElement>('[data-close-lightbox]').forEach((el) => {
+      el.addEventListener('click', close);
+    });
+
+    // Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !lightbox.hidden) close();
+    });
+  })();
+</script>
