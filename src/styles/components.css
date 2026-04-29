@@ -1086,7 +1086,7 @@
 
 .hero-take-action::before {
   background-image: url('/take_action_hero.png');
-  background-position: center center;
+  background-position: center 10%;
   background-size: cover;
   opacity: 0.22;
 }
