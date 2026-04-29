@@ -243,11 +243,33 @@
   background: var(--paper);
 }
 
+.site-header-logo {
+  display: block;
+  flex-shrink: 0;
+  line-height: 0;
+}
+.site-header-logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.site-footer-logo {
+  display: block;
+  flex-shrink: 0;
+  line-height: 0;
+}
+.site-footer-logo img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+
 .site-header-inner {
   max-width: var(--frame);
   margin-inline: auto;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: var(--space-xl);
   flex-wrap: wrap;
@@ -751,6 +773,9 @@
 }
 
 @media (max-width: 680px) {
+  .site-header-logo img {
+    height: 36px;
+  }
   .site-header {
     padding-top: var(--space-md);
     padding-bottom: 0;
@@ -3134,12 +3159,9 @@ abbr[title]:hover {
     align-items: flex-start;
     gap: var(--space-sm);
   }
-  /* Scale the inline wordmark down so it fits on one line */
-  .site-footer-inner .wordmark-inline .wordmark-place-inline {
-    font-size: 13px;
-  }
-  .site-footer-inner .wordmark-inline .wordmark-purpose-inline {
-    font-size: 9px;
+  /* Scale the footer logo down on mobile */
+  .site-footer-logo img {
+    height: 28px;
   }
   /* Nav: single row, tighter gap, allow wrapping only if truly needed */
   .site-footer-nav {

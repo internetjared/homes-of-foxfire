@@ -1,5 +1,4 @@
 ---
-import Wordmark from '../brand/Wordmark.astro';
 import Icon from '../content/Icon.astro';
 
 // Site nav. Plain text links, then two CTA buttons at the end.
@@ -22,7 +21,9 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 <header class="site-header">
   <div class="site-header-inner">
-    <Wordmark variant="stacked" href="/" />
+    <a href="/" class="site-header-logo" aria-label="Foxfire Coalition — home">
+      <img src="/logo.png" alt="Foxfire Coalition" width="180" height="56" />
+    </a>
 
     <!-- Desktop nav -->
     <nav class="site-header-nav site-header-nav-desktop" aria-label="Primary">
