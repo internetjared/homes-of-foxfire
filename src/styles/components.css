@@ -1067,7 +1067,7 @@
 }
 
 .hero-line {
-  display: inline;
+  display: block;
 }
 
 .hero .lede {
