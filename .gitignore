@@ -23,3 +23,11 @@ npm-debug.log*
 # One-shot coalition utility scripts. Not site code.
 _local-utilities/
 .vercel
+
+# Sanity Studio build artifacts and dependencies
+studio/node_modules/
+studio/dist/
+studio/.sanity/
+studio/.env
+studio/.env.local
+.env*.local

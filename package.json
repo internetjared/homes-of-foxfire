@@ -7,12 +7,20 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "node scripts/sync-airtable.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sync:airtable": "node scripts/sync-airtable.mjs",
+    "studio:dev": "cd studio && npm run dev",
+    "studio:deploy": "cd studio && npm run deploy"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
-    "astro": "^5.0.0"
+    "@sanity/astro": "^3.1.7",
+    "@sanity/client": "^7.14.1",
+    "@portabletext/to-html": "^2.0.13",
+    "astro": "^5.0.0",
+    "dotenv": "^16.4.5"
   }
 }
