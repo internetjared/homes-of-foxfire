@@ -521,12 +521,16 @@ const mediaOutlets = [
 
   // Signup form success message
   (function () {
-    const form = document.getElementById('ta-signup-form');
+    const form = document.getElementById('ta-signup-form') as HTMLFormElement | null;
     const success = document.getElementById('ta-signup-success');
-    if (form && success) {
+    const submitBtn = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (form && success && submitBtn) {
       form.addEventListener('submit', () => {
+        // Disable immediately to prevent double-submission
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
         setTimeout(() => {
-          (form as HTMLFormElement).reset();
+          form.style.display = 'none';
           (success as HTMLElement).style.display = 'flex';
         }, 500);
       });
