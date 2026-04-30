@@ -1,7 +1,20 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import updates from '../data/updates.json';
 
 const lastUpdated = '04.29 / 2026';
+
+// Sort newest first
+const sorted = [...updates].sort((a, b) => (a.date < b.date ? 1 : -1));
+
+function formatDate(iso: string) {
+  const d = new Date(`${iso}T12:00:00`);
+  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+function isExternal(url: string) {
+  return url.startsWith('http');
+}
 ---
 
 <SiteLayout
@@ -9,14 +22,77 @@ const lastUpdated = '04.29 / 2026';
   description="News and changes from the Foxfire Coalition: records-request status, meeting reminders, newly found documents, and volunteer needs."
   lastUpdated={lastUpdated}
 >
-  <section class="page-section page-section-tier" style="min-height: 80vh;">
-    <div class="measure">
+  <section class="page-section page-section-tier">
+    <div class="measure-wide">
+
       <p class="kicker">Updates</p>
-      <h1 style="font-family: var(--headline); font-size: clamp(2rem, 3.8vw, 3rem); line-height: 1.15; margin: 0 0 var(--space-md);">Coming soon.</h1>
-      <p class="lede">
-        Coalition updates will be posted here: meeting recaps, records-request
-        status, newly found documents, and volunteer needs. Check back soon.
-      </p>
+      <h1 class="updates-page-title">What the coalition is doing and what you can do next.</h1>
+
+      <div class="update-list">
+        {sorted.map((post) => (
+          <article class="update-post">
+            <div class="update-post-head">
+              <span class="update-post-date mono tab">{formatDate(post.date)}</span>
+              <p class="kicker update-post-category">{post.category}</p>
+              {post.verification && (
+                <p class="update-post-verification mono">{post.verification}</p>
+              )}
+            </div>
+
+            <h2 class="update-post-title">{post.title}</h2>
+            <p class="update-post-summary">{post.summary}</p>
+
+            {post.what_happened && (
+              <div class="update-post-section">
+                <h3>What happened</h3>
+                <p>{post.what_happened}</p>
+              </div>
+            )}
+
+            {post.why_it_matters && (
+              <div class="update-post-section">
+                <h3>Why it matters</h3>
+                <p>{post.why_it_matters}</p>
+              </div>
+            )}
+
+            {post.what_to_do && (
+              <div class="update-post-section">
+                <h3>What you can do</h3>
+                <p>{post.what_to_do}</p>
+              </div>
+            )}
+
+            {post.related_links && post.related_links.length > 0 && (
+              <div class="update-post-section update-post-related">
+                <h3>Related</h3>
+                <ul>
+                  {post.related_links.map((link) => (
+                    <li>
+                      <a
+                        href={link.url}
+                        {...(isExternal(link.url) ? { target: '_blank', rel: 'noopener' } : {})}
+                      >
+                        {link.label} {isExternal(link.url) ? '↗' : '→'}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+
     </div>
   </section>
 </SiteLayout>
+
+<style>
+  .updates-page-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    line-height: 1.15;
+    margin: 0 0 var(--space-3xl);
+    max-width: 22ch;
+  }
+</style>
