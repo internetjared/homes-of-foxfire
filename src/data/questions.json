@@ -1,0 +1,86 @@
+[
+  {
+    "id": "how-we-got-here",
+    "roman": "I",
+    "title": "How did we get here?",
+    "items": [
+      {
+        "question": "Why was a 267-acre rezoning passed as an emergency?",
+        "answer": "Ordinance 2024-07 was adopted under emergency procedure at a Special Council meeting on May 20, 2024. Ohio law reserves emergency adoption for measures necessary for the immediate preservation of public peace, health, or safety, with reasons stated in the ordinance itself. The stated reason in Section 4 of the ordinance is commercial opportunities and job creation. Residents are asking what immediate threat to public peace, health, or safety required this rezoning to pass that night."
+      },
+      {
+        "question": "What were the 'extenuating circumstances' that let K-Nova refile in 48 hours?",
+        "answer": "On April 1, 2024, the first K-Nova rezoning attempt (Ordinance 2024-02) died for lack of a motion. The village's own zoning code blocked refiling the same application for one year. On April 15, 2024, Council waived that one-year rule on the condition that K-Nova refile within 48 hours, citing 'extenuating circumstances.' The public record does not say what those circumstances were."
+      },
+      {
+        "question": "Did residents actually have notice before the May 20, 2024 vote?",
+        "answer": "Many Foxfire residents are learning about the rezoning after it was adopted. The May 20, 2024 special meeting is where the public-notice question is sharpest. Residents are asking what notice was given, where it was posted, and whether the notice specifically described the action that was taken that night."
+      },
+      {
+        "question": "Why did the rule itself get rewritten two weeks later?",
+        "answer": "On May 6, 2024, Council adopted Ordinance 2024-05 amending Chapter 1143.04(e) of the zoning code. The amendment shortened the resubmission bar from one year to six months and changed the council action window from 45 days to 120 days. Residents are asking why the rule was waived for one applicant on April 15 and rewritten for everyone else on May 6, all inside the same five-week window that ended with Ordinance 2024-07."
+      }
+    ]
+  },
+  {
+    "id": "what-still-has-to-happen",
+    "roman": "II",
+    "title": "What still has to happen?",
+    "items": [
+      {
+        "question": "What permits still have to be issued before anything is built?",
+        "answer": "Zoning is not a building permit. On April 29, 2026, the village's Zoning Administrator denied the K-Nova II Major Site Plan Application as incomplete under Village Ordinance 1141.05, citing nine specific deficiencies. Building permits, grading permits, stormwater permits, water and sewer approvals, road approvals, and Ohio EPA permits each remain separate decision points. Residents are asking the village to publish the full list of approvals that apply and the current status of each."
+      },
+      {
+        "question": "Does the proposed moratorium actually apply to this project?",
+        "answer": "The 18-month data-center moratorium introduced by Council Member Ezekiel Miller on February 23, 2026 (and listed on the April 20, 2026 agenda as Ordinance 2026-09) would pause new data-center development. Residents are asking whether it pauses only future applications, or whether it also affects permits, site work, or vested rights for projects already in the pipeline."
+      },
+      {
+        "question": "Does K-Nova actually have vested rights here?",
+        "answer": "On February 23, 2026, Council Member Nungester stated publicly that the Durrett Road site allows data centers 'by right.' Residents are asking the village solicitor and counsel for a clear public answer: what approvals still require council action, what rights may have vested, and what conditions or protections can still be added before construction starts."
+      }
+    ]
+  },
+  {
+    "id": "what-needs-to-be-studied",
+    "roman": "III",
+    "title": "What hasn't been studied?",
+    "items": [
+      {
+        "question": "What studies are missing from the public record?",
+        "answer": "Before Ordinance 2024-07 was adopted, the public record does not show independent studies of water demand, power infrastructure, traffic, noise, air quality, stormwater, lighting, fire and EMS capacity, construction impacts, or property-value effects on adjacent homes. Residents are asking for those studies, on the public record, before any further approvals are granted."
+      },
+      {
+        "question": "How close are these buildings to homes?",
+        "answer": "The Major Site Plan K-Nova II submitted on March 31, 2026 (and that the village denied on April 29, 2026) showed eight 220,000-square-foot buildings, a 45,000-square-foot substation support building, an electrical substation, a water tower, a security building, and seven stormwater basins on the parcel adjacent to Foxfire. The denial letter specifically called out missing setback lines along the AWS-owned property to the north. Residents are asking for verified setback measurements, building heights, screening details, and lighting plans before any new application is approved."
+      },
+      {
+        "question": "Who is responsible if something goes wrong after the buildings are up?",
+        "answer": "Industrial-scale data centers run 24 hours a day. Residents are asking who inspects, who enforces noise limits, who maintains stormwater systems, who covers road and utility wear, and who pays if a problem affects existing residents. Conditions of approval matter, but only if there is a clear answer to who enforces them."
+      }
+    ]
+  },
+  {
+    "id": "what-residents-can-do",
+    "roman": "IV",
+    "title": "What can residents still do?",
+    "items": [
+      {
+        "question": "Can the original approval still be reviewed?",
+        "answer": "Ohio law (ORC 713.121) provides a two-year window for procedural challenges to a municipal zoning ordinance. For Ordinance 2024-07, adopted May 20, 2024, that window appears to close around May 20, 2026. Counsel is reviewing the emergency clause, the suspension of readings, the resubmission waiver, the special-meeting notice, and the council vacancy at the time of the vote. The coalition will follow counsel's guidance on whether and how to act."
+      },
+      {
+        "question": "Can future permits still be paused, conditioned, or denied?",
+        "answer": "Some, yes. The Major Site Plan was denied as incomplete on April 29, 2026 and any refiled version will go through village review again. Building permits, utility approvals, and Ohio EPA permits each give the village separate decision points. Residents are asking the village to use those decision points carefully and on the public record."
+      },
+      {
+        "question": "Who benefits, and who carries the risk?",
+        "answer": "Independent research finds that the largest economic gains from data centers usually arrive during the construction phase, not in long-term operating jobs or recurring tax revenue. Tax abatements and TIFs reduce what the village actually keeps. The construction is temporary. The noise, the traffic, the substation, and the water and power demand stay. Residents are asking the village to show the math."
+      },
+      {
+        "question": "How can residents participate?",
+        "answer": "Read the timeline. Sign up for updates. Attend the next council meeting. Email the council on the issues that matter to you. Request records. Talk to a neighbor. Showing up is the single most useful thing residents can do, because every decision left is made in those rooms."
+      }
+    ]
+  }
+]

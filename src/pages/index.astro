@@ -296,7 +296,6 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
         <div set:html={storyBodyHtml}></div>
 
         <div class="section-foot story-foot">
-          <a href="/timeline">{storyTimelineLinkLabel} <span aria-hidden="true">&rarr;</span></a>
           <button
             class="btn-plan"
             type="button"
@@ -323,6 +322,21 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
         </figure>
       </div>
 
+    </div>
+  </section>
+
+  <!-- Questions teaser -->
+  <section class="page-section questions-teaser-section">
+    <div class="measure">
+      <p class="kicker">Questions residents are asking</p>
+      <ul class="questions-teaser-list">
+        <li>Why was the May 2024 rezoning treated as an emergency?</li>
+        <li>What permits or approvals are still required before anything can move forward?</li>
+        <li>Can the original approval still be reviewed or challenged?</li>
+      </ul>
+      <p class="questions-teaser-foot">
+        <a href="/questions">See all questions residents are asking <span aria-hidden="true">&rarr;</span></a>
+      </p>
     </div>
   </section>
 
