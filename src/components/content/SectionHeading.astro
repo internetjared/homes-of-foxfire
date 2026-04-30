@@ -2,22 +2,22 @@
 interface Props {
   kicker?: string;
   title: string;
-  roman?: string;
+  num?: string;
   variant?: 'default' | 'ruled';
   id?: string;
 }
 
-const { kicker, title, roman, variant = 'default', id } = Astro.props;
+const { kicker, title, num, variant = 'default', id } = Astro.props;
 
 const classes = [
   'section-heading',
   variant === 'ruled' && 'section-heading-ruled',
-  roman && 'section-heading-numbered',
+  num && 'section-heading-numbered',
 ].filter(Boolean).join(' ');
 ---
 
 <header class={classes}>
-  {roman && <span class="section-heading-roman mono" aria-hidden="true">{roman}</span>}
+  {num && <span class="section-heading-num mono" aria-hidden="true">{num}</span>}
   <div class="section-heading-text">
     {kicker && <p class="kicker">{kicker}</p>}
     <h2 id={id}>{title}</h2>

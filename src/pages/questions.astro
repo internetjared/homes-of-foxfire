@@ -19,12 +19,11 @@ const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-c
   <section class="page-section page-section-tier">
     <div class="measure">
       <p class="kicker">Questions residents are asking</p>
-      <h1 class="questions-title">The vote happened. The questions are still open.</h1>
+      <h1 class="questions-title">267 acres rezoned. Still no answers.</h1>
       <p class="lede">
-        267 acres next to Foxfire are rezoned for data centers. The May 20, 2024 vote
-        did not answer the questions residents are still asking. Water. Power. Noise.
-        The emergency clause. The 48-hour resubmission. The missing studies. The vote
-        did not answer any of these.
+        The May 20, 2024 vote did not answer the questions residents are still asking.
+        Water. Power. Noise. The emergency clause. The 48-hour resubmission. The missing
+        studies. The vote did not answer any of these.
       </p>
     </div>
   </section>
@@ -35,7 +34,7 @@ const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-c
       {questions.map((cat) => (
         <div class="questions-category" id={cat.id}>
           <SectionHeading
-            roman={cat.roman}
+            num={cat.num}
             title={cat.title}
             variant="ruled"
             id={`heading-${cat.id}`}
@@ -44,11 +43,11 @@ const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-c
             {cat.items.map((item, i) => (
               <li class="faq-item">
                 <span class="faq-num mono tab">
-                  {String(cat.roman).padStart(2, ' ')}.{String(i + 1).padStart(2, '0')}
+                  {cat.num}.{String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
                   <p class="faq-q">{item.question}</p>
-                  <p class="faq-a">{item.answer}</p>
+                  <p class="faq-a" set:html={item.answer}></p>
                 </div>
               </li>
             ))}
