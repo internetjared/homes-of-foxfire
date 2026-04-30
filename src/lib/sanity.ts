@@ -93,6 +93,24 @@ export const QUERY_GLOSSARY_TERMS = /* groq */ `
   }
 `;
 
+// Singleton: take-action page content.
+export const QUERY_TAKE_ACTION_PAGE = /* groq */ `
+  *[_type == "takeActionPage"][0] {
+    heroKicker, heroTitle, heroLede, heroPetitionCtaLabel, heroEmailCtaLabel,
+    signupTitle, signupLede, signupSuccessMessage,
+    emailTitle, emailLede,
+    emailTemplates[] { id, label, subject, body },
+    emailSendToKicker, emailRosterFooter,
+    attendTitle, attendLede, attendAgendaTag, attendAgendaText, attendBody,
+    attendAddress, attendTime, attendPublicComment,
+    mediaTitle, mediaLede,
+    mediaOutlets[] { name, url, handle },
+    shareTitle, shareLede, shareSuggestions, shareFootLinkLabel,
+    preFooterKicker, preFooterTitleLine1, preFooterTitleLine2, preFooterTitleLine3,
+    preFooterBody, preFooterPetitionCtaLabel, preFooterDonateCtaLabel, preFooterDonateUrl
+  }
+`;
+
 // Singleton: only one homePage document exists per project.
 export const QUERY_HOME_PAGE = /* groq */ `
   *[_type == "homePage"][0] {
@@ -154,6 +172,64 @@ export interface SanityGlossaryTerm {
   _id: string;
   term: string;
   definition: string;
+}
+
+export interface SanityEmailTemplate {
+  id: string;
+  label: string;
+  subject: string;
+  body: string;
+}
+
+export interface SanityMediaOutlet {
+  name: string;
+  url: string;
+  handle: string;
+}
+
+export interface SanityTakeActionPage {
+  heroKicker?: string;
+  heroTitle?: string;
+  heroLede?: string;
+  heroPetitionCtaLabel?: string;
+  heroEmailCtaLabel?: string;
+
+  signupTitle?: string;
+  signupLede?: string;
+  signupSuccessMessage?: string;
+
+  emailTitle?: string;
+  emailLede?: string;
+  emailTemplates?: SanityEmailTemplate[];
+  emailSendToKicker?: string;
+  emailRosterFooter?: string;
+
+  attendTitle?: string;
+  attendLede?: string;
+  attendAgendaTag?: string;
+  attendAgendaText?: string;
+  attendBody?: string;
+  attendAddress?: string;
+  attendTime?: string;
+  attendPublicComment?: string;
+
+  mediaTitle?: string;
+  mediaLede?: string;
+  mediaOutlets?: SanityMediaOutlet[];
+
+  shareTitle?: string;
+  shareLede?: string;
+  shareSuggestions?: string[];
+  shareFootLinkLabel?: string;
+
+  preFooterKicker?: string;
+  preFooterTitleLine1?: string;
+  preFooterTitleLine2?: string;
+  preFooterTitleLine3?: string;
+  preFooterBody?: string;
+  preFooterPetitionCtaLabel?: string;
+  preFooterDonateCtaLabel?: string;
+  preFooterDonateUrl?: string;
 }
 
 export interface SanityHomePage {

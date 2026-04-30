@@ -3,23 +3,42 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import Icon from '../components/content/Icon.astro';
 import meetings from '../data/meetings.json';
 import officials from '../data/officials.json';
+import { sanity, QUERY_TAKE_ACTION_PAGE, type SanityTakeActionPage, type SanityEmailTemplate, type SanityMediaOutlet } from '../lib/sanity';
 
 const mayor = officials.find((o) => o.role === 'Mayor');
 const council = officials.filter((o) => o.role === 'Council Member');
 
-const lastUpdated = '04.29 / 2026';
+const lastUpdated = '04.30 / 2026';
 
 const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-centers-in-commercial-point-and-scioto-township';
 
-const nextMeeting = meetings[0];
-const nextMeetingDateObj = nextMeeting ? new Date(`${nextMeeting.date}T12:00:00`) : null;
-const nextMeetingWeekday = nextMeetingDateObj?.toLocaleDateString('en-US', { weekday: 'long' });
-const nextMeetingMonth = nextMeetingDateObj?.toLocaleDateString('en-US', { month: 'long' });
-const nextMeetingMonthShort = nextMeetingDateObj?.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
-const nextMeetingDay = nextMeetingDateObj?.getDate();
-const nextMeetingYear = nextMeetingDateObj?.getFullYear();
+// Fetch take-action content from Sanity. Falls back to defaults below if any field is empty.
+let page: SanityTakeActionPage = {};
+try {
+  page = (await sanity.fetch<SanityTakeActionPage | null>(QUERY_TAKE_ACTION_PAGE)) || {};
+} catch (err) {
+  console.warn('[take-action.astro] Sanity fetch failed:', err);
+}
 
-const emailTemplates = [
+// Hero
+const heroKicker = page.heroKicker || 'Take action';
+const heroTitle = page.heroTitle || 'This is not over. Help protect Foxfire.';
+const heroLede = page.heroLede || 'Five concrete steps every resident can take right now. You do not need to be an expert. You just need to show up.';
+const heroPetitionCtaLabel = page.heroPetitionCtaLabel || 'Sign the petition';
+const heroEmailCtaLabel = page.heroEmailCtaLabel || 'Email the council';
+
+// Step 1
+const signupTitle = page.signupTitle || 'Sign up for updates.';
+const signupLede = page.signupLede || 'Short notes before meetings, key documents when they land, and alerts when deadlines matter. No spam. Unsubscribe anytime.';
+const signupSuccessMessage = page.signupSuccessMessage || 'Thank you for joining the fight. Watch for short notes on meetings, key documents, and how to make your voice heard.';
+
+// Step 2
+const emailTitle = page.emailTitle || 'Email the council.';
+const emailLede = page.emailLede || 'A polite, specific email becomes part of the public record and is read into the meeting. Choose a template, edit it in your own voice, then send.';
+const emailSendToKicker = page.emailSendToKicker || 'Send to.';
+const emailRosterFooter = page.emailRosterFooter || 'Roster sourced from the Village of Commercial Point elected officials page.';
+
+const fallbackEmailTemplates: SanityEmailTemplate[] = [
   {
     id: 'transparency',
     label: 'Request transparency',
@@ -91,7 +110,7 @@ Families in this neighborhood bought homes here because of the quality of the en
   {
     id: 'capacity',
     label: 'Village capacity concerns',
-    subject: 'Questions about Commercial Point\'s capacity to support this scale of development',
+    subject: "Questions about Commercial Point's capacity to support this scale of development",
     body: `I am a resident of Commercial Point writing to raise questions about whether our village has the institutional and infrastructure capacity to responsibly manage a development of this scale.
 
 Ordinance 2024-07 rezoned approximately 266.971 acres for data center use. This is an extraordinarily large industrial footprint for a small village. Commercial Point has a limited administrative staff, a small water and sewer system, and emergency services that serve a modest population. I am asking the council to publicly address the following:
@@ -150,8 +169,23 @@ On energy costs: data centers of the scale proposed for this site require substa
 Foxfire families invested in this community. They deserve a full economic accounting of what this development means for their homes and their bills.`,
   },
 ];
+const emailTemplates: SanityEmailTemplate[] =
+  page.emailTemplates && page.emailTemplates.length > 0 ? page.emailTemplates : fallbackEmailTemplates;
 
-const mediaOutlets = [
+// Step 3
+const attendTitle = page.attendTitle || 'Attend the next meeting.';
+const attendLede = page.attendLede || 'Council meetings are open to the public and accept public comment. Showing up in person is the single most visible thing a neighbor can do.';
+const attendAgendaTag = page.attendAgendaTag || 'On the agenda';
+const attendAgendaText = page.attendAgendaText || 'Third reading of the 18-month data center moratorium.';
+const attendBody = page.attendBody || 'A moratorium ordinance must pass three separate readings before it can be adopted. This is the third and final reading. If passed, it pauses new data center construction for 18 months while questions about water, power, noise, and tax incentives are answered.';
+const attendAddress = page.attendAddress || 'Village offices, 67 W. Scioto St., Commercial Point.';
+const attendTime = page.attendTime || '7:00 PM. Doors open earlier.';
+const attendPublicComment = page.attendPublicComment || 'Sign in to speak. Five minutes per resident.';
+
+// Step 4
+const mediaTitle = page.mediaTitle || 'Contact the media.';
+const mediaLede = page.mediaLede || 'Local newsrooms are covering this story. A tip from a resident carries more weight than a press release. If you have a personal account, a neighbor who should be interviewed, or a document the public should see, reach out directly.';
+const fallbackMediaOutlets: SanityMediaOutlet[] = [
   { name: 'Columbus Dispatch', url: 'https://www.dispatch.com/contact/staff/', handle: 'dispatch.com/contact/staff' },
   { name: '10TV WBNS Columbus', url: 'https://www.10tv.com/sendusnews', handle: '10tv.com/sendusnews' },
   { name: 'NBC4 Columbus', url: 'https://www.nbc4i.com/contact-us/', handle: 'nbc4i.com/contact-us' },
@@ -159,6 +193,38 @@ const mediaOutlets = [
   { name: 'Columbus Business First', url: 'https://www.bizjournals.com/columbus/about-us/contact', handle: 'bizjournals.com/columbus/about-us/contact' },
   { name: 'Circleville Herald', url: 'https://www.circlevilleherald.com/site/forms/online_services/submit_news/', handle: 'circlevilleherald.com/…/submit_news' },
 ];
+const mediaOutlets: SanityMediaOutlet[] =
+  page.mediaOutlets && page.mediaOutlets.length > 0 ? page.mediaOutlets : fallbackMediaOutlets;
+
+// Step 5
+const shareTitle = page.shareTitle || 'Share with neighbors.';
+const shareLede = page.shareLede || 'Most residents near Foxfire still do not know what has been approved. A text message or a conversation changes that.';
+const fallbackShareSuggestions = [
+  'Forward this site to a neighbor: foxfirecoalition.org',
+  'Post it to your neighborhood Facebook group or Nextdoor.',
+  'Text the petition link to five people who live nearby.',
+  'Text the donation link to neighbors who want to support the coalition financially.',
+];
+const shareSuggestions: string[] =
+  page.shareSuggestions && page.shareSuggestions.length > 0 ? page.shareSuggestions : fallbackShareSuggestions;
+const shareFootLinkLabel = page.shareFootLinkLabel || 'Sign and share the petition';
+
+// Pre-footer
+const preFooterKicker = page.preFooterKicker || 'Why we are here';
+const preFooterTitleLine1 = page.preFooterTitleLine1 || 'Resident-led.';
+const preFooterTitleLine2 = page.preFooterTitleLine2 || 'Evidence-based.';
+const preFooterTitleLine3 = page.preFooterTitleLine3 || 'Not going away.';
+const preFooterBody = page.preFooterBody || 'Homes of Foxfire Coalition Against Data Centers is a volunteer neighborhood effort to educate residents, gather public records, ask clear questions of elected officials, and protect the future of this community. Every action on this page is part of that effort.';
+const preFooterPetitionCtaLabel = page.preFooterPetitionCtaLabel || 'Sign the petition';
+const preFooterDonateCtaLabel = page.preFooterDonateCtaLabel || 'Make a donation';
+const preFooterDonateUrl = page.preFooterDonateUrl || 'https://www.gofundme.com/f/support-community-action-against-data-center';
+
+const nextMeeting = meetings[0];
+const nextMeetingDateObj = nextMeeting ? new Date(`${nextMeeting.date}T12:00:00`) : null;
+const nextMeetingWeekday = nextMeetingDateObj?.toLocaleDateString('en-US', { weekday: 'long' });
+const nextMeetingMonthShort = nextMeetingDateObj?.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+const nextMeetingDay = nextMeetingDateObj?.getDate();
+const nextMeetingYear = nextMeetingDateObj?.getFullYear();
 ---
 
 <SiteLayout
@@ -169,24 +235,20 @@ const mediaOutlets = [
   <!-- Hero -->
   <section class="page-section page-section-tier hero hero-take-action">
     <div class="measure-wide">
-      <p class="kicker">Take action</p>
-      <h1 class="hero-display">This is not over. Help protect Foxfire.</h1>
-      <p class="lede">
-        Five concrete steps every resident can take right now. You do not need to be an
-        expert. You just need to show up.
-      </p>
+      <p class="kicker">{heroKicker}</p>
+      <h1 class="hero-display">{heroTitle}</h1>
+      <p class="lede">{heroLede}</p>
       <div class="hero-cta">
         <a class="btn-navy" href={petitionUrl} target="_blank" rel="noopener">
-          Sign the petition <Icon name="pen" size={14} />
+          {heroPetitionCtaLabel} <Icon name="pen" size={14} />
         </a>
         <a class="btn-navy-outline" href="#email">
-          Email the council <Icon name="megaphone" size={14} />
+          {heroEmailCtaLabel} <Icon name="megaphone" size={14} />
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Steps wrapper -->
   <div class="action-steps-wrap">
 
     <!-- Step 1: Sign up -->
@@ -196,13 +258,9 @@ const mediaOutlets = [
         <span class="action-step-number">01</span>
       </div>
       <div class="action-step-content">
-        <h2 class="action-step-title">Sign up for updates.</h2>
-        <p class="action-step-lede">
-          Short notes before meetings, key documents when they land, and alerts when
-          deadlines matter. No spam. Unsubscribe anytime.
-        </p>
+        <h2 class="action-step-title">{signupTitle}</h2>
+        <p class="action-step-lede">{signupLede}</p>
 
-        <!-- Hidden iframe absorbs Google's redirect so the visitor stays on the page -->
         <iframe name="ta-signup-sink" style="display:none;" aria-hidden="true"></iframe>
 
         <form
@@ -236,7 +294,7 @@ const mediaOutlets = [
           </button>
           <div class="action-signup-success action-signup-success-light" id="ta-signup-success" aria-live="polite" style="display:none;">
             <Icon name="thumbs-up" size={20} />
-            <p>Thank you for joining the fight. Watch for short notes on meetings, key documents, and how to make your voice heard.</p>
+            <p>{signupSuccessMessage}</p>
           </div>
         </form>
       </div>
@@ -249,13 +307,9 @@ const mediaOutlets = [
         <span class="action-step-number">02</span>
       </div>
       <div class="action-step-content">
-        <h2 class="action-step-title">Email the council.</h2>
-        <p class="action-step-lede">
-          A polite, specific email becomes part of the public record and is read into the
-          meeting. Choose a template, edit it in your own voice, then send.
-        </p>
+        <h2 class="action-step-title">{emailTitle}</h2>
+        <p class="action-step-lede">{emailLede}</p>
 
-        <!-- Tabbed email templates -->
         <div class="email-tabs-wrap" data-email-tabs>
           <div class="email-tab-bar" role="tablist" aria-label="Email templates">
             {emailTemplates.map((t, i) => (
@@ -303,9 +357,8 @@ const mediaOutlets = [
           ))}
         </div>
 
-        <!-- Council roster: minimal cards -->
         <div class="officials-list">
-          <p class="kicker" style="margin-bottom: var(--space-sm);">Send to.</p>
+          <p class="kicker" style="margin-bottom: var(--space-sm);">{emailSendToKicker}</p>
           {mayor && (
             <div class="official-row official-row-mayor">
               <div class="official-row-info">
@@ -328,12 +381,7 @@ const mediaOutlets = [
               </a>
             </div>
           ))}
-          <p class="officials-foot" style="margin-top: var(--space-md);">
-            Roster sourced from the
-            <a href="https://www.commercialpointohio.gov/council/" rel="noopener" target="_blank">
-              Village of Commercial Point elected officials page →
-            </a>
-          </p>
+          <p class="officials-foot" style="margin-top: var(--space-md);">{emailRosterFooter}</p>
         </div>
       </div>
     </section>
@@ -345,11 +393,8 @@ const mediaOutlets = [
         <span class="action-step-number">03</span>
       </div>
       <div class="action-step-content">
-        <h2 class="action-step-title">Attend the next meeting.</h2>
-        <p class="action-step-lede">
-          Council meetings are open to the public and accept public comment. Showing up in
-          person is the single most visible thing a neighbor can do.
-        </p>
+        <h2 class="action-step-title">{attendTitle}</h2>
+        <p class="action-step-lede">{attendLede}</p>
         {nextMeeting && (
           <div class="attend-detail">
             <div class="attend-cal-row">
@@ -365,28 +410,23 @@ const mediaOutlets = [
             <div class="attend-flag">
               <span class="attend-flag-tag">
                 <Icon name="gavel" size={12} />
-                On the agenda
+                {attendAgendaTag}
               </span>
-              <span class="attend-flag-text">Third reading of the 18-month data center moratorium.</span>
+              <span class="attend-flag-text">{attendAgendaText}</span>
             </div>
-            <p class="attend-body">
-              A moratorium ordinance must pass three separate readings before it can be adopted.
-              This is the third and final reading. If passed, it pauses new data center
-              construction for 18 months while questions about water, power, noise, and
-              tax incentives are answered.
-            </p>
+            <p class="attend-body">{attendBody}</p>
             <ul class="attend-list">
               <li>
                 <span class="attend-icon"><Icon name="map-pin" size={15} ariaLabel="Location" /></span>
-                Village offices, 67 W. Scioto St., Commercial Point.
+                {attendAddress}
               </li>
               <li>
                 <span class="attend-icon"><Icon name="clock" size={15} ariaLabel="Time" /></span>
-                7:00 PM. Doors open earlier.
+                {attendTime}
               </li>
               <li>
                 <span class="attend-icon"><Icon name="microphone" size={15} ariaLabel="Speaking" /></span>
-                Sign in to speak. Five minutes per resident.
+                {attendPublicComment}
               </li>
             </ul>
             <p class="action-foot">
@@ -406,12 +446,8 @@ const mediaOutlets = [
         <span class="action-step-number">04</span>
       </div>
       <div class="action-step-content">
-        <h2 class="action-step-title">Contact the media.</h2>
-        <p class="action-step-lede">
-          Local newsrooms are covering this story. A tip from a resident carries more weight
-          than a press release. If you have a personal account, a neighbor who should be
-          interviewed, or a document the public should see, reach out directly.
-        </p>
+        <h2 class="action-step-title">{mediaTitle}</h2>
+        <p class="action-step-lede">{mediaLede}</p>
         <div class="media-list">
           {mediaOutlets.map((outlet) => (
             <div class="media-row">
@@ -432,46 +468,37 @@ const mediaOutlets = [
         <span class="action-step-number">05</span>
       </div>
       <div class="action-step-content">
-        <h2 class="action-step-title">Share with neighbors.</h2>
-        <p class="action-step-lede">
-          Most residents near Foxfire still do not know what has been approved. A text
-          message or a conversation changes that.
-        </p>
+        <h2 class="action-step-title">{shareTitle}</h2>
+        <p class="action-step-lede">{shareLede}</p>
         <ul class="share-list">
-          <li>Forward this site to a neighbor: <span class="mono">foxfirecoalition.org</span></li>
-          <li>Post it to your neighborhood Facebook group or Nextdoor.</li>
-          <li>Text the petition link to five people who live nearby.</li>
-          <li>Text the donation link to neighbors who want to support the coalition financially.</li>
+          {shareSuggestions.map((s) => (
+            <li>{s}</li>
+          ))}
         </ul>
         <p class="action-foot" style="margin-top: var(--space-lg);">
           <a href={petitionUrl} target="_blank" rel="noopener">
-            Sign and share the petition →
+            {shareFootLinkLabel} →
           </a>
         </p>
       </div>
     </section>
 
-  </div><!-- /action-steps-wrap -->
+  </div>
 
   <!-- Mission pre-footer -->
   <section class="pre-footer pre-footer-mission">
     <div class="pre-footer-inner">
-      <p class="pre-footer-kicker">Why we are here</p>
+      <p class="pre-footer-kicker">{preFooterKicker}</p>
       <h2 class="pre-footer-title">
-        Resident-led.<br />Evidence-based.<br />Not going away.
+        {preFooterTitleLine1}<br />{preFooterTitleLine2}<br />{preFooterTitleLine3}
       </h2>
-      <p class="pre-footer-body">
-        Homes of Foxfire Coalition Against Data Centers is a volunteer neighborhood effort
-        to educate residents, gather public records, ask clear questions of elected
-        officials, and protect the future of this community. Every action on this page
-        is part of that effort.
-      </p>
+      <p class="pre-footer-body">{preFooterBody}</p>
       <p class="pre-footer-ctas">
         <a class="btn-primary" href={petitionUrl} target="_blank" rel="noopener">
-          Sign the petition <Icon name="pen" size={14} />
+          {preFooterPetitionCtaLabel} <Icon name="pen" size={14} />
         </a>
-        <a class="btn-secondary-light" href="https://www.gofundme.com/f/support-community-action-against-data-center" target="_blank" rel="noopener">
-          Make a donation <Icon name="heart" size={14} />
+        <a class="btn-secondary-light" href={preFooterDonateUrl} target="_blank" rel="noopener">
+          {preFooterDonateCtaLabel} <Icon name="heart" size={14} />
         </a>
       </p>
     </div>
@@ -526,7 +553,6 @@ const mediaOutlets = [
     const submitBtn = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
     if (form && success && submitBtn) {
       form.addEventListener('submit', () => {
-        // Disable immediately to prevent double-submission
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending…';
         setTimeout(() => {
