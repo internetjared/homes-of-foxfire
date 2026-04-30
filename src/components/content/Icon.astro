@@ -21,7 +21,8 @@ type IconName =
   | 'gavel'
   | 'check'
   | 'megaphone'
-  | 'thumbs-up';
+  | 'thumbs-up'
+  | 'copy';
 
 interface Props {
   name: IconName;
@@ -91,6 +92,9 @@ const a11y = ariaLabel
   )}
   {name === 'thumbs-up' && (
     <path d="M2 20h2a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1H2v10Zm18.7-9.3A2 2 0 0 0 19 10h-5V6a3 3 0 0 0-3-3h-1v2c0 2.1-.8 4-2.3 5.4L7 12v7h10.3l2.5-6.3a2 2 0 0 0-.1-2Z" />
+  )}
+  {name === 'copy' && (
+    <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z" />
   )}
 </svg>
 

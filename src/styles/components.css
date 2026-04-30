@@ -3698,6 +3698,58 @@ abbr[title]:hover {
   border-bottom-color: var(--ink);
 }
 
+/* Copy-to-clipboard button next to each council email */
+.official-row-copy {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  margin-left: -6px;
+  padding: 0;
+  border: 1px solid var(--rule-soft);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: color 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.official-row-copy:hover,
+.official-row-copy:focus-visible {
+  color: var(--ink);
+  border-color: var(--ink);
+  outline: none;
+}
+
+.official-row-copy .icon {
+  position: absolute;
+  inset: auto;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.official-row-copy .official-row-copy-check {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.official-row-copy.is-copied {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.official-row-copy.is-copied [data-icon="copy"] {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.official-row-copy.is-copied .official-row-copy-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
 /* Remove bottom border on the last row so it doesn't double with the footer note */
 .officials-list .official-row:last-of-type {
   border-bottom: none;

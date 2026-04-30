@@ -368,6 +368,17 @@ const nextMeetingYear = nextMeetingDateObj?.getFullYear();
               <a class="official-row-email" href={`mailto:${mayor.email}`}>
                 {mayor.email} <span aria-hidden="true">→</span>
               </a>
+              <button
+                type="button"
+                class="official-row-copy"
+                data-copy-text={mayor.email}
+                data-copy-icon="true"
+                aria-label={`Copy ${mayor.email} to clipboard`}
+                title="Copy email"
+              >
+                <Icon name="copy" size={16} />
+                <Icon name="check" size={16} class="official-row-copy-check" />
+              </button>
             </div>
           )}
           {council.map((o) => (
@@ -379,6 +390,17 @@ const nextMeetingYear = nextMeetingDateObj?.getFullYear();
               <a class="official-row-email" href={`mailto:${o.email}`}>
                 {o.email} <span aria-hidden="true">→</span>
               </a>
+              <button
+                type="button"
+                class="official-row-copy"
+                data-copy-text={o.email}
+                data-copy-icon="true"
+                aria-label={`Copy ${o.email} to clipboard`}
+                title="Copy email"
+              >
+                <Icon name="copy" size={16} />
+                <Icon name="check" size={16} class="official-row-copy-check" />
+              </button>
             </div>
           ))}
           <p class="officials-foot" style="margin-top: var(--space-md);">{emailRosterFooter}</p>
@@ -529,19 +551,30 @@ const nextMeetingYear = nextMeetingDateObj?.getFullYear();
     });
   })();
 
-  // Copy-to-clipboard for email template buttons
+  // Copy-to-clipboard for email template buttons and council-email copy buttons
   (function () {
     document.querySelectorAll<HTMLButtonElement>('[data-copy-text]').forEach((btn) => {
       btn.addEventListener('click', async () => {
         const text = btn.dataset.copyText ?? '';
+        const isIconBtn = btn.dataset.copyIcon === 'true';
         const original = btn.textContent ?? '';
         try {
           await navigator.clipboard.writeText(text);
-          btn.textContent = 'Copied.';
+          if (isIconBtn) {
+            btn.classList.add('is-copied');
+          } else {
+            btn.textContent = 'Copied.';
+          }
         } catch {
-          btn.textContent = 'Select and copy above.';
+          if (!isIconBtn) btn.textContent = 'Select and copy above.';
         }
-        setTimeout(() => { btn.textContent = original; }, 1800);
+        setTimeout(() => {
+          if (isIconBtn) {
+            btn.classList.remove('is-copied');
+          } else {
+            btn.textContent = original;
+          }
+        }, 1800);
       });
     });
   })();
