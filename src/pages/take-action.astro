@@ -365,20 +365,22 @@ const nextMeetingYear = nextMeetingDateObj?.getFullYear();
                 <span class="official-row-name">{mayor.name}</span>
                 <span class="official-row-role">Mayor</span>
               </div>
-              <a class="official-row-email" href={`mailto:${mayor.email}`}>
-                {mayor.email} <span aria-hidden="true">→</span>
-              </a>
-              <button
-                type="button"
-                class="official-row-copy"
-                data-copy-text={mayor.email}
-                data-copy-icon="true"
-                aria-label={`Copy ${mayor.email} to clipboard`}
-                title="Copy email"
-              >
-                <Icon name="copy" size={16} />
-                <Icon name="check" size={16} class="official-row-copy-check" />
-              </button>
+              <div class="official-row-right">
+                <a class="official-row-email" href={`mailto:${mayor.email}`}>
+                  {mayor.email}
+                </a>
+                <button
+                  type="button"
+                  class="official-row-copy"
+                  data-copy-text={mayor.email}
+                  data-copy-icon="true"
+                  aria-label={`Copy ${mayor.email} to clipboard`}
+                  title="Copy email"
+                >
+                  <Icon name="copy" size={16} />
+                  <Icon name="check" size={16} class="official-row-copy-check" />
+                </button>
+              </div>
             </div>
           )}
           {council.map((o) => (
@@ -387,20 +389,22 @@ const nextMeetingYear = nextMeetingDateObj?.getFullYear();
                 <span class="official-row-name">{o.name}</span>
                 <span class="official-row-role">Council Member</span>
               </div>
-              <a class="official-row-email" href={`mailto:${o.email}`}>
-                {o.email} <span aria-hidden="true">→</span>
-              </a>
-              <button
-                type="button"
-                class="official-row-copy"
-                data-copy-text={o.email}
-                data-copy-icon="true"
-                aria-label={`Copy ${o.email} to clipboard`}
-                title="Copy email"
-              >
-                <Icon name="copy" size={16} />
-                <Icon name="check" size={16} class="official-row-copy-check" />
-              </button>
+              <div class="official-row-right">
+                <a class="official-row-email" href={`mailto:${o.email}`}>
+                  {o.email}
+                </a>
+                <button
+                  type="button"
+                  class="official-row-copy"
+                  data-copy-text={o.email}
+                  data-copy-icon="true"
+                  aria-label={`Copy ${o.email} to clipboard`}
+                  title="Copy email"
+                >
+                  <Icon name="copy" size={16} />
+                  <Icon name="check" size={16} class="official-row-copy-check" />
+                </button>
+              </div>
             </div>
           ))}
           <p class="officials-foot" style="margin-top: var(--space-md);">{emailRosterFooter}</p>

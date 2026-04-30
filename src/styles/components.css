@@ -3645,10 +3645,17 @@ abbr[title]:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   padding-block: var(--space-md);
   border-bottom: 1px solid var(--rule-soft);
   flex-wrap: wrap;
+}
+
+.official-row-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-left: auto;
 }
 
 .official-row-mayor {
@@ -3707,7 +3714,6 @@ abbr[title]:hover {
   flex-shrink: 0;
   width: 32px;
   height: 32px;
-  margin-left: -6px;
   padding: 0;
   border: 1px solid var(--rule-soft);
   border-radius: 6px;
@@ -3778,6 +3784,10 @@ abbr[title]:hover {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-xs);
+  }
+
+  .official-row-right {
+    margin-left: 0;
   }
 
   .official-row-email {
