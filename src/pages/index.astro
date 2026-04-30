@@ -3,11 +3,77 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
 import Icon from '../components/content/Icon.astro';
 import meetings from '../data/meetings.json';
+import { sanity, QUERY_HOME_PAGE, type SanityHomePage } from '../lib/sanity';
+import { toHTML } from '@portabletext/to-html';
 
-const lastUpdated = '04.29 / 2026';
+const lastUpdated = '04.30 / 2026';
 
-const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-centers-in-commercial-point-and-scioto-township';
-const donateUrl = 'https://www.gofundme.com/f/support-community-action-against-data-center';
+// Fetch homepage content from Sanity. Falls back to hardcoded defaults if the document
+// is missing or any individual field is empty. Lets the site keep rendering even when
+// the Studio is empty.
+let home: SanityHomePage = {};
+try {
+  home = (await sanity.fetch<SanityHomePage | null>(QUERY_HOME_PAGE)) || {};
+} catch (err) {
+  console.warn('[index.astro] Sanity fetch failed:', err);
+}
+
+// Hero
+const heroKicker = home.heroKicker || 'Foxfire Community';
+const heroLine1 = home.heroLine1 || 'Giant data centers.';
+const heroLine2 = home.heroLine2 || 'Nearly 267 acres.';
+const heroLine3 = home.heroLine3 || 'Your new neighbor.';
+const heroLede = home.heroLede || `Nearly 267 acres near Foxfire have been rezoned for data-center use. We're a resident-led coalition working to uncover the facts, demand transparency, and protect the future of our neighborhood.`;
+const heroCtaLabel = home.heroCtaLabel || 'Take action';
+
+// Signup
+const signupKicker = home.signupKicker || 'Take action';
+const signupTitle = home.signupTitle || 'Get updates from the coalition.';
+const signupLede = home.signupLede || 'Short notes about meetings, events, and progress on the data center issue. No spam, no other lists. Unsubscribe anytime.';
+const signupSuccessMessage = home.signupSuccessMessage || 'Thank you for joining the fight. Watch for short notes on meetings, key documents, and how to make your voice heard.';
+
+// Meeting
+const meetingKicker = home.meetingKicker || 'Next council meeting';
+const meetingAgendaTag = home.meetingAgendaTag || 'On the agenda';
+const meetingAgendaText = home.meetingAgendaText || 'Third reading of the 18-month data center moratorium.';
+const meetingBody = home.meetingBody || 'A moratorium ordinance must be read at three separate Council meetings before it can be adopted. This is the third and final reading. If passed, it pauses any new data center construction in the village for 18 months while questions about water, power, noise, and tax incentives are answered.';
+const meetingAddress = home.meetingAddress || 'Village offices, 67 W. Scioto St., Commercial Point.';
+const meetingTime = home.meetingTime || '7:00 PM. Doors open earlier.';
+const meetingPublicComment = home.meetingPublicComment || 'Sign in to speak. Five minutes per resident.';
+
+// Petition / Donate
+const petitionKicker = home.petitionKicker || 'Petition';
+const petitionTitle = home.petitionTitle || 'Sign the petition.';
+const petitionBody = home.petitionBody || 'Add your name to the coalition petition to prevent the construction of data centers in Commercial Point and Scioto Township. Every signature is part of the public record we bring to council.';
+const petitionCtaLabel = home.petitionCtaLabel || 'Sign the petition';
+const petitionUrl = home.petitionUrl || 'https://www.change.org/p/prevent-the-construction-of-data-centers-in-commercial-point-and-scioto-township';
+
+const donateKicker = home.donateKicker || 'Donate';
+const donateTitle = home.donateTitle || 'Make a donation.';
+const donateBodyHtml = (home.donateBody && Array.isArray(home.donateBody) && home.donateBody.length > 0)
+  ? toHTML(home.donateBody as any)
+  : `<p>Support the coalition through GoFundMe. Donations help fund legal research, public records requests, expert reviews, printing, and outreach to neighbors who have not heard yet. <strong>Every dollar is tracked and publicly recorded.</strong></p>`;
+const donateCtaLabel = home.donateCtaLabel || 'Make a donation';
+const donateUrl = home.donateUrl || 'https://www.gofundme.com/f/support-community-action-against-data-center';
+
+// Story
+const storyKicker = home.storyKicker || 'What happened';
+const storyTitle = home.storyTitle || 'A massive data-center project is being planned near Foxfire. Residents deserve answers.';
+const storyBodyHtml = (home.storyBody && Array.isArray(home.storyBody) && home.storyBody.length > 0)
+  ? toHTML(home.storyBody as any)
+  : `<p>In May 2024, the Village of Commercial Point approved <a href="https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-07.pdf" target="_blank" rel="noopener">Ordinance 2024-07</a>, rezoning nearly 267 acres of the K-Nova / Jahn Farm property near Foxfire to Planned Industrial District with development standards permitting only data centers.</p>
+<p>Since then, additional records and meeting minutes have raised important questions about the project timeline, emergency passage of the ordinance, public notice, utility impacts, and the role of K-Nova, Amazon Web Services, and our own Council.</p>
+<p>This site exists to help residents understand the public record, follow what happens next, and take action together.</p>`;
+const storyTimelineLinkLabel = home.storyTimelineLinkLabel || 'Read the full timeline';
+
+// Pre-footer
+const preFooterKicker = home.preFooterKicker || 'The neighborhood';
+const preFooterTitleLine1 = home.preFooterTitleLine1 || 'Our neighborhood.';
+const preFooterTitleLine2 = home.preFooterTitleLine2 || 'Our families.';
+const preFooterTitleLine3 = home.preFooterTitleLine3 || 'Our future here.';
+const preFooterBody = home.preFooterBody || 'Foxfire is where hundreds of families have made homes and raised kids. The coalition is organizing to keep it that way. We are putting the public record in one place so the people who live here have a real say in what comes next.';
+const preFooterCtaLabel = home.preFooterCtaLabel || 'Help protect Foxfire';
+const preFooterCtaUrl = home.preFooterCtaUrl || '/take-action';
 
 // Next meeting for the side-by-side box. Pre-format calendar pieces.
 const nextMeeting = meetings[0];
@@ -32,15 +98,11 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
   <!-- Hero -->
   <section class="page-section page-section-tier hero hero-tall">
     <div class="measure-wide">
-      <p class="kicker">Foxfire Community</p>
-      <h1 class="hero-display"><span class="hero-line">Giant data centers.</span><span class="hero-line">Nearly 267 acres.</span><span class="hero-line hero-line-accent">Your new neighbor.</span></h1>
-      <p class="lede">
-        Nearly 267 acres near Foxfire have been rezoned for data-center use. We're a resident-led
-        coalition working to uncover the facts, demand transparency, and protect the future of our
-        neighborhood.
-      </p>
+      <p class="kicker">{heroKicker}</p>
+      <h1 class="hero-display"><span class="hero-line">{heroLine1}</span><span class="hero-line">{heroLine2}</span><span class="hero-line hero-line-accent">{heroLine3}</span></h1>
+      <p class="lede">{heroLede}</p>
       <div class="hero-cta">
-        <a class="btn-primary" href="#act">Take action <Icon name="megaphone" size={14} /></a>
+        <a class="btn-primary" href="#act">{heroCtaLabel} <Icon name="megaphone" size={14} /></a>
       </div>
     </div>
 
@@ -55,12 +117,9 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     <div class="action-panel-grid">
       <!-- Left: signup -->
       <div class="action-panel-col action-panel-signup">
-        <p class="kicker action-panel-kicker">Take action</p>
-        <h2 class="action-panel-title">Get updates from the coalition.</h2>
-        <p class="action-panel-lede">
-          Short notes about meetings, events, and progress on the data center issue. No spam, no
-          other lists. Unsubscribe anytime.
-        </p>
+        <p class="kicker action-panel-kicker">{signupKicker}</p>
+        <h2 class="action-panel-title">{signupTitle}</h2>
+        <p class="action-panel-lede">{signupLede}</p>
 
         <!-- Hidden iframe absorbs Google's redirect so the visitor stays on the page -->
         <iframe name="signup-sink" style="display:none;" aria-hidden="true"></iframe>
@@ -121,7 +180,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
           <!-- Success message shown after submit -->
           <div class="action-signup-success" id="signup-success" aria-live="polite" style="display:none;">
             <Icon name="thumbs-up" size={20} />
-            <p>Thank you for joining the fight. Watch for short notes on meetings, key documents, and how to make your voice heard.</p>
+            <p>{signupSuccessMessage}</p>
           </div>
         </form>
 
@@ -131,7 +190,6 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
           const submitBtn = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
           if (form && success && submitBtn) {
             form.addEventListener('submit', () => {
-              // Disable immediately to prevent double-submission
               submitBtn.disabled = true;
               submitBtn.textContent = 'Sending…';
               setTimeout(() => {
@@ -146,7 +204,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
 
       <!-- Right: next meeting -->
       <aside class="action-panel-col action-panel-meeting" aria-label="Next council meeting">
-        <p class="kicker action-panel-kicker">Next council meeting</p>
+        <p class="kicker action-panel-kicker">{meetingKicker}</p>
 
         <div class="action-meeting-cal-row">
           <div class="cal-block" aria-hidden="true">
@@ -161,28 +219,23 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
         <div class="action-meeting-flag">
           <span class="action-meeting-flag-tag">
             <Icon name="gavel" size={12} />
-            On the agenda
+            {meetingAgendaTag}
           </span>
-          <span class="action-meeting-flag-text">Third reading of the 18-month data center moratorium.</span>
+          <span class="action-meeting-flag-text">{meetingAgendaText}</span>
         </div>
-        <p class="action-meeting-body">
-          A moratorium ordinance must be read at three separate Council meetings before it can be
-          adopted. This is the third and final reading. If passed, it pauses any new data center
-          construction in the village for 18 months while questions about water, power, noise, and
-          tax incentives are answered.
-        </p>
+        <p class="action-meeting-body">{meetingBody}</p>
         <ul class="action-meeting-list">
           <li>
             <span class="action-meeting-icon"><Icon name="map-pin" size={16} ariaLabel="Where" /></span>
-            Village offices, 67 W. Scioto St., Commercial Point.
+            {meetingAddress}
           </li>
           <li>
             <span class="action-meeting-icon"><Icon name="clock" size={16} ariaLabel="Time" /></span>
-            7:00 PM. Doors open earlier.
+            {meetingTime}
           </li>
           <li>
             <span class="action-meeting-icon"><Icon name="microphone" size={16} ariaLabel="Public comment" /></span>
-            Sign in to speak. Five minutes per resident.
+            {meetingPublicComment}
           </li>
         </ul>
         <p class="action-meeting-foot">
@@ -199,38 +252,30 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     <div class="action-cta-grid">
       <article class="action-cta-card action-cta-petition">
         <div class="action-cta-inner">
-          <p class="kicker action-cta-kicker">Petition</p>
+          <p class="kicker action-cta-kicker">{petitionKicker}</p>
           <h2 class="action-cta-title">
             <span class="action-cta-title-icon" aria-hidden="true"><Icon name="pen" size={28} /></span>
-            Sign the petition.
+            {petitionTitle}
           </h2>
-          <p class="action-cta-body">
-            Add your name to the coalition petition to prevent the construction of data centers
-            in Commercial Point and Scioto Township. Every signature is part of the public record
-            we bring to council.
-          </p>
+          <p class="action-cta-body">{petitionBody}</p>
           <p class="action-cta-foot">
             <a class="btn-primary action-cta-btn" href={petitionUrl} target="_blank" rel="noopener">
-              Sign the petition <Icon name="pen" size={14} />
+              {petitionCtaLabel} <Icon name="pen" size={14} />
             </a>
           </p>
         </div>
       </article>
       <article class="action-cta-card action-cta-donate">
         <div class="action-cta-inner">
-          <p class="kicker action-cta-kicker">Donate</p>
+          <p class="kicker action-cta-kicker">{donateKicker}</p>
           <h2 class="action-cta-title">
             <span class="action-cta-title-icon" aria-hidden="true"><Icon name="heart" size={28} /></span>
-            Make a donation.
+            {donateTitle}
           </h2>
-          <p class="action-cta-body">
-            Support the coalition through GoFundMe. Donations help fund legal research, public
-            records requests, expert reviews, printing, and outreach to neighbors who have not
-            heard yet. <strong>Every dollar is tracked and publicly recorded.</strong>
-          </p>
+          <div class="action-cta-body" set:html={donateBodyHtml}></div>
           <p class="action-cta-foot">
             <a class="btn-secondary action-cta-btn" href={donateUrl} target="_blank" rel="noopener">
-              Make a donation <Icon name="heart" size={14} />
+              {donateCtaLabel} <Icon name="heart" size={14} />
             </a>
           </p>
         </div>
@@ -245,26 +290,13 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       <!-- Left: text + status table + CTA -->
       <div class="story-content">
         <SectionHeading
-          kicker="What happened"
-          title="A massive data-center project is being planned near Foxfire. Residents deserve answers."
+          kicker={storyKicker}
+          title={storyTitle}
         />
-        <p>
-          In May 2024, the Village of Commercial Point approved <a href="https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-07.pdf" target="_blank" rel="noopener">Ordinance 2024-07</a>, rezoning nearly
-          267 acres of the K-Nova / Jahn Farm property near Foxfire to Planned Industrial District
-          with development standards permitting only data centers.
-        </p>
-        <p>
-          Since then, additional records and meeting minutes have raised important questions about
-          the project timeline, emergency passage of the ordinance, public notice, utility impacts,
-          and the role of K-Nova, Amazon Web Services, and our own Council.
-        </p>
-        <p>
-          This site exists to help residents understand the public record, follow what happens
-          next, and take action together.
-        </p>
+        <div set:html={storyBodyHtml}></div>
 
         <div class="section-foot story-foot">
-          <a href="/timeline">Read the full timeline <span aria-hidden="true">&rarr;</span></a>
+          <a href="/timeline">{storyTimelineLinkLabel} <span aria-hidden="true">&rarr;</span></a>
           <button
             class="btn-plan"
             type="button"
@@ -297,23 +329,18 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
   <!-- Pre-footer: Foxfire neighborhood aerial -->
   <section class="pre-footer" aria-label="Foxfire neighborhood">
     <div class="pre-footer-inner">
-      <p class="pre-footer-kicker">The neighborhood</p>
+      <p class="pre-footer-kicker">{preFooterKicker}</p>
       <h2 class="pre-footer-title">
-        Our neighborhood.<br />Our families.<br />Our future here.
+        {preFooterTitleLine1}<br />{preFooterTitleLine2}<br />{preFooterTitleLine3}
       </h2>
-      <p class="pre-footer-body">
-        Foxfire is where hundreds of families have made homes and raised kids. The coalition is
-        organizing to keep it that way. We are putting the public record in one place so the
-        people who live here have a real say in what comes next.
-      </p>
+      <p class="pre-footer-body">{preFooterBody}</p>
       <p class="pre-footer-ctas">
-        <a class="btn-primary" href="/take-action">Help protect Foxfire <Icon name="megaphone" size={14} /></a>
+        <a class="btn-primary" href={preFooterCtaUrl}>{preFooterCtaLabel} <Icon name="megaphone" size={14} /></a>
       </p>
     </div>
   </section>
 
-  <!-- Plan lightbox — Jahn Property Industrial Site Plan, C001, 2026-03-31
-       Drop the file into /public/ and update data-src below if the extension differs. -->
+  <!-- Plan lightbox — Jahn Property Industrial Site Plan, C001, 2026-03-31 -->
   <div
     class="plan-lightbox"
     id="plan-lightbox"
@@ -335,7 +362,6 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
         </button>
       </div>
       <div class="plan-lightbox-body">
-        <!-- iframe src is set by JS on open so the PDF doesn't load until needed -->
         <iframe
           class="plan-lightbox-iframe"
           id="plan-lightbox-iframe"
@@ -363,13 +389,10 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     let lastFocus: HTMLElement | null = null;
 
     const open = () => {
-      // Lazy-load the PDF only on first open
       if (!iframe.src || iframe.src === window.location.href) {
         iframe.src = iframe.dataset.src ?? '';
       }
       lightbox.removeAttribute('hidden');
-      // rAF ensures the browser paints opacity:0 before adding is-open,
-      // so the transition actually fires
       requestAnimationFrame(() => lightbox.classList.add('is-open'));
       document.body.style.overflow = 'hidden';
       lastFocus = document.activeElement as HTMLElement;
@@ -380,23 +403,19 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       lightbox.classList.remove('is-open');
       document.body.style.overflow = '';
       lastFocus?.focus();
-      // Wait for the fade-out before hiding from the accessibility tree
       lightbox.addEventListener('transitionend', () => {
         if (!lightbox.classList.contains('is-open')) lightbox.setAttribute('hidden', '');
       }, { once: true });
     };
 
-    // Trigger button
     document.querySelectorAll<HTMLElement>('[data-open-lightbox="plan"]').forEach((btn) => {
       btn.addEventListener('click', open);
     });
 
-    // Close via backdrop or × button
     lightbox.querySelectorAll<HTMLElement>('[data-close-lightbox]').forEach((el) => {
       el.addEventListener('click', close);
     });
 
-    // Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !lightbox.hidden) close();
     });

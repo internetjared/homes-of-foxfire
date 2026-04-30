@@ -1,7 +1,41 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import timeline from '../data/timeline.json';
 
-const lastUpdated = '04.29 / 2026';
+const lastUpdated = '04.30 / 2026';
+
+interface TimelineEntry {
+  date: string;
+  category: string;
+  title: string;
+  body: string;
+  status: string;
+  verification: string;
+  why_it_matters?: string;
+  ordinance?: string;
+  source: { label: string; url: string };
+}
+
+const entries = (timeline as TimelineEntry[]).slice().sort((a, b) => a.date.localeCompare(b.date));
+
+const formatDate = (iso: string) => {
+  if (!iso) return '';
+  const d = new Date(iso + 'T12:00:00');
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+};
+
+const verificationLabel = (v: string) => {
+  if (v === 'confirmed') return 'Confirmed';
+  if (v === 'needs-follow-up') return 'Needs follow-up';
+  if (v === 'records-requested') return 'Records requested';
+  return v;
+};
+
+const verificationStyle = (v: string) => {
+  if (v === 'confirmed') return 'background: var(--moss); color: var(--ink);';
+  if (v === 'needs-follow-up') return 'background: var(--bone); color: var(--text);';
+  return 'background: var(--bone); color: var(--text-soft);';
+};
 ---
 
 <SiteLayout
@@ -9,14 +43,56 @@ const lastUpdated = '04.29 / 2026';
   description="A source-linked public-record timeline of the K-Nova / Jahn Farm data-center zoning and site-plan issue near Foxfire in Commercial Point, Ohio."
   lastUpdated={lastUpdated}
 >
-  <section class="page-section page-section-tier" style="min-height: 80vh;">
+  <section class="page-section page-section-tier" style="min-height: 50vh;">
     <div class="measure">
       <p class="kicker">Timeline</p>
-      <h1 style="font-family: var(--headline); font-size: clamp(2rem, 3.8vw, 3rem); line-height: 1.15; margin: 0 0 var(--space-md);">Coming soon.</h1>
+      <h1 style="font-family: var(--headline); font-size: clamp(2rem, 3.8vw, 3rem); line-height: 1.15; margin: 0 0 var(--space-md);">The public record.</h1>
       <p class="lede">
-        A full source-linked timeline of the K-Nova / Jahn Farm data-center
-        rezoning is being prepared. Check back soon.
+        A source-linked timeline of public-record events tied to the K-Nova / Jahn Farm rezoning
+        (Ordinance 2024-07) and the data-center proposal in Commercial Point.
       </p>
+      <p style="font-size: 0.875rem; opacity: 0.7; margin-top: var(--space-md);">
+        Every entry below is sourced. Confidence labels indicate whether a fact is directly
+        confirmed by a public record or still needs verification.
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="measure">
+      {entries.length === 0 && (
+        <p class="lede" style="opacity: 0.7;">No timeline entries published yet.</p>
+      )}
+
+      {entries.map((e) => (
+        <article style="border-top: 1px solid var(--rule-soft); padding: var(--space-lg) 0;">
+          <p class="kicker" style="margin-bottom: var(--space-xs);">
+            <span style="font-family: var(--mono); font-variant-numeric: tabular-nums;">{formatDate(e.date)}</span>
+            {e.ordinance && (
+              <span>{' · '}<span style="font-family: var(--mono);">{e.ordinance}</span></span>
+            )}
+            {' · '}
+            <span>{e.category}</span>
+          </p>
+          <h2 style="font-family: var(--headline); font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.3; margin: 0 0 var(--space-sm);">
+            {e.title}
+          </h2>
+          <p>{e.body}</p>
+          {e.why_it_matters && (
+            <p style="margin-top: var(--space-sm);"><strong>Why it matters.</strong> {e.why_it_matters}</p>
+          )}
+          <div style="display: flex; gap: var(--space-sm); align-items: center; margin-top: var(--space-md); font-size: 0.85rem;">
+            <span style={`padding: 2px 8px; border-radius: 4px; ${verificationStyle(e.verification)}`}>
+              {verificationLabel(e.verification)}
+            </span>
+            {e.source && e.source.url && (
+              <a href={e.source.url} target="_blank" rel="noopener" style="opacity: 0.8;">
+                {e.source.label} →
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 </SiteLayout>

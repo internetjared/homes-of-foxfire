@@ -1,7 +1,37 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { sanity, QUERY_UPDATES_PUBLISHED, type SanityUpdate } from '../lib/sanity';
+import { toHTML } from '@portabletext/to-html';
 
-const lastUpdated = '04.29 / 2026';
+const lastUpdated = '04.30 / 2026';
+
+// Fetch published Updates from Sanity at build time. Empty array when nothing is published yet.
+let updates: SanityUpdate[] = [];
+try {
+  updates = await sanity.fetch<SanityUpdate[]>(QUERY_UPDATES_PUBLISHED);
+} catch (err) {
+  console.warn('[updates.astro] Sanity fetch failed:', err);
+  updates = [];
+}
+
+const formatDate = (iso: string) => {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+};
+
+const categoryLabel = (cat: string) => {
+  const map: Record<string, string> = {
+    'records-request': 'Records request',
+    'meeting-reminder': 'Meeting reminder',
+    'meeting-recap': 'Meeting recap',
+    'new-document': 'New document',
+    'timeline-update': 'Timeline update',
+    'volunteer-need': 'Volunteer need',
+    'site-update': 'Site update',
+  };
+  return map[cat] || cat;
+};
 ---
 
 <SiteLayout
@@ -9,14 +39,80 @@ const lastUpdated = '04.29 / 2026';
   description="News and changes from the Foxfire Coalition: records-request status, meeting reminders, newly found documents, and volunteer needs."
   lastUpdated={lastUpdated}
 >
-  <section class="page-section page-section-tier" style="min-height: 80vh;">
+  <section class="page-section page-section-tier" style="min-height: 60vh;">
     <div class="measure">
       <p class="kicker">Updates</p>
-      <h1 style="font-family: var(--headline); font-size: clamp(2rem, 3.8vw, 3rem); line-height: 1.15; margin: 0 0 var(--space-md);">Coming soon.</h1>
+      <h1 style="font-family: var(--headline); font-size: clamp(2rem, 3.8vw, 3rem); line-height: 1.15; margin: 0 0 var(--space-md);">Coalition updates.</h1>
       <p class="lede">
-        Coalition updates will be posted here: meeting recaps, records-request
-        status, newly found documents, and volunteer needs. Check back soon.
+        Records-request status, meeting reminders, newly found documents, and volunteer needs.
       </p>
     </div>
   </section>
+
+  {updates.length === 0 && (
+    <section class="page-section">
+      <div class="measure">
+        <p class="lede" style="opacity: 0.7;">
+          No updates published yet. Check back soon, or sign up for email notifications.
+        </p>
+      </div>
+    </section>
+  )}
+
+  {updates.length > 0 && (
+    <section class="page-section">
+      <div class="measure">
+        {updates.map((u) => (
+          <article class="update-post" style="border-top: 1px solid var(--rule-soft); padding: var(--space-lg) 0;">
+            <p class="kicker" style="margin-bottom: var(--space-xs);">
+              <span style="font-family: var(--mono); font-variant-numeric: tabular-nums;">{formatDate(u.publishDate)}</span>
+              {' · '}
+              <span>{categoryLabel(u.category)}</span>
+            </p>
+            <h2 style="font-family: var(--headline); font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.25; margin: 0 0 var(--space-sm);">
+              {u.title}
+            </h2>
+            <p class="lede" style="margin-top: 0;">{u.summary}</p>
+
+            {u.whatHappened && (
+              <div style="margin-top: var(--space-md);">
+                <p class="kicker">What happened</p>
+                <p>{u.whatHappened}</p>
+              </div>
+            )}
+
+            {u.whyItMatters && (
+              <div style="margin-top: var(--space-md);">
+                <p class="kicker">Why it matters</p>
+                <p>{u.whyItMatters}</p>
+              </div>
+            )}
+
+            {u.whatToDo && (
+              <div style="margin-top: var(--space-md);">
+                <p class="kicker">What to do</p>
+                <p>{u.whatToDo}</p>
+              </div>
+            )}
+
+            {u.body && u.body.length > 0 && (
+              <div class="update-body" style="margin-top: var(--space-md);" set:html={toHTML(u.body as any)}>
+              </div>
+            )}
+
+            {u.relatedLinks && u.relatedLinks.length > 0 && (
+              <div style="margin-top: var(--space-md);">
+                <p class="kicker">Links</p>
+                <ul style="margin: 0; padding-left: 1.25em;">
+                  {u.relatedLinks.map((link) => (
+                    <li><a href={link.url}>{link.label} →</a></li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
 </SiteLayout>

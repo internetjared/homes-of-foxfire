@@ -93,6 +93,21 @@ export const QUERY_GLOSSARY_TERMS = /* groq */ `
   }
 `;
 
+// Singleton: only one homePage document exists per project.
+export const QUERY_HOME_PAGE = /* groq */ `
+  *[_type == "homePage"][0] {
+    heroKicker, heroLine1, heroLine2, heroLine3, heroLede, heroCtaLabel,
+    signupKicker, signupTitle, signupLede, signupSuccessMessage,
+    meetingKicker, meetingAgendaTag, meetingAgendaText, meetingBody,
+    meetingAddress, meetingTime, meetingPublicComment,
+    petitionKicker, petitionTitle, petitionBody, petitionCtaLabel, petitionUrl,
+    donateKicker, donateTitle, donateBody, donateCtaLabel, donateUrl,
+    storyKicker, storyTitle, storyBody, storyTimelineLinkLabel,
+    preFooterKicker, preFooterTitleLine1, preFooterTitleLine2, preFooterTitleLine3,
+    preFooterBody, preFooterCtaLabel, preFooterCtaUrl
+  }
+`;
+
 // --- Type definitions matching the schemas ---
 
 export interface SanityLink {
@@ -139,4 +154,51 @@ export interface SanityGlossaryTerm {
   _id: string;
   term: string;
   definition: string;
+}
+
+export interface SanityHomePage {
+  heroKicker?: string;
+  heroLine1?: string;
+  heroLine2?: string;
+  heroLine3?: string;
+  heroLede?: string;
+  heroCtaLabel?: string;
+
+  signupKicker?: string;
+  signupTitle?: string;
+  signupLede?: string;
+  signupSuccessMessage?: string;
+
+  meetingKicker?: string;
+  meetingAgendaTag?: string;
+  meetingAgendaText?: string;
+  meetingBody?: string;
+  meetingAddress?: string;
+  meetingTime?: string;
+  meetingPublicComment?: string;
+
+  petitionKicker?: string;
+  petitionTitle?: string;
+  petitionBody?: string;
+  petitionCtaLabel?: string;
+  petitionUrl?: string;
+
+  donateKicker?: string;
+  donateTitle?: string;
+  donateBody?: unknown[]; // portable text
+  donateCtaLabel?: string;
+  donateUrl?: string;
+
+  storyKicker?: string;
+  storyTitle?: string;
+  storyBody?: unknown[]; // portable text
+  storyTimelineLinkLabel?: string;
+
+  preFooterKicker?: string;
+  preFooterTitleLine1?: string;
+  preFooterTitleLine2?: string;
+  preFooterTitleLine3?: string;
+  preFooterBody?: string;
+  preFooterCtaLabel?: string;
+  preFooterCtaUrl?: string;
 }

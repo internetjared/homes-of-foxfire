@@ -73,10 +73,15 @@ Set these in `.env` for local development and in Vercel under Project Settings �
 
 ## Vercel deployment
 
-The site auto-deploys from `main`. Two webhook triggers also rebuild:
+The site auto-deploys from `main`. Webhook triggers also rebuild:
 
-1. **Sanity publish webhook.** Configured in https://www.sanity.io/manage → API → Webhooks. URL points at Vercel's deploy hook for the production branch. Fires on document publish for any of the four CMS document types.
-2. **Nightly cron.** Configured in `vercel.json` as a daily build. Catches Airtable changes the coalition forgot to manually trigger.
+1. **Sanity publish webhook.** Live. Configured in https://www.sanity.io/manage → `Foxfire Coalition Website` → API → Webhooks → `Vercel rebuild on publish`. Fires on Create/Update/Delete of `update`, `resource`, `faqItem`, or `glossaryTerm` documents on the `production` dataset.
+2. **Vercel deploy hook URL** (do not commit anywhere public; this URL anyone with it can trigger a build):
+   ```
+   https://api.vercel.com/v1/integrations/deploy/prj_T7NdoNwwQ0OiZe8nkmNurUhbwlXZ/AQXrErrpxs
+   ```
+   Hook ID `AQXrErrpxs`, branch `main`, named `Sanity publish`. Created via Vercel API.
+3. **Nightly cron.** Not yet configured. Add `vercel.json` with a daily cron when needed to catch Airtable changes that didn't trigger a manual rebuild.
 
 To trigger a build manually: open the Vercel project → Deployments → Redeploy.
 
