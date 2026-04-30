@@ -4,7 +4,7 @@ import { defineField, defineType } from 'sanity';
 
 const takeActionPage = defineType({
   name: 'takeActionPage',
-  title: 'Take action page',
+  title: 'Take Action',
   type: 'document',
   fields: [
     // --- Hero ---
@@ -138,7 +138,7 @@ const takeActionPage = defineType({
     { name: 'share', title: 'Step 5: Share' },
     { name: 'preFooter', title: 'Pre-footer' },
   ],
-  preview: { prepare: () => ({ title: 'Take action page content (singleton)' }) },
+  preview: { prepare: () => ({ title: 'Take Action' }) },
 });
 
 export default takeActionPage;

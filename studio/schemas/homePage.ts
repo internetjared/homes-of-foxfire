@@ -5,7 +5,7 @@ import { defineField, defineType } from 'sanity';
 
 const homePage = defineType({
   name: 'homePage',
-  title: 'Home page',
+  title: 'Home',
   type: 'document',
   fields: [
     // --- Hero ---
@@ -287,7 +287,7 @@ const homePage = defineType({
   ],
   preview: {
     prepare() {
-      return { title: 'Home page content (singleton)' };
+      return { title: 'Home' };
     },
   },
 });
