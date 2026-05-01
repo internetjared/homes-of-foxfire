@@ -527,24 +527,18 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     .home-featured-post {
       display: grid;
       grid-template-columns: minmax(300px, 440px) 1fr;
-      gap: var(--space-2xl);
-      align-items: center;
+      gap: 0;
+      align-items: stretch;
       text-decoration: none;
       color: inherit;
       background: var(--bone);
       margin-bottom: var(--space-2xl);
-      transition: background 0.2s ease;
-    }
-
-    .home-featured-post:hover,
-    .home-featured-post:focus-visible {
-      background: var(--bone);
     }
 
     .home-featured-media {
-      aspect-ratio: 16 / 9;
       overflow: hidden;
       background: var(--ink);
+      min-height: 240px;
     }
 
     .home-featured-media img {
@@ -561,8 +555,11 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     }
 
     .home-featured-body {
-      padding: var(--space-xl) var(--space-xl) var(--space-xl) 0;
+      padding: var(--space-xl) var(--space-xl) var(--space-xl) var(--space-xl);
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     /* "Featured update" pill */
@@ -730,7 +727,11 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     @media (max-width: 768px) {
       .home-featured-post {
         grid-template-columns: 1fr;
-        gap: 0;
+      }
+
+      .home-featured-media {
+        aspect-ratio: 16 / 9;
+        min-height: unset;
       }
 
       .home-featured-body {
@@ -761,7 +762,10 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       font-size: 15px;
       font-weight: 500;
       color: var(--ink);
-      text-decoration-offset: 3px;
+      text-decoration: underline;
+      text-decoration-color: var(--ink);
+      text-underline-offset: 3px;
+      transition: color 0.15s ease, text-decoration-color 0.15s ease;
     }
 
     .story-timeline-link :global(svg) {
