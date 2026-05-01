@@ -230,11 +230,22 @@
     "date": "2026-02-23",
     "label": "Moratorium proposed",
     "title": "Council Meeting — moratorium and AWS NDA",
-    "summary": "Council Member Miller submitted a proposed 18-month data-center moratorium. Resident Wasmus raised the AWS / Amazon Data Services NDA, signed July 2023 by the previous mayor with auto-renewal in July 2026. Mayor Geiger said she sent non-renewal notice. Council Member Nungester said the Durrett Road site allows data centers 'by right.'",
+    "summary": "Council Member Miller submitted a proposed data-center moratorium resolution, which was sent to Mayor Geiger and Solicitor Mattes for review. Resident Wasmus raised the AWS / Amazon Data Services NDA, signed July 2023 by the previous mayor with auto-renewal in July 2026. Mayor Geiger said she sent non-renewal notice. Council Member Nungester said the Durrett Road site allows data centers 'by right.'",
     "url": "https://www.youtube.com/watch?v=Ulia7MZRCmk",
     "url_label": "Watch on YouTube",
     "secondary_url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/03/2-23-Council.pdf",
     "secondary_label": "Read minutes"
+  },
+  {
+    "kind": "video",
+    "date": "2026-03-16",
+    "label": "Emergency resolution",
+    "title": "Committee of the Whole — Miller's emergency moratorium resolution",
+    "summary": "Council Member Ezekiel Miller's emergency resolution proposing a 180-day moratorium on new development applications and approvals was taken up at Committee of the Whole. Several community members asked for a one-year moratorium instead, arguing that a longer pause was needed to work through the open questions on water, power, and the proposed AWS / Amazon Web Services data center on Durrett Road and SR 104. The resolution had been pushed to this meeting from an earlier session.",
+    "url": "https://www.youtube.com/watch?v=h-iF_kd2qUA",
+    "url_label": "Watch on YouTube",
+    "secondary_url": "https://www.circlevilleherald.com/community/council-member-s-emergency-resolution-pushed-to-march-16-cow/article_d7e754ff-f363-4697-b643-81422cd87228.html",
+    "secondary_label": "Read coverage"
   },
   {
     "kind": "ordinance",
@@ -244,6 +255,17 @@
     "summary": "Prohibits gas-fired electric generation facilities using turbines in all zoning districts. No zoning certificate, conditional use permit, variance, or other approval may be issued for such facilities. Tied to data-center power-generation concerns; not the same as a moratorium.",
     "url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/03/2026-03.pdf",
     "url_label": "Read ordinance (PDF)"
+  },
+  {
+    "kind": "video",
+    "date": "2026-04-06",
+    "label": "Litigation signaled",
+    "title": "Council Meeting — village signals possible legal challenge",
+    "summary": "Council Member Ezekiel Miller said publicly that confronting the proposed industrial-scale development was a step that may result in litigation. Press coverage the following day reported that Commercial Point was filing motions, advancing ordinance opposition, and exploring legal avenues to challenge the K-Nova / data-center project. The same coverage noted that neighboring Ashville had moved in the opposite direction, approving an EdgeConneX data center.",
+    "url": "https://www.youtube.com/watch?v=-DCcibVNcH0",
+    "url_label": "Watch on YouTube",
+    "secondary_url": "https://www.sciotopost.com/ashville-greenlights-data-center-as-commercial-point-prepares-legal-fight/",
+    "secondary_label": "Read coverage"
   },
   {
     "kind": "site-plan",
