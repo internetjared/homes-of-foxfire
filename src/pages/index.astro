@@ -412,15 +412,30 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
 </SiteLayout>
 
 <script>
-  // Plan lightbox — open/close, lazy iframe load, focus trap, Escape key.
-  (function () {
-    const lightbox  = document.getElementById('plan-lightbox') as HTMLElement | null;
-    const iframe    = document.getElementById('plan-lightbox-iframe') as HTMLIFrameElement | null;
+  // Plan lightbox: open/close, lazy iframe load, focus trap, Escape key.
+  //
+  // Wired on every astro:page-load (initial + view transitions) and
+  // idempotently via a data flag on the lightbox so the listeners are
+  // never double-bound. Close uses a cancellable timeout instead of a
+  // transitionend handler — that handler was racy: a stale callback from
+  // a previous close could fire mid-open and re-hide the lightbox, which
+  // is what made multiple clicks feel inconsistent.
+  function initPlanLightbox() {
+    const lightbox = document.getElementById('plan-lightbox') as HTMLElement | null;
+    const iframe = document.getElementById('plan-lightbox-iframe') as HTMLIFrameElement | null;
     if (!lightbox || !iframe) return;
+    if (lightbox.dataset.lbWired === 'true') return;
+    lightbox.dataset.lbWired = 'true';
 
     let lastFocus: HTMLElement | null = null;
+    let closeTimer: number | null = null;
 
     const open = () => {
+      // If a close timeout is mid-flight, cancel it before reopening.
+      if (closeTimer !== null) {
+        clearTimeout(closeTimer);
+        closeTimer = null;
+      }
       if (!iframe.src || iframe.src === window.location.href) {
         iframe.src = iframe.dataset.src ?? '';
       }
@@ -435,9 +450,16 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       lightbox.classList.remove('is-open');
       document.body.style.overflow = '';
       lastFocus?.focus();
-      lightbox.addEventListener('transitionend', () => {
-        if (!lightbox.classList.contains('is-open')) lightbox.setAttribute('hidden', '');
-      }, { once: true });
+      if (closeTimer !== null) clearTimeout(closeTimer);
+      closeTimer = window.setTimeout(() => {
+        // Only re-hide if we're still actually closed at the end of the
+        // transition window. If `open` ran in the meantime, it cleared
+        // the timer; this is a belt-and-suspenders check.
+        if (!lightbox.classList.contains('is-open')) {
+          lightbox.setAttribute('hidden', '');
+        }
+        closeTimer = null;
+      }, 400);
     };
 
     document.querySelectorAll<HTMLElement>('[data-open-lightbox="plan"]').forEach((btn) => {
@@ -451,5 +473,12 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !lightbox.hidden) close();
     });
-  })();
+  }
+
+  document.addEventListener('astro:page-load', initPlanLightbox);
+  if (document.readyState !== 'loading') {
+    initPlanLightbox();
+  } else {
+    document.addEventListener('DOMContentLoaded', initPlanLightbox);
+  }
 </script>
