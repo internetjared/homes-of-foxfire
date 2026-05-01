@@ -5,8 +5,10 @@ import { updates, cardThumbnail } from '../../data/updates';
 
 const lastUpdated = '04.30 / 2026';
 
-// Newest first.
-const sorted = [...updates].sort((a, b) => b.publishDate.localeCompare(a.publishDate));
+// Published posts only, newest first.
+const sorted = [...updates]
+  .filter((u) => !u.draft)
+  .sort((a, b) => b.publishDate.localeCompare(a.publishDate));
 ---
 
 <SiteLayout
