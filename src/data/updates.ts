@@ -216,7 +216,7 @@ export const updates: LocalUpdate[] = [
 
 <p class="update-pull"><strong>Did Commercial Point Council have enough votes to legally suspend the required three readings before adopting Ordinance 2024-07?</strong></p>
 
-<p>That question matters because, under Ohio law, failing to properly follow the ordinance adoption process can affect whether an ordinance was validly adopted.</p>
+<p class="update-callout">That question matters because, under Ohio law, failing to properly follow the ordinance adoption process can affect whether an ordinance was validly adopted.</p>
 
 <h2>What Ordinance 2024-07 Did</h2>
 
