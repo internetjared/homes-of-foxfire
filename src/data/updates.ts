@@ -301,7 +301,7 @@ export const updates: LocalUpdate[] = [
 
 <h2>What Ohio Municipal Guidance Says About Vacancies</h2>
 
-<p>The Ohio Municipal League&rsquo;s <em>Municipal Government in Ohio</em> <a href="https://www.omlohio.org/DocumentCenter/View/1821/OML-MGO-2022-" target="_blank" rel="noopener">publication</a> discusses the effect of council vacancies.</p>
+<p>The Ohio Municipal League&rsquo;s <em>Municipal Government in Ohio</em> <a href="https://www.omlohio.org/204/Municipal-Government-In-Ohio-Publication" target="_blank" rel="noopener">publication</a> discusses the effect of council vacancies.</p>
 
 <p>It notes that a majority of the remaining members can constitute a quorum when there is a vacancy, but then makes the key point: a vacancy on council does not change the number of votes required to adopt ordinances and resolutions.</p>
 
@@ -405,7 +405,7 @@ export const updates: LocalUpdate[] = [
 
   <h3>Municipal guidance and case law</h3>
   <ul>
-    <li><a href="https://www.omlohio.org/DocumentCenter/View/1821/OML-MGO-2022-" target="_blank" rel="noopener">Ohio Municipal League: Municipal Government in Ohio</a></li>
+    <li><a href="https://www.omlohio.org/204/Municipal-Government-In-Ohio-Publication" target="_blank" rel="noopener">Ohio Municipal League: Municipal Government in Ohio</a></li>
     <li><a href="https://case-law.vlex.com/vid/kimbrell-v-village-of-892476851" target="_blank" rel="noopener">Kimbrell v. Village of Seven Mile (Ohio Court of Appeals)</a></li>
   </ul>
 </aside>
