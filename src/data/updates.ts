@@ -32,7 +32,7 @@ export const updates: LocalUpdate[] = [
     bodyHtml: `
 <p>At the <a href="https://www.youtube.com/watch?v=h-iF_kd2qUA" target="_blank" rel="noopener">March 16, 2026 public meeting</a>, Bill Scala of K-Nova spoke to Commercial Point residents and officials about the proposed data center development near our homes.</p>
 
-<p>Residents should watch this exchange carefully, not just for what was said, but for how it was framed.</p>
+<p>Residents should watch this exchange carefully, not just for what was said, but for how it was framed. The Circleville Herald also covered the exchange in a <a href="https://www.circlevilleherald.com/community/billy-scala-of-k-nova-speaks-to-commercial-point-council-during-cow/article_c92295cc-b53e-4469-be64-74fe8a1e3bc1.html" target="_blank" rel="noopener">March 24, 2026 report</a>.</p>
 
 <p>Scala repeatedly stated that the data centers are &ldquo;coming,&rdquo; framing the project as already zoned, entitled, and moving forward. He also said K-Nova had already done its &ldquo;due diligence&rdquo; and had &ldquo;shored that up&rdquo; if residents or officials wanted to fight the project. When challenged on how that sounded, he responded, &ldquo;It&rsquo;s not a threat.&rdquo; Residents can watch the exchange and judge that for themselves.</p>
 
@@ -189,6 +189,7 @@ export const updates: LocalUpdate[] = [
   <ul>
     <li><a href="https://www.washingtonpost.com/technology/2025/03/01/amazon-data-center-minnesota-diesel-generators/" target="_blank" rel="noopener">Washington Post: Amazon data center diesel-generator regulation fight in Minnesota</a></li>
     <li><a href="https://www.wired.com/2012/04/data-center-pollution/" target="_blank" rel="noopener">Wired: Microsoft data center diesel-pollution concerns in Quincy, Washington</a></li>
+    <li><a href="https://www.circlevilleherald.com/community/billy-scala-of-k-nova-speaks-to-commercial-point-council-during-cow/article_c92295cc-b53e-4469-be64-74fe8a1e3bc1.html" target="_blank" rel="noopener">Circleville Herald: Billy Scala of K-Nova speaks to Commercial Point council during COW (March 24, 2026)</a></li>
   </ul>
 </aside>
 `,
