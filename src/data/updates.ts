@@ -317,7 +317,7 @@ export const updates: LocalUpdate[] = [
 
 <p>In <em>Kimbrell v. Village of Seven Mile</em>, the Ohio Court of Appeals addressed R.C. 731.17 and stated that the requirement that legislation be read on three different days, unless properly dispensed with by a three-fourths vote, is mandatory. The court&rsquo;s syllabus states that failure to comply with the reading requirement renders the ordinance or resolution &ldquo;invalid and unenforceable.&rdquo;</p>
 
-<p>Again, we are not saying a court has already ruled on Ordinance 2024-07. But <a href="https://case-law.vlex.com/vid/kimbrell-v-village-of-892476851" target="_blank" rel="noopener">this case</a> is one reason the issue deserves immediate public review.</p>
+<p>Again, we are not saying a court has already ruled on Ordinance 2024-07. But <a href="https://case-law.vlex.com/vid/kimbrell-v-village-of-892476851" target="_blank" rel="noopener"><em>Kimbrell v. Village of Seven Mile</em></a> is one reason the issue deserves immediate public review.</p>
 
 <p>If the motion to suspend readings required five yes votes, and the May 20 vote only received four, then there is a serious question about whether Ordinance 2024-07 was adopted before it was legally eligible for final passage.</p>
 
