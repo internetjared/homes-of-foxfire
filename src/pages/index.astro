@@ -526,8 +526,8 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
 
     .home-featured-post {
       display: grid;
-      grid-template-columns: minmax(300px, 440px) 1fr;
-      gap: 0;
+      grid-template-columns: minmax(440px, 1.2fr) 1fr;
+      gap: var(--space-2xl);
       align-items: stretch;
       text-decoration: none !important;
       color: inherit;
@@ -551,7 +551,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     }
 
     .home-featured-body {
-      padding: var(--space-xl) 0 var(--space-xl) var(--space-xl);
+      padding: 0;
       min-width: 0;
       display: flex;
       flex-direction: column;
