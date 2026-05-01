@@ -6,8 +6,6 @@ import questions from '../data/questions.json';
 
 const lastUpdated = '04.30 / 2026';
 
-const questionCount = questions.reduce((sum, cat) => sum + cat.items.length, 0);
-
 const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-centers-in-commercial-point-and-scioto-township';
 ---
 
@@ -16,15 +14,6 @@ const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-c
   description="Public records show that nearly 267 acres near Foxfire have been rezoned for data-center use. These are the questions residents are still asking about what happened, what remains, and what can still be done."
   lastUpdated={lastUpdated}
 >
-
-  <!-- Filing-stamp strip -->
-  <aside class="filing-stamp" aria-hidden="true">
-    <div class="filing-stamp-inner">
-      <span>Open inquiries</span>
-      <span class="filing-stamp-dot">·</span>
-      <span>{questionCount} questions</span>
-    </div>
-  </aside>
 
   <!-- Split layout: sticky hero + scrolling Q&A -->
   <section class="questions-layout">
@@ -127,9 +116,9 @@ const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-c
     align-self: start;
     position: sticky;
     /* sticky `top` matches the rail's natural position — status bar + header
-       + filing-stamp height + the layout's own top padding — so the rail is
-       sticky from frame 1 and never travels even one pixel. */
-    top: calc(var(--sticky-bar-h, 52px) + var(--header-h, 114px) + 48px + var(--space-2xl));
+       + the layout's own top padding — so the rail is sticky from frame 1
+       and never travels even one pixel. */
+    top: calc(var(--sticky-bar-h, 52px) + var(--header-h, 114px) + var(--space-2xl));
   }
 
   .questions-layout-aside-inner {
