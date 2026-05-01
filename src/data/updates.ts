@@ -20,6 +20,7 @@ export interface LocalUpdate {
   videoTitle?: string;
   bodyHtml: string;
   draft?: boolean;            // true = generates the slug page but hidden from public index
+  featured?: boolean;         // true = pinned as featured post on the homepage
 }
 
 export const updates: LocalUpdate[] = [
@@ -204,6 +205,7 @@ export const updates: LocalUpdate[] = [
     publishDateLabel: 'May 2, 2026',
     category: 'Public records',
     excerpt: 'Public records, Ohio law, and the village\u2019s own code raise a serious procedural question about the May 20, 2024 vote adopting Ordinance 2024-07. Did council have enough votes to legally suspend the required three readings?',
+    featured: true,
     thumbnailUrl: '/ordinance-2024-07-procedural-review.png',
     ogImageWidth: 1672,
     ogImageHeight: 941,

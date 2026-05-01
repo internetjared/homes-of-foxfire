@@ -3,6 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
 import Icon from '../components/content/Icon.astro';
 import meetings from '../data/meetings.json';
+import { updates, cardThumbnail } from '../data/updates';
 import { sanity, QUERY_HOME_PAGE, type SanityHomePage } from '../lib/sanity';
 import { toHTML } from '@portabletext/to-html';
 
@@ -75,6 +76,16 @@ const preFooterTitleLine3 = home.preFooterTitleLine3 || 'Our future here.';
 const preFooterBody = home.preFooterBody || 'Foxfire is where hundreds of families have made homes and raised kids. The coalition is organizing to keep it that way. We are putting the public record in one place so the people who live here have a real say in what comes next.';
 const preFooterCtaLabel = home.preFooterCtaLabel || 'Help protect Foxfire';
 const preFooterCtaUrl = home.preFooterCtaUrl || '/take-action';
+
+// Latest updates for homepage section.
+const publishedUpdates = [...updates]
+  .filter((u) => !u.draft)
+  .sort((a, b) => b.publishDate.localeCompare(a.publishDate));
+
+// If any post is explicitly featured, use it; otherwise fall back to most recent.
+const featuredUpdate = publishedUpdates.find((u) => u.featured) ?? publishedUpdates[0] ?? null;
+// Recent list: up to 3 posts, excluding the featured one.
+const recentUpdates = publishedUpdates.filter((u) => u !== featuredUpdate).slice(0, 3);
 
 // Next meeting for the side-by-side box. Pre-format calendar pieces.
 const nextMeeting = meetings[0];
@@ -367,6 +378,84 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     </div>
   </section>
 
+  <!-- Latest updates -->
+  {publishedUpdates.length > 0 && (
+    <section class="page-section home-updates-section" aria-label="Latest coalition updates">
+      <div class="measure-wide">
+
+        <!-- Section header -->
+        <div class="home-updates-head">
+          <p class="kicker home-updates-kicker">Latest updates</p>
+          <a class="home-updates-all" href="/updates">
+            All updates <Icon name="arrow-right" size={12} />
+          </a>
+        </div>
+
+        {/* Featured post — prominent callout */}
+        {featuredUpdate && (
+          <a class="home-featured-post" href={`/updates/${featuredUpdate.id}`} aria-label={featuredUpdate.title}>
+            {cardThumbnail(featuredUpdate) && (
+              <div class="home-featured-media">
+                <img
+                  src={cardThumbnail(featuredUpdate)!}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
+            <div class="home-featured-body">
+              <span class="home-featured-flag">
+                <Icon name="arrow-right" size={10} />
+                Featured update
+              </span>
+              <p class="home-featured-meta">
+                <span class="mono tab">{featuredUpdate.publishDateLabel}</span>
+                <span class="home-updates-dot" aria-hidden="true">·</span>
+                <span>{featuredUpdate.category}</span>
+              </p>
+              <h2 class="home-featured-title">{featuredUpdate.title}</h2>
+              <p class="home-featured-excerpt">{featuredUpdate.excerpt}</p>
+              <span class="home-featured-cta">
+                Read more <Icon name="arrow-right" size={12} />
+              </span>
+            </div>
+          </a>
+        )}
+
+        {/* Recent list */}
+        {recentUpdates.length > 0 && (
+          <ul class="home-recent-list">
+            {recentUpdates.map((u) => {
+              const thumb = cardThumbnail(u);
+              return (
+                <li class="home-recent-item">
+                  <a class="home-recent-link" href={`/updates/${u.id}`}>
+                    {thumb && (
+                      <div class="home-recent-media">
+                        <img src={thumb} alt="" loading="lazy" decoding="async" />
+                      </div>
+                    )}
+                    <div class="home-recent-body">
+                      <p class="home-recent-meta">
+                        <span class="mono tab">{u.publishDateLabel}</span>
+                        <span class="home-updates-dot" aria-hidden="true">·</span>
+                        <span>{u.category}</span>
+                      </p>
+                      <h3 class="home-recent-title">{u.title}</h3>
+                      <p class="home-recent-excerpt">{u.excerpt}</p>
+                    </div>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+
+      </div>
+    </section>
+  )}
+
   <!-- Questions teaser: matches the Questions page hero. -->
   <section class="page-section page-section-tier questions-teaser-hero">
     <div class="measure">
@@ -398,6 +487,286 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
   </section>
 
   <style>
+    /* ── Latest updates section ──────────────────────────────────────────── */
+
+    .home-updates-section {
+      border-top: 1px solid var(--rule-soft);
+    }
+
+    /* Header row: kicker left, all-link right */
+    .home-updates-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .home-updates-kicker {
+      margin: 0;
+    }
+
+    .home-updates-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: color 0.15s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .home-updates-all:hover,
+    .home-updates-all:focus-visible {
+      color: var(--accent);
+    }
+
+    .home-updates-all :global(svg) {
+      color: var(--accent);
+    }
+
+    .home-updates-dot {
+      color: var(--rule-soft);
+    }
+
+    /* ── Featured post ──────────────────────────────────────────────────── */
+
+    .home-featured-post {
+      display: grid;
+      grid-template-columns: minmax(300px, 440px) 1fr;
+      gap: var(--space-2xl);
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      background: var(--bone);
+      margin-bottom: var(--space-2xl);
+      transition: background 0.2s ease;
+    }
+
+    .home-featured-post:hover,
+    .home-featured-post:focus-visible {
+      background: var(--bone);
+    }
+
+    .home-featured-media {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .home-featured-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .home-featured-post:hover .home-featured-media img,
+    .home-featured-post:focus-visible .home-featured-media img {
+      transform: scale(1.025);
+    }
+
+    .home-featured-body {
+      padding: var(--space-xl) var(--space-xl) var(--space-xl) 0;
+      min-width: 0;
+    }
+
+    /* "Featured update" pill */
+    .home-featured-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--accent);
+      padding: 3px 8px;
+      margin-bottom: var(--space-md);
+    }
+
+    .home-featured-flag :global(svg) {
+      color: currentColor;
+      flex-shrink: 0;
+    }
+
+    .home-featured-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin: 0 0 var(--space-sm);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: baseline;
+    }
+
+    .home-featured-title {
+      font-family: var(--headline);
+      font-size: clamp(1.375rem, 2.2vw, 1.875rem);
+      line-height: 1.2;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 0 0 var(--space-sm);
+      text-wrap: balance;
+      transition: color 0.15s ease;
+    }
+
+    .home-featured-post:hover .home-featured-title,
+    .home-featured-post:focus-visible .home-featured-title {
+      color: var(--accent);
+    }
+
+    .home-featured-excerpt {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text);
+      margin: 0 0 var(--space-md);
+      max-width: 58ch;
+    }
+
+    .home-featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
+    }
+
+    .home-featured-cta :global(svg) {
+      color: currentColor;
+    }
+
+    /* ── Recent list ───────────────────────────────────────────────────── */
+
+    .home-recent-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid var(--rule-soft);
+    }
+
+    .home-recent-item {
+      border-bottom: 1px solid var(--rule-soft);
+    }
+
+    .home-recent-link {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      padding: var(--space-lg) 0;
+    }
+
+    .home-recent-media {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .home-recent-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .home-recent-link:hover .home-recent-media img,
+    .home-recent-link:focus-visible .home-recent-media img {
+      transform: scale(1.03);
+    }
+
+    .home-recent-body {
+      min-width: 0;
+    }
+
+    .home-recent-meta {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin: 0 0 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      align-items: baseline;
+    }
+
+    .home-recent-title {
+      font-family: var(--headline);
+      font-size: clamp(1rem, 1.4vw, 1.125rem);
+      line-height: 1.25;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 0 0 4px;
+      text-wrap: balance;
+      transition: color 0.15s ease;
+    }
+
+    .home-recent-link:hover .home-recent-title,
+    .home-recent-link:focus-visible .home-recent-title {
+      color: var(--accent);
+    }
+
+    .home-recent-excerpt {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-soft);
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Mobile: stack featured, single-col recent */
+    @media (max-width: 768px) {
+      .home-featured-post {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .home-featured-body {
+        padding: var(--space-lg);
+      }
+
+      .home-recent-link {
+        grid-template-columns: 100px 1fr;
+        gap: var(--space-md);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .home-recent-link {
+        grid-template-columns: 1fr;
+      }
+
+      .home-recent-media {
+        display: none;
+      }
+    }
+
+    /* ── Questions teaser ───────────────────────────────────────────────── */
+
     /* Mirrors the Questions page hero so the homepage teaser uses the same
        editorial scale and rhythm. The wrapper is a section, not a page hero,
        so we use h2 styling (matches the visual size of the .questions-title h1). */
