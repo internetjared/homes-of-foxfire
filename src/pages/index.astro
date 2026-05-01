@@ -350,7 +350,9 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
         <div set:html={storyBodyHtml}></div>
 
         <div class="section-foot story-foot">
-          <a class="story-timeline-link" href="/timeline">Read the full timeline</a>
+          <a class="story-timeline-link" href="/timeline">
+            Read the full timeline <Icon name="arrow-right" size={13} />
+          </a>
           <button
             class="btn-plan"
             type="button"
@@ -753,12 +755,18 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
 
     /* Story section timeline text link */
     .story-timeline-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
       font-size: 15px;
       font-weight: 500;
       color: var(--ink);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      transition: color 0.15s ease;
+      text-decoration-offset: 3px;
+    }
+
+    .story-timeline-link :global(svg) {
+      flex-shrink: 0;
+      color: var(--accent);
     }
 
     .story-timeline-link:hover,
