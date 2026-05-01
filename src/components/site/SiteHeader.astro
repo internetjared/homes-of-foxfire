@@ -113,17 +113,64 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 </header>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  // Mobile hamburger wiring.
+  //
+  // Uses `astro:page-load` (fires on initial load AND after every View Transition)
+  // instead of `DOMContentLoaded` (fires only once, before Astro may have finished
+  // hydrating). Idempotent via a data attribute so re-running across navigations
+  // never double-binds the click listener.
+  function wireHamburger() {
     const btn = document.querySelector<HTMLButtonElement>('.site-header-hamburger');
     const nav = document.getElementById('mobile-nav');
     if (!btn || !nav) return;
 
-    btn.addEventListener('click', () => {
-      const isOpen = btn.classList.contains('is-open');
-      btn.classList.toggle('is-open', !isOpen);
-      nav.classList.toggle('is-open', !isOpen);
-      btn.setAttribute('aria-expanded', String(!isOpen));
-      btn.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+    // Skip if this exact button instance is already wired.
+    if (btn.dataset.wired === 'true') return;
+    btn.dataset.wired = 'true';
+
+    const setOpen = (open: boolean) => {
+      btn.classList.toggle('is-open', open);
+      nav.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(!btn.classList.contains('is-open'));
     });
-  });
+
+    // Close on Escape.
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.classList.contains('is-open')) {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+
+    // Close when clicking/tapping outside the menu (but not the button itself).
+    document.addEventListener('click', (e) => {
+      if (!btn.classList.contains('is-open')) return;
+      const target = e.target as Node | null;
+      if (!target) return;
+      if (nav.contains(target) || btn.contains(target)) return;
+      setOpen(false);
+    });
+
+    // Close after following an in-page link inside the drawer.
+    nav.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => setOpen(false));
+    });
+  }
+
+  // Fire on first load and on every Astro page transition.
+  document.addEventListener('astro:page-load', wireHamburger);
+
+  // Belt-and-suspenders: also run if the script lands while the document is already
+  // interactive (covers edge cases where astro:page-load has already fired).
+  if (document.readyState !== 'loading') {
+    wireHamburger();
+  } else {
+    document.addEventListener('DOMContentLoaded', wireHamburger);
+  }
 </script>

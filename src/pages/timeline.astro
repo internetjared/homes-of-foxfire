@@ -48,6 +48,14 @@ const sourceLinkCount = sorted.reduce(
     sum + (item.url ? 1 : 0) + (item.secondary_url ? 1 : 0) + (item.tertiary_url ? 1 : 0),
   0,
 );
+
+// Detect whether a URL points to a video (YouTube). Used to swap the action-button
+// trailing icon and to flag video entries in the date column.
+const isVideoUrl = (url?: string) =>
+  Boolean(url && (url.includes('youtube.com') || url.includes('youtu.be')));
+
+const entryHasVideo = (item: FeaturedItem) =>
+  isVideoUrl(item.url) || isVideoUrl(item.secondary_url) || isVideoUrl(item.tertiary_url);
 ---
 
 <SiteLayout
@@ -55,17 +63,6 @@ const sourceLinkCount = sorted.reduce(
   description="The full K-Nova / Jahn Farm public-record timeline. Every council meeting, ordinance, resolution, and document at the center of the rezoning, in chronological order, with sources where available."
   lastUpdated={lastUpdated}
 >
-  <!-- Filing-stamp strip -->
-  <aside class="filing-stamp" aria-hidden="true">
-    <div class="filing-stamp-inner">
-      <span>K-Nova timeline</span>
-      <span class="filing-stamp-dot">·</span>
-      <span>{itemCount} entries</span>
-      <span class="filing-stamp-dot">·</span>
-      <span>Source: Village of Commercial Point + Pickaway County</span>
-    </div>
-  </aside>
-
   <!-- Hero -->
   <section class="page-section page-section-tier media-hero">
     <div class="measure">
@@ -87,7 +84,14 @@ const sourceLinkCount = sorted.reduce(
           <li class="record-row">
             <div class="record-date-col">
               <span class="record-date mono tab">{formatDate(item.date)}</span>
-              <span class="record-kind">{kindLabel(item.kind)}</span>
+              <span class="record-kind">
+                {entryHasVideo(item) && (
+                  <span class="record-kind-video" aria-label="Video available">
+                    <Icon name="play" size={9} />
+                  </span>
+                )}
+                {kindLabel(item.kind)}
+              </span>
             </div>
             <div class="record-body">
               <p class="record-label">{item.label}</p>
@@ -95,9 +99,12 @@ const sourceLinkCount = sorted.reduce(
               <p class="record-summary">{item.summary}</p>
               <div class="record-actions">
                 {item.url && item.url_label && (
-                  <a href={item.url} target="_blank" rel="noopener" class="record-link">
+                  <a href={item.url} target="_blank" rel="noopener" class={`record-link${isVideoUrl(item.url) ? ' record-link-video' : ''}`}>
+                    {isVideoUrl(item.url)
+                      ? <Icon name="play" size={11} />
+                      : null}
                     {item.url_label}
-                    <Icon name="arrow-right" size={12} />
+                    {!isVideoUrl(item.url) && <Icon name="arrow-right" size={12} />}
                   </a>
                 )}
                 {item.secondary_url && (
@@ -105,10 +112,13 @@ const sourceLinkCount = sorted.reduce(
                     href={item.secondary_url}
                     target="_blank"
                     rel="noopener"
-                    class="record-link record-link-secondary"
+                    class={`record-link record-link-secondary${isVideoUrl(item.secondary_url) ? ' record-link-video' : ''}`}
                   >
+                    {isVideoUrl(item.secondary_url)
+                      ? <Icon name="play" size={11} />
+                      : null}
                     {item.secondary_label}
-                    <Icon name="arrow-right" size={12} />
+                    {!isVideoUrl(item.secondary_url) && <Icon name="arrow-right" size={12} />}
                   </a>
                 )}
                 {item.tertiary_url && (
@@ -116,10 +126,13 @@ const sourceLinkCount = sorted.reduce(
                     href={item.tertiary_url}
                     target="_blank"
                     rel="noopener"
-                    class="record-link record-link-secondary"
+                    class={`record-link record-link-secondary${isVideoUrl(item.tertiary_url) ? ' record-link-video' : ''}`}
                   >
+                    {isVideoUrl(item.tertiary_url)
+                      ? <Icon name="play" size={11} />
+                      : null}
                     {item.tertiary_label}
-                    <Icon name="arrow-right" size={12} />
+                    {!isVideoUrl(item.tertiary_url) && <Icon name="arrow-right" size={12} />}
                   </a>
                 )}
               </div>
@@ -232,11 +245,30 @@ const sourceLinkCount = sorted.reduce(
   }
 
   .record-kind {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--text-soft);
+  }
+
+  /* Small play badge that flags entries with a YouTube link in the date column. */
+  .record-kind-video {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--paper-2);
+  }
+
+  .record-kind-video :global(svg) {
+    margin-left: 1px; /* nudge the play triangle visually centered in the circle */
   }
 
   .record-body {
@@ -298,6 +330,17 @@ const sourceLinkCount = sorted.reduce(
     color: var(--text-soft);
     border-bottom-color: var(--rule-soft);
     font-weight: 400;
+  }
+
+  /* Video link variant — leading play icon, accent stroke under the label. */
+  .record-link-video {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .record-link-video.record-link-secondary {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    opacity: 0.85;
   }
 
   /* Sourcing section */
