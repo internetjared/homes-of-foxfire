@@ -2282,23 +2282,7 @@
 }
 
 .questions-teaser-foot {
-  margin: 0;
-}
-
-.questions-teaser-foot a {
-  font-family: var(--body);
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule-soft);
-  padding-bottom: 1px;
-  transition: border-color 0.12s ease;
-}
-
-.questions-teaser-foot a:hover,
-.questions-teaser-foot a:focus-visible {
-  border-bottom-color: var(--ink);
+  margin: var(--space-md) 0 0;
 }
 
 /* ---------- Pre-footer aerial band (Foxfire neighborhood, navy overlay) ---------- */
