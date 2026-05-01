@@ -80,14 +80,14 @@ const articleSchema = {
   }}
   extraSchema={articleSchema}
 >
-  <article class="update-article" id={update.id}>
-    <p class="update-article-back">
-      <a href="/updates">
-        <Icon name="arrow-right" size={12} />
-        <span>All updates</span>
-      </a>
-    </p>
+  <nav class="update-back-nav" aria-label="Back to updates">
+    <a href="/updates">
+      <Icon name="arrow-right" size={12} />
+      <span>All updates</span>
+    </a>
+  </nav>
 
+  <article class="update-article" id={update.id}>
     <header class="update-article-head">
       <p class="update-article-meta">
         <span class="update-article-date mono tab">{update.publishDateLabel}</span>
@@ -143,15 +143,18 @@ const articleSchema = {
     padding: var(--space-2xl) var(--space-lg) var(--space-4xl);
   }
 
-  .update-article-back {
-    margin: 0 0 var(--space-xl);
+  /* Back nav — full-width, aligned to the page frame (same as the header logo) */
+  .update-back-nav {
+    max-width: var(--frame);
+    margin-inline: auto;
+    padding: var(--space-xl) var(--space-lg) 0;
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
 
-  .update-article-back a {
+  .update-back-nav a {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -160,15 +163,16 @@ const articleSchema = {
     transition: color 0.15s ease;
   }
 
-  .update-article-back a:hover,
-  .update-article-back a:focus-visible {
+  .update-back-nav a:hover,
+  .update-back-nav a:focus-visible {
     color: var(--ink);
   }
 
-  /* The back-arrow icon points right by default; flip it for the back affordance. */
-  .update-article-back svg,
-  .update-article-back-link svg {
+  /* Arrow flipped left; colored accent red independently of the label text */
+  .update-back-nav svg {
     transform: scaleX(-1);
+    color: var(--accent);
+    flex-shrink: 0;
   }
 
   .update-article-head {
@@ -380,6 +384,12 @@ const articleSchema = {
   .update-article-back-link:hover,
   .update-article-back-link:focus-visible {
     color: var(--ink);
+  }
+
+  .update-article-back-link svg {
+    transform: scaleX(-1);
+    color: var(--accent);
+    flex-shrink: 0;
   }
 
   @media (max-width: 768px) {
