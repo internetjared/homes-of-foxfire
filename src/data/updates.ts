@@ -13,6 +13,8 @@ export interface LocalUpdate {
   category: string;
   excerpt: string;           // 1-2 sentence summary for the index card
   thumbnailUrl?: string;     // optional override; YouTube auto-derives if missing
+  ogImageWidth?: number;     // px — used for og:image:width and JSON-LD ImageObject
+  ogImageHeight?: number;    // px — used for og:image:height and JSON-LD ImageObject
   videoUrl?: string;         // local MP4 path or YouTube URL
   videoPoster?: string;      // optional poster image for the <video> element
   videoTitle?: string;
@@ -201,9 +203,11 @@ export const updates: LocalUpdate[] = [
     publishDate: '2026-05-01',
     publishDateLabel: 'May 1, 2026',
     category: 'Public records',
-    excerpt: 'A source-backed summary of the procedural questions surrounding the May 20, 2024 vote on Ordinance 2024-07. Public records, Ohio law, and the village\u2019s own code raise a serious question about whether council had enough votes to legally suspend the required three readings.',
+    excerpt: 'Public records, Ohio law, and the village\u2019s own code raise a serious procedural question about the May 20, 2024 vote adopting Ordinance 2024-07. Did council have enough votes to legally suspend the required three readings?',
     draft: true,
     thumbnailUrl: '/ordinance-2024-07-procedural-review.png',
+    ogImageWidth: 1672,
+    ogImageHeight: 941,
     bodyHtml: `
 <p>The Foxfire Coalition has been reviewing public records related to <a href="https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-07.pdf" target="_blank" rel="noopener">Ordinance 2024-07</a>, the ordinance Commercial Point Council passed on May 20, 2024 to rezone approximately 266.971 acres from Exceptional Use to Planned Industrial District and to adopt the preliminary plan and development standards for that land.</p>
 

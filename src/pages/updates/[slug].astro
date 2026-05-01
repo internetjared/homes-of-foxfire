@@ -34,6 +34,16 @@ const SITE_URL = 'https://foxfirecoalition.org';
 const ogImageUrl = ogImageForUpdate(update);
 const ogImage = ogImageUrl ?? `${SITE_URL}/FCADC_Social.jpg`;
 
+// Resolve an absolute OG image URL for JSON-LD (relative paths must be absolute).
+const absoluteOgImage = ogImageUrl
+  ? (ogImageUrl.startsWith('http') ? ogImageUrl : `${SITE_URL}${ogImageUrl}`)
+  : `${SITE_URL}/FCADC_Social.jpg`;
+
+// Image dimensions: use post-level overrides, or fall back to YouTube maxresdefault
+// (1280×720), or the site default image.
+const ogImageWidth  = update.ogImageWidth  ?? (ogImageUrl && !ogImageUrl.startsWith('/') ? 1280 : 1445);
+const ogImageHeight = update.ogImageHeight ?? (ogImageUrl && !ogImageUrl.startsWith('/') ? 720  : 854);
+
 // Article (NewsArticle) JSON-LD — gives blog posts proper schema.org markup
 // so search engines can surface date, author, and headline in rich results.
 const articleSchema = {
@@ -41,9 +51,14 @@ const articleSchema = {
   '@type': 'NewsArticle',
   headline: update.title,
   description: update.excerpt,
-  image: ogImageUrl ? [ogImageUrl] : [`${SITE_URL}/FCADC_Social.jpg`],
-  datePublished: update.publishDate,
-  dateModified: update.publishDate,
+  image: [{
+    '@type': 'ImageObject',
+    url: absoluteOgImage,
+    width: ogImageWidth,
+    height: ogImageHeight,
+  }],
+  datePublished: `${update.publishDate}T00:00:00-05:00`,
+  dateModified:  `${update.publishDate}T00:00:00-05:00`,
   author: {
     '@type': 'Organization',
     name: 'Homes of Foxfire Coalition',
@@ -71,10 +86,12 @@ const articleSchema = {
   lastUpdated={lastUpdated}
   type="article"
   image={ogImage}
+  imageWidth={ogImageWidth}
+  imageHeight={ogImageHeight}
   noindex={update.draft}
   articleMeta={{
-    publishedTime: update.publishDate,
-    modifiedTime: update.publishDate,
+    publishedTime: `${update.publishDate}T00:00:00-05:00`,
+    modifiedTime:  `${update.publishDate}T00:00:00-05:00`,
     section: update.category,
     authorName: 'Homes of Foxfire Coalition',
   }}

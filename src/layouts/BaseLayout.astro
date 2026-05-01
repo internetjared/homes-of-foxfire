@@ -14,6 +14,8 @@ interface Props {
   title: string;
   description?: string;
   image?: string;                 // absolute URL or path under /; overrides default OG image
+  imageWidth?: number;            // og:image:width in px
+  imageHeight?: number;           // og:image:height in px
   type?: 'website' | 'article';   // og:type; default 'website'
   articleMeta?: ArticleMeta;      // article-specific OG/meta when type='article'
   extraSchema?: object;           // page-specific JSON-LD object to emit alongside Org/WebPage
@@ -24,6 +26,8 @@ const {
   title,
   description = 'Homes of Foxfire Coalition',
   image,
+  imageWidth,
+  imageHeight,
   type = 'website',
   articleMeta,
   extraSchema,
@@ -96,8 +100,8 @@ const webPageSchema = {
     <meta property="og:image" content={resolvedOgImage} />
     <meta property="og:image:type" content={resolvedOgImage.endsWith('.png') ? 'image/png' : 'image/jpeg'} />
     <meta property="og:image:alt" content="Foxfire Coalition Against Data Centers" />
-    {!image && <meta property="og:image:width" content="1445" />}
-    {!image && <meta property="og:image:height" content="854" />}
+    <meta property="og:image:width"  content={String(imageWidth  ?? (!image ? 1445 : undefined) ?? 1280)} />
+    <meta property="og:image:height" content={String(imageHeight ?? (!image ? 854  : undefined) ?? 720)} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Foxfire Coalition Against Data Centers" />
 
