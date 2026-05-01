@@ -323,13 +323,13 @@ export const updates: LocalUpdate[] = [
 
 <h2>There May Also Be Zoning-Specific Timing Issues</h2>
 
-<p>Because Ordinance 2024-07 is a zoning ordinance, <a href="https://codes.ohio.gov/ohio-revised-code/section-713.121" target="_blank" rel="noopener">Ohio Revised Code 713.121</a> is also important. That statute says that an action challenging the validity of a zoning ordinance or zoning amendment because of a procedural error cannot be brought more than two years after adoption.</p>
+<p>Because Ordinance 2024-07 is a zoning ordinance, there may also be zoning-specific timing and procedural issues to consider.</p>
 
-<p>Ordinance 2024-07 was adopted on May 20, 2024. That means any procedural challenge may be time-sensitive.</p>
+<p><a href="https://codes.ohio.gov/ohio-revised-code/section-713.121" target="_blank" rel="noopener">Ohio Revised Code 713.121</a> appears to set a two-year deadline for bringing certain challenges to the validity of a zoning ordinance or zoning amendment based on procedural errors. Since Ordinance 2024-07 was adopted on May 20, 2024, any procedural questions may be time-sensitive and should be reviewed promptly.</p>
 
-<p><a href="https://codes.ohio.gov/ohio-revised-code/section-713.12" target="_blank" rel="noopener">Ohio Revised Code 713.12</a> also governs zoning notice and hearing requirements. It says zoning legislation must have a public hearing and notice, and it states that if the ordinance differs from or departs from the plan or report submitted by the planning commission, board, or officer, it cannot take effect unless approved by at least three-fourths of the membership of the legislative authority.</p>
+<p><a href="https://codes.ohio.gov/ohio-revised-code/section-713.12" target="_blank" rel="noopener">Ohio Revised Code 713.12</a> may also be relevant. That section includes public hearing and notice requirements for zoning legislation. It also states that if a zoning ordinance differs from or departs from the plan or report submitted by the planning commission, board, or officer, it may require approval by at least three-fourths of the legislative authority before taking effect.</p>
 
-<p>We are still requesting and reviewing records related to the Planning Commission recommendation, zoning reports, staff reports, and related materials. Those records may help determine whether any additional zoning-specific vote threshold questions exist.</p>
+<p>We are not yet making a conclusion on whether that provision applies here. We are still requesting and reviewing records related to the Planning Commission recommendation, zoning reports, staff reports, and related materials. Those records may help determine whether any additional zoning-specific vote-threshold or procedural questions need to be reviewed.</p>
 
 <h2>The Questions We Are Asking the Village to Answer</h2>
 
