@@ -169,7 +169,7 @@ const articleSchema = {
   }
 
   /* Arrow flipped left; colored accent red independently of the label text */
-  .update-back-nav svg {
+  .update-back-nav :global(svg) {
     transform: scaleX(-1);
     color: var(--accent);
     flex-shrink: 0;
@@ -386,7 +386,7 @@ const articleSchema = {
     color: var(--ink);
   }
 
-  .update-article-back-link svg {
+  .update-article-back-link :global(svg) {
     transform: scaleX(-1);
     color: var(--accent);
     flex-shrink: 0;
