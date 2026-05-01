@@ -1,0 +1,908 @@
+[
+  {
+    "date": "2026-04-20",
+    "type": "Special Meeting",
+    "title": "Special Meeting — April 20, 2026 (6:00 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=eVNiYzsAG1c",
+    "minutes_url": null,
+    "notes": "Agenda included Ordinance 2026-09, the proposed 18-month data-center moratorium, and the AI Medical Imaging Processing Campus discussion.",
+    "tags": ["moratorium", "ord-2026-09", "k-nova"],
+    "highlight": true
+  },
+  {
+    "date": "2026-04-20",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — April 20, 2026 (7:00 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=XxZIZOcMLZo",
+    "youtube_url_alt": "https://www.youtube.com/watch?v=h3aJexy5k-k",
+    "minutes_url": null,
+    "notes": "Two proposed transparency measures (development registry; mandatory early public disclosure) and a K-Nova major site plan discussion.",
+    "tags": ["transparency", "k-nova", "site-plan"],
+    "highlight": true
+  },
+  {
+    "date": "2026-04-15",
+    "type": "Land Use Meeting",
+    "title": "Land Use Meeting — April 15, 2026",
+    "youtube_url": "https://www.youtube.com/watch?v=JXoQqwIK_e8",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-04-06",
+    "type": "Council Meeting",
+    "title": "Council Meeting — April 6, 2026",
+    "youtube_url": "https://www.youtube.com/watch?v=-DCcibVNcH0",
+    "youtube_url_alt": "https://www.youtube.com/watch?v=0rghuSN788k",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-03-23",
+    "type": "Special Meeting",
+    "title": "Special Meeting — March 23, 2026",
+    "youtube_url": "https://www.youtube.com/watch?v=cZRC5_PYUzU",
+    "youtube_url_alt": "https://www.youtube.com/watch?v=qmy-fttoF34",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-03-18",
+    "type": "Land Use Meeting",
+    "title": "Land Use Meeting — March 18, 2026",
+    "youtube_url": "https://www.youtube.com/watch?v=x5iElreLD2Y",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-03-16",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — March 16, 2026",
+    "youtube_url": "https://www.youtube.com/watch?v=h-iF_kd2qUA",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-03-02",
+    "type": "Council Meeting",
+    "title": "Council Meeting — March 2, 2026",
+    "youtube_url": "https://www.youtube.com/watch?v=cLlIG_Sq9s8",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-03-02",
+    "type": "Public Hearing",
+    "title": "Public Hearing — Scioto Crossing Estates Zoning Request (March 2, 2026)",
+    "youtube_url": "https://www.youtube.com/watch?v=L9KlzKS7dYs",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-03-02",
+    "type": "Public Hearing",
+    "title": "Public Hearing — IDI Lot 9 (March 2, 2026)",
+    "youtube_url": "https://www.youtube.com/watch?v=yK39Se5QHTQ",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-02-23",
+    "type": "Council Meeting",
+    "title": "Council Meeting — February 23, 2026",
+    "youtube_url": "https://www.youtube.com/watch?v=Ulia7MZRCmk",
+    "minutes_url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/03/2-23-Council.pdf",
+    "notes": "Council Member Miller submits a proposed 18-month data-center moratorium. Resident Corey Wasmus raises the AWS / Amazon Data Services NDA. Council Member Nungester says the Durrett Road site allows data centers 'by right.' Ordinance 2026-03 prohibits gas-fired turbine generation in all zoning districts.",
+    "tags": ["moratorium", "aws-nda", "by-right", "ord-2026-03"],
+    "highlight": true
+  },
+  {
+    "date": "2026-02-23",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — February 23, 2026",
+    "youtube_url": "https://www.youtube.com/watch?v=dCVH9X9iPlM",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-02-02",
+    "type": "Council Meeting",
+    "title": "Council Meeting — February 2, 2026 (Part 1)",
+    "youtube_url": "https://www.youtube.com/watch?v=Z3XiW6E2pDA",
+    "minutes_url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/02/2-2-2026-council02242026145228347_0001.pdf",
+    "notes": "Council approved a major site plan filed by Scannell Properties #627 LLC on behalf of K-Nova. Wastewater plant capacity confirmed at 1.4 MGD; current flows 400-500K GPD.",
+    "tags": ["scannell", "site-plan", "k-nova", "utilities"],
+    "highlight": true
+  },
+  {
+    "date": "2026-02-02",
+    "type": "Council Meeting",
+    "title": "Council Meeting — February 2, 2026 (Part 2)",
+    "youtube_url": "https://www.youtube.com/watch?v=tEn68nBA1zE",
+    "minutes_url": "https://www.commercialpointohio.gov/wp-content/uploads/2026/02/2-2-2026-council02242026145228347_0001.pdf",
+    "notes": "",
+    "tags": ["scannell", "site-plan", "k-nova"],
+    "highlight": true
+  },
+  {
+    "date": "2026-02-02",
+    "type": "Special Meeting",
+    "title": "Special Meeting — Budget — February 2, 2026",
+    "youtube_url": "https://www.youtube.com/watch?v=ojMaXUmNtwU",
+    "youtube_url_alt": "https://www.youtube.com/watch?v=Aj97D_Mj4yY",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-01-05",
+    "type": "Council Meeting",
+    "title": "Council Meeting — January 5, 2026",
+    "youtube_url": "https://www.youtube.com/watch?v=ULZwRQ_LKjs",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-01-05",
+    "type": "Public Hearing",
+    "title": "Public Hearing — Rezoning R3 to PRD (January 5, 2026)",
+    "youtube_url": "https://www.youtube.com/watch?v=AsOOhDSPF3w",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-01-05",
+    "type": "Public Hearing",
+    "title": "Public Hearing — Lot 7 Variances (January 5, 2026)",
+    "youtube_url": "https://www.youtube.com/watch?v=tx2-Jf6LDaQ",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2026-01-05",
+    "type": "Public Hearing",
+    "title": "Public Hearing — Walnut Creek Dr Variance (January 5, 2026)",
+    "youtube_url": "https://www.youtube.com/watch?v=daQpk7bRsbs",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-12-15",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — December 15, 2025 (7:00 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=XKY30zHBNdQ",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-12-15",
+    "type": "Special Meeting",
+    "title": "Special Meeting — December 15, 2025 (6:30 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=bWClSiPEgtU",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-12-01",
+    "type": "Council Meeting",
+    "title": "Council Meeting — December 1, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=xhFjL21a0uQ",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-11-17",
+    "type": "Special Meeting",
+    "title": "Special Meeting — November 17, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=w6Kr49M6Z0E",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-11-03",
+    "type": "Council Meeting",
+    "title": "Council Meeting — November 3, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=KL3JzI_d0mE",
+    "youtube_url_alt": "https://www.youtube.com/watch?v=Jq6mT6jZ040",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-10-20",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — October 20, 2025 (7:00 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=PFOsnd_pOxA",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-10-20",
+    "type": "Special Meeting",
+    "title": "Special Meeting — October 20, 2025 (6:55 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=G3ik883bEkE",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-10-06",
+    "type": "Council Meeting",
+    "title": "Council Meeting — October 6, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=cGgcBoCSg-c",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-09-22",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — September 22, 2025 (7:00 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=O26LbdkzMxk",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-09-22",
+    "type": "Public Hearing",
+    "title": "Public Hearing — Variance Request (September 22, 2025 6:45 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=t1AOwJRZX3Y",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-09-22",
+    "type": "Public Hearing",
+    "title": "Public Hearing — Conditional Use Request (September 22, 2025 6:30 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=GOXptPuH1Q4",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-09-22",
+    "type": "Public Hearing",
+    "title": "Public Hearing — Rezoning Request (September 22, 2025 6:00 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=2nVHaWpf9rQ",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-09-22",
+    "type": "Public Hearing",
+    "title": "Public Meeting — Proposed Rezoning (September 22, 2025 6:00 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=nTKk9awV63U",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-09-08",
+    "type": "Council Meeting",
+    "title": "Council Meeting — September 8, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=8tT5ax1VAms",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-08-18",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — August 18, 2025 (7:00 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=xlFtLWMwqbw",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-08-18",
+    "type": "Special Meeting",
+    "title": "Special Meeting — August 18, 2025 (6:00 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=ZlnHStZVME8",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-08-04",
+    "type": "Council Meeting",
+    "title": "Council Meeting — August 4, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=gTEtwHD8PZA",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-07-21",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — July 21, 2025 (7:00 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=2FNb5HfZLMg",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-07-21",
+    "type": "Special Meeting",
+    "title": "Special Meeting — July 21, 2025 (6:00 PM)",
+    "youtube_url": "https://www.youtube.com/watch?v=pOLW33C5iks",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-07-07",
+    "type": "Council Meeting",
+    "title": "Council Meeting — July 7, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=5TIlK8QyTbA",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-07-07",
+    "type": "Public Hearing",
+    "title": "Public Hearing — July 7, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=ui8omtBtIVg",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-06-23",
+    "type": "Special Meeting",
+    "title": "Special Meeting — June 23, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=zcW1YSZNFDU",
+    "youtube_url_alt": "https://www.youtube.com/watch?v=4rO__RlHGaU",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-06-02",
+    "type": "Council Meeting",
+    "title": "Council Meeting — June 2, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=lB0FoHy8960",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-06-02",
+    "type": "Public Hearing",
+    "title": "D.O.R.A. Public Hearing — June 2, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=dRM6yUQ0Wwc",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-05-19",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — May 19, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=TqGHfGoEfDM",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-05-05",
+    "type": "Council Meeting",
+    "title": "Council Meeting — May 5, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=4JjYncQ-mTY",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-04-21",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — April 21, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=XZcjTA2dTag",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-04-07",
+    "type": "Council Meeting",
+    "title": "Council Meeting — April 7, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=1NubmFTFCro",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-04-07",
+    "type": "Public Hearing",
+    "title": "Conditional Use Public Hearing — April 7, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=CwBlu3EqodI",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-04-07",
+    "type": "Public Hearing",
+    "title": "Variance Request Public Hearing — April 7, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=whrGpUHO4ds",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-03-17",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — March 17, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=SPfvOxHfD0k",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-02-03",
+    "type": "Council Meeting",
+    "title": "Council Meeting — February 3, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=pjtnaJ6kYCA",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-01-27",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — January 27, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=nafzhxZBjiE",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2025-01-13",
+    "type": "Council Meeting",
+    "title": "Council Meeting — January 13, 2025",
+    "youtube_url": "https://www.youtube.com/watch?v=WcdRdnUDZ5U",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-12-16",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — December 16, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=8YAGzHjhhLw",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-12-02",
+    "type": "Council Meeting",
+    "title": "Council Meeting — December 2, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=1eEtXgxMvlc",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-12-02",
+    "type": "Public Hearing",
+    "title": "Variance Request Public Hearing — December 2, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=VHD4Dh4SVaQ",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-12-02",
+    "type": "Public Hearing",
+    "title": "Rezoning Request Public Hearing — December 2, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=82Qa14h6eSY",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-11-18",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — November 18, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=M4FTYLRpU3Q",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-11-04",
+    "type": "Council Meeting",
+    "title": "Council Meeting — November 4, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=FgboBszOMKU",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-10-21",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — October 21, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=YWXStXZyZ2A",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-10-07",
+    "type": "Council Meeting",
+    "title": "Council Meeting — October 7, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=WGnM0JKbM9E",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-10-07",
+    "type": "Public Hearing",
+    "title": "Public Hearing — October 7, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=AZka0lOq9DU",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-09-23",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — September 23, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=L7xLcP8j1hc",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-09-09",
+    "type": "Council Meeting",
+    "title": "Council Meeting — September 9, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=kF6iy5--8nc",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-08-19",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — August 19, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=qiU2McunB4E",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-08-05",
+    "type": "Council Meeting",
+    "title": "Council Meeting — August 5, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=SZ7_NzRZmww",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-07-15",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — July 15, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=fLEyrzzoHkw",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-07-01",
+    "type": "Council Meeting",
+    "title": "Council Meeting — July 1, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=kiXbPSe8HEI",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-07-01",
+    "type": "Public Hearing",
+    "title": "Public Hearing — July 1, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=Fce4tNkj_0g",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-06-17",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — June 17, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=Fuai1FlzREo",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-06-03",
+    "type": "Council Meeting",
+    "title": "Council Meeting — June 3, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=IXIiws-Jw0s",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-06-03",
+    "type": "Public Hearing",
+    "title": "Public Hearing — June 3, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=Alz2fMN8QOc",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-05-20",
+    "type": "Special Meeting",
+    "title": "Special Council Meeting — May 20, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=8RHmk1FqF7I",
+    "minutes_url": "https://www.commercialpointohio.gov/CPMeetings/Special/2024/5-20-Special.pdf",
+    "notes": "Ordinance 2024-07 adopted under emergency procedure by 4-1 vote (Geiger, Nungester, Weaver, Ratliff yes; Crego no). Rezoned ~266.971 acres from Exceptional Use to Planned Industrial District. The single most important meeting in the K-Nova / Foxfire record.",
+    "tags": ["ord-2024-07", "k-nova", "rezoning", "emergency-clause"],
+    "highlight": true
+  },
+  {
+    "date": "2024-05-20",
+    "type": "Public Hearing",
+    "title": "Public Hearing — K-Nova Rezoning — May 20, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=PlOmOMrs-vI",
+    "minutes_url": "https://www.commercialpointohio.gov/CPMeetings/Public/2024/5-20-KNova-PH.pdf",
+    "notes": "Public hearing held the same evening as adoption of Ordinance 2024-07. Notice and timing of this hearing are part of the procedural record under review.",
+    "tags": ["ord-2024-07", "k-nova", "public-hearing", "notice"],
+    "highlight": true
+  },
+  {
+    "date": "2024-05-20",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — May 20, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=EvkHPWdqPM4",
+    "minutes_url": null,
+    "notes": "Same evening as the Special Council meeting that adopted Ordinance 2024-07.",
+    "tags": ["ord-2024-07"],
+    "highlight": false
+  },
+  {
+    "date": "2024-05-06",
+    "type": "Council Meeting",
+    "title": "Council Meeting — May 6, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=gNsApzWukf4",
+    "minutes_url": null,
+    "notes": "Council adopted Ordinance 2024-05 amending Chapter 1143.04(e), shortening the resubmission bar from one year to six months and changing the council action window from 45 to 120 days. Council Member Wolfe's resignation referenced in this window.",
+    "tags": ["ord-2024-05", "code-amendment", "resubmission"],
+    "highlight": true
+  },
+  {
+    "date": "2024-04-15",
+    "type": "Special Meeting",
+    "title": "Special Council Meeting — April 15, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=AUL9A18pFtM",
+    "minutes_url": null,
+    "notes": "Council waived the one-year refiling rule on the condition that K-Nova refile within 48 hours, citing 'extenuating circumstances.' The public record does not state what those circumstances were.",
+    "tags": ["k-nova", "resubmission-waiver", "extenuating-circumstances"],
+    "highlight": true
+  },
+  {
+    "date": "2024-04-15",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — April 15, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=Uhivj1mzfc8",
+    "minutes_url": null,
+    "notes": "Same evening as the Special Council meeting that waived the one-year refiling rule for K-Nova.",
+    "tags": ["k-nova"],
+    "highlight": false
+  },
+  {
+    "date": "2024-04-01",
+    "type": "Council Meeting",
+    "title": "Council Meeting — April 1, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=GMmCWjuU3d8",
+    "minutes_url": null,
+    "notes": "First K-Nova rezoning attempt, Ordinance 2024-02, died for lack of a motion. Triggered the one-year refiling bar that was waived two weeks later.",
+    "tags": ["ord-2024-02", "k-nova", "died-no-motion"],
+    "highlight": true
+  },
+  {
+    "date": "2024-03-18",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — March 18, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=qW6EW1UOEEw",
+    "minutes_url": null,
+    "notes": "Public-record discussion that residents have flagged as relevant to Ohio Sunshine Law and notice questions during the Ord 2024-07 procedural window.",
+    "tags": ["sunshine-law", "ord-2024-07"],
+    "highlight": true
+  },
+  {
+    "date": "2024-03-18",
+    "type": "Special Meeting",
+    "title": "Special Council Meeting — March 18, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=iZMA9SAxkjk",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-03-18",
+    "type": "Public Hearing",
+    "title": "Public Hearing — March 18, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=Cup6E8ES75E",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-03-04",
+    "type": "Council Meeting",
+    "title": "Council Meeting — March 4, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=XAk1FNEAVcE",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-02-26",
+    "type": "Public Hearing",
+    "title": "Public Hearing — First K-Nova Rezoning — February 26, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=O5s9I-W9g58",
+    "minutes_url": null,
+    "notes": "First K-Nova rezoning public hearing on the 266.971-acre Jahn Farm parcel. The application would die for lack of a motion at the April 1, 2024 Council meeting and be refiled in 48 hours under the April 15 waiver.",
+    "tags": ["k-nova", "ord-2024-02", "first-public-hearing"],
+    "highlight": true
+  },
+  {
+    "date": "2024-02-26",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — February 26, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=fIrtVjpwIjg",
+    "minutes_url": null,
+    "notes": "Same evening as the first K-Nova public hearing.",
+    "tags": ["k-nova"],
+    "highlight": false
+  },
+  {
+    "date": "2024-02-26",
+    "type": "Special Meeting",
+    "title": "Special Meeting — February 26, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=ErTQZYmdGrA",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-02-05",
+    "type": "Council Meeting",
+    "title": "Council Meeting — February 5, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=r9O3R9Q02p0",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-01-22",
+    "type": "Committee of the Whole",
+    "title": "Committee of the Whole — January 22, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=_CRJ7PogG1E",
+    "minutes_url": null,
+    "notes": "Discussion residents have cited as the 'entitlement-based option' framing of the K-Nova rezoning during the Ord 2024-07 procedural window.",
+    "tags": ["k-nova", "entitlement", "ord-2024-07"],
+    "highlight": true
+  },
+  {
+    "date": "2024-01-22",
+    "type": "Special Meeting",
+    "title": "Special Council Meeting — January 22, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=YuOzzwrMt54",
+    "minutes_url": null,
+    "notes": "",
+    "tags": [],
+    "highlight": false
+  },
+  {
+    "date": "2024-01-08",
+    "type": "Council Meeting",
+    "title": "Council Meeting — January 8, 2024",
+    "youtube_url": "https://www.youtube.com/watch?v=fMLtARAb9Bk",
+    "minutes_url": null,
+    "notes": "Earliest meeting recording publicly available on the Village of Commercial Point YouTube channel.",
+    "tags": [],
+    "highlight": false
+  }
+]

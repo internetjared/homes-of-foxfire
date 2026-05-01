@@ -22,7 +22,9 @@ type IconName =
   | 'check'
   | 'megaphone'
   | 'thumbs-up'
-  | 'copy';
+  | 'copy'
+  | 'play'
+  | 'star';
 
 interface Props {
   name: IconName;
@@ -95,6 +97,12 @@ const a11y = ariaLabel
   )}
   {name === 'copy' && (
     <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z" />
+  )}
+  {name === 'play' && (
+    <path d="M8 5v14l11-7L8 5Z" />
+  )}
+  {name === 'star' && (
+    <path d="M12 2.5l2.95 5.97 6.6.96-4.78 4.65 1.13 6.55L12 17.55l-5.9 3.08 1.13-6.55L2.45 9.43l6.6-.96L12 2.5Z" />
   )}
 </svg>
 

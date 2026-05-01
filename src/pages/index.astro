@@ -325,15 +325,16 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     </div>
   </section>
 
-  <!-- Questions teaser -->
-  <section class="page-section questions-teaser-section">
+  <!-- Questions teaser: matches the Questions page hero. -->
+  <section class="page-section page-section-tier questions-teaser-hero">
     <div class="measure">
       <p class="kicker">Questions residents are asking</p>
-      <ul class="questions-teaser-list">
-        <li>Why was the May 2024 rezoning treated as an emergency?</li>
-        <li>What permits or approvals are still required before anything can move forward?</li>
-        <li>Can the original approval still be reviewed or challenged?</li>
-      </ul>
+      <h2 class="questions-teaser-title">267 acres rezoned. Still no answers.</h2>
+      <p class="lede">
+        The May 20, 2024 vote did not answer the questions residents are still asking.
+        Water. Power. Noise. Setbacks. Home values. The emergency clause. The 48-hour
+        resubmission. Lack of studies and more.
+      </p>
       <p class="questions-teaser-foot">
         <a href="/questions">See all questions residents are asking <span aria-hidden="true">&rarr;</span></a>
       </p>
@@ -353,6 +354,23 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       </p>
     </div>
   </section>
+
+  <style>
+    /* Mirrors the Questions page hero so the homepage teaser uses the same
+       editorial scale and rhythm. The wrapper is a section, not a page hero,
+       so we use h2 styling (matches the visual size of the .questions-title h1). */
+    .questions-teaser-hero {
+      background: var(--bone);
+    }
+    .questions-teaser-title {
+      font-family: var(--headline);
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      line-height: 1.15;
+      margin: 0 0 var(--space-md);
+      max-width: 22ch;
+      font-weight: 500;
+    }
+  </style>
 
   <!-- Plan lightbox — Jahn Property Industrial Site Plan, C001, 2026-03-31 -->
   <div

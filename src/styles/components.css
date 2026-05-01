@@ -282,11 +282,19 @@
 .site-header-inner {
   max-width: var(--frame);
   margin-inline: auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-xl);
-  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .site-header-inner {
+    /* Mobile: logo on left, hamburger on right; center nav and CTAs are hidden via .site-header-nav-desktop. */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 }
 
 .site-header-nav {
@@ -298,6 +306,17 @@
   font-size: 13px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
+}
+
+/* Center group: plain links sit in the middle column. */
+.site-header-nav-center {
+  justify-content: center;
+}
+
+/* Right group: CTAs hug the right edge. */
+.site-header-nav-end {
+  justify-content: flex-end;
+  gap: var(--space-md);
 }
 
 .site-header-nav a {
@@ -333,6 +352,10 @@
 }
 .site-header-nav a.site-header-cta + a.site-header-cta {
   margin-left: calc(-1 * var(--space-md));
+}
+/* In the right-aligned CTA group the parent nav already provides spacing; suppress the negative-margin collapse. */
+.site-header-nav-end a.site-header-cta + a.site-header-cta {
+  margin-left: 0;
 }
 .site-header-nav a.site-header-cta-solid {
   background: #ca3e1f;
@@ -4443,5 +4466,45 @@ abbr[title]:hover {
   .hero .hero-scroll {
     animation: hero-fade-up 0.5s ease both;
     animation-delay: 600ms;
+  }
+}
+
+/* ---------- Filing-stamp strip (questions page) ---------- */
+
+.filing-stamp {
+  background: var(--bone);
+  border-bottom: 1px solid var(--rule-soft);
+  padding: var(--space-md) var(--space-lg);
+  position: sticky;
+  /* pin flush below the site header (which itself is pinned below the status bar) */
+  top: calc(var(--sticky-bar-h, 52px) + var(--header-h, 114px));
+  z-index: 35;
+}
+
+.filing-stamp-inner {
+  max-width: var(--frame);
+  margin: 0 auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  font-feature-settings: "tnum";
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: baseline;
+}
+
+.filing-stamp-dot {
+  color: var(--rule-soft);
+}
+
+@media (max-width: 600px) {
+  .filing-stamp-inner {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    gap: 6px;
   }
 }

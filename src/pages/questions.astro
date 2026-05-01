@@ -6,6 +6,8 @@ import questions from '../data/questions.json';
 
 const lastUpdated = '04.30 / 2026';
 
+const questionCount = questions.reduce((sum, cat) => sum + cat.items.length, 0);
+
 const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-centers-in-commercial-point-and-scioto-township';
 ---
 
@@ -15,22 +17,33 @@ const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-c
   lastUpdated={lastUpdated}
 >
 
-  <!-- Hero -->
-  <section class="page-section page-section-tier">
-    <div class="measure">
-      <p class="kicker">Questions residents are asking</p>
-      <h1 class="questions-title">267 acres rezoned. Still no answers.</h1>
-      <p class="lede">
-        The May 20, 2024 vote did not answer the questions residents are still asking.
-        Water. Power. Noise. The emergency clause. The 48-hour resubmission. The missing
-        studies. The vote did not answer any of these.
-      </p>
+  <!-- Filing-stamp strip -->
+  <aside class="filing-stamp" aria-hidden="true">
+    <div class="filing-stamp-inner">
+      <span>Open inquiries</span>
+      <span class="filing-stamp-dot">·</span>
+      <span>{questionCount} questions</span>
     </div>
-  </section>
+  </aside>
 
-  <!-- Q&A sections -->
-  <section class="page-section questions-body">
-    <div class="measure">
+  <!-- Split layout: sticky hero + scrolling Q&A -->
+  <section class="questions-layout">
+    <aside class="questions-layout-aside">
+      <div class="questions-layout-aside-inner">
+        <p class="kicker">Questions residents are asking</p>
+        <h1 class="questions-title">267 acres rezoned.<br />Still no answers.</h1>
+        <p class="lede">
+          The May 20, 2024 vote did not answer the questions residents are still asking.
+          Water. Power. Noise. Setbacks. Home values. The emergency clause. The 48-hour
+          resubmission. Lack of studies and more.
+        </p>
+        <p class="questions-aside-cta">
+          <a class="btn-primary" href="/take-action#council-emails">Ask council <Icon name="mail" size={14} /></a>
+        </p>
+      </div>
+    </aside>
+
+    <div class="questions-layout-body">
       {questions.map((cat) => (
         <div class="questions-category" id={cat.id}>
           <SectionHeading
@@ -78,14 +91,66 @@ const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-c
 
 <style>
   .questions-title {
-    font-size: clamp(2rem, 3.8vw, 3rem);
-    line-height: 1.15;
+    font-size: clamp(2.25rem, 3.6vw, 3.25rem);
+    line-height: 1.05;
     margin: 0 0 var(--space-md);
-    max-width: 22ch;
+    max-width: 16ch;
+    letter-spacing: -0.01em;
   }
 
-  .questions-body {
+  /* In the split layout, lighten and tighten the per-category headings. */
+  .questions-layout-body :global(.section-heading-ruled) {
+    border-top: none;
     padding-top: 0;
+  }
+
+  .questions-layout-body :global(.section-heading h2) {
+    font-size: clamp(1.375rem, 2vw, 1.75rem);
+    line-height: 1.2;
+  }
+
+  .questions-layout-body :global(.faq-list) {
+    border-top-color: var(--rule-soft);
+  }
+
+  .questions-layout {
+    display: grid;
+    grid-template-columns: minmax(380px, 480px) 1fr;
+    gap: var(--space-2xl);
+    max-width: var(--frame);
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-lg) var(--space-4xl);
+    align-items: start;
+  }
+
+  .questions-layout-aside {
+    align-self: start;
+    position: sticky;
+    /* sticky `top` matches the rail's natural position — status bar + header
+       + filing-stamp height + the layout's own top padding — so the rail is
+       sticky from frame 1 and never travels even one pixel. */
+    top: calc(var(--sticky-bar-h, 52px) + var(--header-h, 114px) + 48px + var(--space-2xl));
+  }
+
+  .questions-layout-aside-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .questions-layout-aside .lede {
+    font-size: 17px;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 32ch;
+  }
+
+  .questions-aside-cta {
+    margin: var(--space-md) 0 0;
+  }
+
+  .questions-layout-body {
+    min-width: 0;
   }
 
   .questions-category {
@@ -94,5 +159,20 @@ const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-c
 
   .questions-category:last-child {
     margin-bottom: 0;
+  }
+
+  @media (max-width: 900px) {
+    .questions-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+      padding: var(--space-2xl) var(--space-lg) var(--space-3xl);
+    }
+    .questions-layout-aside {
+      position: static;
+    }
+    .questions-title {
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      max-width: 22ch;
+    }
   }
 </style>

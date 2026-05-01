@@ -1,98 +1,369 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import timeline from '../data/timeline.json';
+import Icon from '../components/content/Icon.astro';
+import featured from '../data/featured.json';
 
 const lastUpdated = '04.30 / 2026';
 
-interface TimelineEntry {
+interface FeaturedItem {
+  kind: 'video' | 'ordinance' | 'resolution' | 'code' | 'document' | 'site-plan';
   date: string;
-  category: string;
+  label: string;
   title: string;
-  body: string;
-  status: string;
-  verification: string;
-  why_it_matters?: string;
-  ordinance?: string;
-  source: { label: string; url: string };
+  summary: string;
+  url?: string;
+  url_label?: string;
+  secondary_url?: string;
+  secondary_label?: string;
+  tertiary_url?: string;
+  tertiary_label?: string;
 }
 
-const entries = (timeline as TimelineEntry[]).slice().sort((a, b) => a.date.localeCompare(b.date));
+const items = featured as FeaturedItem[];
+
+// Chronological order — read top to bottom as the K-Nova story.
+const sorted = [...items].sort((a, b) => a.date.localeCompare(b.date));
 
 const formatDate = (iso: string) => {
-  if (!iso) return '';
   const d = new Date(iso + 'T12:00:00');
-  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${mm}.${dd} / ${d.getFullYear()}`;
 };
 
-const verificationLabel = (v: string) => {
-  if (v === 'confirmed') return 'Confirmed';
-  if (v === 'needs-follow-up') return 'Needs follow-up';
-  if (v === 'records-requested') return 'Records requested';
-  return v;
-};
+const kindLabel = (k: string) =>
+  k === 'video' ? 'Meeting'
+  : k === 'ordinance' ? 'Ordinance'
+  : k === 'resolution' ? 'Resolution'
+  : k === 'code' ? 'Zoning code'
+  : k === 'site-plan' ? 'Site plan'
+  : 'Document';
 
-const verificationStyle = (v: string) => {
-  if (v === 'confirmed') return 'background: var(--moss); color: var(--ink);';
-  if (v === 'needs-follow-up') return 'background: var(--bone); color: var(--text);';
-  return 'background: var(--bone); color: var(--text-soft);';
-};
+const itemCount = sorted.length;
+
+// Total source links across primary, secondary, and tertiary URL slots.
+// Surfaced in the Sourcing section so the count stays honest if data changes.
+const sourceLinkCount = sorted.reduce(
+  (sum, item) =>
+    sum + (item.url ? 1 : 0) + (item.secondary_url ? 1 : 0) + (item.tertiary_url ? 1 : 0),
+  0,
+);
 ---
 
 <SiteLayout
   title="Timeline | Foxfire Coalition"
-  description="A source-linked public-record timeline of the K-Nova / Jahn Farm data-center zoning and site-plan issue near Foxfire in Commercial Point, Ohio."
+  description="The full K-Nova / Jahn Farm public-record timeline. Every council meeting, ordinance, resolution, and document at the center of the rezoning, in chronological order, with sources where available."
   lastUpdated={lastUpdated}
 >
-  <section class="page-section page-section-tier" style="min-height: 50vh;">
+  <!-- Filing-stamp strip -->
+  <aside class="filing-stamp" aria-hidden="true">
+    <div class="filing-stamp-inner">
+      <span>K-Nova timeline</span>
+      <span class="filing-stamp-dot">·</span>
+      <span>{itemCount} entries</span>
+      <span class="filing-stamp-dot">·</span>
+      <span>Source: Village of Commercial Point + Pickaway County</span>
+    </div>
+  </aside>
+
+  <!-- Hero -->
+  <section class="page-section page-section-tier media-hero">
     <div class="measure">
       <p class="kicker">Timeline</p>
-      <h1 style="font-family: var(--headline); font-size: clamp(2rem, 3.8vw, 3rem); line-height: 1.15; margin: 0 0 var(--space-md);">The public record.</h1>
+      <h1 class="media-title">Watch the meetings.<br />Read the record.</h1>
       <p class="lede">
-        A source-linked timeline of public-record events tied to the K-Nova / Jahn Farm rezoning
-        (Ordinance 2024-07) and the data-center proposal in Commercial Point.
-      </p>
-      <p style="font-size: 0.875rem; opacity: 0.7; margin-top: var(--space-md);">
-        Every entry below is sourced. Confidence labels indicate whether a fact is directly
-        confirmed by a public record or still needs verification.
+        The K-Nova story in source form. Every council meeting, ordinance, and document
+        we have a public link for, in chronological order. More entries will be added
+        here as records are received and verified.
       </p>
     </div>
   </section>
 
-  <section class="page-section">
-    <div class="measure">
-      {entries.length === 0 && (
-        <p class="lede" style="opacity: 0.7;">No timeline entries published yet.</p>
-      )}
+  <!-- The record: chronological ledger -->
+  <section class="page-section media-record" aria-label="K-Nova timeline, chronological">
+    <div class="measure-wide">
+      <ol class="record-list">
+        {sorted.map((item) => (
+          <li class="record-row">
+            <div class="record-date-col">
+              <span class="record-date mono tab">{formatDate(item.date)}</span>
+              <span class="record-kind">{kindLabel(item.kind)}</span>
+            </div>
+            <div class="record-body">
+              <p class="record-label">{item.label}</p>
+              <h2 class="record-title">{item.title}</h2>
+              <p class="record-summary">{item.summary}</p>
+              <div class="record-actions">
+                {item.url && item.url_label && (
+                  <a href={item.url} target="_blank" rel="noopener" class="record-link">
+                    {item.url_label}
+                    <Icon name="arrow-right" size={12} />
+                  </a>
+                )}
+                {item.secondary_url && (
+                  <a
+                    href={item.secondary_url}
+                    target="_blank"
+                    rel="noopener"
+                    class="record-link record-link-secondary"
+                  >
+                    {item.secondary_label}
+                    <Icon name="arrow-right" size={12} />
+                  </a>
+                )}
+                {item.tertiary_url && (
+                  <a
+                    href={item.tertiary_url}
+                    target="_blank"
+                    rel="noopener"
+                    class="record-link record-link-secondary"
+                  >
+                    {item.tertiary_label}
+                    <Icon name="arrow-right" size={12} />
+                  </a>
+                )}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
 
-      {entries.map((e) => (
-        <article style="border-top: 1px solid var(--rule-soft); padding: var(--space-lg) 0;">
-          <p class="kicker" style="margin-bottom: var(--space-xs);">
-            <span style="font-family: var(--mono); font-variant-numeric: tabular-nums;">{formatDate(e.date)}</span>
-            {e.ordinance && (
-              <span>{' · '}<span style="font-family: var(--mono);">{e.ordinance}</span></span>
-            )}
-            {' · '}
-            <span>{e.category}</span>
-          </p>
-          <h2 style="font-family: var(--headline); font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.3; margin: 0 0 var(--space-sm);">
-            {e.title}
-          </h2>
-          <p>{e.body}</p>
-          {e.why_it_matters && (
-            <p style="margin-top: var(--space-sm);"><strong>Why it matters.</strong> {e.why_it_matters}</p>
-          )}
-          <div style="display: flex; gap: var(--space-sm); align-items: center; margin-top: var(--space-md); font-size: 0.85rem;">
-            <span style={`padding: 2px 8px; border-radius: 4px; ${verificationStyle(e.verification)}`}>
-              {verificationLabel(e.verification)}
-            </span>
-            {e.source && e.source.url && (
-              <a href={e.source.url} target="_blank" rel="noopener" style="opacity: 0.8;">
-                {e.source.label} →
-              </a>
-            )}
-          </div>
-        </article>
-      ))}
+  <!-- Sourcing & verification -->
+  <section class="page-section media-sourcing" aria-labelledby="sourcing-heading">
+    <div class="measure">
+      <p class="kicker">Sourcing</p>
+      <h2 id="sourcing-heading" class="sourcing-title">How this record is verified.</h2>
+      <p>
+        The <span class="mono">{itemCount}</span> entries above are anchored to
+        <span class="mono">{sourceLinkCount}</span> working source links: village
+        ordinances, council and committee minutes, special meeting minutes, public
+        hearing minutes, the village's YouTube channel, and Pickaway County records.
+        Every PDF and video URL on this page has been opened and confirmed to load
+        the expected document.
+      </p>
+      <p>
+        Three statements on this page are drawn from coalition research notes rather
+        than from a single linked document. The underlying language will be quoted
+        directly once those source materials are obtained:
+      </p>
+      <ul class="sourcing-notes">
+        <li>The phrase "extenuating circumstances" cited at the April 15, 2024 special meeting.</li>
+        <li>The 48-hour resubmission requirement that followed the April 15 waiver.</li>
+        <li>The count of nine specific deficiencies in the April 29, 2026 K-Nova II site plan denial letter.</li>
+      </ul>
+      <p class="sourcing-foot">
+        Last verified <span class="mono">{lastUpdated}</span>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pre-footer -->
+  <section class="pre-footer">
+    <div class="pre-footer-inner">
+      <p class="pre-footer-kicker">Help fill the gaps.</p>
+      <h2 class="pre-footer-title">
+        See a missing record?<br />Tell us.
+      </h2>
+      <p class="pre-footer-body">
+        If you know of a meeting, document, or news segment that should be on this page,
+        send it to the coalition. We will source-check it and add it.
+      </p>
+      <p class="pre-footer-ctas">
+        <a class="btn-primary" href="/take-action">Take action <Icon name="megaphone" size={14} /></a>
+      </p>
     </div>
   </section>
 </SiteLayout>
+
+<style>
+  .media-hero {
+    padding-top: var(--space-2xl);
+  }
+
+  .media-title {
+    font-family: var(--headline);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 var(--space-md);
+  }
+
+  .media-record {
+    padding-top: var(--space-md);
+  }
+
+  .record-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: record;
+  }
+
+  .record-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: var(--space-2xl);
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--rule-soft);
+    align-items: start;
+  }
+
+  .record-row:last-child {
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .record-date-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    position: sticky;
+    top: calc(var(--sticky-bar-h, 52px) + var(--header-h, 114px) + var(--space-md));
+    align-self: start;
+  }
+
+  .record-date {
+    font-size: 15px;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum";
+    line-height: 1.2;
+  }
+
+  .record-kind {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+  }
+
+  .record-body {
+    min-width: 0;
+    max-width: 64ch;
+  }
+
+  .record-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .record-title {
+    font-family: var(--headline);
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    line-height: 1.25;
+    font-weight: 500;
+    margin: 0 0 var(--space-sm);
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  .record-summary {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text);
+    margin: 0 0 var(--space-md);
+  }
+
+  .record-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md) var(--space-lg);
+  }
+
+  .record-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--body);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    transition: opacity 0.15s ease;
+  }
+
+  .record-link:hover {
+    opacity: 0.7;
+  }
+
+  .record-link-secondary {
+    color: var(--text-soft);
+    border-bottom-color: var(--rule-soft);
+    font-weight: 400;
+  }
+
+  /* Sourcing section */
+  .media-sourcing {
+    border-top: 1px solid var(--rule-soft);
+    padding-top: var(--space-2xl);
+  }
+
+  .sourcing-title {
+    font-family: var(--headline);
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    line-height: 1.2;
+    margin: var(--space-xs) 0 var(--space-md);
+    font-weight: 500;
+  }
+
+  .media-sourcing p {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text);
+    margin: 0 0 var(--space-md);
+  }
+
+  .sourcing-notes {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-lg);
+  }
+
+  .sourcing-notes li {
+    padding: var(--space-sm) 0;
+    border-top: 1px solid var(--rule-soft);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .sourcing-notes li:last-child {
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .sourcing-foot {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-soft);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .record-row {
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+      padding: var(--space-lg) 0;
+    }
+
+    .record-date-col {
+      position: static;
+      flex-direction: row;
+      align-items: baseline;
+      gap: var(--space-md);
+    }
+
+    .record-actions {
+      gap: var(--space-md);
+    }
+  }
+</style>

@@ -7,6 +7,7 @@ type NavItem = { href: string; label: string; external?: boolean; cta?: 'solid' 
 const nav: NavItem[] = [
   { href: '/', label: 'Home' },
   { href: '/questions', label: 'Questions' },
+  { href: '/timeline', label: 'Timeline' },
   { href: '/updates', label: 'Updates' },
   { href: '/take-action', label: 'Take action', cta: 'solid' },
   { href: 'https://www.gofundme.com/f/support-community-action-against-data-center', label: 'Donate', external: true, cta: 'outlined' },
@@ -25,14 +26,25 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       <img src="/logo.png" alt="Foxfire Coalition" width="180" height="56" />
     </a>
 
-    <!-- Desktop nav -->
-    <nav class="site-header-nav site-header-nav-desktop" aria-label="Primary">
-      {nav.map((item) => {
+    <!-- Desktop nav: centered plain links -->
+    <nav class="site-header-nav site-header-nav-desktop site-header-nav-center" aria-label="Primary">
+      {linkItems.map((item) => {
+        const itemPath = item.href.replace(/\/$/, '') || '/';
+        const isCurrent = itemPath === path;
+        return (
+          <a href={item.href} aria-current={isCurrent ? 'page' : undefined}>
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Desktop nav: right-aligned CTAs -->
+    <nav class="site-header-nav site-header-nav-desktop site-header-nav-end" aria-label="Primary actions">
+      {ctaItems.map((item) => {
         const ctaClass = item.cta === 'solid'
           ? 'site-header-cta site-header-cta-solid'
-          : item.cta === 'outlined'
-            ? 'site-header-cta site-header-cta-outlined'
-            : undefined;
+          : 'site-header-cta site-header-cta-outlined';
 
         if (item.external) {
           return (
