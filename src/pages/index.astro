@@ -529,7 +529,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       grid-template-columns: minmax(300px, 440px) 1fr;
       gap: 0;
       align-items: stretch;
-      text-decoration: none;
+      text-decoration: none !important;
       color: inherit;
       background: var(--bone);
       margin-bottom: var(--space-2xl);
@@ -537,14 +537,11 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
 
     .home-featured-media {
       overflow: hidden;
-      background: var(--ink);
-      min-height: 240px;
     }
 
     .home-featured-media img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
       transition: transform 0.4s ease;
     }
@@ -562,10 +559,11 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       justify-content: center;
     }
 
-    /* "Featured update" pill */
+    /* "Featured update" pill — width fits text only */
     .home-featured-flag {
       display: inline-flex;
       align-items: center;
+      align-self: flex-start;
       gap: 5px;
       font-family: var(--mono);
       font-size: 10px;
@@ -628,8 +626,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       font-size: 13px;
       font-weight: 500;
       color: var(--accent);
-      border-bottom: 1px solid currentColor;
-      padding-bottom: 1px;
+      text-decoration: none;
     }
 
     .home-featured-cta :global(svg) {
@@ -762,10 +759,10 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       font-size: 15px;
       font-weight: 500;
       color: var(--ink);
-      text-decoration: underline;
-      text-decoration-color: var(--ink);
-      text-underline-offset: 3px;
-      transition: color 0.15s ease, text-decoration-color 0.15s ease;
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 1px;
+      transition: color 0.15s ease, border-color 0.15s ease;
     }
 
     .story-timeline-link :global(svg) {
@@ -776,7 +773,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     .story-timeline-link:hover,
     .story-timeline-link:focus-visible {
       color: var(--accent);
-      text-decoration-color: var(--accent);
+      border-bottom-color: var(--accent);
     }
 
     /* Hero secondary CTA — outline button, works on the dark hero background */
