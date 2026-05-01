@@ -46,7 +46,13 @@ export const updates: LocalUpdate[] = [
 
 <p>That is exactly why residents are asking questions about the process.</p>
 
-<p>Before Ordinance 2024-07 passed, the Village&rsquo;s ordinance list shows that <a href="https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-02-Died-to-lack-of-motion.pdf" target="_blank" rel="noopener">Ordinance 2024-02</a> attempted to rezone the same 266.971 acres from Exceptional Use to Planned Industrial District, but &ldquo;died due to a lack of motion.&rdquo; The same ordinance list then shows <a href="https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-05.pdf" target="_blank" rel="noopener">Ordinance 2024-05</a> amending <a href="https://commercialpointohio.gov/CPCodifications/10-CommercialPoint12.pdf" target="_blank" rel="noopener">Chapter 1143.04(e)</a> of the Planning and Zoning Code before Ordinance 2024-07 came back and passed.</p>
+<p>Before Ordinance 2024-07 passed, the Village&rsquo;s ordinance list shows that <a href="https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-02-Died-to-lack-of-motion.pdf" target="_blank" rel="noopener">Ordinance 2024-02</a> attempted to rezone the same 266.971 acres from Exceptional Use to Planned Industrial District, but &ldquo;died due to a lack of motion.&rdquo; The same ordinance list then shows <a href="https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-05.pdf" target="_blank" rel="noopener">Ordinance 2024-05</a> amending <a href="https://commercialpointohio.gov/CPCodifications/10-CommercialPoint12.pdf" target="_blank" rel="noopener">Chapter 1143.04(e)</a> of the Planning and Zoning Code before Ordinance 2024-07 came back and passed. What happened in the weeks between those two events matters.</p>
+
+<p>Under the village&rsquo;s own zoning code at the time, Chapter 1143.04(e) imposed a one-year bar on refiling the same rezoning application after it was disapproved or failed. That rule existed to prevent an applicant from cycling the same rejected application back through the process immediately after a failed vote.</p>
+
+<p>Two weeks after Ordinance 2024-02 died for lack of a motion, at a <a href="https://www.youtube.com/watch?v=AUL9A18pFtM" target="_blank" rel="noopener">Special Council meeting on April 15, 2024</a>, council voted to waive that one-year bar specifically for K-Nova, on the condition that K-Nova refile within 48 hours. The public record cites &ldquo;extenuating circumstances&rdquo; as the basis for the waiver. The record does not state what those circumstances were. K-Nova met the 48-hour condition and refiled. That application became Ordinance 2024-07.</p>
+
+<p>Three weeks later, Ordinance 2024-05 permanently changed the same rule that had just been waived for one applicant.</p>
 
 <p>Ordinance 2024-05 changed the council action timeline from 45 days to 120 days after the public hearing, changed the consequence of no council action to the application being considered disapproved, and changed the re-submission waiting period after disapproval from one year to six months. It was also declared an emergency measure.</p>
 
@@ -58,7 +64,8 @@ export const updates: LocalUpdate[] = [
 
 <ul>
   <li>Why did the first rezoning attempt die?</li>
-  <li>Why were the zoning rules changed afterward?</li>
+  <li>What were the &ldquo;extenuating circumstances&rdquo; that allowed K-Nova to refile in 48 hours instead of waiting the required one year?</li>
+  <li>Why were the zoning rules then permanently changed for everyone else, shortly afterward?</li>
   <li>Why was Ordinance 2024-05 passed as an emergency?</li>
   <li>Why was Ordinance 2024-07 also passed as an emergency?</li>
   <li>What was the actual emergency?</li>
