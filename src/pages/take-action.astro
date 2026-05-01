@@ -583,20 +583,49 @@ const nextMeetingYear = nextMeetingDateObj?.getFullYear();
     });
   })();
 
-  // Signup form success message
-  (function () {
+  // Signup form: dedupe-aware submit handling. Mirrors the homepage form
+  // and shares the same sessionStorage flag, so a user who signs up on
+  // either page won't be presented with a fresh form on the other.
+  const TA_SIGNUP_STORAGE_KEY = 'foxfire-signup-submitted';
+
+  function initTakeActionSignupForm() {
     const form = document.getElementById('ta-signup-form') as HTMLFormElement | null;
-    const success = document.getElementById('ta-signup-success');
-    const submitBtn = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
-    if (form && success && submitBtn) {
-      form.addEventListener('submit', () => {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending…';
-        setTimeout(() => {
-          form.style.display = 'none';
-          (success as HTMLElement).style.display = 'flex';
-        }, 500);
-      });
+    const success = document.getElementById('ta-signup-success') as HTMLElement | null;
+    if (!form || !success) return;
+    if (form.dataset.wired === 'true') return;
+    form.dataset.wired = 'true';
+
+    const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (!submitBtn) return;
+
+    const showSuccess = () => {
+      form.style.display = 'none';
+      success.style.display = 'flex';
+    };
+
+    if (sessionStorage.getItem(TA_SIGNUP_STORAGE_KEY) === 'true') {
+      showSuccess();
+      return;
     }
-  })();
+
+    let submitting = false;
+    form.addEventListener('submit', (e) => {
+      if (submitting || sessionStorage.getItem(TA_SIGNUP_STORAGE_KEY) === 'true') {
+        e.preventDefault();
+        return;
+      }
+      submitting = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      sessionStorage.setItem(TA_SIGNUP_STORAGE_KEY, 'true');
+      setTimeout(showSuccess, 500);
+    });
+  }
+
+  document.addEventListener('astro:page-load', initTakeActionSignupForm);
+  if (document.readyState !== 'loading') {
+    initTakeActionSignupForm();
+  } else {
+    document.addEventListener('DOMContentLoaded', initTakeActionSignupForm);
+  }
 </script>

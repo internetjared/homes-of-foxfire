@@ -186,18 +186,59 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
         </form>
 
         <script>
-          const form = document.getElementById('signup-form') as HTMLFormElement | null;
-          const success = document.getElementById('signup-success');
-          const submitBtn = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
-          if (form && success && submitBtn) {
-            form.addEventListener('submit', () => {
+          // Signup form: dedupe-aware submit handling.
+          //
+          // - Wired on astro:page-load (initial + view transitions) instead of
+          //   running once on DOMContentLoaded. Without this, returning to the
+          //   homepage via view transitions leaves the form with no listener,
+          //   the user thinks the submit didn't work, and re-submits → duplicate.
+          // - Idempotent via data-wired so multiple page-loads don't double-bind.
+          // - sessionStorage flag (shared with the /take-action form) blocks
+          //   in-session double-submits across both pages and view transitions.
+          // - In-memory `submitting` flag blocks rapid double-clicks before the
+          //   storage flag is written.
+          const SIGNUP_STORAGE_KEY = 'foxfire-signup-submitted';
+
+          function initHomeSignupForm() {
+            const form = document.getElementById('signup-form') as HTMLFormElement | null;
+            const success = document.getElementById('signup-success') as HTMLElement | null;
+            if (!form || !success) return;
+            if (form.dataset.wired === 'true') return;
+            form.dataset.wired = 'true';
+
+            const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+            if (!submitBtn) return;
+
+            const showSuccess = () => {
+              form.style.display = 'none';
+              success.style.display = 'flex';
+            };
+
+            // Already submitted this session (on this page or /take-action).
+            if (sessionStorage.getItem(SIGNUP_STORAGE_KEY) === 'true') {
+              showSuccess();
+              return;
+            }
+
+            let submitting = false;
+            form.addEventListener('submit', (e) => {
+              if (submitting || sessionStorage.getItem(SIGNUP_STORAGE_KEY) === 'true') {
+                e.preventDefault();
+                return;
+              }
+              submitting = true;
               submitBtn.disabled = true;
               submitBtn.textContent = 'Sending…';
-              setTimeout(() => {
-                form.style.display = 'none';
-                success.style.display = 'flex';
-              }, 500);
+              sessionStorage.setItem(SIGNUP_STORAGE_KEY, 'true');
+              setTimeout(showSuccess, 500);
             });
+          }
+
+          document.addEventListener('astro:page-load', initHomeSignupForm);
+          if (document.readyState !== 'loading') {
+            initHomeSignupForm();
+          } else {
+            document.addEventListener('DOMContentLoaded', initHomeSignupForm);
           }
         </script>
 
