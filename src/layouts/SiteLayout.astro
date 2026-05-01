@@ -6,11 +6,19 @@ import StickyStatusBar from '../components/site/StickyStatusBar.astro';
 import meetings from '../data/meetings.json';
 import '../styles/components.css';
 
+import type { ArticleMeta } from './BaseLayout.astro';
+
 interface Props {
   title: string;
   description?: string;
   lastUpdated?: string;
   requestId?: string;
+  // SEO passthroughs to BaseLayout
+  image?: string;
+  type?: 'website' | 'article';
+  articleMeta?: ArticleMeta;
+  extraSchema?: object;
+  noindex?: boolean;
 }
 
 const {
@@ -18,6 +26,11 @@ const {
   description,
   lastUpdated,
   requestId,
+  image,
+  type,
+  articleMeta,
+  extraSchema,
+  noindex,
 } = Astro.props;
 
 // Procedural status surfaces. Read at the layout level so every public
@@ -35,7 +48,15 @@ const nextMeetingDate = nextMeeting
   : null;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  image={image}
+  type={type}
+  articleMeta={articleMeta}
+  extraSchema={extraSchema}
+  noindex={noindex}
+>
   <a class="skip-link" href="#main">Skip to main content.</a>
   <StickyStatusBar
     meeting={nextMeeting}

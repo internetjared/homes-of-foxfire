@@ -7,12 +7,34 @@ import questions from '../data/questions.json';
 const lastUpdated = '04.30 / 2026';
 
 const petitionUrl = 'https://www.change.org/p/prevent-the-construction-of-data-centers-in-commercial-point-and-scioto-township';
+
+// Strip HTML tags from answers so the FAQPage schema gets clean plain text
+// (Google's FAQ rich results render plain text only).
+const stripHtml = (html: string) =>
+  html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+
+// FAQPage JSON-LD — high SEO value, eligible for Google FAQ rich results.
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: questions.flatMap((cat) =>
+    cat.items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: stripHtml(item.answer),
+      },
+    })),
+  ),
+};
 ---
 
 <SiteLayout
   title="Questions Residents Are Asking | Foxfire Coalition"
   description="Public records show that nearly 267 acres near Foxfire have been rezoned for data-center use. These are the questions residents are still asking about what happened, what remains, and what can still be done."
   lastUpdated={lastUpdated}
+  extraSchema={faqSchema}
 >
 
   <!-- Split layout: sticky hero + scrolling Q&A -->

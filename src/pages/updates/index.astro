@@ -1,0 +1,227 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Icon from '../../components/content/Icon.astro';
+import { updates, cardThumbnail } from '../../data/updates';
+
+const lastUpdated = '04.30 / 2026';
+
+// Newest first.
+const sorted = [...updates].sort((a, b) => b.publishDate.localeCompare(a.publishDate));
+---
+
+<SiteLayout
+  title="Updates | Foxfire Coalition"
+  description="News and changes from the Foxfire Coalition: meeting recaps, records-request status, newly found documents, and analysis of the K-Nova rezoning."
+  lastUpdated={lastUpdated}
+>
+  <!-- Page hero -->
+  <section class="page-section page-section-tier updates-hero">
+    <div class="measure-wide updates-hero-inner">
+      <p class="kicker">Updates</p>
+      <h1 class="updates-title">Coalition updates.</h1>
+      <p class="lede updates-lede">
+        Meeting recaps, records-request status, and analysis of the K-Nova
+        rezoning record as new documents come in.
+      </p>
+    </div>
+  </section>
+
+  {sorted.length === 0 && (
+    <section class="page-section">
+      <div class="measure">
+        <p class="lede" style="opacity: 0.7;">
+          No updates published yet. Check back soon, or sign up for email notifications.
+        </p>
+      </div>
+    </section>
+  )}
+
+  {sorted.length > 0 && (
+    <section class="page-section updates-list-section" aria-label="All updates">
+      <div class="measure-wide">
+        <ul class="updates-list">
+          {sorted.map((u) => {
+            const thumb = cardThumbnail(u);
+            const href = `/updates/${u.id}`;
+            return (
+              <li class="update-card">
+                <a class="update-card-link" href={href} aria-labelledby={`card-title-${u.id}`}>
+                  {thumb && (
+                    <div class="update-card-media">
+                      <img src={thumb} alt="" loading="lazy" />
+                    </div>
+                  )}
+                  <div class="update-card-body">
+                    <p class="update-card-meta">
+                      <span class="update-card-date mono tab">{u.publishDateLabel}</span>
+                      <span class="update-card-dot" aria-hidden="true">·</span>
+                      <span class="update-card-category">{u.category}</span>
+                    </p>
+                    <h2 class="update-card-title" id={`card-title-${u.id}`}>{u.title}</h2>
+                    <p class="update-card-excerpt">{u.excerpt}</p>
+                    <span class="update-card-cta">
+                      Read more <Icon name="arrow-right" size={12} />
+                    </span>
+                  </div>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  )}
+</SiteLayout>
+
+<style>
+  .updates-hero {
+    background: var(--bone);
+    border-bottom: 1px solid var(--rule-soft);
+    padding-top: var(--space-2xl);
+  }
+
+  .updates-hero-inner {
+    text-align: left;
+  }
+
+  .updates-title {
+    font-family: var(--headline);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 var(--space-md);
+    max-width: 22ch;
+  }
+
+  .updates-lede {
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  .updates-list-section {
+    padding-top: var(--space-2xl);
+  }
+
+  .updates-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-2xl);
+  }
+
+  .update-card {
+    border-top: 1px solid var(--rule-soft);
+    padding-top: var(--space-xl);
+  }
+
+  .update-card:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .update-card-link {
+    display: grid;
+    grid-template-columns: minmax(280px, 380px) 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .update-card-media {
+    aspect-ratio: 16 / 9;
+    background: var(--ink);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .update-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .update-card-link:hover .update-card-media img,
+  .update-card-link:focus-visible .update-card-media img {
+    transform: scale(1.025);
+  }
+
+  .update-card-body {
+    min-width: 0;
+  }
+
+  .update-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin: 0 0 var(--space-sm);
+  }
+
+  .update-card-date {
+    color: var(--ink);
+    font-feature-settings: "tnum";
+  }
+
+  .update-card-dot {
+    color: var(--rule-soft);
+  }
+
+  .update-card-title {
+    font-family: var(--headline);
+    font-size: clamp(1.375rem, 2vw, 1.625rem);
+    line-height: 1.2;
+    margin: 0 0 var(--space-sm);
+    color: var(--ink);
+    font-weight: 500;
+    text-wrap: balance;
+    transition: color 0.15s ease;
+  }
+
+  .update-card-link:hover .update-card-title,
+  .update-card-link:focus-visible .update-card-title {
+    color: var(--accent);
+  }
+
+  .update-card-excerpt {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text);
+    margin: 0 0 var(--space-md);
+    max-width: 60ch;
+  }
+
+  .update-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--body);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .update-card-link {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    .updates-list {
+      gap: var(--space-xl);
+    }
+
+    .update-card {
+      padding-top: var(--space-lg);
+    }
+  }
+</style>

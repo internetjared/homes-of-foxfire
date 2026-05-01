@@ -1,0 +1,385 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Icon from '../../components/content/Icon.astro';
+import {
+  updates,
+  isLocalVideo,
+  toEmbedUrl,
+  cardThumbnail,
+  type LocalUpdate,
+} from '../../data/updates';
+
+export async function getStaticPaths() {
+  return updates.map((u) => ({
+    params: { slug: u.id },
+    props: { update: u },
+  }));
+}
+
+interface Props {
+  update: LocalUpdate;
+}
+
+const { update } = Astro.props as Props;
+
+const lastUpdated = '04.30 / 2026';
+const localVideo = isLocalVideo(update.videoUrl);
+const embedUrl = !localVideo ? toEmbedUrl(update.videoUrl) : null;
+
+const description = update.excerpt;
+
+// SEO: use the YouTube thumbnail (or post-specific override) for og:image.
+const SITE_URL = 'https://foxfirecoalition.org';
+const thumbnail = cardThumbnail(update);
+const ogImage = thumbnail ?? `${SITE_URL}/FCADC_Social.jpg`;
+
+// Article (NewsArticle) JSON-LD — gives blog posts proper schema.org markup
+// so search engines can surface date, author, and headline in rich results.
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: update.title,
+  description: update.excerpt,
+  image: thumbnail ? [thumbnail] : [`${SITE_URL}/FCADC_Social.jpg`],
+  datePublished: update.publishDate,
+  dateModified: update.publishDate,
+  author: {
+    '@type': 'Organization',
+    name: 'Homes of Foxfire Coalition',
+    url: SITE_URL,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Homes of Foxfire Coalition',
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/favicon.png`,
+    },
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${SITE_URL}/updates/${update.id}`,
+  },
+  articleSection: update.category,
+};
+---
+
+<SiteLayout
+  title={`${update.title} | Foxfire Coalition`}
+  description={description}
+  lastUpdated={lastUpdated}
+  type="article"
+  image={ogImage}
+  articleMeta={{
+    publishedTime: update.publishDate,
+    modifiedTime: update.publishDate,
+    section: update.category,
+    authorName: 'Homes of Foxfire Coalition',
+  }}
+  extraSchema={articleSchema}
+>
+  <article class="update-article" id={update.id}>
+    <p class="update-article-back">
+      <a href="/updates">
+        <Icon name="arrow-right" size={12} />
+        <span>All updates</span>
+      </a>
+    </p>
+
+    <header class="update-article-head">
+      <p class="update-article-meta">
+        <span class="update-article-date mono tab">{update.publishDateLabel}</span>
+        <span class="update-article-dot" aria-hidden="true">·</span>
+        <span class="update-article-category">{update.category}</span>
+      </p>
+      <h1 class="update-article-title">{update.title}</h1>
+    </header>
+
+    {(localVideo || embedUrl) && (
+      <figure class="update-article-video">
+        <div class="update-video-frame">
+          {localVideo ? (
+            <video
+              src={update.videoUrl}
+              poster={update.videoPoster}
+              controls
+              preload="metadata"
+              playsinline
+            >
+              Your browser does not support embedded video.
+              <a href={update.videoUrl}>Download the video</a> to watch it.
+            </video>
+          ) : (
+            <iframe
+              src={embedUrl!}
+              title={update.videoTitle || update.title}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          )}
+        </div>
+        {update.videoTitle && <figcaption class="update-video-caption">{update.videoTitle}</figcaption>}
+      </figure>
+    )}
+
+    <div class="update-article-body" set:html={update.bodyHtml}></div>
+
+    <footer class="update-article-foot">
+      <a class="update-article-back-link" href="/updates">
+        <Icon name="arrow-right" size={12} />
+        <span>Back to all updates</span>
+      </a>
+    </footer>
+  </article>
+</SiteLayout>
+
+<style>
+  .update-article {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-lg) var(--space-4xl);
+  }
+
+  .update-article-back {
+    margin: 0 0 var(--space-xl);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .update-article-back a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .update-article-back a:hover,
+  .update-article-back a:focus-visible {
+    color: var(--ink);
+  }
+
+  /* The back-arrow icon points right by default; flip it for the back affordance. */
+  .update-article-back svg,
+  .update-article-back-link svg {
+    transform: scaleX(-1);
+  }
+
+  .update-article-head {
+    max-width: 760px;
+    margin: 0 auto var(--space-xl);
+    text-align: center;
+  }
+
+  .update-article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin: 0 0 var(--space-md);
+  }
+
+  .update-article-date {
+    color: var(--ink);
+    font-feature-settings: "tnum";
+  }
+
+  .update-article-dot {
+    color: var(--rule-soft);
+  }
+
+  .update-article-title {
+    font-family: var(--headline);
+    font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+    line-height: 1.15;
+    margin: 0;
+    text-wrap: balance;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  /* Video ------------------------------------------------------------- */
+
+  .update-article-video {
+    margin: 0 0 var(--space-2xl);
+  }
+
+  .update-video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--ink);
+    overflow: hidden;
+  }
+
+  .update-video-frame iframe,
+  .update-video-frame video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    object-fit: contain;
+    background: var(--ink);
+  }
+
+  .update-video-caption {
+    margin: var(--space-sm) 0 0;
+    font-size: 14px;
+    color: var(--text-soft);
+    text-align: left;
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  /* Body -------------------------------------------------------------- */
+
+  .update-article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  .update-article-body :global(h2) {
+    font-family: var(--headline);
+    font-size: clamp(1.25rem, 2vw, 1.625rem);
+    line-height: 1.25;
+    margin: var(--space-2xl) 0 var(--space-md);
+    color: var(--ink);
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  .update-article-body :global(p) {
+    margin: 0 0 var(--space-md);
+  }
+
+  .update-article-body :global(ul) {
+    margin: var(--space-md) 0 var(--space-lg);
+    padding-left: 1.25em;
+  }
+
+  .update-article-body :global(li) {
+    margin-bottom: var(--space-xs);
+  }
+
+  .update-article-body :global(a) {
+    color: var(--accent);
+    border-bottom: 1px solid currentColor;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .update-article-body :global(a:hover),
+  .update-article-body :global(a:focus-visible) {
+    opacity: 0.7;
+  }
+
+  .update-article-body :global(.update-sources) {
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  .update-article-body :global(.update-sources-title) {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin: 0 0 var(--space-xs);
+  }
+
+  .update-article-body :global(.update-sources-intro) {
+    font-size: 14px;
+    color: var(--text-soft);
+    margin: 0 0 var(--space-lg);
+  }
+
+  .update-article-body :global(.update-sources h3) {
+    font-family: var(--headline);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin: var(--space-lg) 0 var(--space-xs);
+    letter-spacing: 0.01em;
+  }
+
+  .update-article-body :global(.update-sources ul) {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 var(--space-md);
+  }
+
+  .update-article-body :global(.update-sources li) {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: var(--space-xs);
+  }
+
+  .update-article-body :global(.update-pull) {
+    margin: var(--space-2xl) 0 0;
+    padding: var(--space-lg) var(--space-lg);
+    border-left: 3px solid var(--accent);
+    background: var(--bone);
+    font-size: 19px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  /* Footer back link ------------------------------------------------- */
+
+  .update-article-foot {
+    max-width: 720px;
+    margin: var(--space-3xl) auto 0;
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  .update-article-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .update-article-back-link:hover,
+  .update-article-back-link:focus-visible {
+    color: var(--ink);
+  }
+
+  @media (max-width: 768px) {
+    .update-article {
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+    }
+
+    .update-article-title {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .update-article-body {
+      font-size: 16px;
+    }
+  }
+</style>
