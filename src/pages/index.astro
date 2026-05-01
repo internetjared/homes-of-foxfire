@@ -115,6 +115,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       <p class="lede">{heroLede}</p>
       <div class="hero-cta">
         <a class="btn-primary" href="#act">{heroCtaLabel} <Icon name="megaphone" size={14} /></a>
+        <a class="btn-hero-secondary" href="/questions">See our questions <Icon name="arrow-right" size={14} /></a>
       </div>
     </div>
 
@@ -349,6 +350,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
         <div set:html={storyBodyHtml}></div>
 
         <div class="section-foot story-foot">
+          <a class="story-timeline-link" href="/timeline">Read the full timeline</a>
           <button
             class="btn-plan"
             type="button"
@@ -455,22 +457,6 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       </div>
     </section>
   )}
-
-  <!-- Questions teaser: matches the Questions page hero. -->
-  <section class="page-section page-section-tier questions-teaser-hero">
-    <div class="measure">
-      <p class="kicker">Questions residents are asking</p>
-      <h2 class="questions-teaser-title">267 acres rezoned. More questions to answer.</h2>
-      <p class="lede">
-        The May 20, 2024 vote did not answer the questions residents are still asking.
-        Water. Power. Noise. Setbacks. Home values. The emergency clause. The 48-hour
-        resubmission. Lack of studies and more.
-      </p>
-      <p class="questions-teaser-foot">
-        <a class="btn-primary" href="/questions">See all questions <Icon name="arrow-right" size={14} /></a>
-      </p>
-    </div>
-  </section>
 
   <!-- Pre-footer: Foxfire neighborhood aerial -->
   <section class="pre-footer" aria-label="Foxfire neighborhood">
@@ -765,21 +751,41 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
       }
     }
 
-    /* ── Questions teaser ───────────────────────────────────────────────── */
-
-    /* Mirrors the Questions page hero so the homepage teaser uses the same
-       editorial scale and rhythm. The wrapper is a section, not a page hero,
-       so we use h2 styling (matches the visual size of the .questions-title h1). */
-    .questions-teaser-hero {
-      background: var(--bone);
-    }
-    .questions-teaser-title {
-      font-family: var(--headline);
-      font-size: clamp(2rem, 3.8vw, 3rem);
-      line-height: 1.15;
-      margin: 0 0 var(--space-md);
-      max-width: 22ch;
+    /* Story section timeline text link */
+    .story-timeline-link {
+      font-size: 15px;
       font-weight: 500;
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease;
+    }
+
+    .story-timeline-link:hover,
+    .story-timeline-link:focus-visible {
+      color: var(--accent);
+    }
+
+    /* Hero secondary CTA — outline button, works on the dark hero background */
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--paper);
+      border: 1.5px solid rgba(244, 239, 227, 0.45);
+      padding: 0.65em 1.2em;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+    }
+
+    .btn-hero-secondary:hover,
+    .btn-hero-secondary:focus-visible {
+      border-color: var(--paper);
+      background: rgba(244, 239, 227, 0.1);
     }
   </style>
 
