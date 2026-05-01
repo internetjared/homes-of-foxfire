@@ -5,7 +5,7 @@ import {
   updates,
   isLocalVideo,
   toEmbedUrl,
-  cardThumbnail,
+  ogImageForUpdate,
   type LocalUpdate,
 } from '../../data/updates';
 
@@ -28,10 +28,11 @@ const embedUrl = !localVideo ? toEmbedUrl(update.videoUrl) : null;
 
 const description = update.excerpt;
 
-// SEO: use the YouTube thumbnail (or post-specific override) for og:image.
+// SEO: use a full-size YouTube thumbnail (or post-specific override) for the
+// OG image. maxresdefault.jpg is 1280x720 — proper social-preview sizing.
 const SITE_URL = 'https://foxfirecoalition.org';
-const thumbnail = cardThumbnail(update);
-const ogImage = thumbnail ?? `${SITE_URL}/FCADC_Social.jpg`;
+const ogImageUrl = ogImageForUpdate(update);
+const ogImage = ogImageUrl ?? `${SITE_URL}/FCADC_Social.jpg`;
 
 // Article (NewsArticle) JSON-LD — gives blog posts proper schema.org markup
 // so search engines can surface date, author, and headline in rich results.
@@ -40,7 +41,7 @@ const articleSchema = {
   '@type': 'NewsArticle',
   headline: update.title,
   description: update.excerpt,
-  image: thumbnail ? [thumbnail] : [`${SITE_URL}/FCADC_Social.jpg`],
+  image: ogImageUrl ? [ogImageUrl] : [`${SITE_URL}/FCADC_Social.jpg`],
   datePublished: update.publishDate,
   dateModified: update.publishDate,
   author: {

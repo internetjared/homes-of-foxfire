@@ -215,13 +215,26 @@ export const toEmbedUrl = (url?: string): string | null => {
   return `https://www.youtube.com/embed/${id}${query}`;
 };
 
-// Derive a YouTube thumbnail URL from a video URL. Uses hqdefault (always
-// available, 480x360) as the default. Override per-post via `thumbnailUrl`.
+// Derive a YouTube thumbnail URL. `hqdefault` (480x360) always exists and
+// loads fast — perfect for in-page cards. `maxresdefault` (1280x720) gives
+// proper social-preview sizing but only exists for videos uploaded above 720p;
+// older/low-res uploads return 404.
 export const youtubeThumbnail = (url?: string): string | null => {
   const id = youtubeId(url);
   return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
 };
 
-// Resolve the card thumbnail for a post: explicit > YouTube derived > null.
+export const youtubeOgThumbnail = (url?: string): string | null => {
+  const id = youtubeId(url);
+  return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : null;
+};
+
+// In-page card thumbnail: explicit override → fast YouTube hqdefault → null.
 export const cardThumbnail = (u: LocalUpdate): string | null =>
   u.thumbnailUrl ?? youtubeThumbnail(u.videoUrl);
+
+// Social-preview / OG image: explicit override → big YouTube maxresdefault → null.
+// Use the larger thumbnail here so Twitter/Facebook previews are full-size,
+// while the in-page card stays on the lighter hqdefault asset.
+export const ogImageForUpdate = (u: LocalUpdate): string | null =>
+  u.thumbnailUrl ?? youtubeOgThumbnail(u.videoUrl);
