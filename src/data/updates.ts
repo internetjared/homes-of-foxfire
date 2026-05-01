@@ -200,8 +200,8 @@ export const updates: LocalUpdate[] = [
   {
     id: 'ordinance-2024-07-procedural-review',
     title: 'Why We Are Asking Commercial Point to Review the Validity of Ordinance 2024-07',
-    publishDate: '2026-05-01',
-    publishDateLabel: 'May 1, 2026',
+    publishDate: '2026-05-02',
+    publishDateLabel: 'May 2, 2026',
     category: 'Public records',
     excerpt: 'Public records, Ohio law, and the village\u2019s own code raise a serious procedural question about the May 20, 2024 vote adopting Ordinance 2024-07. Did council have enough votes to legally suspend the required three readings?',
     thumbnailUrl: '/ordinance-2024-07-procedural-review.png',
