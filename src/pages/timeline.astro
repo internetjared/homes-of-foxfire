@@ -56,6 +56,10 @@ const isVideoUrl = (url?: string) =>
 
 const entryHasVideo = (item: FeaturedItem) =>
   isVideoUrl(item.url) || isVideoUrl(item.secondary_url) || isVideoUrl(item.tertiary_url);
+
+// Local reference assets (PDFs, denial letter PNGs, etc.) live under /Reference_*.
+// These open in an in-page iframe lightbox instead of navigating away.
+const isLocalReference = (url?: string) => Boolean(url && url.startsWith('/Reference_'));
 ---
 
 <SiteLayout
@@ -99,7 +103,14 @@ const entryHasVideo = (item: FeaturedItem) =>
               <p class="record-summary">{item.summary}</p>
               <div class="record-actions">
                 {item.url && item.url_label && (
-                  <a href={item.url} target="_blank" rel="noopener" class={`record-link${isVideoUrl(item.url) ? ' record-link-video' : ''}`}>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener"
+                    class={`record-link${isVideoUrl(item.url) ? ' record-link-video' : ''}`}
+                    data-lightbox-url={isLocalReference(item.url) ? item.url : undefined}
+                    data-lightbox-title={isLocalReference(item.url) ? `${kindLabel(item.kind)}: ${item.title}` : undefined}
+                  >
                     {isVideoUrl(item.url)
                       ? <Icon name="play" size={11} />
                       : null}
@@ -113,6 +124,8 @@ const entryHasVideo = (item: FeaturedItem) =>
                     target="_blank"
                     rel="noopener"
                     class={`record-link record-link-secondary${isVideoUrl(item.secondary_url) ? ' record-link-video' : ''}`}
+                    data-lightbox-url={isLocalReference(item.secondary_url) ? item.secondary_url : undefined}
+                    data-lightbox-title={isLocalReference(item.secondary_url) ? `${kindLabel(item.kind)}: ${item.title}` : undefined}
                   >
                     {isVideoUrl(item.secondary_url)
                       ? <Icon name="play" size={11} />
@@ -127,6 +140,8 @@ const entryHasVideo = (item: FeaturedItem) =>
                     target="_blank"
                     rel="noopener"
                     class={`record-link record-link-secondary${isVideoUrl(item.tertiary_url) ? ' record-link-video' : ''}`}
+                    data-lightbox-url={isLocalReference(item.tertiary_url) ? item.tertiary_url : undefined}
+                    data-lightbox-title={isLocalReference(item.tertiary_url) ? `${kindLabel(item.kind)}: ${item.title}` : undefined}
                   >
                     {isVideoUrl(item.tertiary_url)
                       ? <Icon name="play" size={11} />
@@ -187,6 +202,38 @@ const entryHasVideo = (item: FeaturedItem) =>
       </p>
     </div>
   </section>
+
+  <!-- Reference document lightbox: site plan PDF, denial letter PNG, etc.
+       Triggered by any link with [data-lightbox-url]. Reuses the .plan-lightbox
+       styling from components.css (same chrome as the homepage proposed-plan modal). -->
+  <div
+    class="plan-lightbox"
+    id="ref-lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="ref-lightbox-title"
+    hidden
+  >
+    <div class="plan-lightbox-backdrop" data-close-lightbox></div>
+    <div class="plan-lightbox-frame">
+      <div class="plan-lightbox-header">
+        <p class="plan-lightbox-title" id="ref-lightbox-title">Reference document</p>
+        <button class="plan-lightbox-close" type="button" data-close-lightbox aria-label="Close reference document">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="plan-lightbox-body">
+        <iframe
+          class="plan-lightbox-iframe"
+          id="ref-lightbox-iframe"
+          title="Reference document"
+          src=""
+        ></iframe>
+      </div>
+    </div>
+  </div>
 </SiteLayout>
 
 <style>
@@ -409,3 +456,88 @@ const entryHasVideo = (item: FeaturedItem) =>
     }
   }
 </style>
+
+<script>
+  // Reference-document lightbox.
+  //
+  // Any link in this page with [data-lightbox-url] is intercepted on click and
+  // its target opens inside the in-page iframe instead of navigating away.
+  // External links (council minutes on commercialpointohio.gov, YouTube, etc.)
+  // do NOT carry that data attribute — they keep their normal target="_blank"
+  // behavior. If JS fails for any reason, the [data-lightbox-url] links still
+  // work as plain target="_blank" links.
+  //
+  // Same close-race fix as the homepage proposed-plan lightbox: setTimeout
+  // instead of transitionend, cancellable by a re-open.
+  (function () {
+    if ((window as any).__refLightboxInit) return;
+    (window as any).__refLightboxInit = true;
+
+    let lastFocus: HTMLElement | null = null;
+    let closeTimer: number | null = null;
+
+    const findEls = () => ({
+      lightbox: document.getElementById('ref-lightbox'),
+      iframe: document.getElementById('ref-lightbox-iframe') as HTMLIFrameElement | null,
+      titleEl: document.getElementById('ref-lightbox-title'),
+    });
+
+    const open = (url: string, title: string) => {
+      const { lightbox, iframe, titleEl } = findEls();
+      if (!lightbox || !iframe || !titleEl) return;
+
+      if (closeTimer !== null) {
+        clearTimeout(closeTimer);
+        closeTimer = null;
+      }
+      iframe.src = url;
+      titleEl.textContent = title || 'Reference document';
+      lightbox.removeAttribute('hidden');
+      requestAnimationFrame(() => lightbox.classList.add('is-open'));
+      document.body.style.overflow = 'hidden';
+      lastFocus = document.activeElement as HTMLElement;
+      lightbox.querySelector<HTMLElement>('.plan-lightbox-close')?.focus();
+    };
+
+    const close = () => {
+      const { lightbox, iframe } = findEls();
+      if (!lightbox) return;
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+      lastFocus?.focus();
+      if (closeTimer !== null) clearTimeout(closeTimer);
+      closeTimer = window.setTimeout(() => {
+        if (!lightbox.classList.contains('is-open')) {
+          lightbox.setAttribute('hidden', '');
+          if (iframe) iframe.src = '';
+        }
+        closeTimer = null;
+      }, 400);
+    };
+
+    // Click delegation on document so this works across view transitions
+    // and however many [data-lightbox-url] links exist now or in the future.
+    document.addEventListener('click', (e) => {
+      const target = e.target as Element | null;
+      if (!target) return;
+
+      const trigger = target.closest<HTMLAnchorElement>('a[data-lightbox-url]');
+      if (trigger) {
+        e.preventDefault();
+        const url = trigger.dataset.lightboxUrl ?? '';
+        const title = trigger.dataset.lightboxTitle ?? '';
+        if (url) open(url, title);
+        return;
+      }
+
+      if (target.closest('#ref-lightbox [data-close-lightbox]')) {
+        close();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const { lightbox } = findEls();
+      if (e.key === 'Escape' && lightbox && !lightbox.hidden) close();
+    });
+  })();
+</script>
