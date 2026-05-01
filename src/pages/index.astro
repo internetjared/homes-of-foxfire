@@ -38,6 +38,7 @@ const meetingAgendaTag = home.meetingAgendaTag || 'On the agenda';
 const meetingAgendaText = home.meetingAgendaText || 'Third reading of the 18-month data center moratorium.';
 const meetingBody = home.meetingBody || 'A moratorium ordinance must be read at three separate Council meetings before it can be adopted. This is the third and final reading. If passed, it pauses any new data center construction in the village for 18 months while questions about water, power, noise, and tax incentives are answered.';
 const meetingAddress = home.meetingAddress || 'Village offices, 10 W. Scioto St., Commercial Point.';
+const meetingMapsUrl = 'https://www.google.com/maps/search/?api=1&query=10%20W%20Scioto%20St%2C%20Commercial%20Point%2C%20OH%2043116';
 const meetingTime = home.meetingTime || '7:00 PM. Doors open earlier.';
 const meetingPublicComment = home.meetingPublicComment || 'Sign in to speak. Five minutes per resident.';
 
@@ -227,7 +228,7 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
         <ul class="action-meeting-list">
           <li>
             <span class="action-meeting-icon"><Icon name="map-pin" size={16} ariaLabel="Where" /></span>
-            {meetingAddress}
+            <a class="address-link" href={meetingMapsUrl} target="_blank" rel="noopener">{meetingAddress}</a>
           </li>
           <li>
             <span class="action-meeting-icon"><Icon name="clock" size={16} ariaLabel="Time" /></span>
