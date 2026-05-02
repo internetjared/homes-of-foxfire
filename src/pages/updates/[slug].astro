@@ -3,7 +3,7 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 import Icon from '../../components/content/Icon.astro';
 import ShareBar from '../../components/content/ShareBar.astro';
 import {
-  updates,
+  getAllUpdates,
   isLocalVideo,
   toEmbedUrl,
   ogImageForUpdate,
@@ -11,7 +11,8 @@ import {
 } from '../../data/updates';
 
 export async function getStaticPaths() {
-  return updates.map((u) => ({
+  const all = await getAllUpdates();
+  return all.map((u) => ({
     params: { slug: u.id },
     props: { update: u },
   }));

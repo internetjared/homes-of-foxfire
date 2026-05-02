@@ -3,7 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
 import Icon from '../components/content/Icon.astro';
 import meetings from '../data/meetings.json';
-import { updates, cardThumbnail } from '../data/updates';
+import { getAllUpdates, cardThumbnail } from '../data/updates';
 import { sanity, QUERY_HOME_PAGE, type SanityHomePage } from '../lib/sanity';
 import { toHTML } from '@portabletext/to-html';
 
@@ -77,10 +77,10 @@ const preFooterBody = home.preFooterBody || 'Foxfire is where hundreds of famili
 const preFooterCtaLabel = home.preFooterCtaLabel || 'Help protect Foxfire';
 const preFooterCtaUrl = home.preFooterCtaUrl || '/take-action';
 
-// Latest updates for homepage section.
-const publishedUpdates = [...updates]
-  .filter((u) => !u.draft)
-  .sort((a, b) => b.publishDate.localeCompare(a.publishDate));
+// Latest updates for homepage section. Pulled from Sanity (with hardcoded
+// fallback) by getAllUpdates(), already sorted publishDate desc.
+const allUpdates = await getAllUpdates();
+const publishedUpdates = allUpdates.filter((u) => !u.draft);
 
 // If any post is explicitly featured, use it; otherwise fall back to most recent.
 const featuredUpdate = publishedUpdates.find((u) => u.featured) ?? publishedUpdates[0] ?? null;

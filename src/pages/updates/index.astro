@@ -1,14 +1,14 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import Icon from '../../components/content/Icon.astro';
-import { updates, cardThumbnail } from '../../data/updates';
+import { getAllUpdates, cardThumbnail } from '../../data/updates';
 
 const lastUpdated = '04.30 / 2026';
 
-// Published posts only, newest first.
-const sorted = [...updates]
-  .filter((u) => !u.draft)
-  .sort((a, b) => b.publishDate.localeCompare(a.publishDate));
+// Pull from Sanity at build time, merged with the hardcoded fallback.
+// Already sorted publishDate desc by getAllUpdates().
+const all = await getAllUpdates();
+const sorted = all.filter((u) => !u.draft);
 ---
 
 <SiteLayout

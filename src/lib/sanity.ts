@@ -27,36 +27,36 @@ export const sanity: SanityClient = createClient({
 
 // --- GROQ queries ---
 
+// Updates: full set of fields needed to render /updates and /updates/[slug].
+// Excludes anything where publishStatus is not 'published' so drafts never leak.
+const UPDATE_PROJECTION = /* groq */ `
+  _id,
+  title,
+  "slug": slug.current,
+  publishDate,
+  category,
+  excerpt,
+  featured,
+  bodyHtml,
+  body,
+  videoUrl,
+  videoTitle,
+  videoPoster,
+  thumbnailUrl,
+  ogImageWidth,
+  ogImageHeight
+`;
+
 export const QUERY_UPDATES_PUBLISHED = /* groq */ `
   *[_type == "update" && publishStatus == "published"]
     | order(publishDate desc) {
-      _id,
-      title,
-      "slug": slug.current,
-      publishDate,
-      category,
-      summary,
-      whatHappened,
-      whyItMatters,
-      whatToDo,
-      body,
-      relatedLinks
+      ${UPDATE_PROJECTION}
     }
 `;
 
 export const QUERY_UPDATE_BY_SLUG = /* groq */ `
   *[_type == "update" && slug.current == $slug && publishStatus == "published"][0] {
-    _id,
-    title,
-    "slug": slug.current,
-    publishDate,
-    category,
-    summary,
-    whatHappened,
-    whyItMatters,
-    whatToDo,
-    body,
-    relatedLinks
+    ${UPDATE_PROJECTION}
   }
 `;
 
@@ -137,14 +137,18 @@ export interface SanityUpdate {
   _id: string;
   title: string;
   slug: string;
-  publishDate: string;
+  publishDate: string;       // ISO datetime
   category: string;
-  summary: string;
-  whatHappened?: string;
-  whyItMatters?: string;
-  whatToDo?: string;
-  body?: unknown[]; // portable text blocks
-  relatedLinks?: SanityLink[];
+  excerpt: string;
+  featured?: boolean;
+  bodyHtml?: string;         // raw HTML body, takes precedence over `body`
+  body?: unknown[];          // portable text blocks (fallback)
+  videoUrl?: string;
+  videoTitle?: string;
+  videoPoster?: string;
+  thumbnailUrl?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
 }
 
 export interface SanityResource {

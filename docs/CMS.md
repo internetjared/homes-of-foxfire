@@ -21,12 +21,27 @@ The Studio is at `/studio/` in this repo. Coalition members log in to `https://f
 
 To add an Updates post:
 
-1. Open the Sanity Studio.
+1. Open the Sanity Studio at `https://foxfire-coalition.sanity.studio`.
 2. Click **+ Update**.
-3. Fill in title, publish date, category, summary, and body.
-4. Set `publishStatus` to `published`.
-5. Click **Publish** in the top-right.
-6. The Vercel webhook fires; the site rebuilds within a couple of minutes; the new post appears on `/updates`.
+3. Fill in title (auto-generates the slug), publish date, category, and excerpt.
+4. Add the body. Either paste raw HTML in **Body (raw HTML)** for posts that need pull quotes / callouts / source lists, or use the rich-text **Body** field for plain prose.
+5. Optional: add a video URL (YouTube/Vimeo or a `/clip.mp4` path), a thumbnail/OG image (path under `/public` or full URL), and OG image dimensions.
+6. Optional: tick **Feature on homepage** to pin this post as the homepage feature card. Only one published post should be featured at a time.
+7. Set **Publish status** to `published`.
+8. Click **Publish** in the top-right.
+9. The Sanity → Vercel webhook fires; the site rebuilds within a couple of minutes; the new post appears on `/updates` (and the homepage if featured).
+
+### Local fallback
+
+`src/data/updates.ts` exports a `localUpdates` array with a permanent hardcoded fallback. At build time the site fetches Sanity-published posts, and merges them with the local fallback (Sanity wins on slug collision). This is so the site never goes blank if Sanity is empty or the fetch fails. Once a post has been migrated into Sanity it should be removed from the local fallback to avoid maintenance drift.
+
+To migrate the existing local fallback posts into Sanity in one go:
+
+1. Generate a Sanity write token in https://www.sanity.io/manage → API → Tokens (scope: **Editor**).
+2. Add `SANITY_WRITE_TOKEN=<token>` to your local `.env`.
+3. Run `node scripts/migrate-updates-to-sanity.mjs`. The script is idempotent (uses deterministic `_id`s), so it can be re-run safely.
+4. Confirm the posts appear in Studio with publishStatus "published".
+5. Remove the migrated entries from `localUpdates` in `src/data/updates.ts` and commit.
 
 To add a confirmed timeline entry:
 
