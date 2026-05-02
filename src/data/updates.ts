@@ -188,8 +188,13 @@ export const localUpdates: LocalUpdate[] = [
       <a class="update-contact-email" href="mailto:e.nungester@commercialpointohio.gov">e.nungester@commercialpointohio.gov</a>
       <span class="update-contact-name">Eric Nungester</span>
     </div>
+    <div class="update-contact-item">
+      <span class="update-contact-role">Village Solicitor</span>
+      <a class="update-contact-email" href="mailto:bill.mattes@dinsmore.com">bill.mattes@dinsmore.com</a>
+      <span class="update-contact-name">William M. Mattes — Dinsmore &amp; Shohl LLP</span>
+    </div>
   </div>
-  <button class="update-contacts-copy-all" data-emails="n.geiger@commercialpointohio.gov, w.hastings@commercialpointohio.gov, d.fox@commercialpointohio.gov, p.anderson@commercialpointohio.gov, e.miller@commercialpointohio.gov, c.denton@commercialpointohio.gov, j.weaver@commercialpointohio.gov, e.nungester@commercialpointohio.gov">
+  <button class="update-contacts-copy-all" data-emails="n.geiger@commercialpointohio.gov, w.hastings@commercialpointohio.gov, d.fox@commercialpointohio.gov, p.anderson@commercialpointohio.gov, e.miller@commercialpointohio.gov, c.denton@commercialpointohio.gov, j.weaver@commercialpointohio.gov, e.nungester@commercialpointohio.gov, bill.mattes@dinsmore.com">
     Copy all email addresses
   </button>
 </div>
@@ -221,12 +226,27 @@ export const localUpdates: LocalUpdate[] = [
 
 <script>
 (function () {
-  function copyText(text, btn) {
-    const original = btn.textContent;
+  var toastEl = null;
+  var toastTimer = null;
+
+  function showToast(msg) {
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.className = 'update-copy-toast';
+      document.body.appendChild(toastEl);
+    }
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toastEl.classList.remove('is-visible');
+    }, 2000);
+  }
+
+  function copyText(text, successMsg) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () {
-        btn.textContent = 'Copied.';
-        setTimeout(function () { btn.textContent = original; }, 2000);
+        showToast(successMsg || 'Copied.');
       });
     } else {
       var ta = document.createElement('textarea');
@@ -237,8 +257,7 @@ export const localUpdates: LocalUpdate[] = [
       ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
-      btn.textContent = 'Copied.';
-      setTimeout(function () { btn.textContent = original; }, 2000);
+      showToast(successMsg || 'Copied.');
     }
   }
 
@@ -246,7 +265,7 @@ export const localUpdates: LocalUpdate[] = [
     // Copy all emails button
     document.querySelectorAll('.update-contacts-copy-all').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        copyText(btn.getAttribute('data-emails'), btn);
+        copyText(btn.getAttribute('data-emails'), 'All addresses copied.');
       });
     });
 
@@ -258,7 +277,7 @@ export const localUpdates: LocalUpdate[] = [
         var text = Array.from(body.querySelectorAll('p')).map(function (p) {
           return p.innerText;
         }).join('\n\n');
-        copyText(text, btn);
+        copyText(text, 'Email copied.');
       });
     });
   });
