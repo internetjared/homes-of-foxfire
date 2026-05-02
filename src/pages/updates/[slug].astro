@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import Icon from '../../components/content/Icon.astro';
+import ShareBar from '../../components/content/ShareBar.astro';
 import {
   updates,
   isLocalVideo,
@@ -27,6 +28,7 @@ const localVideo = isLocalVideo(update.videoUrl);
 const embedUrl = !localVideo ? toEmbedUrl(update.videoUrl) : null;
 
 const description = update.excerpt;
+const postUrl = `https://foxfirecoalition.org/updates/${update.id}`;
 
 // SEO: use a full-size YouTube thumbnail (or post-specific override) for the
 // OG image. maxresdefault.jpg is 1280x720 — proper social-preview sizing.
@@ -143,6 +145,10 @@ const articleSchema = {
     )}
 
     <div class="update-article-body" set:html={update.bodyHtml}></div>
+
+    <div class="update-article-share">
+      <ShareBar url={postUrl} title={update.title} />
+    </div>
 
     <footer class="update-article-foot">
       <a class="update-article-back-link" href="/updates">
@@ -374,6 +380,13 @@ const articleSchema = {
     line-height: 1.55;
     font-weight: 500;
     letter-spacing: 0.01em;
+  }
+
+  /* Share bar -------------------------------------------------------- */
+
+  .update-article-share {
+    max-width: 720px;
+    margin: var(--space-2xl) auto 0;
   }
 
   /* Footer back link ------------------------------------------------- */

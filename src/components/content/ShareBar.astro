@@ -1,0 +1,208 @@
+---
+/* ShareBar.astro
+ *
+ * Social share row for blog posts.
+ * - Native share-intent links for X, Facebook, LinkedIn, and Email
+ * - Copy-link button with clipboard write + transient "Copied" confirmation
+ *
+ * Editorial styling: hairline-bordered icon buttons, no logo color fills,
+ * everything in ink/accent so it sits inside the body register.
+ */
+
+import Icon from './Icon.astro';
+
+interface Props {
+  /** Absolute URL to share. Required so the button works in static HTML. */
+  url: string;
+  /** Post headline used in tweet/email subject. */
+  title: string;
+}
+
+const { url, title } = Astro.props as Props;
+
+const enc = encodeURIComponent;
+const twitterUrl = `https://twitter.com/intent/tweet?text=${enc(title)}&url=${enc(url)}`;
+const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}`;
+const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}`;
+const emailUrl = `mailto:?subject=${enc(title)}&body=${enc(url)}`;
+---
+
+<aside class="share-bar" aria-label="Share this update">
+  <span class="share-bar-label">Share this update</span>
+  <ul class="share-bar-list">
+    <li>
+      <a class="share-btn" href={twitterUrl} target="_blank" rel="noopener" aria-label="Share on X">
+        <Icon name="twitter-x" size={15} />
+      </a>
+    </li>
+    <li>
+      <a class="share-btn" href={facebookUrl} target="_blank" rel="noopener" aria-label="Share on Facebook">
+        <Icon name="facebook" size={15} />
+      </a>
+    </li>
+    <li>
+      <a class="share-btn" href={linkedinUrl} target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+        <Icon name="linkedin" size={15} />
+      </a>
+    </li>
+    <li>
+      <a class="share-btn" href={emailUrl} aria-label="Share via email">
+        <Icon name="mail" size={15} />
+      </a>
+    </li>
+    <li>
+      <button
+        class="share-btn share-copy-btn"
+        type="button"
+        data-share-copy
+        data-url={url}
+        aria-label="Copy link"
+      >
+        <span class="share-copy-default">
+          <Icon name="link" size={15} />
+          <span class="share-copy-text">Copy link</span>
+        </span>
+        <span class="share-copy-confirmed" aria-hidden="true">
+          <Icon name="check" size={15} />
+          <span class="share-copy-text">Copied</span>
+        </span>
+      </button>
+    </li>
+  </ul>
+</aside>
+
+<script>
+  // Copy-link: writes the post URL to the clipboard, briefly toggles
+  // visual state to "Copied". Re-armed on every astro:page-load so the
+  // handler keeps working through View Transitions.
+  function initShareCopy() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-share-copy]');
+    buttons.forEach((btn) => {
+      if (btn.dataset.wired === 'true') return;
+      btn.dataset.wired = 'true';
+
+      btn.addEventListener('click', async () => {
+        const url = btn.dataset.url ?? window.location.href;
+        try {
+          await navigator.clipboard.writeText(url);
+        } catch {
+          // Older browsers / blocked clipboard: fall back to a hidden input.
+          const ta = document.createElement('textarea');
+          ta.value = url;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'absolute';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch { /* noop */ }
+          document.body.removeChild(ta);
+        }
+        btn.classList.add('is-copied');
+        window.setTimeout(() => btn.classList.remove('is-copied'), 1800);
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initShareCopy);
+  if (document.readyState !== 'loading') initShareCopy();
+  else document.addEventListener('DOMContentLoaded', initShareCopy);
+</script>
+
+<style>
+  .share-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    padding: var(--space-lg) 0;
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    margin: var(--space-2xl) 0;
+  }
+
+  .share-bar-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+  }
+
+  .share-bar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid var(--rule-soft);
+    background: transparent;
+    color: var(--ink);
+    text-decoration: none;
+    cursor: pointer;
+    font-family: var(--body);
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .share-btn:hover,
+  .share-btn:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* Copy link is wider so it can hold its label */
+  .share-copy-btn {
+    width: auto;
+    padding: 0 12px;
+    height: 36px;
+  }
+
+  .share-copy-default,
+  .share-copy-confirmed {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .share-copy-confirmed {
+    display: none;
+    color: var(--accent);
+  }
+
+  .share-copy-btn.is-copied .share-copy-default {
+    display: none;
+  }
+  .share-copy-btn.is-copied .share-copy-confirmed {
+    display: inline-flex;
+  }
+  .share-copy-btn.is-copied {
+    border-color: var(--accent);
+  }
+
+  .share-copy-text {
+    font-family: var(--body);
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 600px) {
+    .share-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+  }
+</style>
