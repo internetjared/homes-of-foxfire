@@ -399,27 +399,28 @@ const articleSchema = {
     color: var(--text-soft);
     border-bottom: 1px solid var(--rule-soft);
     background: var(--bone);
+    max-width: none;
   }
 
   .update-article-body :global(.update-contacts-grid) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   .update-article-body :global(.update-contact-item) {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    padding: var(--space-sm) var(--space-lg);
+    gap: 3px;
+    padding: var(--space-sm) var(--space-md);
     border-bottom: 1px solid var(--rule-soft);
     border-right: 1px solid var(--rule-soft);
   }
 
-  .update-article-body :global(.update-contact-item:nth-child(even)) {
+  .update-article-body :global(.update-contact-item:nth-child(3n)) {
     border-right: none;
   }
 
-  .update-article-body :global(.update-contact-item:nth-last-child(-n+2)) {
+  .update-article-body :global(.update-contact-item:nth-last-child(-n+3)) {
     border-bottom: none;
   }
 
@@ -431,6 +432,13 @@ const articleSchema = {
     color: var(--text-soft);
   }
 
+  .update-article-body :global(.update-contact-email-row) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
   .update-article-body :global(.update-contact-email) {
     font-size: 13px;
     font-family: var(--mono);
@@ -438,11 +446,36 @@ const articleSchema = {
     text-decoration: none;
     border-bottom: none;
     word-break: break-all;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .update-article-body :global(.update-contact-email:hover) {
     text-decoration: underline;
     opacity: 1;
+  }
+
+  .update-article-body :global(.update-contact-copy) {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--rule-soft);
+    border-radius: 6px;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: color 0.12s ease, border-color 0.12s ease;
+  }
+
+  .update-article-body :global(.update-contact-copy:hover),
+  .update-article-body :global(.update-contact-copy:focus-visible) {
+    color: var(--ink);
+    border-color: var(--ink);
+    outline: none;
   }
 
   .update-article-body :global(.update-contact-name) {
@@ -533,6 +566,33 @@ const articleSchema = {
     margin-bottom: 0;
   }
 
+  @media (max-width: 900px) {
+    .update-article-body :global(.update-contacts-grid) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .update-article-body :global(.update-contact-item) {
+      border-right: 1px solid var(--rule-soft);
+      border-bottom: 1px solid var(--rule-soft);
+    }
+
+    .update-article-body :global(.update-contact-item:nth-child(3n)) {
+      border-right: 1px solid var(--rule-soft);
+    }
+
+    .update-article-body :global(.update-contact-item:nth-child(2n)) {
+      border-right: none;
+    }
+
+    .update-article-body :global(.update-contact-item:nth-last-child(-n+3)) {
+      border-bottom: 1px solid var(--rule-soft);
+    }
+
+    .update-article-body :global(.update-contact-item:nth-last-child(-n+1)) {
+      border-bottom: none;
+    }
+  }
+
   @media (max-width: 600px) {
     .update-article-body :global(.update-contacts-grid) {
       grid-template-columns: 1fr;
@@ -540,9 +600,6 @@ const articleSchema = {
 
     .update-article-body :global(.update-contact-item) {
       border-right: none;
-    }
-
-    .update-article-body :global(.update-contact-item:nth-last-child(-n+2)) {
       border-bottom: 1px solid var(--rule-soft);
     }
 

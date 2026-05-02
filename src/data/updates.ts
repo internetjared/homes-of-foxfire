@@ -150,48 +150,75 @@ export const localUpdates: LocalUpdate[] = [
   <div class="update-contacts-grid">
     <div class="update-contact-item">
       <span class="update-contact-role">Mayor</span>
-      <a class="update-contact-email" href="mailto:n.geiger@commercialpointohio.gov">n.geiger@commercialpointohio.gov</a>
+      <span class="update-contact-email-row">
+        <a class="update-contact-email" href="mailto:n.geiger@commercialpointohio.gov">n.geiger@commercialpointohio.gov</a>
+        <button class="update-contact-copy" type="button" data-email="n.geiger@commercialpointohio.gov" aria-label="Copy email address for Nancy Geiger"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+      </span>
       <span class="update-contact-name">Nancy Geiger</span>
     </div>
     <div class="update-contact-item">
       <span class="update-contact-role">Fiscal Officer</span>
-      <a class="update-contact-email" href="mailto:w.hastings@commercialpointohio.gov">w.hastings@commercialpointohio.gov</a>
+      <span class="update-contact-email-row">
+        <a class="update-contact-email" href="mailto:w.hastings@commercialpointohio.gov">w.hastings@commercialpointohio.gov</a>
+        <button class="update-contact-copy" type="button" data-email="w.hastings@commercialpointohio.gov" aria-label="Copy email address for Wendy Hastings"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+      </span>
       <span class="update-contact-name">Wendy Hastings</span>
     </div>
     <div class="update-contact-item">
+      <span class="update-contact-role">Village Solicitor</span>
+      <span class="update-contact-email-row">
+        <a class="update-contact-email" href="mailto:bill.mattes@dinsmore.com">bill.mattes@dinsmore.com</a>
+        <button class="update-contact-copy" type="button" data-email="bill.mattes@dinsmore.com" aria-label="Copy email address for William M. Mattes"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+      </span>
+      <span class="update-contact-name">William M. Mattes — Dinsmore &amp; Shohl LLP</span>
+    </div>
+    <div class="update-contact-item">
       <span class="update-contact-role">Council</span>
-      <a class="update-contact-email" href="mailto:d.fox@commercialpointohio.gov">d.fox@commercialpointohio.gov</a>
+      <span class="update-contact-email-row">
+        <a class="update-contact-email" href="mailto:d.fox@commercialpointohio.gov">d.fox@commercialpointohio.gov</a>
+        <button class="update-contact-copy" type="button" data-email="d.fox@commercialpointohio.gov" aria-label="Copy email address for Dustyn Fox"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+      </span>
       <span class="update-contact-name">Dustyn Fox</span>
     </div>
     <div class="update-contact-item">
       <span class="update-contact-role">Council</span>
-      <a class="update-contact-email" href="mailto:p.anderson@commercialpointohio.gov">p.anderson@commercialpointohio.gov</a>
+      <span class="update-contact-email-row">
+        <a class="update-contact-email" href="mailto:p.anderson@commercialpointohio.gov">p.anderson@commercialpointohio.gov</a>
+        <button class="update-contact-copy" type="button" data-email="p.anderson@commercialpointohio.gov" aria-label="Copy email address for Patricia Anderson"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+      </span>
       <span class="update-contact-name">Patricia Anderson</span>
     </div>
     <div class="update-contact-item">
       <span class="update-contact-role">Council</span>
-      <a class="update-contact-email" href="mailto:e.miller@commercialpointohio.gov">e.miller@commercialpointohio.gov</a>
+      <span class="update-contact-email-row">
+        <a class="update-contact-email" href="mailto:e.miller@commercialpointohio.gov">e.miller@commercialpointohio.gov</a>
+        <button class="update-contact-copy" type="button" data-email="e.miller@commercialpointohio.gov" aria-label="Copy email address for Ezekiel Miller"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+      </span>
       <span class="update-contact-name">Ezekiel Miller</span>
     </div>
     <div class="update-contact-item">
       <span class="update-contact-role">Council</span>
-      <a class="update-contact-email" href="mailto:c.denton@commercialpointohio.gov">c.denton@commercialpointohio.gov</a>
+      <span class="update-contact-email-row">
+        <a class="update-contact-email" href="mailto:c.denton@commercialpointohio.gov">c.denton@commercialpointohio.gov</a>
+        <button class="update-contact-copy" type="button" data-email="c.denton@commercialpointohio.gov" aria-label="Copy email address for Courtney Denton"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+      </span>
       <span class="update-contact-name">Courtney Denton</span>
     </div>
     <div class="update-contact-item">
       <span class="update-contact-role">Council</span>
-      <a class="update-contact-email" href="mailto:j.weaver@commercialpointohio.gov">j.weaver@commercialpointohio.gov</a>
+      <span class="update-contact-email-row">
+        <a class="update-contact-email" href="mailto:j.weaver@commercialpointohio.gov">j.weaver@commercialpointohio.gov</a>
+        <button class="update-contact-copy" type="button" data-email="j.weaver@commercialpointohio.gov" aria-label="Copy email address for Jay Weaver"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+      </span>
       <span class="update-contact-name">Jay Weaver</span>
     </div>
     <div class="update-contact-item">
       <span class="update-contact-role">Council</span>
-      <a class="update-contact-email" href="mailto:e.nungester@commercialpointohio.gov">e.nungester@commercialpointohio.gov</a>
+      <span class="update-contact-email-row">
+        <a class="update-contact-email" href="mailto:e.nungester@commercialpointohio.gov">e.nungester@commercialpointohio.gov</a>
+        <button class="update-contact-copy" type="button" data-email="e.nungester@commercialpointohio.gov" aria-label="Copy email address for Eric Nungester"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+      </span>
       <span class="update-contact-name">Eric Nungester</span>
-    </div>
-    <div class="update-contact-item">
-      <span class="update-contact-role">Village Solicitor</span>
-      <a class="update-contact-email" href="mailto:bill.mattes@dinsmore.com">bill.mattes@dinsmore.com</a>
-      <span class="update-contact-name">William M. Mattes — Dinsmore &amp; Shohl LLP</span>
     </div>
   </div>
   <button class="update-contacts-copy-all" data-emails="n.geiger@commercialpointohio.gov, w.hastings@commercialpointohio.gov, d.fox@commercialpointohio.gov, p.anderson@commercialpointohio.gov, e.miller@commercialpointohio.gov, c.denton@commercialpointohio.gov, j.weaver@commercialpointohio.gov, e.nungester@commercialpointohio.gov, bill.mattes@dinsmore.com">
@@ -243,44 +270,68 @@ export const localUpdates: LocalUpdate[] = [
     }, 2000);
   }
 
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+
   function copyText(text, successMsg) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () {
         showToast(successMsg || 'Copied.');
+      }).catch(function () {
+        fallbackCopy(text);
+        showToast(successMsg || 'Copied.');
       });
     } else {
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
+      fallbackCopy(text);
       showToast(successMsg || 'Copied.');
     }
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  function initCopyButtons() {
+    // Guard against double-init
+    if (document.querySelector('.update-contacts-copy-all[data-copy-init]')) return;
+
     // Copy all emails button
     document.querySelectorAll('.update-contacts-copy-all').forEach(function (btn) {
+      btn.setAttribute('data-copy-init', 'true');
       btn.addEventListener('click', function () {
         copyText(btn.getAttribute('data-emails'), 'All addresses copied.');
       });
     });
 
+    // Per-contact copy buttons
+    document.querySelectorAll('.update-contact-copy').forEach(function (btn) {
+      btn.setAttribute('data-copy-init', 'true');
+      btn.addEventListener('click', function () {
+        copyText(btn.getAttribute('data-email'), 'Address copied.');
+      });
+    });
+
     // Copy email template button
     document.querySelectorAll('.update-email-copy-btn').forEach(function (btn) {
+      btn.setAttribute('data-copy-init', 'true');
       btn.addEventListener('click', function () {
         var body = document.getElementById('email-template-body');
         if (!body) return;
         var text = Array.from(body.querySelectorAll('p')).map(function (p) {
           return p.innerText;
-        }).join('\n\n');
+        }).join('\\n\\n');
         copyText(text, 'Email copied.');
       });
     });
-  });
+  }
+
+  document.addEventListener('astro:page-load', initCopyButtons);
+  if (document.readyState !== 'loading') { initCopyButtons(); } else { document.addEventListener('DOMContentLoaded', initCopyButtons); }
 })();
 </script>
 
