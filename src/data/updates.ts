@@ -50,6 +50,9 @@ export const localUpdates: LocalUpdate[] = [
     category: 'Public records',
     excerpt: "Residents are asking Commercial Point Council to publicly address procedural questions surrounding Ordinance 2024-07 before the procedural challenge deadline approaches.",
     draft: true,
+    thumbnailUrl: '/special-meeting-before-may-8.jpg',
+    ogImageWidth: 1200,
+    ogImageHeight: 675,
     bodyHtml: `
 <p>Yesterday, we shared a detailed breakdown of a procedural question we believe Commercial Point needs to answer publicly regarding <strong>Ordinance 2024-07</strong>, the ordinance passed on May 20, 2024 that rezoned roughly <strong>267 acres behind Foxfire</strong> for Planned Industrial use.</p>
 
