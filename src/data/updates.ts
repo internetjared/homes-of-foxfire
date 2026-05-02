@@ -143,38 +143,127 @@ export const localUpdates: LocalUpdate[] = [
 
 <p>Below is a template you can copy, personalize, and send.</p>
 
+<h2>Who to contact</h2>
+
+<div class="update-contacts">
+  <p class="update-contacts-intro">Send your email to the following Village officials. You can click any address to copy it, or copy all addresses at once to paste into the To: field.</p>
+  <div class="update-contacts-grid">
+    <div class="update-contact-item">
+      <span class="update-contact-role">Mayor</span>
+      <a class="update-contact-email" href="mailto:n.geiger@commercialpointohio.gov">n.geiger@commercialpointohio.gov</a>
+      <span class="update-contact-name">Nancy Geiger</span>
+    </div>
+    <div class="update-contact-item">
+      <span class="update-contact-role">Fiscal Officer</span>
+      <a class="update-contact-email" href="mailto:w.hastings@commercialpointohio.gov">w.hastings@commercialpointohio.gov</a>
+      <span class="update-contact-name">Wendy Hastings</span>
+    </div>
+    <div class="update-contact-item">
+      <span class="update-contact-role">Council</span>
+      <a class="update-contact-email" href="mailto:d.fox@commercialpointohio.gov">d.fox@commercialpointohio.gov</a>
+      <span class="update-contact-name">Dustyn Fox</span>
+    </div>
+    <div class="update-contact-item">
+      <span class="update-contact-role">Council</span>
+      <a class="update-contact-email" href="mailto:p.anderson@commercialpointohio.gov">p.anderson@commercialpointohio.gov</a>
+      <span class="update-contact-name">Patricia Anderson</span>
+    </div>
+    <div class="update-contact-item">
+      <span class="update-contact-role">Council</span>
+      <a class="update-contact-email" href="mailto:e.miller@commercialpointohio.gov">e.miller@commercialpointohio.gov</a>
+      <span class="update-contact-name">Ezekiel Miller</span>
+    </div>
+    <div class="update-contact-item">
+      <span class="update-contact-role">Council</span>
+      <a class="update-contact-email" href="mailto:c.denton@commercialpointohio.gov">c.denton@commercialpointohio.gov</a>
+      <span class="update-contact-name">Courtney Denton</span>
+    </div>
+    <div class="update-contact-item">
+      <span class="update-contact-role">Council</span>
+      <a class="update-contact-email" href="mailto:j.weaver@commercialpointohio.gov">j.weaver@commercialpointohio.gov</a>
+      <span class="update-contact-name">Jay Weaver</span>
+    </div>
+    <div class="update-contact-item">
+      <span class="update-contact-role">Council</span>
+      <a class="update-contact-email" href="mailto:e.nungester@commercialpointohio.gov">e.nungester@commercialpointohio.gov</a>
+      <span class="update-contact-name">Eric Nungester</span>
+    </div>
+  </div>
+  <button class="update-contacts-copy-all" data-emails="n.geiger@commercialpointohio.gov, w.hastings@commercialpointohio.gov, d.fox@commercialpointohio.gov, p.anderson@commercialpointohio.gov, e.miller@commercialpointohio.gov, c.denton@commercialpointohio.gov, j.weaver@commercialpointohio.gov, e.nungester@commercialpointohio.gov">
+    Copy all email addresses
+  </button>
+</div>
+
 <h2>Resident email template</h2>
 
-<div class="update-callout">
-<p><strong>Subject:</strong> Request for Special Meeting Before May 8 on Ordinance 2024-07</p>
-<br>
-<p>Dear Mayor, Council Members, Fiscal Officer, and Village Solicitor,</p>
-
-<p>I am writing as a resident to ask the Village to call a special meeting before May 8, 2026 to publicly address the procedural questions surrounding Ordinance 2024-07, which was adopted on May 20, 2024.</p>
-
-<p>This is urgent because Ohio law appears to place a two-year deadline on certain procedural challenges to zoning ordinances. Since Ordinance 2024-07 was adopted on May 20, 2024, that deadline may be approaching quickly.</p>
-
-<p>Based on the public records being shared, Ordinance 2024-07 was on first reading when Council voted 4-1 to suspend the three-reading requirement and adopt it that same night.</p>
-
-<p>Because Laura Wolfe had resigned, there was a vacant council seat. However, a vacancy does not appear to mean Commercial Point became a five-member council. If Commercial Point remained a six-seat council, then Ohio law appears to require five affirmative votes to suspend the readings.</p>
-
-<p>Residents deserve a clear, public answer to the following:</p>
-
-<p>Was Commercial Point still legally a six-seat council on May 20, 2024?</p>
-
-<p>Did Laura Wolfe's resignation reduce the vote threshold, or did it simply create a vacant sixth seat?</p>
-
-<p>Did suspending the readings for Ordinance 2024-07 require five affirmative votes?</p>
-
-<p>Was Ordinance 2024-07 validly adopted after only four members voted to suspend the readings?</p>
-
-<p>Will the Village Solicitor issue a written legal opinion before the procedural challenge deadline?</p>
-
-<p>Please call a special meeting before May 8, 2026 and place this issue on the agenda for public discussion. This is one of the most important zoning decisions affecting our community, and residents deserve transparency, urgency, and a clear answer before the deadline passes.</p>
-
-<p>Thank you,</p>
-<p>[Your Name]<br>[Commercial Point / Foxfire / Southern Point Resident]</p>
+<div class="update-email-template">
+  <div class="update-email-template-head">
+    <p class="update-email-subject"><strong>Subject:</strong> Request for Special Meeting Before May 8 on Ordinance 2024-07</p>
+    <button class="update-email-copy-btn" data-template="true">Copy email</button>
+  </div>
+  <div class="update-email-body" id="email-template-body">
+    <p>Dear Mayor, Council Members, Fiscal Officer, and Village Solicitor,</p>
+    <p>I am writing as a resident to ask the Village to call a special meeting before May 8, 2026 to publicly address the procedural questions surrounding Ordinance 2024-07, which was adopted on May 20, 2024.</p>
+    <p>This is urgent because Ohio law appears to place a two-year deadline on certain procedural challenges to zoning ordinances. Since Ordinance 2024-07 was adopted on May 20, 2024, that deadline may be approaching quickly.</p>
+    <p>Based on the public records being shared, Ordinance 2024-07 was on first reading when Council voted 4-1 to suspend the three-reading requirement and adopt it that same night.</p>
+    <p>Because Laura Wolfe had resigned, there was a vacant council seat. However, a vacancy does not appear to mean Commercial Point became a five-member council. If Commercial Point remained a six-seat council, then Ohio law appears to require five affirmative votes to suspend the readings.</p>
+    <p>Residents deserve a clear, public answer to the following:</p>
+    <p>Was Commercial Point still legally a six-seat council on May 20, 2024?</p>
+    <p>Did Laura Wolfe's resignation reduce the vote threshold, or did it simply create a vacant sixth seat?</p>
+    <p>Did suspending the readings for Ordinance 2024-07 require five affirmative votes?</p>
+    <p>Was Ordinance 2024-07 validly adopted after only four members voted to suspend the readings?</p>
+    <p>Will the Village Solicitor issue a written legal opinion before the procedural challenge deadline?</p>
+    <p>Please call a special meeting before May 8, 2026 and place this issue on the agenda for public discussion. This is one of the most important zoning decisions affecting our community, and residents deserve transparency, urgency, and a clear answer before the deadline passes.</p>
+    <p>Thank you,</p>
+    <p>[Your Name]<br>[Commercial Point / Foxfire / Southern Point Resident]</p>
+  </div>
 </div>
+
+<script>
+(function () {
+  function copyText(text, btn) {
+    const original = btn.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied.';
+        setTimeout(function () { btn.textContent = original; }, 2000);
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = 'Copied.';
+      setTimeout(function () { btn.textContent = original; }, 2000);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Copy all emails button
+    document.querySelectorAll('.update-contacts-copy-all').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        copyText(btn.getAttribute('data-emails'), btn);
+      });
+    });
+
+    // Copy email template button
+    document.querySelectorAll('.update-email-copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var body = document.getElementById('email-template-body');
+        if (!body) return;
+        var text = Array.from(body.querySelectorAll('p')).map(function (p) {
+          return p.innerText;
+        }).join('\n\n');
+        copyText(text, btn);
+      });
+    });
+  });
+})();
+</script>
 
 <h2>A final note</h2>
 

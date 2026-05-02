@@ -383,6 +383,179 @@ const articleSchema = {
     letter-spacing: 0.01em;
   }
 
+  /* Contacts block -------------------------------------------------- */
+
+  .update-article-body :global(.update-contacts) {
+    margin: var(--space-xl) 0;
+    border: 1px solid var(--rule-soft);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .update-article-body :global(.update-contacts-intro) {
+    margin: 0;
+    padding: var(--space-md) var(--space-lg);
+    font-size: 14px;
+    color: var(--text-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    background: var(--bone);
+  }
+
+  .update-article-body :global(.update-contacts-grid) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .update-article-body :global(.update-contact-item) {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-sm) var(--space-lg);
+    border-bottom: 1px solid var(--rule-soft);
+    border-right: 1px solid var(--rule-soft);
+  }
+
+  .update-article-body :global(.update-contact-item:nth-child(even)) {
+    border-right: none;
+  }
+
+  .update-article-body :global(.update-contact-item:nth-last-child(-n+2)) {
+    border-bottom: none;
+  }
+
+  .update-article-body :global(.update-contact-role) {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+  }
+
+  .update-article-body :global(.update-contact-email) {
+    font-size: 13px;
+    font-family: var(--mono);
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: none;
+    word-break: break-all;
+  }
+
+  .update-article-body :global(.update-contact-email:hover) {
+    text-decoration: underline;
+    opacity: 1;
+  }
+
+  .update-article-body :global(.update-contact-name) {
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .update-article-body :global(.update-contacts-copy-all) {
+    display: block;
+    width: 100%;
+    padding: var(--space-sm) var(--space-lg);
+    background: none;
+    border: none;
+    border-top: 1px solid var(--rule-soft);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .update-article-body :global(.update-contacts-copy-all:hover) {
+    background: var(--bone);
+    color: var(--ink);
+  }
+
+  /* Email template -------------------------------------------------- */
+
+  .update-article-body :global(.update-email-template) {
+    margin: var(--space-xl) 0;
+    border: 1px solid var(--rule-soft);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .update-article-body :global(.update-email-template-head) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-sm) var(--space-lg);
+    background: var(--bone);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .update-article-body :global(.update-email-subject) {
+    margin: 0;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .update-article-body :global(.update-email-copy-btn) {
+    flex-shrink: 0;
+    padding: 5px 14px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 3px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .update-article-body :global(.update-email-copy-btn:hover) {
+    opacity: 0.75;
+  }
+
+  .update-article-body :global(.update-email-body) {
+    padding: var(--space-lg) var(--space-xl);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--paper);
+  }
+
+  .update-article-body :global(.update-email-body p) {
+    margin: 0 0 var(--space-sm);
+  }
+
+  .update-article-body :global(.update-email-body p:last-child) {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 600px) {
+    .update-article-body :global(.update-contacts-grid) {
+      grid-template-columns: 1fr;
+    }
+
+    .update-article-body :global(.update-contact-item) {
+      border-right: none;
+    }
+
+    .update-article-body :global(.update-contact-item:nth-last-child(-n+2)) {
+      border-bottom: 1px solid var(--rule-soft);
+    }
+
+    .update-article-body :global(.update-contact-item:last-child) {
+      border-bottom: none;
+    }
+
+    .update-article-body :global(.update-email-template-head) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
   /* Share bar -------------------------------------------------------- */
 
   .update-article-share {
