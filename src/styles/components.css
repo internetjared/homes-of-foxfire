@@ -345,37 +345,65 @@
   border-bottom-color: var(--ink);
 }
 
-/* Header social link (Facebook follow). "Follow" text in ink, icon in
-   Facebook brand blue. Visually quieter than the primary CTAs so it does
-   not compete with Take action / Donate. */
+/* Header Facebook follow button. Solid Facebook brand blue with white
+   text and white icon — clearly a button, distinct from the orange
+   Take action and outlined Donate CTAs. */
 .site-header-social {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   height: 38px;
-  padding: 0 12px;
-  border: 1px solid var(--rule-soft);
+  padding: 0 14px;
+  border: 1px solid #1877F2;
   border-radius: 2px;
-  color: var(--ink);
-  background: transparent;
+  color: var(--paper);
+  background: #1877F2;
   font-family: var(--mono);
   font-size: 13px;
-  letter-spacing: 0.07em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: border-color 0.12s ease, background-color 0.12s ease;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
   flex-shrink: 0;
 }
 .site-header-social:hover,
 .site-header-social:focus-visible {
-  border-color: var(--ink);
+  background: #145fc4;
+  border-color: #145fc4;
+  color: var(--paper);
   outline: none;
 }
 .site-header-social svg {
   display: block;
-  color: #1877F2;
-  fill: #1877F2;
+  color: var(--paper);
+  fill: var(--paper);
   flex-shrink: 0;
+}
+
+/* Mobile-only Facebook follow button. Sits next to the hamburger so it
+   is reachable without opening the menu. Icon-only to save space. */
+.site-header-social-mobile {
+  display: none;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  justify-content: center;
+}
+
+/* Group mobile action buttons (FB follow + hamburger) on the right edge. */
+.site-header-mobile-actions {
+  display: contents;
+}
+@media (max-width: 680px) {
+  .site-header-mobile-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .site-header-social-mobile {
+    display: inline-flex;
+  }
 }
 
 /* Header CTA buttons (Take action = solid, Donate = outlined). */
@@ -3517,17 +3545,30 @@ abbr[title]:hover {
   border-bottom-color: var(--ink);
 }
 
-/* Footer Facebook follow link. "Follow" text inherits from the nav above;
-   the FB icon renders in Facebook brand blue. */
+/* Footer Facebook follow button. Solid Facebook brand blue with white
+   text and white icon to match the header button. */
 .site-footer-nav a.site-footer-social {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid #1877F2;
+  border-radius: 2px;
+  color: var(--paper);
+  background: #1877F2;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+.site-footer-nav a.site-footer-social:hover,
+.site-footer-nav a.site-footer-social:focus-visible {
+  background: #145fc4;
+  border-color: #145fc4;
+  color: var(--paper);
+  border-bottom-color: #145fc4;
 }
 .site-footer-nav a.site-footer-social svg {
   display: block;
-  color: #1877F2;
-  fill: #1877F2;
+  color: var(--paper);
+  fill: var(--paper);
 }
 
 @media (max-width: 720px) {
