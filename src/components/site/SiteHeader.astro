@@ -75,7 +75,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       })}
     </nav>
 
-    <!-- Mobile: Facebook follow button + hamburger (same row as wordmark) -->
+    <!-- Mobile: Facebook follow link + hamburger (same row as wordmark) -->
     <div class="site-header-mobile-actions">
       <a
         class="site-header-social site-header-social-mobile"
@@ -84,7 +84,8 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         rel="noopener"
         aria-label="Follow Foxfire Coalition on Facebook"
       >
-        <Icon name="facebook" size={18} />
+        <span>Follow</span>
+        <Icon name="facebook" size={16} />
       </a>
       <button
         class="site-header-hamburger"
