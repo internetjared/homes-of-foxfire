@@ -41,6 +41,16 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 
     <!-- Desktop nav: right-aligned CTAs -->
     <nav class="site-header-nav site-header-nav-desktop site-header-nav-end" aria-label="Primary actions">
+      <a
+        class="site-header-social"
+        href="https://www.facebook.com/profile.php?id=61588876811225"
+        target="_blank"
+        rel="noopener"
+        aria-label="Follow Foxfire Coalition on Facebook"
+        title="Follow on Facebook"
+      >
+        <Icon name="facebook" size={16} />
+      </a>
       {ctaItems.map((item) => {
         const ctaClass = item.cta === 'solid'
           ? 'site-header-cta site-header-cta-solid'
@@ -96,6 +106,16 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           </a>
         );
     })}
+    <a
+      class="site-header-social"
+      href="https://www.facebook.com/profile.php?id=61588876811225"
+      target="_blank"
+      rel="noopener"
+      aria-label="Follow Foxfire Coalition on Facebook"
+      title="Follow on Facebook"
+    >
+      <Icon name="facebook" size={16} />
+    </a>
   </div>
 
   <!-- Mobile nav drawer -->

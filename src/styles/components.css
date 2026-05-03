@@ -345,6 +345,32 @@
   border-bottom-color: var(--ink);
 }
 
+/* Header social link (icon-only, Facebook follow). Sits with the right-aligned
+   CTA group but is visually quieter so the primary CTAs still lead the eye. */
+.site-header-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--rule-soft);
+  border-radius: 2px;
+  color: var(--text-soft);
+  background: transparent;
+  transition: color 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
+  flex-shrink: 0;
+}
+.site-header-social:hover,
+.site-header-social:focus-visible {
+  color: var(--ink);
+  border-color: var(--ink);
+  outline: none;
+}
+.site-header-social svg {
+  display: block;
+}
+
 /* Header CTA buttons (Take action = solid, Donate = outlined). */
 .site-header-nav a.site-header-cta {
   padding: 9px 14px;
@@ -3482,6 +3508,17 @@ abbr[title]:hover {
 .site-footer-nav a:focus-visible {
   color: var(--ink);
   border-bottom-color: var(--ink);
+}
+
+/* Footer Facebook follow link. Slightly differentiated with an icon prefix; the
+   underlying hover/focus state inherits from .site-footer-nav a above. */
+.site-footer-nav a.site-footer-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.site-footer-nav a.site-footer-social svg {
+  display: block;
 }
 
 @media (max-width: 720px) {
