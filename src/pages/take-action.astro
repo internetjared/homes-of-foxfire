@@ -435,15 +435,13 @@ const nextMeetingYear = nextMeetingDateObj?.getFullYear();
                 <p class="attend-cal-year mono">{nextMeetingYear}</p>
               </div>
             </div>
-            {attendAgendaText && (
-              <div class="attend-flag">
-                <span class="attend-flag-tag">
-                  <Icon name="gavel" size={12} />
-                  {attendAgendaTag || 'On the agenda'}
-                </span>
-                <span class="attend-flag-text">{attendAgendaText}</span>
-              </div>
-            )}
+            <div class="attend-flag">
+              <span class="attend-flag-tag">
+                <Icon name="gavel" size={12} />
+                {attendAgendaTag || 'On the agenda'}
+              </span>
+              <span class="attend-flag-text">{attendAgendaText || 'TBD'}</span>
+            </div>
             {attendBody && <p class="attend-body">{attendBody}</p>}
             <ul class="attend-list">
               <li>

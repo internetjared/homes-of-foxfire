@@ -2,7 +2,11 @@
 import BaseLayout from './BaseLayout.astro';
 import SiteHeader from '../components/site/SiteHeader.astro';
 import SiteFooter from '../components/site/SiteFooter.astro';
-import StickyStatusBar from '../components/site/StickyStatusBar.astro';
+// StickyStatusBar is intentionally not imported. The bar is dormant until
+// the next meeting has an agenda or announcement worth surfacing site-wide.
+// To re-enable: re-add the import, restore the nextMeeting/nextMeetingDate
+// derivation from meetings.json below, and render <StickyStatusBar /> in the
+// BaseLayout slot above <SiteHeader />.
 import '../styles/components.css';
 
 import type { ArticleMeta } from './BaseLayout.astro';
@@ -36,16 +40,6 @@ const {
   noindex,
 } = Astro.props;
 
-// Procedural status surfaces. Read at the layout level so every public
-// route shows the same as-of stamp and next-meeting indicator without
-// per-page boilerplate.
-//
-// Sticky status bar is currently suppressed site-wide (no agenda yet for
-// the next meeting). Per-page meeting cards still render from the same
-// meetings.json data.
-const asOf = lastUpdated;
-const nextMeeting = null;
-const nextMeetingDate = null;
 ---
 
 <BaseLayout
@@ -60,11 +54,6 @@ const nextMeetingDate = null;
   noindex={noindex}
 >
   <a class="skip-link" href="#main">Skip to main content.</a>
-  <StickyStatusBar
-    meeting={nextMeeting}
-    meetingDate={nextMeetingDate}
-    asOf={asOf}
-  />
   <SiteHeader />
   <main id="main">
     <slot />
