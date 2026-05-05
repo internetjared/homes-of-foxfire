@@ -50,6 +50,9 @@ export const localUpdates: LocalUpdate[] = [
     excerpt:
       'Commercial Point Council adopted Ordinance 2026-09 on May 5, 2026 by a 5-1 vote, pausing new data center applications in the village for 18 months. Eric Nungester cast the only no vote.',
     draft: true,
+    thumbnailUrl: '/ordinance-2026-09-moratorium-passed.jpg',
+    ogImageWidth: 1672,
+    ogImageHeight: 941,
     bodyHtml: [
       '<p class="update-lede">On May 5, 2026, Commercial Point Village Council adopted Ordinance 2026-09, a temporary moratorium on new data center applications inside the village. The ordinance passed 5-1. Council Member Eric Nungester cast the only no vote.</p>',
       '<p>The ordinance is now law. Below is a plain-language reading of what it says, what it does not say, and how the village arrived here.</p>',
