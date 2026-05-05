@@ -383,6 +383,35 @@ const articleSchema = {
     letter-spacing: 0.01em;
   }
 
+  /* Inline "watch" link callout — small, calm, with a play glyph */
+  .update-article-body :global(.update-watch) {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: var(--space-md) 0 var(--space-lg);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bone);
+    border-left: 3px solid var(--accent);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .update-article-body :global(.update-watch::before) {
+    content: "▶";
+    color: var(--accent);
+    font-size: 11px;
+    flex-shrink: 0;
+    transform: translateY(-1px);
+  }
+
+  .update-article-body :global(.update-watch a) {
+    color: var(--accent);
+    border-bottom: 1px solid currentColor;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
   /* Contacts block -------------------------------------------------- */
 
   .update-article-body :global(.update-contacts) {
