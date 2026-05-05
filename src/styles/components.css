@@ -31,7 +31,7 @@
 
   --frame: 1200px;
 
-  --sticky-bar-h: 52px;   /* overridden in JS by ResizeObserver on .sticky-status */
+  --sticky-bar-h: 0px;    /* sticky status bar is currently dormant; was 52px when the meeting bar painted. The ResizeObserver in SiteLayout overrides this when .sticky-status is present. */
   --header-h: 114px;      /* overridden in JS by ResizeObserver on .site-header */
 }
 
