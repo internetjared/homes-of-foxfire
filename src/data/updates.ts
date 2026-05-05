@@ -40,70 +40,7 @@ export interface LocalUpdate {
  * Add entries here only if a post needs to ship before it can be authored
  * in Studio. All migrated posts live in Sanity — do not re-add them here.
  */
-export const localUpdates: LocalUpdate[] = [
-  {
-    id: 'ordinance-2026-09-moratorium-passed',
-    title: 'Ord 2026-09 passed. The pause begins.',
-    publishDate: '2026-05-05',
-    publishDateLabel: 'May 5, 2026',
-    category: 'Meeting recap',
-    excerpt:
-      'Commercial Point Council adopted Ordinance 2026-09 on May 5, 2026 by a 5-1 vote, pausing new data center applications in the village for 18 months. Eric Nungester cast the only no vote.',
-    draft: true,
-    thumbnailUrl: '/ordinance-2026-09-moratorium-passed.jpg',
-    ogImageWidth: 1672,
-    ogImageHeight: 941,
-    bodyHtml: [
-      '<p class="update-lede">On May 5, 2026, Commercial Point Village Council adopted Ordinance 2026-09, a temporary moratorium on new data center applications inside the village. The ordinance passed 5-1. Council Member Eric Nungester cast the only no vote.</p>',
-      '<p>The ordinance is now law. Below is a plain-language reading of what it says, what it does not say, and how the village arrived here.</p>',
-
-      '<h2>What the ordinance does</h2>',
-
-      '<h3>1. An 18-month pause</h3>',
-      '<p>The village will not accept, process, or approve any new application related to data center development for 18 months from the effective date. That window gives Council, the Planning &amp; Zoning Commission, and residents time to study the use, draft updated zoning standards, and consider safeguards before any further approvals.</p>',
-
-      '<h3>2. What counts as a data center</h3>',
-      '<p>The ordinance defines a data center broadly to include any facility whose primary purpose is housing computer systems, servers, or related telecommunications and storage equipment, together with the supporting power, cooling, and water infrastructure those facilities require.</p>',
-
-      '<h3>3. Pending applications are included</h3>',
-      '<p>The pause applies to applications already in the queue, not just new ones filed after May 5. Any data center application that has not received final approval as of the effective date is subject to the moratorium.</p>',
-
-      '<h3>4. Duration and review</h3>',
-      '<p>The moratorium runs for 18 months. Council may extend, shorten, or end it earlier by a subsequent ordinance. The expectation stated on the record is that the pause is used to complete a zoning study, not simply to wait the clock out.</p>',
-
-      '<h3>5. Sunshine Law compliance</h3>',
-      '<p>The ordinance recites that all readings and the final vote were conducted in open public session in accordance with Ohio Revised Code 121.22. This language is included to make procedural compliance part of the record.</p>',
-
-      '<h3>6. Effective immediately</h3>',
-      '<p>Council declared the ordinance an emergency measure and made it effective on passage. There is no 30-day waiting period before the pause begins.</p>',
-
-      '<h3>7. Stated reasons</h3>',
-      '<p>The findings recite concerns about energy demand, water use, noise, traffic, the adequacy of current zoning standards, and the proximity of proposed sites to residential neighborhoods. The findings are the village\'s own words about why the pause is needed.</p>',
-
-      '<h2>What the moratorium does not do</h2>',
-      '<p>It does not repeal Ordinance 2024-07, the K-Nova Planned Industrial District rezoning adopted in May 2024.</p>',
-      '<p>It does not cancel the existing zoning of the 266.971-acre site at SR 104, Durrett, Borror, and SR 762.</p>',
-      '<p>It does not, by itself, stop a data center that has already received all required approvals.</p>',
-      '<p>It does not change the procedural-defect window under ORC 713.121, which closes on or about May 20, 2026.</p>',
-
-      '<h2>How we got here</h2>',
-      '<p>On February 23, 2026, Council Member Ezekiel Miller introduced the idea of a moratorium during a regular meeting. The proposal moved to a Committee of the Whole agenda for further discussion in the weeks that followed.</p>',
-      '<p>A special Council session was called to advance the draft ordinance through readings. A community meeting on May 4, 2026 gave residents a final chance to ask questions before yesterday\'s vote.</p>',
-      '<p>In the same window, the Planning &amp; Zoning Commission denied the K-Nova II site plan on April 29, 2026, and the village\'s 2023 NDA with Amazon Data Services is set to expire in July 2026 after the village sent non-renewal notice.</p>',
-
-      '<h2>What this means for residents</h2>',
-      '<p>The pause is a real change. For the next 18 months, the village cannot approve a new data center application inside its limits. That is the breathing room residents have been asking for since the spring of 2024.</p>',
-      '<p>The pause is also a window, not an ending. Ordinance 2024-07 is still on the books. The procedural-defect deadline under ORC 713.121 is approximately May 20, 2026. The work of the coalition does not stop because Ordinance 2026-09 passed.</p>',
-
-      '<h2>What you can do next</h2>',
-      '<p>Show up to the next Council meeting. The agenda and minutes are posted on the village website.</p>',
-      '<p>Sign up for coalition updates so you hear about hearings, filings, and records-request results as they happen.</p>',
-      '<p>Read the timeline. Every claim on this site is anchored to a public document or marked as records-requested.</p>',
-
-      '<p class="update-signoff">This is not over. We can still protect Foxfire.</p>',
-    ].join(''),
-  },
-];
+export const localUpdates: LocalUpdate[] = [];
 
 
 // True if a videoUrl points to a self-hosted file (lives in /public).

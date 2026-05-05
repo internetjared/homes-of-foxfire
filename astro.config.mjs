@@ -10,12 +10,8 @@ const apiVersion = process.env.PUBLIC_SANITY_API_VERSION ?? '2024-10-01';
 // integration when the project ID is missing. Production deploys MUST set it.
 const integrations = [
   sitemap({
-    // Exclude internal/draft pages from the public sitemap. Drafts also carry
-    // a `noindex,nofollow` robots meta, but keeping them out of the sitemap
-    // is the cleaner signal to search engines.
-    filter: (page) =>
-      !page.includes('/brand') &&
-      !page.includes('/updates/ordinance-2026-09-moratorium-passed'),
+    // /brand is an internal reference page — exclude from public sitemap
+    filter: (page) => !page.includes('/brand'),
   }),
 ];
 
