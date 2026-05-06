@@ -37,18 +37,10 @@
     &times;
   </button>
   <p class="donate-peek-kicker mono">Support the work</p>
-  <p class="donate-peek-lede">
-    Every dollar helps fund records requests, expert review, printing, and outreach.
-  </p>
   <div
     class="gfm-embed donate-peek-widget"
-    data-url="https://www.gofundme.com/f/support-foxfires-fight-against-data-centers/widget/medium?sharesheet=undefined&attribution_id=sl:6bf188fa-2407-456c-aeec-1e8d59b04e0a"
+    data-url="https://www.gofundme.com/f/support-foxfires-fight-against-data-centers/widget/large?sharesheet=undefined&attribution_id=sl:6bf188fa-2407-456c-aeec-1e8d59b04e0a"
   ></div>
-  <p class="donate-peek-direct">
-    <a href="https://gofund.me/8a17e35cd" target="_blank" rel="noopener">
-      View on GoFundMe &rarr;
-    </a>
-  </p>
 </aside>
 
 <script>
@@ -179,13 +171,13 @@
     position: fixed;
     right: var(--space-lg, 24px);
     bottom: var(--space-lg, 24px);
-    width: 320px;
+    width: 380px;
     max-width: calc(100vw - 32px);
     background: var(--paper);
     color: var(--ink);
     border: 1px solid var(--rule-soft);
     border-radius: 4px;
-    padding: 14px 16px 12px;
+    padding: 12px 12px 10px;
     box-shadow: 0 12px 32px rgba(26, 39, 66, 0.18);
     z-index: 30;
     opacity: 0;
@@ -229,8 +221,8 @@
   }
 
   .donate-peek-kicker {
-    margin: 0 0 4px;
-    padding-right: 28px;
+    margin: 0 0 8px;
+    padding: 0 28px 0 4px;
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -238,40 +230,20 @@
     font-weight: 500;
   }
 
-  .donate-peek-lede {
-    margin: 0 0 10px;
-    font-size: 13px;
-    line-height: 1.4;
-    color: var(--text);
-  }
-
   .donate-peek-widget {
-    margin: 0 -4px;
+    /* GoFundMe injects an iframe in this wrapper. Let it run edge-to-edge
+       inside the card so the campaign photo reads at full width. */
+    margin: 0;
   }
 
-  /* Constrain whatever GoFundMe drops in (typically an iframe) */
   .donate-peek-widget iframe {
     width: 100% !important;
     max-width: 100%;
     border: 0;
     display: block;
-  }
-
-  .donate-peek-direct {
-    margin: 8px 0 0;
-    font-size: 12px;
-    text-align: right;
-  }
-
-  .donate-peek-direct a {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
-  }
-
-  .donate-peek-direct a:hover,
-  .donate-peek-direct a:focus-visible {
-    opacity: 0.7;
+    /* The large widget is roughly 460–520px tall depending on campaign
+       state; reserve a sensible default to prevent CLS on first paint. */
+    min-height: 460px;
   }
 
   /* Belt-and-suspenders mobile suppression: JS hides too, but if JS
