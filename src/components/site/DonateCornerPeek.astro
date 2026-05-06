@@ -37,11 +37,20 @@
     &times;
   </button>
   <p class="donate-peek-kicker mono">Support the work</p>
-  <div
-    class="gfm-embed donate-peek-widget"
-    data-url="https://www.gofundme.com/f/support-foxfires-fight-against-data-centers/widget/large"
-  ></div>
-  <script is:inline defer src="https://www.gofundme.com/static/js/embed.js"></script>
+  <div class="donate-peek-widget">
+    <!--
+      Direct iframe to GoFundMe's widget page. Avoids depending on their
+      embed.js, which skips .gfm-embed divs whose ancestor is [hidden] at
+      script-scan time — exactly our case (the peek is hidden until show()).
+      GoFundMe's widget endpoint allows iframing per its CSP.
+    -->
+    <iframe
+      src="https://www.gofundme.com/f/support-foxfires-fight-against-data-centers/widget/large"
+      title="GoFundMe campaign: Support Foxfire's fight against data centers"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
 </aside>
 
 <script>
@@ -231,19 +240,17 @@
   }
 
   .donate-peek-widget {
-    /* GoFundMe injects an iframe in this wrapper. Let it run edge-to-edge
-       inside the card so the campaign photo reads at full width. */
+    /* The iframe runs edge-to-edge inside the card so the campaign photo
+       reads at full width. */
     margin: 0;
   }
 
   .donate-peek-widget iframe {
-    width: 100% !important;
-    max-width: 100%;
+    width: 100%;
+    height: 480px;
     border: 0;
     display: block;
-    /* The large widget is roughly 460–520px tall depending on campaign
-       state; reserve a sensible default to prevent CLS on first paint. */
-    min-height: 460px;
+    background: var(--bone);
   }
 
   /* Belt-and-suspenders mobile suppression: JS hides too, but if JS
