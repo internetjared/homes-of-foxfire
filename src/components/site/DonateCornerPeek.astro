@@ -46,8 +46,8 @@
 <script>
   (function () {
     const STORAGE_KEY = 'foxfire-donate-peek-dismissed';
-    const SCROLL_THRESHOLD = 600;
-    const TIME_THRESHOLD_MS = 15000;
+    const SCROLL_THRESHOLD = 200;
+    const TIME_THRESHOLD_MS = 6000;
     const MIN_VIEWPORT = 720;
     const SUPPRESS_PATHS = new Set(['/', '/index.html']);
 
@@ -59,18 +59,23 @@
       if (peek.dataset.peekInit === 'true') return;
       peek.dataset.peekInit = 'true';
 
-      // Suppress on the homepage (already has the inline donate slab).
-      const path = window.location.pathname.replace(/\/+$/, '') || '/';
-      if (SUPPRESS_PATHS.has(path)) return;
+      // Debug override: ?peek=force on any URL bypasses every gate.
+      const forced = new URLSearchParams(window.location.search).get('peek') === 'force';
 
-      // Suppress on small viewports (mobile UX + Google interstitial penalty).
-      if (window.innerWidth < MIN_VIEWPORT) return;
+      if (!forced) {
+        // Suppress on the homepage (already has the inline donate slab).
+        const path = window.location.pathname.replace(/\/+$/, '') || '/';
+        if (SUPPRESS_PATHS.has(path)) return;
 
-      // Suppress for return visitors who already dismissed.
-      try {
-        if (localStorage.getItem(STORAGE_KEY) === '1') return;
-      } catch {
-        /* localStorage may be blocked; treat as fresh visitor */
+        // Suppress on small viewports (mobile UX + Google interstitial penalty).
+        if (window.innerWidth < MIN_VIEWPORT) return;
+
+        // Suppress for return visitors who already dismissed.
+        try {
+          if (localStorage.getItem(STORAGE_KEY) === '1') return;
+        } catch {
+          /* localStorage may be blocked; treat as fresh visitor */
+        }
       }
 
       let scriptLoaded = false;
@@ -90,10 +95,13 @@
         cleanup();
         loadEmbedScript();
         peek.hidden = false;
-        // Force a reflow before adding the visible class so the
-        // transition runs from the off-screen state.
-        void (peek as HTMLElement).offsetHeight;
-        peek.classList.add('is-visible');
+        // Force a layout flush before adding the visible class so the
+        // CSS transition runs from the off-screen state. getBoundingClientRect
+        // returns an object the minifier can't drop, unlike a bare property read.
+        peek.getBoundingClientRect();
+        // Add the visible class on the next frame for belt-and-suspenders
+        // transition reliability when coming out of `[hidden]`.
+        requestAnimationFrame(() => peek.classList.add('is-visible'));
       }
 
       let timer: number | null = null;
@@ -111,9 +119,14 @@
         window.removeEventListener('scroll', onScroll);
       }
 
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); // in case the user already scrolled past on a refresh
-      startTimer();
+      if (forced) {
+        // Skip the wait for ?peek=force.
+        show();
+      } else {
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll(); // in case the user already scrolled past on a refresh
+        startTimer();
+      }
 
       function dismiss() {
         peek.classList.remove('is-visible');
