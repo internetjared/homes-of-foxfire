@@ -2543,6 +2543,85 @@
   }
 }
 
+/* ---------- Donate slab (single full-bleed band, copy + GoFundMe widget) ---------- */
+.donate-slab {
+  background: var(--bone);
+  padding: var(--space-3xl) var(--space-2xl);
+}
+
+.donate-slab-grid {
+  max-width: var(--frame);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.donate-slab-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 52ch;
+}
+
+.donate-slab-copy .action-cta-title-icon {
+  color: var(--accent);
+}
+
+.donate-slab-widget {
+  position: relative;
+  /* Soft container so GoFundMe's brand styling sits inside our paper card */
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 4px;
+  padding: var(--space-md);
+  /* Reserve approximate widget height to prevent CLS while embed.js loads */
+  min-height: 420px;
+}
+
+.donate-slab-widget .gfm-embed {
+  display: block;
+  width: 100%;
+}
+
+/* Constrain whatever GoFundMe drops in (typically an iframe) so it
+   plays well inside our card and never overflows on narrow screens. */
+.donate-slab-widget .gfm-embed iframe,
+.donate-slab-widget iframe {
+  width: 100% !important;
+  max-width: 100%;
+  border: 0;
+  display: block;
+}
+
+.donate-slab-noscript {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-soft);
+}
+
+@media (max-width: 900px) {
+  .donate-slab-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  .donate-slab-copy {
+    max-width: none;
+  }
+  .donate-slab-widget {
+    justify-self: center;
+    width: 100%;
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 600px) {
+  .donate-slab {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+}
+
 /* ---------- Action panel (full-bleed navy email signup) ---------- */
 .action-panel-navy {
   background: var(--ink);

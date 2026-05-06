@@ -44,11 +44,10 @@ const meetingTime = home.meetingTime || '7:00 PM. Doors open earlier.';
 const meetingPublicComment = home.meetingPublicComment || 'Sign in to speak. Five minutes per resident.';
 
 // Petition / Donate
-const petitionKicker = home.petitionKicker || 'Petition';
-const petitionTitle = home.petitionTitle || 'Sign the petition.';
-const petitionBody = home.petitionBody || 'Add your name to the coalition petition to prevent the construction of data centers in Commercial Point and Scioto Township. Every signature is part of the public record we bring to council.';
-const petitionCtaLabel = home.petitionCtaLabel || 'Sign the petition';
-const petitionUrl = home.petitionUrl || 'https://www.change.org/p/prevent-the-construction-of-data-centers-in-commercial-point-and-scioto-township';
+// Petition CTA was retired from the homepage in favor of a single,
+// larger donate slab with the GoFundMe widget embedded. The petition
+// link remains available on /take-action for users who reach it from
+// there.
 
 const donateKicker = home.donateKicker || 'Donate';
 const donateTitle = home.donateTitle || 'Make a donation.';
@@ -301,40 +300,35 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
     </div>
   </section>
 
-  <!-- Petition + Donate: full-bleed two-up cards -->
-  <section class="action-cta-section action-cta-bleed">
-    <div class="action-cta-grid">
-      <article class="action-cta-card action-cta-petition">
-        <div class="action-cta-inner">
-          <p class="kicker action-cta-kicker">{petitionKicker}</p>
-          <h2 class="action-cta-title">
-            <span class="action-cta-title-icon" aria-hidden="true"><Icon name="pen" size={28} /></span>
-            {petitionTitle}
-          </h2>
-          <p class="action-cta-body">{petitionBody}</p>
-          <p class="action-cta-foot">
-            <a class="btn-primary action-cta-btn" href={petitionUrl} target="_blank" rel="noopener">
-              {petitionCtaLabel} <Icon name="pen" size={14} />
-            </a>
+  <!-- Donate: full-bleed slab with GoFundMe widget on the right -->
+  <section class="action-cta-section donate-slab" aria-labelledby="donate-slab-title">
+    <div class="donate-slab-grid">
+      <div class="donate-slab-copy">
+        <p class="kicker action-cta-kicker">{donateKicker}</p>
+        <h2 id="donate-slab-title" class="action-cta-title">
+          <span class="action-cta-title-icon" aria-hidden="true"><Icon name="heart" size={28} /></span>
+          {donateTitle}
+        </h2>
+        <div class="action-cta-body" set:html={donateBodyHtml}></div>
+        <p class="action-cta-foot">
+          <a class="btn-primary action-cta-btn" href={donateUrl} target="_blank" rel="noopener">
+            {donateCtaLabel} <Icon name="heart" size={14} />
+          </a>
+        </p>
+      </div>
+      <aside class="donate-slab-widget" aria-label="GoFundMe live progress">
+        <div
+          class="gfm-embed"
+          data-url="https://www.gofundme.com/f/support-foxfires-fight-against-data-centers/widget/large?sharesheet=undefined&attribution_id=sl:6bf188fa-2407-456c-aeec-1e8d59b04e0a"
+        ></div>
+        <noscript>
+          <p class="donate-slab-noscript">
+            <a href={donateUrl} target="_blank" rel="noopener">View the live GoFundMe campaign &rarr;</a>
           </p>
-        </div>
-      </article>
-      <article class="action-cta-card action-cta-donate">
-        <div class="action-cta-inner">
-          <p class="kicker action-cta-kicker">{donateKicker}</p>
-          <h2 class="action-cta-title">
-            <span class="action-cta-title-icon" aria-hidden="true"><Icon name="heart" size={28} /></span>
-            {donateTitle}
-          </h2>
-          <div class="action-cta-body" set:html={donateBodyHtml}></div>
-          <p class="action-cta-foot">
-            <a class="btn-secondary action-cta-btn" href={donateUrl} target="_blank" rel="noopener">
-              {donateCtaLabel} <Icon name="heart" size={14} />
-            </a>
-          </p>
-        </div>
-      </article>
+        </noscript>
+      </aside>
     </div>
+    <script is:inline defer src="https://www.gofundme.com/static/js/embed.js"></script>
   </section>
 
   <!-- What happened -->
