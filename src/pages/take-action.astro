@@ -223,11 +223,7 @@ const preFooterDonateCtaLabel = page.preFooterDonateCtaLabel || 'Make a donation
 const preFooterDonateUrl = page.preFooterDonateUrl || 'https://gofund.me/8a17e35cd';
 
 const nextMeeting = meetings[0];
-// `dateTbd: true` in meetings.json tells the meeting card to show a TBD
-// placeholder instead of the actual calendar block, while keeping the
-// rest of the card (address, time, public comment, calendar link) intact.
-const nextMeetingDateTbd = Boolean((nextMeeting as { dateTbd?: boolean })?.dateTbd);
-const nextMeetingDateObj = (nextMeeting && !nextMeetingDateTbd) ? new Date(`${nextMeeting.date}T12:00:00`) : null;
+const nextMeetingDateObj = nextMeeting ? new Date(`${nextMeeting.date}T12:00:00`) : null;
 const nextMeetingWeekday = nextMeetingDateObj?.toLocaleDateString('en-US', { weekday: 'long' });
 const nextMeetingMonthShort = nextMeetingDateObj?.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
 const nextMeetingDay = nextMeetingDateObj?.getDate();
@@ -430,23 +426,14 @@ const nextMeetingYear = nextMeetingDateObj?.getFullYear();
         {nextMeeting && (
           <div class="attend-detail">
             <div class="attend-cal-row">
-              {nextMeetingDateTbd ? (
-                <div class="attend-cal-tbd" aria-label="Meeting date to be determined">
-                  <span class="attend-cal-tbd-tag mono">Next meeting</span>
-                  <span class="attend-cal-tbd-value">TBD</span>
-                </div>
-              ) : (
-                <>
-                  <div class="cal-block attend-cal-block" aria-hidden="true">
-                    <div class="cal-month">{nextMeetingMonthShort}</div>
-                    <div class="cal-day">{nextMeetingDay}</div>
-                  </div>
-                  <div class="attend-cal-meta">
-                    <p class="attend-cal-weekday">{nextMeetingWeekday}</p>
-                    <p class="attend-cal-year mono">{nextMeetingYear}</p>
-                  </div>
-                </>
-              )}
+              <div class="cal-block attend-cal-block" aria-hidden="true">
+                <div class="cal-month">{nextMeetingMonthShort}</div>
+                <div class="cal-day">{nextMeetingDay}</div>
+              </div>
+              <div class="attend-cal-meta">
+                <p class="attend-cal-weekday">{nextMeetingWeekday}</p>
+                <p class="attend-cal-year mono">{nextMeetingYear}</p>
+              </div>
             </div>
             <div class="attend-flag">
               <span class="attend-flag-tag">
