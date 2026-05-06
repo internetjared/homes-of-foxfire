@@ -39,8 +39,9 @@
   <p class="donate-peek-kicker mono">Support the work</p>
   <div
     class="gfm-embed donate-peek-widget"
-    data-url="https://www.gofundme.com/f/support-foxfires-fight-against-data-centers/widget/large?sharesheet=undefined&attribution_id=sl:6bf188fa-2407-456c-aeec-1e8d59b04e0a"
+    data-url="https://www.gofundme.com/f/support-foxfires-fight-against-data-centers/widget/large"
   ></div>
+  <script is:inline defer src="https://www.gofundme.com/static/js/embed.js"></script>
 </aside>
 
 <script>
@@ -78,29 +79,15 @@
         }
       }
 
-      let scriptLoaded = false;
-      function loadEmbedScript() {
-        if (scriptLoaded) return;
-        scriptLoaded = true;
-        const s = document.createElement('script');
-        s.src = 'https://www.gofundme.com/static/js/embed.js';
-        s.defer = true;
-        document.body.appendChild(s);
-      }
-
       let shown = false;
       function show() {
         if (shown) return;
         shown = true;
         cleanup();
-        loadEmbedScript();
         peek.hidden = false;
         // Force a layout flush before adding the visible class so the
-        // CSS transition runs from the off-screen state. getBoundingClientRect
-        // returns an object the minifier can't drop, unlike a bare property read.
+        // CSS transition runs from the off-screen state.
         peek.getBoundingClientRect();
-        // Add the visible class on the next frame for belt-and-suspenders
-        // transition reliability when coming out of `[hidden]`.
         requestAnimationFrame(() => peek.classList.add('is-visible'));
       }
 
