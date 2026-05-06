@@ -1,0 +1,291 @@
+---
+/**
+ * DonateCornerPeek — site-wide ambient GoFundMe widget.
+ *
+ * Suppressed on:
+ *   - the homepage (the donate slab there already shows the widget)
+ *   - viewports under 720px (mobile)
+ *   - return visitors who have dismissed it (localStorage flag)
+ *
+ * Trigger:
+ *   - scroll past 600px OR 15s elapsed, whichever fires first
+ *
+ * Dismissal:
+ *   - close button (X)
+ *   - Esc key
+ *   - click outside the card
+ *
+ * Loads `embed.js` lazily only when the peek is about to mount, so
+ * pages that never render the peek (small viewports, return visitors,
+ * homepage) don't pay the script cost.
+ */
+---
+
+<aside
+  id="donate-peek"
+  class="donate-peek"
+  hidden
+  aria-label="Support the coalition"
+  data-suppress-on="/"
+>
+  <button
+    type="button"
+    class="donate-peek-close"
+    aria-label="Dismiss the donate widget"
+    data-donate-peek-close
+  >
+    &times;
+  </button>
+  <p class="donate-peek-kicker mono">Support the work</p>
+  <p class="donate-peek-lede">
+    Every dollar helps fund records requests, expert review, printing, and outreach.
+  </p>
+  <div
+    class="gfm-embed donate-peek-widget"
+    data-url="https://www.gofundme.com/f/support-foxfires-fight-against-data-centers/widget/medium?sharesheet=undefined&attribution_id=sl:6bf188fa-2407-456c-aeec-1e8d59b04e0a"
+  ></div>
+  <p class="donate-peek-direct">
+    <a href="https://gofund.me/8a17e35cd" target="_blank" rel="noopener">
+      View on GoFundMe &rarr;
+    </a>
+  </p>
+</aside>
+
+<script>
+  (function () {
+    const STORAGE_KEY = 'foxfire-donate-peek-dismissed';
+    const SCROLL_THRESHOLD = 600;
+    const TIME_THRESHOLD_MS = 15000;
+    const MIN_VIEWPORT = 720;
+    const SUPPRESS_PATHS = new Set(['/', '/index.html']);
+
+    function init() {
+      const peek = document.getElementById('donate-peek');
+      if (!peek) return;
+
+      // Idempotent: never wire twice (View Transitions re-runs page-load).
+      if (peek.dataset.peekInit === 'true') return;
+      peek.dataset.peekInit = 'true';
+
+      // Suppress on the homepage (already has the inline donate slab).
+      const path = window.location.pathname.replace(/\/+$/, '') || '/';
+      if (SUPPRESS_PATHS.has(path)) return;
+
+      // Suppress on small viewports (mobile UX + Google interstitial penalty).
+      if (window.innerWidth < MIN_VIEWPORT) return;
+
+      // Suppress for return visitors who already dismissed.
+      try {
+        if (localStorage.getItem(STORAGE_KEY) === '1') return;
+      } catch {
+        /* localStorage may be blocked; treat as fresh visitor */
+      }
+
+      let scriptLoaded = false;
+      function loadEmbedScript() {
+        if (scriptLoaded) return;
+        scriptLoaded = true;
+        const s = document.createElement('script');
+        s.src = 'https://www.gofundme.com/static/js/embed.js';
+        s.defer = true;
+        document.body.appendChild(s);
+      }
+
+      let shown = false;
+      function show() {
+        if (shown) return;
+        shown = true;
+        cleanup();
+        loadEmbedScript();
+        peek.hidden = false;
+        // Force a reflow before adding the visible class so the
+        // transition runs from the off-screen state.
+        void (peek as HTMLElement).offsetHeight;
+        peek.classList.add('is-visible');
+      }
+
+      let timer: number | null = null;
+      function onScroll() {
+        if (window.scrollY >= SCROLL_THRESHOLD) show();
+      }
+      function startTimer() {
+        timer = window.setTimeout(show, TIME_THRESHOLD_MS);
+      }
+      function cleanup() {
+        if (timer !== null) {
+          window.clearTimeout(timer);
+          timer = null;
+        }
+        window.removeEventListener('scroll', onScroll);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // in case the user already scrolled past on a refresh
+      startTimer();
+
+      function dismiss() {
+        peek.classList.remove('is-visible');
+        // Wait for the fade-out, then hide entirely so it's no longer
+        // a focusable target.
+        const settle = () => {
+          peek.hidden = true;
+        };
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+          settle();
+        } else {
+          window.setTimeout(settle, 220);
+        }
+        try {
+          localStorage.setItem(STORAGE_KEY, '1');
+        } catch {
+          /* ignore */
+        }
+      }
+
+      const closeBtn = peek.querySelector<HTMLButtonElement>('[data-donate-peek-close]');
+      closeBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dismiss();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && peek.classList.contains('is-visible')) {
+          dismiss();
+        }
+      });
+
+      // Click outside the card dismisses too.
+      document.addEventListener('click', (e) => {
+        if (!peek.classList.contains('is-visible')) return;
+        const target = e.target as Node | null;
+        if (!target) return;
+        if (peek.contains(target)) return;
+        dismiss();
+      });
+    }
+
+    document.addEventListener('astro:page-load', init);
+    if (document.readyState !== 'loading') {
+      init();
+    } else {
+      document.addEventListener('DOMContentLoaded', init);
+    }
+  })();
+</script>
+
+<style>
+  .donate-peek {
+    position: fixed;
+    right: var(--space-lg, 24px);
+    bottom: var(--space-lg, 24px);
+    width: 320px;
+    max-width: calc(100vw - 32px);
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--rule-soft);
+    border-radius: 4px;
+    padding: 14px 16px 12px;
+    box-shadow: 0 12px 32px rgba(26, 39, 66, 0.18);
+    z-index: 30;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    pointer-events: none;
+  }
+
+  .donate-peek.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .donate-peek[hidden] {
+    display: none;
+  }
+
+  .donate-peek-close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--text-soft);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+
+  .donate-peek-close:hover,
+  .donate-peek-close:focus-visible {
+    color: var(--ink);
+    background: var(--bone);
+    outline: none;
+  }
+
+  .donate-peek-kicker {
+    margin: 0 0 4px;
+    padding-right: 28px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .donate-peek-lede {
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--text);
+  }
+
+  .donate-peek-widget {
+    margin: 0 -4px;
+  }
+
+  /* Constrain whatever GoFundMe drops in (typically an iframe) */
+  .donate-peek-widget iframe {
+    width: 100% !important;
+    max-width: 100%;
+    border: 0;
+    display: block;
+  }
+
+  .donate-peek-direct {
+    margin: 8px 0 0;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  .donate-peek-direct a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .donate-peek-direct a:hover,
+  .donate-peek-direct a:focus-visible {
+    opacity: 0.7;
+  }
+
+  /* Belt-and-suspenders mobile suppression: JS hides too, but if JS
+     is delayed we still don't want the peek to flash on small screens. */
+  @media (max-width: 719px) {
+    .donate-peek {
+      display: none !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .donate-peek {
+      transition: opacity 0.01ms;
+      transform: none;
+    }
+  }
+</style>

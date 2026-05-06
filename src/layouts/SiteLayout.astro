@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import SiteHeader from '../components/site/SiteHeader.astro';
 import SiteFooter from '../components/site/SiteFooter.astro';
+import DonateCornerPeek from '../components/site/DonateCornerPeek.astro';
 // StickyStatusBar is intentionally not imported. The bar is dormant until
 // the next meeting has an agenda or announcement worth surfacing site-wide.
 // To re-enable: re-add the import, restore the nextMeeting/nextMeetingDate
@@ -59,6 +60,7 @@ const {
     <slot />
   </main>
   <SiteFooter />
+  <DonateCornerPeek />
 </BaseLayout>
 
 <script>
