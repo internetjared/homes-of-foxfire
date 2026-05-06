@@ -3982,6 +3982,33 @@ abbr[title]:hover {
   letter-spacing: 0.04em;
 }
 
+/* TBD placeholder used when meetings.json marks dateTbd: true */
+.attend-cal-tbd {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 18px;
+  border: 1px dashed var(--rule-soft);
+  border-radius: 4px;
+  background: var(--bone);
+}
+
+.attend-cal-tbd-tag {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.attend-cal-tbd-value {
+  font-family: var(--headline);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
 /* On-the-agenda flag */
 .attend-flag {
   margin-bottom: var(--space-md);
