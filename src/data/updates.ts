@@ -43,13 +43,16 @@ export interface LocalUpdate {
 export const localUpdates: LocalUpdate[] = [
   {
     id: 'calling-it-an-emergency-doesnt-make-it-one',
-    title: "Calling it an emergency doesn't make it one.",
+    title: 'Why Commercial Point\'s data center "emergency" deserves scrutiny.',
     publishDate: '2026-05-06',
     publishDateLabel: 'May 6, 2026',
     category: 'Procedural analysis',
     excerpt:
-      "Commercial Point's data-center rezoning was passed under an emergency clause that recites Ohio's statutory phrasing without explaining any actual threat to public peace, health, or safety. Ohio Supreme Court precedent has already struck down rezoning emergency clauses with similar wording.",
+      "A closer look at the May 20, 2024 emergency vote. Commercial Point's data-center rezoning was passed under an emergency clause that recites Ohio's statutory phrasing without explaining any actual threat to public peace, health, or safety. Ohio Supreme Court precedent has already struck down rezoning emergency clauses with similar wording.",
     draft: true,
+    thumbnailUrl: '/calling-it-an-emergency-doesnt-make-it-one.jpg',
+    ogImageWidth: 1672,
+    ogImageHeight: 941,
     bodyHtml: `
 <p class="update-lede">Commercial Point's data-center rezoning deserved real public process, not boilerplate urgency.</p>
 
