@@ -53,7 +53,7 @@ export const localUpdates: LocalUpdate[] = [
     bodyHtml: `
 <p class="update-lede">Commercial Point's data-center rezoning deserved real public process, not boilerplate urgency.</p>
 
-<p>On May 20, 2024, Commercial Point Village Council passed Ordinance 2024-07, rezoning roughly 266.971 acres from Exceptional Use to Planned Industrial District and adopting development standards for a planned industrial project. The permitted use listed in the development text was simple and enormous: <strong>"Data Centers."</strong></p>
+<p>On May 20, 2024, Commercial Point Village Council passed <a href="https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-07.pdf" target="_blank" rel="noopener">Ordinance 2024-07</a>, rezoning roughly 266.971 acres from Exceptional Use to Planned Industrial District and adopting development standards for a planned industrial project. The permitted use listed in the development text was simple and enormous: <strong>"Data Centers."</strong></p>
 
 <p>That alone should have demanded careful public process.</p>
 
@@ -73,13 +73,13 @@ export const localUpdates: LocalUpdate[] = [
 
 <h2>Ohio law requires more than a label</h2>
 
-<p>Under R.C. 731.30, emergency ordinances are special. They can take immediate effect, but only when they are "necessary for the immediate preservation of the public peace, health, or safety," and the reasons for that necessity must be set forth in a separate section of the ordinance. The same statute requires a two-thirds vote of all members elected to council.</p>
+<p>Under <a href="https://codes.ohio.gov/ohio-revised-code/section-731.30" target="_blank" rel="noopener">R.C. 731.30</a>, emergency ordinances are special. They can take immediate effect, but only when they are "necessary for the immediate preservation of the public peace, health, or safety," and the reasons for that necessity must be set forth in a separate section of the ordinance. The same statute requires a two-thirds vote of all members elected to council.</p>
 
-<p>Ordinary legislation, by contrast, is supposed to move through a public process. Under R.C. 731.17(A)(2), ordinances and resolutions must be read on three different days unless council dispenses with that rule by a vote of at least three-fourths of its members.</p>
+<p>Ordinary legislation, by contrast, is supposed to move through a public process. Under <a href="https://codes.ohio.gov/ohio-revised-code/section-731.17" target="_blank" rel="noopener">R.C. 731.17(A)(2)</a>, ordinances and resolutions must be read on three different days unless council dispenses with that rule by a vote of at least three-fourths of its members.</p>
 
 <p>These are two separate procedural requirements with two separate vote thresholds. They are not the same.</p>
 
-<p>That distinction matters here for a specific reason. Commercial Point's council is composed of six members under R.C. 731.09 and Codified Ordinance 220.01. With one vacancy at the time of the May 20, 2024 vote, two-thirds of six is four votes, and three-fourths of six is five votes. Ordinance 2024-07 recorded a 4-1 vote both on suspension of readings and on passage. That arithmetic raises serious questions about whether the readings were properly suspended at all, and the validity of the emergency clause is part of the same procedural picture.</p>
+<p>That distinction matters here for a specific reason. Commercial Point's council is composed of six members under <a href="https://codes.ohio.gov/ohio-revised-code/section-731.09" target="_blank" rel="noopener">R.C. 731.09</a> and <a href="https://codelibrary.amlegal.com/codes/commercialpointoh/latest/overview" target="_blank" rel="noopener">Codified Ordinance 220.01</a>. With one vacancy at the time of the May 20, 2024 vote, two-thirds of six is four votes, and three-fourths of six is five votes. Ordinance 2024-07 recorded a 4-1 vote both on suspension of readings and on passage. That arithmetic raises serious questions about whether the readings were properly suspended at all, and the validity of the emergency clause is part of the same procedural picture.</p>
 
 <h2>"Job creation" is not the same thing as "public peace, health, or safety"</h2>
 
@@ -104,15 +104,15 @@ export const localUpdates: LocalUpdate[] = [
 <h3>State ex rel. Waldick v. Williams, 74 Ohio St.3d 192 (1995)</h3>
 <p>The Court held that a valid R.C. 731.30 emergency clause must set forth specific reasons supporting the declaration. An ordinance cannot, in the Court's later paraphrase, simply "state that it was an emergency because it was an emergency." Purely conclusory, tautological, or illusory emergency language fails the statute. Waldick itself upheld an emergency clause that cited concrete public reasons (engineering services to obtain drinkable water and to comply with federal water-system guidelines).</p>
 
-<h3>State ex rel. Webb v. Bliss, 99 Ohio St.3d 166 (2003)</h3>
+<h3><a href="https://www.supremecourt.ohio.gov/rod/docs/pdf/0/2003/2003-Ohio-3049.pdf" target="_blank" rel="noopener">State ex rel. Webb v. Bliss, 99 Ohio St.3d 166 (2003)</a></h3>
 <p>The Court reviewed Geneva-on-the-Lake Ordinance No. 1165, which rezoned a 45-acre parcel and declared itself an emergency for "the proper regulation and use of lands within the Village" and because the parcel was "more properly classified and consistent with" its new classification. The Court held those were "only conclusory statements" insufficient under R.C. 731.30. The reasons given "could be broadly applied to any zoning change" and contained "no viable reason to exempt the rezoning from the electorate's constitutional right of referendum." Writ of mandamus granted. The referendum had to go to the voters.</p>
 
-<h3>State ex rel. Hasselbach v. Sandusky Cty. Bd. of Elections, 157 Ohio St.3d 433 (2019)</h3>
+<h3><a href="https://www.supremecourt.ohio.gov/rod/docs/pdf/0/2019/2019-Ohio-3751.pdf" target="_blank" rel="noopener">State ex rel. Hasselbach v. Sandusky Cty. Bd. of Elections, 157 Ohio St.3d 433 (2019)</a></h3>
 <p>This is the closest analog. The Court reviewed a Fremont rezoning ordinance whose emergency clause "parrots R.C. 731.30" by reciting "public peace, health, safety and welfare" and adding only this: "Said emergency being the immediate undertaking of the project to avoid an increase in project cost." The Court held the clause was conclusory and showed no connection between a private developer's project costs and the municipality's public peace, health, or safety. Writ granted; the referendum was placed on the November 2019 ballot.</p>
 
 <p>Read that one again. The defective Fremont language was "the immediate undertaking of the project to avoid an increase in project cost." The Commercial Point language is "to promote commercial opportunities and its job creation." The grammatical structure is different. The legal substance is the same: a private developer's economic interest dressed up in statutory boilerplate. The Ohio Supreme Court has already said that fails.</p>
 
-<h3>State ex rel. Laughlin v. James, 115 Ohio St.3d 231 (2007)</h3>
+<h3><a href="https://www.supremecourt.ohio.gov/rod/docs/pdf/0/2007/2007-Ohio-4811.pdf" target="_blank" rel="noopener">State ex rel. Laughlin v. James, 115 Ohio St.3d 231 (2007)</a></h3>
 <p>The contrast case. The Court upheld Centerburg's emergency annexation ordinance because its emergency clause cited specific, project-particular reasons: permitting the property owner to begin planning-commission applications, preventing further delay from correcting an earlier ordinance, avoiding uncertainty in the village's sanitary and storm-sewer infrastructure planning, and conformance with the village's Comprehensive Plan. Laughlin makes clear that courts will not second-guess truly stated public reasons, but they will strike "purely conclusory, tautological, or illusory" emergency declarations.</p>
 
 <p>The takeaway across all four cases: real emergency clauses identify concrete public reasons. Boilerplate emergency clauses recite public peace, health, and safety without connecting that recital to anything specific. Ordinances in the second category get sent to the voters.</p>
@@ -210,7 +210,30 @@ export const localUpdates: LocalUpdate[] = [
 <p class="update-signoff">What, exactly, was the emergency?</p>
 
 <div class="update-sources">
-  <p class="update-sources-intro">This post is informational and reflects coalition research on the public record. It is not legal advice. Citations to Ohio Supreme Court decisions are provided to allow readers to consult the underlying authorities directly.</p>
+  <p class="update-sources-title">Sources cited</p>
+  <p class="update-sources-intro">This post is informational and reflects coalition research on the public record. It is not legal advice. Links below take you to the underlying authorities so you can verify every citation directly.</p>
+
+  <h3>Ordinance and codified ordinances</h3>
+  <ul>
+    <li><a href="https://www.commercialpointohio.gov/CPDocuments/CPOrdinances/2024/2024-07.pdf" target="_blank" rel="noopener">Ordinance 2024-07 (PDF)</a> &mdash; Village of Commercial Point, adopted May 20, 2024</li>
+    <li><a href="https://codelibrary.amlegal.com/codes/commercialpointoh/latest/overview" target="_blank" rel="noopener">Commercial Point Codified Ordinances</a> &mdash; American Legal Publishing (see Chapter 220, Council)</li>
+    <li><a href="https://www.commercialpointohio.gov/ordinances/" target="_blank" rel="noopener">Village of Commercial Point ordinance archive</a></li>
+  </ul>
+
+  <h3>Ohio Revised Code</h3>
+  <ul>
+    <li><a href="https://codes.ohio.gov/ohio-revised-code/section-731.30" target="_blank" rel="noopener">R.C. 731.30 &mdash; Emergency ordinances</a></li>
+    <li><a href="https://codes.ohio.gov/ohio-revised-code/section-731.17" target="_blank" rel="noopener">R.C. 731.17 &mdash; Reading and amendment of ordinances</a></li>
+    <li><a href="https://codes.ohio.gov/ohio-revised-code/section-731.09" target="_blank" rel="noopener">R.C. 731.09 &mdash; Composition of legislative authority of villages</a></li>
+  </ul>
+
+  <h3>Ohio Supreme Court decisions</h3>
+  <ul>
+    <li>State ex rel. Waldick v. Williams, 74 Ohio St.3d 192, 658 N.E.2d 241 (1995). Predates the Court's online slip-opinion archive; available through Westlaw, LexisNexis, or other case-law databases.</li>
+    <li><a href="https://www.supremecourt.ohio.gov/rod/docs/pdf/0/2003/2003-Ohio-3049.pdf" target="_blank" rel="noopener">State ex rel. Webb v. Bliss, 99 Ohio St.3d 166, 2003-Ohio-3049 (PDF)</a></li>
+    <li><a href="https://www.supremecourt.ohio.gov/rod/docs/pdf/0/2007/2007-Ohio-4811.pdf" target="_blank" rel="noopener">State ex rel. Laughlin v. James, 115 Ohio St.3d 231, 2007-Ohio-4811 (PDF)</a></li>
+    <li><a href="https://www.supremecourt.ohio.gov/rod/docs/pdf/0/2019/2019-Ohio-3751.pdf" target="_blank" rel="noopener">State ex rel. Hasselbach v. Sandusky Cty. Bd. of Elections, 157 Ohio St.3d 433, 2019-Ohio-3751 (PDF)</a></li>
+  </ul>
 </div>
 `,
   },
