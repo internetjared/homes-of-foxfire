@@ -398,6 +398,38 @@ const articleSchema = {
     letter-spacing: 0.01em;
   }
 
+  /* Editorial aside — softer than .update-callout (navy/paper) and
+     distinct from .update-pull (used for actual quotations). Use for
+     "by the way" notes, forthcoming-post pointers, and scope-limit
+     reminders. */
+  .update-article-body :global(.update-note) {
+    margin: var(--space-xl) 0;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--bone);
+    border-left: 2px solid var(--rule-soft);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text);
+  }
+
+  .update-article-body :global(.update-note-kicker) {
+    margin: 0 0 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    font-weight: 500;
+  }
+
+  .update-article-body :global(.update-note p) {
+    margin: 0;
+  }
+
+  .update-article-body :global(.update-note p + p) {
+    margin-top: var(--space-sm);
+  }
+
   /* Case comparison table — for legal/procedural posts. Wraps so it
      scrolls horizontally on narrow viewports rather than overflowing. */
   .update-article-body :global(.update-cases-table-wrap) {

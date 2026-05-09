@@ -164,6 +164,12 @@ export const localUpdates: LocalUpdate[] = [
 
 <p>That would swallow the rule. Ohio courts have not let it.</p>
 
+<aside class="update-note">
+  <p class="update-note-kicker">A note on the jobs premise</p>
+  <p>The ordinance's emergency clause rests on one stated rationale: "commercial opportunities and its job creation." Whether that claim holds up empirically, how many permanent jobs a data-center campus actually creates once construction ends, what those jobs pay, and at what public cost in tax incentives, electricity, and water, is its own serious question. We will examine the public record on data-center employment, infrastructure load, and tax abatements in a forthcoming post.</p>
+  <p>For purposes of this analysis, the legal point is narrower: even accepting the village's economic-development premise on its own terms, "job creation" is not the kind of immediate threat to public peace, health, or safety that R.C. 731.30 contemplates.</p>
+</aside>
+
 <h2>The bigger the project, the less acceptable the boilerplate</h2>
 
 <p>This was not a minor housekeeping ordinance. Ordinance 2024-07 rezoned nearly 267 acres for planned industrial use, with development standards for data centers.</p>
