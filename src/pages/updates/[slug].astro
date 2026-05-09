@@ -294,8 +294,23 @@ const articleSchema = {
     text-wrap: balance;
   }
 
+  .update-article-body :global(h3) {
+    font-family: var(--headline);
+    font-size: 1.125rem;
+    line-height: 1.3;
+    margin: var(--space-xl) 0 var(--space-xs);
+    color: var(--ink);
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0;
+  }
+
   .update-article-body :global(p) {
     margin: 0 0 var(--space-md);
+  }
+
+  .update-article-body :global(blockquote) {
+    margin: var(--space-lg) 0;
   }
 
   .update-article-body :global(ul) {
@@ -381,6 +396,70 @@ const articleSchema = {
     line-height: 1.55;
     font-weight: 500;
     letter-spacing: 0.01em;
+  }
+
+  /* Case comparison table — for legal/procedural posts. Wraps so it
+     scrolls horizontally on narrow viewports rather than overflowing. */
+  .update-article-body :global(.update-cases-table-wrap) {
+    margin: var(--space-xl) 0;
+    overflow-x: auto;
+    border: 1px solid var(--rule-soft);
+    border-radius: 4px;
+  }
+
+  .update-article-body :global(.update-cases-table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .update-article-body :global(.update-cases-table th),
+  .update-article-body :global(.update-cases-table td) {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+  }
+
+  .update-article-body :global(.update-cases-table th) {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    font-weight: 500;
+    background: var(--bone);
+  }
+
+  .update-article-body :global(.update-cases-table tr:last-child td) {
+    border-bottom: none;
+  }
+
+  .update-article-body :global(.update-cases-table td:first-child) {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .update-article-body :global(.update-cases-table td:last-child) {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .update-article-body :global(.update-signoff) {
+    font-family: var(--headline);
+    font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+    line-height: 1.25;
+    color: var(--ink);
+    font-weight: 500;
+    margin: var(--space-xl) 0 var(--space-2xl);
+    text-wrap: balance;
   }
 
   /* Inline "watch" link callout — small, calm, with a play glyph */
