@@ -2,7 +2,6 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SectionHeading from '../components/content/SectionHeading.astro';
 import Icon from '../components/content/Icon.astro';
-import meetings from '../data/meetings.json';
 import { getAllUpdates, cardThumbnail } from '../data/updates';
 import { sanity, QUERY_HOME_PAGE, type SanityHomePage } from '../lib/sanity';
 import { toHTML } from '@portabletext/to-html';
@@ -33,18 +32,9 @@ const signupTitle = home.signupTitle || 'Get updates from the coalition.';
 const signupLede = home.signupLede || 'Short notes about meetings, events, and progress on the data center issue. No spam, no other lists. Unsubscribe anytime.';
 const signupSuccessMessage = home.signupSuccessMessage || 'Thank you for joining the fight. Watch for short notes on meetings, key documents, and how to make your voice heard.';
 
-// Meeting
-const meetingKicker = home.meetingKicker || 'Next council meeting';
-const meetingAgendaTag = home.meetingAgendaTag || 'On the agenda';
-// Agenda copy is meeting-specific. When the next meeting has no published
-// agenda yet, the card renders "TBD" in the agenda flag and skips the
-// explanatory body paragraph.
-const meetingAgendaText = home.meetingAgendaText || '';
-const meetingBody = home.meetingBody || '';
-const meetingAddress = home.meetingAddress || 'Village offices, 10 W. Scioto St., Commercial Point.';
-const meetingMapsUrl = 'https://www.google.com/maps/search/?api=1&query=10%20W%20Scioto%20St%2C%20Commercial%20Point%2C%20OH%2043116';
-const meetingTime = home.meetingTime || '7:00 PM. Doors open earlier.';
-const meetingPublicComment = home.meetingPublicComment || 'Sign in to speak. Five minutes per resident.';
+// The next-council-meeting box was removed from the homepage action panel;
+// the email signup is now the sole element there. The meeting card still
+// lives on /take-action, which reads meetings.json directly.
 
 // Petition / Donate
 // Petition CTA was retired from the homepage in favor of a single,
@@ -88,20 +78,6 @@ const publishedUpdates = allUpdates.filter((u) => !u.draft);
 const featuredUpdate = publishedUpdates.find((u) => u.featured) ?? publishedUpdates[0] ?? null;
 // Recent list: up to 3 posts, excluding the featured one.
 const recentUpdates = publishedUpdates.filter((u) => u !== featuredUpdate).slice(0, 3);
-
-// Next meeting for the side-by-side box. Pre-format calendar pieces.
-const nextMeeting = meetings[0];
-const nextMeetingDateObj = nextMeeting
-  ? new Date(`${nextMeeting.date}T12:00:00`)
-  : null;
-const nextMeetingMonth = nextMeetingDateObj
-  ? nextMeetingDateObj.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()
-  : null;
-const nextMeetingDay = nextMeetingDateObj ? nextMeetingDateObj.getDate() : null;
-const nextMeetingWeekday = nextMeetingDateObj
-  ? nextMeetingDateObj.toLocaleDateString('en-US', { weekday: 'long' })
-  : null;
-const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : null;
 ---
 
 <SiteLayout
@@ -257,49 +233,6 @@ const nextMeetingYear = nextMeetingDateObj ? nextMeetingDateObj.getFullYear() : 
         </script>
 
       </div>
-
-      <!-- Right: next meeting -->
-      <aside class="action-panel-col action-panel-meeting" aria-label="Next council meeting">
-        <p class="kicker action-panel-kicker">{meetingKicker}</p>
-
-        <div class="action-meeting-cal-row">
-          <div class="cal-block" aria-hidden="true">
-            <div class="cal-month">{nextMeetingMonth}</div>
-            <div class="cal-day">{nextMeetingDay}</div>
-          </div>
-          <div class="action-meeting-cal-meta">
-            <p class="action-meeting-weekday">{nextMeetingWeekday}</p>
-            <p class="action-meeting-year mono tab">{nextMeetingYear}</p>
-          </div>
-        </div>
-        <div class="action-meeting-flag">
-          <span class="action-meeting-flag-tag">
-            <Icon name="gavel" size={12} />
-            {meetingAgendaTag}
-          </span>
-          <span class="action-meeting-flag-text">{meetingAgendaText || 'TBD'}</span>
-        </div>
-        {meetingBody && <p class="action-meeting-body">{meetingBody}</p>}
-        <ul class="action-meeting-list">
-          <li>
-            <span class="action-meeting-icon"><Icon name="map-pin" size={16} ariaLabel="Where" /></span>
-            <a class="address-link" href={meetingMapsUrl} target="_blank" rel="noopener">{meetingAddress}</a>
-          </li>
-          <li>
-            <span class="action-meeting-icon"><Icon name="clock" size={16} ariaLabel="Time" /></span>
-            {meetingTime}
-          </li>
-          <li>
-            <span class="action-meeting-icon"><Icon name="microphone" size={16} ariaLabel="Public comment" /></span>
-            {meetingPublicComment}
-          </li>
-        </ul>
-        <p class="action-meeting-foot">
-          <a class="action-panel-link" href={nextMeeting.source.url} target="_blank" rel="noopener">
-            Village meeting calendar <span aria-hidden="true">&rarr;</span>
-          </a>
-        </p>
-      </aside>
     </div>
   </section>
 

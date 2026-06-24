@@ -2632,7 +2632,11 @@
   max-width: var(--frame);
   margin-inline: auto;
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
+  /* Single column now that the next-meeting box has been removed; the
+     email signup is the only child. Cap its width so the form doesn't
+     stretch uncomfortably wide on large screens. */
+  grid-template-columns: minmax(0, 640px);
+  justify-content: center;
   gap: var(--space-4xl);
   align-items: start;
 }
