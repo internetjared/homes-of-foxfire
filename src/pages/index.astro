@@ -253,10 +253,19 @@ const recentUpdates = publishedUpdates.filter((u) => u !== featuredUpdate).slice
         </p>
       </div>
       <aside class="donate-slab-widget" aria-label="GoFundMe live progress">
-        <div
-          class="gfm-embed"
-          data-url="https://www.gofundme.com/f/support-foxfires-fight-against-data-centers/widget/large?sharesheet=undefined&attribution_id=sl:6bf188fa-2407-456c-aeec-1e8d59b04e0a"
-        ></div>
+        <!--
+          Direct iframe to GoFundMe's widget page. Avoids depending on their
+          embed.js, which scans the DOM for .gfm-embed divs once at load and
+          intermittently fails to populate them (the corner-peek had the same
+          bug). The iframe is in the DOM from first render and always loads.
+          GoFundMe's widget endpoint allows iframing per its CSP.
+        -->
+        <iframe
+          src="https://www.gofundme.com/f/support-foxfires-fight-against-data-centers/widget/large"
+          title="GoFundMe campaign: Support Foxfire's fight against data centers"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
         <noscript>
           <p class="donate-slab-noscript">
             <a href={donateUrl} target="_blank" rel="noopener">View the live GoFundMe campaign &rarr;</a>
@@ -264,7 +273,6 @@ const recentUpdates = publishedUpdates.filter((u) => u !== featuredUpdate).slice
         </noscript>
       </aside>
     </div>
-    <script is:inline defer src="https://www.gofundme.com/static/js/embed.js"></script>
   </section>
 
   <!-- What happened -->

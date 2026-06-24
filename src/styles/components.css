@@ -2576,23 +2576,17 @@
   border: 1px solid var(--rule-soft);
   border-radius: 4px;
   padding: var(--space-md);
-  /* Reserve approximate widget height to prevent CLS while embed.js loads */
-  min-height: 420px;
 }
 
-.donate-slab-widget .gfm-embed {
-  display: block;
-  width: 100%;
-}
-
-/* Constrain whatever GoFundMe drops in (typically an iframe) so it
-   plays well inside our card and never overflows on narrow screens. */
-.donate-slab-widget .gfm-embed iframe,
+/* Direct iframe to the GoFundMe widget. Fixed height matches the corner
+   peek; the large widget renders consistently within this range. */
 .donate-slab-widget iframe {
-  width: 100% !important;
+  width: 100%;
+  height: 480px;
   max-width: 100%;
   border: 0;
   display: block;
+  background: var(--bone);
 }
 
 .donate-slab-noscript {
